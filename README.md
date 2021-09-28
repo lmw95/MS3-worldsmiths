@@ -79,5 +79,40 @@ This website is fully responsive and interactive, and was developed using HTML, 
 * I want to be able to leave comments or questions in the event/group so that I can have all the information I need 
 * I want to be able to view the events and groups that I am part of 
 
+## **Scope**
+***Feature trade-off***
+[](https://github.com/lmw95/MS3-worldsmiths/blob/main/documentation/screenshots/features.png)
+
+***Features needed for functionality***
+* To be able to sign up using email address and password securely
+* To be able to log in
+* To be able to log out
+* To be able to create / view / edit / delete profile information 
+* To be able to choose visibility for profile information fields
+* To be able to reset password
+* To be able to create / view / edit / join / leave / cancel an event 
+* To be able to create / view / edit / join / leave / delete a group
+* To be able to search for events / groups according to keywords
+* To be able to display search results
+* To be able to sort search results by certain criteria (e.g - location)
+* To be able to leave a comment in an event / group
+* To be able to delete a comment in an event / group
+* To be able to view other members' profiles
+* To be able to upload a profile image 
+* To be able to contact the site owner
+* To be able to view the event location on a map
+* To be able to recieve feed back for CRUD actions (create, update, delete)
+* Page 404 & page 500 error (when necessary)
+
+***Website content requirements***
+* Must be clear and well laid out for easy navigation
+* Information on how to use the website
+* Interface must be attractive but minimal 
+* Icons to aid visualisation and UI
+* Clear headings and information fields
+
+***Limitations***
+* The site owner is in the process of learning Python, Flask and MongoDB which may limit the features available on the website 
+* There is a time limit which may place constraints on certain elements 
 
 
