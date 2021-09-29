@@ -80,8 +80,10 @@ This website is fully responsive and interactive, and was developed using HTML, 
 * I want to be able to view the events and groups that I am part of 
 
 ## **Scope**
+
 ***Feature trade-off***
-[](https://github.com/lmw95/MS3-worldsmiths/blob/main/documentation/screenshots/features.png)
+
+![](documentation/screenshots/features.png)
 
 ***Features needed for functionality***
 * To be able to sign up using email address and password securely
@@ -115,4 +117,43 @@ This website is fully responsive and interactive, and was developed using HTML, 
 * The site owner is in the process of learning Python, Flask and MongoDB which may limit the features available on the website 
 * There is a time limit which may place constraints on certain elements 
 
+## **Structure**
 
+***Architecture***
+
+![](documentation/screenshots/information-achitecture.png)
+
+***Workflow***
+
+![](documentation/screenshots/workflow.png)
+
+***Organisation***
+
+* Navigation menu:
+    * Guest user:
+    * Logged-in user:
+* Homepage:
+    * Hero image:
+    * Search bar:
+    * "Welcome / about us" section:
+    * "How it works" section:
+    * Upcoming / special events:
+    * Helpful links/websites bar:
+* Footer:
+* Search and list events:
+* Events pages:
+* User profile:
+* My groups:
+* Groups pages:
+* My events:
+
+***Interaction***
+* Collapsible menu
+* Modal forms for contacting site owner
+* Buttons, icons and content cards with hoverable effects
+
+***Database structure***
+
+*(To be added)*
+
+## **Skeleton**
