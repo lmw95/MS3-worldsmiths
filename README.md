@@ -135,9 +135,8 @@ This website is fully responsive and interactive, and was developed using HTML, 
 * Homepage:
     * Hero image:
     * Search bar:
-    * "Welcome / about us" section:
-    * "How it works" section:
-    * Upcoming / special events:
+    * "Welcome / how it works" section:
+    * Upcoming events:
     * Helpful links/websites bar:
 * Footer:
 * Search and list events:
@@ -157,3 +156,23 @@ This website is fully responsive and interactive, and was developed using HTML, 
 *(To be added)*
 
 ## **Skeleton**
+Non-logged in users can see:
+* [Homepage - not logged in](documentation/wireframes/homepage-user-not-logged-in.png)
+* [Sign-up page](documentation/wireframes/sign-up.png)
+* [Log-in page](documentation/wireframes/log-in.png)
+* [All groups and events - search results](documentation/wireframes/all-groups-events.png)
+* [Event page](documentation/wireframes/event-page.png)
+* [Sign in/sign up prompt](documentation/wireframes/sign-in-prompt.png)
+* [Privacy & accessibility](documentation/wireframes/privacy-and-accessibility.png)
+* [FAQs](documentation/wireframes/faqs.png)
+* [Contact us](documentation/wireframes/contact-us.png)
+
+Logged-in users can see:
+* [Homepage - logged in](documentation/wireframes/homepage-user-logged-in.png)
+* [Profile page](documentation/wireframes/profile.png)
+* [Event page - non-attendee](documentation/wireframes/event-page.png)
+* [Event page - attendee](documentation/wireframes/event-page-attendee.png)
+* [Event page - orgaiser](documentation/wireframes/event-page-organiser.png)
+* [Group page - non-member](documentation/wireframes/group-page-non-member.png)
+* [Group page - member](documentation/wireframes/group-page-member.png)
+* [Group page - owner](documentation/wireframes/group-page-owner.png)
