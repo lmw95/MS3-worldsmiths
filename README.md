@@ -121,7 +121,7 @@ This website is fully responsive and interactive, and was developed using HTML, 
 
 ***Architecture***
 
-![](documentation/screenshots/information-achitecture.png)
+![](documentation/screenshots/information-architecture.png)
 
 ***Workflow***
 
@@ -139,6 +139,7 @@ This website is fully responsive and interactive, and was developed using HTML, 
     * Upcoming events:
     * Helpful links/websites bar:
 * Footer:
+* Welcome page:
 * Search and list events:
 * Events pages:
 * User profile:
@@ -169,10 +170,37 @@ Non-logged in users can see:
 
 Logged-in users can see:
 * [Homepage - logged in](documentation/wireframes/homepage-user-logged-in.png)
-* [Profile page](documentation/wireframes/profile.png)
+* [Welcome page](documentation/wireframes/welcome-page.png)
+* [User profile page](documentation/wireframes/profile.png)
+* [Other user profile](documentation/wireframes/other-user-profile.png)
+* [Edit profile modal](documentation/wireframes/edit-profile.png)
+* [Create event](documentation/wireframes/create-event.png)
 * [Event page - non-attendee](documentation/wireframes/event-page.png)
 * [Event page - attendee](documentation/wireframes/event-page-attendee.png)
 * [Event page - orgaiser](documentation/wireframes/event-page-organiser.png)
+* [Edit event](documentation/wireframes/edit-event.png)
+* [Create group](documentation/wireframes/create-group.png)
 * [Group page - non-member](documentation/wireframes/group-page-non-member.png)
 * [Group page - member](documentation/wireframes/group-page-member.png)
 * [Group page - owner](documentation/wireframes/group-page-owner.png)
+* [Edit group](documentation/wireframes/edit-group.png)
+* [Settings modals](documentation/wireframes/settings.png)
+
+## **Design**
+The overall design of the website will be modern yet keeping in theme of worldbuilding genres and cartography.
+
+***Palette***
+
+*(To be added)*
+
+***Typography***
+
+*(To be added)*
+
+***Iconography***
+
+*(To be added)*
+
+***Imagery***
+
+*(To be added)*
