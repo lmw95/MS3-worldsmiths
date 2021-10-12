@@ -191,16 +191,19 @@ The overall design of the website will be modern yet keeping in theme of worldbu
 
 ***Palette***
 
+The colour palette will be using colours that exist in the main header image, with no colour clashes to ensure accessibility:
+
+![](documentation/screenshots/palette.png) 
+
 *(To be added)*
 
 ***Typography***
 
-*(To be added)*
+This website will be using the following clean and modern fonts, from [Google Fonts](https://fonts.google.com/):
+* [Josefin Sans](https://fonts.google.com/specimen/Josefin+Sans?preview.text=WORLDSMITHS&preview.text_type=custom) for the main 'Worldsmiths' logo and the content text 
+* [Yanone Kaffeesatz](https://fonts.google.com/specimen/Yanone+Kaffeesatz?preview.text=WORLDSMITHS&preview.text_type=custom) for headers
 
 ***Iconography***
 
-*(To be added)*
+Icons from [Font Awesome](https://fontawesome.com/) and [Flaticon](https://www.flaticon.com/) will be used occasionally throughout the website for user access
 
-***Imagery***
-
-*(To be added)*
