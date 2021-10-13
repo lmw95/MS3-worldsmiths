@@ -195,8 +195,6 @@ The colour palette will be using colours that exist in the main header image, wi
 
 ![](documentation/screenshots/palette.png) 
 
-*(To be added)*
-
 ***Typography***
 
 This website will be using the following clean and modern fonts, from [Google Fonts](https://fonts.google.com/):
@@ -206,4 +204,3 @@ This website will be using the following clean and modern fonts, from [Google Fo
 ***Iconography***
 
 Icons from [Font Awesome](https://fontawesome.com/) and [Flaticon](https://www.flaticon.com/) will be used occasionally throughout the website for user access
-
