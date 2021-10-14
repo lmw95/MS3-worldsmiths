@@ -1,0 +1,14 @@
+{
+    "description": "Details of a group type",
+    "properties": {
+        "_id": {
+            "bsonType": "objectId"
+        },
+        "g_type": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        }
+    },
+    "required": ["_id", "g_type"],
+    "title": "group_type"
+}

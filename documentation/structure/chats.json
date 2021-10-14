@@ -1,0 +1,28 @@
+{
+    "description": "Details of a post in the chat and the poster",
+    "properties": {
+        "_id": "objectId",
+        "comment": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "reply": {
+            "bsonType": "string",
+            "description": "must be a string if the field exists"
+        },
+        "poster": {
+            "bsonType": "objectId",
+            "description": "must be an objectId and is required if field exists"
+        },
+        "time_posted": {
+            "bsonType": "timestamp",
+            "description": "must be a timestamp and is required if field exists"
+        },
+        "date_posted": {
+            "bsonType": "date",
+            "description": "must be a date and is required if field exists "
+        }
+    },
+    "required": ["_id", "comment", "poster", "time_posted", "date_posted"],
+    "title": "chats"
+}

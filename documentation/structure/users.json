@@ -1,0 +1,91 @@
+{
+    "description": "Details of a user",
+    "properties": {
+        "_id": {
+            "bsonType": "objectId"
+        },
+        "first_name": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "last_name": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "email": {
+            "bsonType": "string",
+            "description": "must be a string and is required",
+            "uniqueItems": true
+        },
+        "password": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "profile_pic_url": {
+            "bsonType": "string",
+            "description": "must be a string and can be empty"
+        },
+        "user_banner_url": {
+            "bsonType": "string",
+            "description": "must be a string and can be empty"
+        },
+        "user_member_since": {
+            "bsonType": "date",
+            "description": "must be a date and always displayed"
+        },
+        "user_city": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "user_location": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "user_interests": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "user_biography": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "user_project_1": {
+            "bsonType": "string",
+            "description": "must be a string and can be empty"
+        },
+        "user_project_2": {
+            "bsonType": "string",
+            "description": "must be a string and can be empty"
+        },
+        "user_project_3": {
+            "bsonType": "string",
+            "description": "must be a string and can be empty"
+        },
+        "events_attending": {
+            "bsonType": "array",
+            "description": "must be an array of ObjectId and can be empty",
+            "items": {
+                "bsonType": "objectId"
+            },
+            "minItems": "0"
+        },
+        "groups_member_of": {
+            "bsonType": "array",
+            "description": "must be an array of ObjectId and can be empty",
+            "items": {
+                "bsonType": "objectId"
+            },
+            "minItems": "0"
+        },
+        "following": {
+            "bsonType": "array",
+            "description": "must be an array of ObjectId and can be empty",
+            "items": {
+                "bsonType": "objectId"
+            },
+            "minItems": "0"
+        }
+    },
+    "required": ["_id", "first_name", "last_name", "email", "password", "user_city", "user_location", "user_interests", "user_biography"],
+    "title": "user"
+}

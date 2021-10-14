@@ -1,0 +1,51 @@
+{
+    "description": "Details of a group",
+    "properties": {
+        "_id": {
+            "bsonType": "objectId"
+        },
+        "group_name": {
+            "bsonType": "string",
+            "description": "must be a string and is required",
+            "uniqueItems": true
+        },
+        "group_cover_img_url": {
+            "bsonType": "string",
+            "description": "must be a string and can be empty"
+        },
+        "group_type": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "group_admin": {
+            "bsonType": "objectId",
+            "description": "must be an objectId and is required",
+            "items": {
+                "bsonType": "objectId"
+            },
+            "minItems": "1"
+        },
+        "group_location": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "num_of_members": {
+            "bsonType": "integer",
+            "description": "must be an integer and is required"
+        },
+        "group_description": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "members": {
+            "bsonType": "array",
+            "description": "must be an array and can be empty",
+            "items": {
+                "bsonType": "array"
+            },
+            "minItems": "0"
+        }
+    },
+    "required": ["_id", "group_name", "group_type", "group_admin", "group_location", "num_of_members", "group_description"],
+    "title": "groups"
+}
