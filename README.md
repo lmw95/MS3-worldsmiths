@@ -154,7 +154,15 @@ This website is fully responsive and interactive, and was developed using HTML, 
 
 ***Database structure***
 
-*(To be added)*
+![](documentation/screenshots/database.png)
+
+JSON Schema:
+* [chat schema](documentation/structure/chats.json)
+* [event_type schema](documentation/structure/event_type.json)
+* [event schema](documentation/structure/events.json)
+* [group_type schema](documentation/structure/group_type.json)
+* [group schema](documentation/structure/groups.json)
+* [users schema](documentation/structure/users.json)
 
 ## **Skeleton**
 Non-logged in users can see:
@@ -171,7 +179,7 @@ Non-logged in users can see:
 Logged-in users can see:
 * [Homepage - logged in](documentation/wireframes/homepage-user-logged-in.png)
 * [Welcome page](documentation/wireframes/welcome-page.png)
-* [User profile page](documentation/wireframes/profile.png)
+* [User profile page](documentation/wireframes/profile-complete.png)
 * [Other user profile](documentation/wireframes/other-user-profile.png)
 * [Edit profile modal](documentation/wireframes/edit-profile.png)
 * [Create event](documentation/wireframes/create-event.png)
