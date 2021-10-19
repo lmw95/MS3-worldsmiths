@@ -21,10 +21,10 @@ mongo = PyMongo(app)
 
 # Test function to render data.html test page
 @app.route("/")
-@app.route("/get_groups")
-def get_groups():
+@app.route("/test_groups")
+def test_groups():
     groups = mongo.db.groups.find()
-    return render_template("data.html", groups=groups)
+    return render_template("test.html", groups=groups)
 
 # Set up port & IP environment variables
 if __name__ == "__main__":
