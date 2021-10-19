@@ -15,7 +15,6 @@
 
 /** Navigation **/
 nav {
-    height: 90px;
     box-shadow: none;
     background-color: var(--magenta);
 }
@@ -28,17 +27,19 @@ nav .brand-logo {
     font-weight: 600;
     letter-spacing: 2px;
     font-size: 5em;
+    color: var(--almond);
 }
 
 nav .brand-icon {
     height: 60px;
-    max-width: 60px;
+    width: 60px;
 }
 
 nav .nav-title {
     padding: 20px 0 15px 15px;
     font-family: var(--josefin-sans);
     font-size: 1.2em;
+    color: var(--almond);
 }
 
 nav ul {
@@ -47,11 +48,12 @@ nav ul {
 
 nav ul a {
     transition: all 0.1s ease-in-out;
+    color: var(--almond);
 }
 
 nav ul a:hover {
     background-color: transparent;
-    transform: scale(1.2);
+    transform: scale(1.3);
 }
 
 .sidenav {
@@ -62,3 +64,70 @@ nav ul a:hover {
 .sidenav li a i {
     color: var(--black);
 }
+
+/** Hero image **/
+div .hero { 
+    width: 100%;
+    height: 380px;
+} 
+
+/** Footer **/
+footer {
+    padding: 70px 20px 10px 20px;
+    background-color: var(--magenta);
+    color: var(--almond);
+}
+
+footer h5 {
+    font-family: var(--yanone-kaffeesatz);
+    text-transform: uppercase;
+    font-size: 2.5em;
+    margin-bottom: 0px;
+}
+
+footer .footer-social-media i {
+    font-size: 2em;
+    padding: 0.5em;
+    color: var(--almond);
+}
+
+footer p {
+    margin-top: 0;
+    font-family: var(--josefin-sans);
+    font-size: 1.1em;
+}
+
+footer .fantasy-creature {
+    height: 225px;
+    width: 225px;
+}
+
+footer .row {
+    margin-bottom: 0;
+}
+
+footer .copyright-statement {
+    font-family: var(--josefin-sans);
+    padding-top: 1.25em !important;
+}
+
+footer .useful-links a {
+    color: var(--almond);
+    font-family: var(--josefin-sans);
+    font-size: 1.1em;
+}
+
+/** Buttons **/
+.btn-large {
+    background-color: var(--munsell);
+    font-family: var(--josefin-sans);
+    box-shadow: none;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.btn-large:hover {
+    background-color: var(--cadet);
+    box-shadow: none;
+}
+

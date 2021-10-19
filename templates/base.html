@@ -21,17 +21,18 @@
 
 <body>
 
-<!--Header-->
 <header>
-    <!--Navbar-->
-    <nav class="nav-extended">
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo left main-logo">Worldsmiths <img
-                    src="{{ url_for('static', filename='icons/book.png')}}" class="brand-icon"></a>
-            <a href="#" data-activities="mobile" data-target="mobile-nav" class="sidenav-trigger right"><i
-                    class="fas fa-bars"></i></a>
+    <!--Header-->
+    <div class="navbar-fixed">
+        <!--Navbar-->
+        <nav class="nav-extended">
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo left main-logo">Worldsmiths <img
+                        src="{{ url_for('static', filename='icons/book.png')}}" class="brand-icon"></a>
+                <a href="#" data-activities="mobile" data-target="mobile-nav" class="sidenav-trigger right"><i
+                        class="fas fa-bars"></i></a>
 
-            <!--User logged in
+                <!--User logged in
             <ul class="right hide-on-med-and-down">
                 <li><a href="#"><i class="fas fa-home"></i></a></li>
                 <li><a href="#"><i class="fas fa-search"></i></a></li>
@@ -40,30 +41,30 @@
                 <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
             </ul>-->
 
-            <!--User not logged in/signed up-->
-            <ul class="right hide-on-med-and-down">
-                <li><a href="#"><i class="fas fa-home"></i></a></li>
-                <li><a href="#"><i class="fas fa-sign-in-alt"></i></a></li>
-                <li><a href="#"><i class="fas fa-user-plus"></i></a></li>
-                <li><a href="#"><i class="fas fa-headset"></i></a></li>
-                <li><a href="#"><i class="fas fa-question-circle"></i></a></li>
-            </ul>
-        </div>
-        <div class="nav-content">
-            <span class="nav-title">UK networking for worldbuilders, by worldbuilders</span>
-        </div>
-    </nav>
+                <!--User not logged in/signed up-->
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#"><i class="fas fa-home"></i></a></li>
+                    <li><a href="#"><i class="fas fa-sign-in-alt"></i></a></li>
+                    <li><a href="#"><i class="fas fa-user-plus"></i></a></li>
+                    <li><a href="#"><i class="fas fa-headset"></i></a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i></a></li>
+                </ul>
+            </div>
+            <div class="nav-content">
+                <span class="nav-title">UK networking for worldbuilders, by worldbuilders</span>
+            </div>
+        </nav>
 
-    <!--Mobile navigation-->
-    <ul class="sidenav" id="mobile-nav">
-        <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-        <li><a href="#"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
-        <li><a href="#"><i class="fas fa-user-plus"></i>Sign up</a></li>
-        <li><a href="#"><i class="fas fa-headset"></i>Get in touch</a></li>
-        <li><a href="#"><i class="fas fa-question-circle"></i>Our statements</a></li>
-    </ul>
+        <!--Mobile navigation-->
+        <ul class="sidenav" id="mobile-nav">
+            <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="#"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
+            <li><a href="#"><i class="fas fa-user-plus"></i>Sign up</a></li>
+            <li><a href="#"><i class="fas fa-headset"></i>Get in touch</a></li>
+            <li><a href="#"><i class="fas fa-question-circle"></i>Our statements</a></li>
+        </ul>
 
-    <!--Mobile navigation (logged in)
+        <!--Mobile navigation (logged in)
     <ul class="sidenav" id="mobile-nav">
         <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
         <li><a href="#"><i class="fas fa-search"></i>Browse</a></li>
@@ -71,14 +72,61 @@
         <li><a href="#"><i class="fas fa-headset"></i>Contact us</a></li>
         <li><a href="#"><i class="fas fa-sign-out-alt"></i>Sign out</a></li>
     </ul>-->
-
+    </div>
 </header>
 
-<!--Content-->
-<main>
-    {% block content %}
-    {% endblock %}
-</main>
+
+    <!--Content-->
+    <main>
+        {% block hero %}
+        {% endblock %}
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!--Footer-->
+    <footer class="footer">
+        <div class="row">
+            <div class="col s12">
+                <div class="row">
+                    <div class="col s4 left-align">
+                        <h5>Worldsmiths</h5>
+                    </div>
+                    <div class="col s4">
+
+                    </div>
+                    <div class="col s4 right-align">
+                        <h5>Use this site (it's magic...)</h5>
+                    </div>
+                    <div class="col s4">
+                        <p>UK networking for worldbuilders, by worldbuilders</p>
+                        <a class="btn-large">Send us a raven</a>
+                    </div>
+                    <div class="col s4 center-align">
+                        <img class="responsive-img fantasy-creature" src="{{ url_for('static', filename='icons/book.png')}}">
+                    </div>
+                    <div class="col s4 right-align useful-links">
+                        <ul>
+                            <li><a href="#!">Our statements</a></li>
+                            <li><a href="#!">FAQs</a></li>
+                            <li><a href="#!">Contact us</a></li>
+                          </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col s6 valign-wrapper copyright-statement">
+                    © 2021 Copyright Lydia Wright
+                </div>
+                <div class="col s6 footer-social-media right-align">
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-patreon"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
