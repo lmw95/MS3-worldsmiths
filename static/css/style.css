@@ -1,0 +1,64 @@
+/** Import Google Fonts **/
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap');
+
+/** Global style variables **/
+:root {
+    --black: #000000;
+    --almond: #E9DFD6;
+    --magenta: #A44E7B;
+    --cadet: #1F253F;
+    --munsell: #4092AA;
+    --josefin-sans: 'Josefin Sans', sans-serif;
+    --yanone-kaffeesatz: 'Yanone Kaffeesatz', sans-serif;
+}
+
+/** Navigation **/
+nav {
+    height: 90px;
+    box-shadow: none;
+    background-color: var(--magenta);
+}
+
+nav .brand-logo {
+    font-family: var(--yanone-kaffeesatz);
+    text-transform: uppercase;
+    padding: 10px 0 0 15px;
+    line-height: 60px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 5em;
+}
+
+nav .brand-icon {
+    height: 60px;
+    max-width: 60px;
+}
+
+nav .nav-title {
+    padding: 20px 0 15px 15px;
+    font-family: var(--josefin-sans);
+    font-size: 1.2em;
+}
+
+nav ul {
+    margin: 2em 0.5em 1em 0.5em;
+}
+
+nav ul a {
+    transition: all 0.1s ease-in-out;
+}
+
+nav ul a:hover {
+    background-color: transparent;
+    transform: scale(1.2);
+}
+
+.sidenav {
+    font-family: var(--josefin-sans);
+}
+
+.sidenav li a,
+.sidenav li a i {
+    color: var(--black);
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Description"
+        content="Worldsmiths provides a platform for worldbuilders to share their work, network and organise meet-ups">
+    <meta name="keywords"
+        content="event, meetup, worldbuilding meetup, worldbuilding event, networking, worldbuilding meetup, worldbuilding profile">
+    <meta name="author" content="Lydia Wright">
+    {% block styles %}
+    {% endblock %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}" type="text/css">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+<!--Header-->
+<header>
+    <!--Navbar-->
+    <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo left main-logo">Worldsmiths <img
+                    src="{{ url_for('static', filename='icons/book.png')}}" class="brand-icon"></a>
+            <a href="#" data-activities="mobile" data-target="mobile-nav" class="sidenav-trigger right"><i
+                    class="fas fa-bars"></i></a>
+
+            <!--User logged in
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#"><i class="fas fa-home"></i></a></li>
+                <li><a href="#"><i class="fas fa-search"></i></a></li>
+                <li><a href="#"><i class="fas fa-user"></i></i></a></li>
+                <li><a href="#"><i class="fas fa-headset"></i></a></li>
+                <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
+            </ul>-->
+
+            <!--User not logged in/signed up-->
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#"><i class="fas fa-home"></i></a></li>
+                <li><a href="#"><i class="fas fa-sign-in-alt"></i></a></li>
+                <li><a href="#"><i class="fas fa-user-plus"></i></a></li>
+                <li><a href="#"><i class="fas fa-headset"></i></a></li>
+                <li><a href="#"><i class="fas fa-question-circle"></i></a></li>
+            </ul>
+        </div>
+        <div class="nav-content">
+            <span class="nav-title">UK networking for worldbuilders, by worldbuilders</span>
+        </div>
+    </nav>
+
+    <!--Mobile navigation-->
+    <ul class="sidenav" id="mobile-nav">
+        <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+        <li><a href="#"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
+        <li><a href="#"><i class="fas fa-user-plus"></i>Sign up</a></li>
+        <li><a href="#"><i class="fas fa-headset"></i>Get in touch</a></li>
+        <li><a href="#"><i class="fas fa-question-circle"></i>Our statements</a></li>
+    </ul>
+
+    <!--Mobile navigation (logged in)
+    <ul class="sidenav" id="mobile-nav">
+        <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+        <li><a href="#"><i class="fas fa-search"></i>Browse</a></li>
+        <li><a href="#"><i class="fas fa-user"></i>My profile</a></li>
+        <li><a href="#"><i class="fas fa-headset"></i>Contact us</a></li>
+        <li><a href="#"><i class="fas fa-sign-out-alt"></i>Sign out</a></li>
+    </ul>-->
+
+</header>
+
+<!--Content-->
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js')}}"></script>
+    {% block scripts %}
+    {% endblock %}
+
+</body>
+
+</html>
