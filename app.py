@@ -26,6 +26,10 @@ def test_groups():
     groups = mongo.db.groups.find()
     return render_template("test.html", groups=groups)
 
+@app.route("/statements")
+def statements():
+    return render_template("statements.html", page_title="Our statements")
+
 # Set up port & IP environment variables
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
