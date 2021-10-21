@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block page_title %}{{ page_title }}{% endblock %}
+
+{% block hero %}
+<div class="hero">
+    <img class="responsive-img" src="{{ url_for('static', filename='imgs/project-banner.png')}}">
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col s12 center-align">
+        <h1>Frequently asked questions</h1>
+    </div>
+</div>
+<div class="row faqs">
+    <div class="col s2"></div>
+    <div class="col s6">
+        <h6><i class="fas fa-question-circle"></i>How do I get started?</h6>
+        <p>It's simple! To have the best experience on Worldsmits, sign up and create a profile. From there, you can explore our user's groups and events and begin meeting fellow worldbuilders.</p>
+    </div>
+    <div class="col s2"></div>
+</div>
+<div class="row faqs">
+    <div class="col s2"></div>
+    <div class="col s8">
+        <h6><i class="fas fa-question-circle"></i> Can I change my password?</h6>
+        <p>Yes. Go to your profile, click on 'Settings' and click on 'Change passowrd'. Follow the instructions and click 'Save'.</p>
+    </div>
+    <div class="col s2"></div>
+</div>
+<div class="row faqs">
+    <div class="col s2"></div>
+    <div class="col s8">
+        <h6><i class="fas fa-question-circle"></i> How can I see my groups and events?</h6>
+        <p>Once logged in, go to your profile and your groups and events will be displayed on your profile.
+           Alternatively, on the Search page you can filter the events (by organiser/attendee) and groups 
+           (by admin/member of) to show the groups you have involvement in.
+        </p>
+    </div>
+    <div class="col s2"></div>
+</div>
+<div class="row faqs">
+    <div class="col s2"></div>
+    <div class="col s8">
+        <h6><i class="fas fa-question-circle"></i> How do I create a group or event?</h6>
+        <p>Go to your profile, navigate to the section you want (group or event) and click on
+            the 'Create group/event' button.
+        </p>
+    </div>
+    <div class="col s2"></div>
+</div>
+<div class="row faqs">
+    <div class="col s2"></div>
+    <div class="col s6">
+        <h6><i class="fas fa-question-circle"></i> How do I leave a group or event?</h6>
+        <p>Go to the event/group and click the 'Leave' button. It will then be removed from your profile.</p>
+    </div>
+    <div class="col s2"></div>
+</div>
+<div class="row faqs">
+    <div class="col s2"></div>
+    <div class="col s6">
+        <h6><i class="fas fa-question-circle"></i> How do I delete a group or event that I've created?</h6>
+        <p>Go to your event or group that you've created, go to the 'Settings' and click the 'Delete' button.
+            It will then be removed from your profile, and every user's profile who are involved with it.</p>
+    </div>
+    <div class="col s2"></div>
+</div>
+<div class="row faqs">
+    <div class="col s2"></div>
+    <div class="col s6">
+        <h6><i class="fas fa-question-circle"></i> How do I follow another user?</h6>
+        <p>Go to the profile you wish to follow and click the 'Follow' button.</p>
+    </div>
+    <div class="col s2"></div>
+</div>
+<div class="row faqs">
+    <div class="col s2"></div>
+    <div class="col s6">
+        <h6><i class="fas fa-question-circle"></i> Can I delete my profile?</h6>
+        <p>Yes, go to your profile 'Settings' and click 'Delete my profile'.</p>
+    </div>
+    <div class="col s2"></div>
+</div>
+<hr class="underline">
+<div class="row center-align faqs">
+    <div class="col s8 offset-s2">
+        <ul>
+            <li>If you have any further questions, please get in touch!</li>
+            <li><i class="fas fa-at"></i> admin@worldsmiths.org</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

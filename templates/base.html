@@ -48,7 +48,7 @@
                     <li><a href="#"><i class="fas fa-sign-in-alt"></i></a></li>
                     <li><a href="#"><i class="fas fa-user-plus"></i></a></li>
                     <li><a href="#"><i class="fas fa-headset"></i></a></li>
-                    <li><a href="{{ url_for('statements') }}"><i class="fas fa-question-circle"></i></a></li>
+                    <li><a href="{{ url_for('faqs') }}"><i class="fas fa-question-circle"></i></a></li>
                 </ul>
             </div>
             <div class="nav-content">
@@ -62,7 +62,7 @@
             <li><a href="#"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
             <li><a href="#"><i class="fas fa-user-plus"></i>Sign up</a></li>
             <li><a href="#"><i class="fas fa-headset"></i>Get in touch</a></li>
-            <li><a href="{{ url_for('statements') }}"><i class="fas fa-question-circle"></i>Our statements</a></li>
+            <li><a href="{{ url_for('faqs') }}"><i class="fas fa-question-circle"></i>Our statements</a></li>
         </ul>
 
         <!--Mobile navigation (logged in)
@@ -75,7 +75,6 @@
     </ul>-->
     </div>
 </header>
-
 
     <!--Content-->
     <main>
@@ -111,7 +110,7 @@
                             <li><a href="#!">Sign in</a></li>
                             <li><a href="#!">Sign up</a></li>
                             <li><a href="{{ url_for('statements') }}">Our statements</a></li>
-                            <li><a href="#!">FAQs</a></li>
+                            <li><a href="{{ url_for('faqs') }}">FAQs</a></li>
                             <li><a href="#!">Contact us</a></li>
                           </ul>
                     </div>

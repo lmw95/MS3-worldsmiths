@@ -30,6 +30,10 @@ def test_groups():
 def statements():
     return render_template("statements.html", page_title="Our statements")
 
+@app.route("/faqs")
+def faqs():
+    return render_template("faqs.html", page_title="FAQs")
+
 # Set up port & IP environment variables
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

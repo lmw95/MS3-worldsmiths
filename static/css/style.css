@@ -77,8 +77,26 @@ nav ul a:hover {
 /** Hero image **/
 div .hero { 
     width: 100%;
-    height: 380px;
-} 
+    height: 360px;
+}
+
+/** FAQs **/
+.faqs p {
+    font-size: 1em;
+}
+
+.faqs i {
+    color: var(--munsell);
+    margin-right: 10px;
+}
+
+.faqs li {
+    font-family: var(--josefin-sans);
+}
+
+.faqs li i {
+    color: var(--munsell);
+}
 
 /** Statements.html **/
 .statements {
@@ -169,7 +187,8 @@ h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+h6 {
     font-family: var(--yanone-kaffeesatz);
     text-transform: uppercase;
 }
@@ -191,5 +210,10 @@ h3 {
 
 h5 {
     font-size: 2.5em;
+}
+
+h6 {
+    font-size: 1.6em;
+    font-weight: 500;
 }
 

@@ -1,5 +1,7 @@
 {% extends "base.html" %}
+
 {% block page_title %}{{ page_title }}{% endblock %}
+
 {% block hero %}
 <div class="hero">
     <img class="responsive-img" src="{{ url_for('static', filename='imgs/project-banner.png')}}">
@@ -7,7 +9,6 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="row">
     <div class="col s12 center-align">
         <h1>Our statements</h1>
@@ -98,5 +99,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}
