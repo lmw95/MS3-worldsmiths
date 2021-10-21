@@ -29,7 +29,7 @@
         <nav class="nav-extended">
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo left main-logo">Worldsmiths <img
-                        src="{{ url_for('static', filename='icons/book.png')}}" class="brand-icon"></a>
+                        src="{{ url_for('static', filename='icons/book.png')}}" class="brand-icon" alt="Globe on top of a book"></a>
                 <a href="#" data-activities="mobile" data-target="mobile-nav" class="sidenav-trigger right"><i
                         class="fas fa-bars"></i></a>
 
@@ -47,8 +47,8 @@
                     <li><a href="#"><i class="fas fa-home"></i></a></li>
                     <li><a href="#"><i class="fas fa-sign-in-alt"></i></a></li>
                     <li><a href="#"><i class="fas fa-user-plus"></i></a></li>
-                    <li><a href="{{ url_for('contact') }}"><i class="fas fa-headset"></i></a></li>
-                    <li><a href="{{ url_for('faqs') }}"><i class="fas fa-question-circle"></i></a></li>
+                    <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i></a></li>
+                    <li><a href="{{ url_for('faqs') }}" target="_self"><i class="fas fa-question-circle"></i></a></li>
                 </ul>
             </div>
             <div class="nav-content">
@@ -61,8 +61,8 @@
             <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
             <li><a href="#"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
             <li><a href="#"><i class="fas fa-user-plus"></i>Sign up</a></li>
-            <li><a href="{{ url_for('contact') }}"><i class="fas fa-headset"></i>Get in touch</a></li>
-            <li><a href="{{ url_for('faqs') }}"><i class="fas fa-question-circle"></i>Our statements</a></li>
+            <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i>Get in touch</a></li>
+            <li><a href="{{ url_for('faqs') }}" target="_self"><i class="fas fa-question-circle"></i>Our statements</a></li>
         </ul>
 
         <!--Mobile navigation (logged in)
@@ -100,18 +100,18 @@
                     </div>
                     <div class="col s4">
                         <p>UK networking for worldbuilders, by worldbuilders</p>
-                        <a class="btn-large">Send us a raven</a>
+                        <a class="btn-large" href="{{ url_for('contact') }}" target="_self">Send us a raven</a>
                     </div>
                     <div class="col s4 center-align">
-                        <img class="responsive-img fantasy-creature" src="{{ url_for('static', filename='icons/book.png')}}">
+                        <img class="responsive-img fantasy-creature" src="{{ url_for('static', filename='icons/book.png')}}" alt="Globe on top of a book">
                     </div>
                     <div class="col s4 right-align useful-links">
                         <ul>
                             <li><a href="#!">Sign in</a></li>
                             <li><a href="#!">Sign up</a></li>
-                            <li><a href="{{ url_for('statements') }}">Our statements</a></li>
-                            <li><a href="{{ url_for('faqs') }}">FAQs</a></li>
-                            <li><a href="{{ url_for('contact') }}">Contact us</a></li>
+                            <li><a href="{{ url_for('statements') }}" target="_self">Our statements</a></li>
+                            <li><a href="{{ url_for('faqs') }}" target="_self">FAQs</a></li>
+                            <li><a href="{{ url_for('contact') }}" target="_self">Contact us</a></li>
                           </ul>
                     </div>
                 </div>
