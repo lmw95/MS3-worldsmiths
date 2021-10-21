@@ -47,7 +47,7 @@
                     <li><a href="#"><i class="fas fa-home"></i></a></li>
                     <li><a href="#"><i class="fas fa-sign-in-alt"></i></a></li>
                     <li><a href="#"><i class="fas fa-user-plus"></i></a></li>
-                    <li><a href="#"><i class="fas fa-headset"></i></a></li>
+                    <li><a href="{{ url_for('contact') }}"><i class="fas fa-headset"></i></a></li>
                     <li><a href="{{ url_for('faqs') }}"><i class="fas fa-question-circle"></i></a></li>
                 </ul>
             </div>
@@ -61,7 +61,7 @@
             <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
             <li><a href="#"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
             <li><a href="#"><i class="fas fa-user-plus"></i>Sign up</a></li>
-            <li><a href="#"><i class="fas fa-headset"></i>Get in touch</a></li>
+            <li><a href="{{ url_for('contact') }}"><i class="fas fa-headset"></i>Get in touch</a></li>
             <li><a href="{{ url_for('faqs') }}"><i class="fas fa-question-circle"></i>Our statements</a></li>
         </ul>
 
@@ -111,7 +111,7 @@
                             <li><a href="#!">Sign up</a></li>
                             <li><a href="{{ url_for('statements') }}">Our statements</a></li>
                             <li><a href="{{ url_for('faqs') }}">FAQs</a></li>
-                            <li><a href="#!">Contact us</a></li>
+                            <li><a href="{{ url_for('contact') }}">Contact us</a></li>
                           </ul>
                     </div>
                 </div>

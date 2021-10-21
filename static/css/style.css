@@ -4,7 +4,7 @@
 
 /** Global style variables **/
 :root {
-    --black: #000000;
+    --black: #1E1D1C;
     --almond: #E9DFD6;
     --magenta: #A44E7B;
     --cadet: #1F253F;
@@ -78,6 +78,31 @@ nav ul a:hover {
 div .hero { 
     width: 100%;
     height: 360px;
+}
+
+/* Forms */
+form label {
+    font-family: var(--yanone-kaffeesatz);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+form input {
+    font-family: var(--josefin-sans);
+}
+
+.input-field .prefix.active {
+    color: var(--munsell);
+}
+
+.input-field input.active {
+    border-bottom: 1px solid var(--munsell);
+    box-shadow: 0 1px 0 0 var(--munsell);
+}
+
+.input-field input.active {
+    border-bottom: 1px solid var(--munsell);
+    box-shadow: 0 1px 0 0 var(--munsell);
 }
 
 /** FAQs **/

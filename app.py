@@ -34,6 +34,10 @@ def statements():
 def faqs():
     return render_template("faqs.html", page_title="FAQs")
 
+@app.route("/contact")
+def contact():
+    return render_template("contact.html", page_title="Contact us")
+
 # Set up port & IP environment variables
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
