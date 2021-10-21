@@ -87,22 +87,29 @@ form label {
     font-weight: 700;
 }
 
-form input {
+form input,
+form textarea {
     font-family: var(--josefin-sans);
+    border-bottom: 2px solid var(--munsell) !important;
+}
+
+form input:focus, 
+form textarea:focus {
+    box-shadow: 0 1px 0 0 var(--munsell) !important;
 }
 
 .input-field .prefix.active {
     color: var(--munsell);
 }
 
-.input-field input.active {
-    border-bottom: 1px solid var(--munsell);
-    box-shadow: 0 1px 0 0 var(--munsell);
+.contact-img {
+    width: 100%;
+    min-width: 375px;
+    padding-left: 5rem;
 }
 
-.input-field input.active {
-    border-bottom: 1px solid var(--munsell);
-    box-shadow: 0 1px 0 0 var(--munsell);
+label {
+color: var(--black) !important;
 }
 
 /** FAQs **/
