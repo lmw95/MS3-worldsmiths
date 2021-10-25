@@ -1,7 +1,7 @@
 {
     "description": "Details of an event",
     "properties": {
-        "__id": "objectId",
+        "_id": "objectId",
         "event_name": {
             "bsonType": "string",
             "description": "must be a string and is required"

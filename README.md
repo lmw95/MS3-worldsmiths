@@ -163,6 +163,7 @@ JSON Schema:
 * [group_type schema](documentation/structure/group_type.json)
 * [group schema](documentation/structure/groups.json)
 * [users schema](documentation/structure/users.json)
+* [profile schema](documentation/structure/profile.json)
 
 ## **Skeleton**
 Non-logged in users can see:
