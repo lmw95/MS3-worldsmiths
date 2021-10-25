@@ -8,6 +8,8 @@ from flask_mail import Mail, Message
 from flask_pymongo import PyMongo
 # Import Werkzeug security helpers
 from werkzeug.security import generate_password_hash, check_password_hash
+# Import Regex
+import re
 # Set up environment variables
 if os.path.exists("env.py"):
     import env
@@ -59,7 +61,7 @@ def statements():
     return render_template("statements.html", page_title="Our statements")
 
 
-#Render the frequently asked questions template
+# Render the frequently asked questions template
 @app.route("/faqs")
 def faqs():
     return render_template("faqs.html", page_title="FAQs")
@@ -91,8 +93,7 @@ def contact():
 
                 conn.send(msg)
 
-            flash("Thanks {}, we have recieved your message".format(
-            request.form.get("full-name")))
+            flash("Thanks {}, we have recieved your message".format(request.form.get("full-name")))
             return redirect(url_for('contact'))
 
     return render_template("contact.html", page_title="Contact us")
@@ -102,18 +103,26 @@ def contact():
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
+        # Check if user exists
+        existing_user = mongo.db.users.find_one(
+            {"email": request.form.get("email").lower()})
+
         register_user = {
             "first_name": request.form.get("fname").lower(),
             "last_name": request.form.get("lname").lower(),
             "email": request.form.get("email").lower(),
             "password": generate_password_hash(request.form.get("password"))
         }
-
-        # Check if user already exists in database
-        try:
-            mongo.db.users.insert_one(register_user)
-        except Exception as e:
-            print(e)
+        
+        if existing_user:
+            flash("This email is already linked to an account. Please try a different one or log-in.")
+            return redirect(url_for("sign_up"))
+        else:
+            try:
+                mongo.db.users.insert_one(register_user)
+                flash("Welcome aboard! You may now log-in and start exploring.")
+            except Exception as e:
+                print(e)
 
     return render_template("sign-up.html", page_title="Sign up")
 

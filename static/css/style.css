@@ -80,9 +80,14 @@ div .hero {
     height: 360px;
 }
 
+/** Flash messages **/
+.flashes {
+    margin-bottom: 30px;
+    color: var(--magenta);
+}
+
 /* Forms */
 form {
-    margin-top: 40px;
     margin-bottom: 40px;
 }
 
@@ -246,6 +251,7 @@ h6 {
 
 h1 {
     font-weight: 700;
+    margin-bottom: 20px;
 }
 
 h2 {
