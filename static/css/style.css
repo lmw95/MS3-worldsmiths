@@ -86,6 +86,10 @@ form {
     margin-bottom: 40px;
 }
 
+form .helper-text {
+    font-family: var(--josefin-sans);
+}
+
 form label {
     font-family: var(--yanone-kaffeesatz);
     text-transform: uppercase;
@@ -152,6 +156,11 @@ color: var(--black) !important;
 }
 
 .accessibility a {
+    color: var(--munsell);
+}
+
+/** Sign-up **/
+.sign-up a {
     color: var(--munsell);
 }
 

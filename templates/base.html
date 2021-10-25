@@ -46,7 +46,7 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a href="#"><i class="fas fa-home"></i></a></li>
                     <li><a href="#"><i class="fas fa-sign-in-alt"></i></a></li>
-                    <li><a href="#"><i class="fas fa-user-plus"></i></a></li>
+                    <li><a href="{{ url_for('sign_up') }}" target="_self"><i class="fas fa-user-plus"></i></a></li>
                     <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i></a></li>
                     <li><a href="{{ url_for('faqs') }}" target="_self"><i class="fas fa-question-circle"></i></a></li>
                 </ul>
@@ -60,7 +60,7 @@
         <ul class="sidenav" id="mobile-nav">
             <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
             <li><a href="#"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
-            <li><a href="#"><i class="fas fa-user-plus"></i>Sign up</a></li>
+            <li><a href="{{ url_for('sign_up') }}" target="_self"><i class="fas fa-user-plus"></i>Sign up</a></li>
             <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i>Get in touch</a></li>
             <li><a href="{{ url_for('faqs') }}" target="_self"><i class="fas fa-question-circle"></i>Our statements</a></li>
         </ul>
@@ -108,7 +108,7 @@
                     <div class="col s4 right-align useful-links">
                         <ul>
                             <li><a href="#!">Sign in</a></li>
-                            <li><a href="#!">Sign up</a></li>
+                            <li><a href="{{ url_for('sign_up') }}" target="_self">Sign up</a></li>
                             <li><a href="{{ url_for('statements') }}" target="_self">Our statements</a></li>
                             <li><a href="{{ url_for('faqs') }}" target="_self">FAQs</a></li>
                             <li><a href="{{ url_for('contact') }}" target="_self">Contact us</a></li>

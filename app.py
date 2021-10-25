@@ -6,6 +6,8 @@ from flask import (Flask, render_template, request, flash, url_for, redirect)
 from flask_mail import Mail, Message
 # Import PyMongo
 from flask_pymongo import PyMongo
+# Import Werkzeug security helpers
+from werkzeug.security import generate_password_hash, check_password_hash
 # Set up environment variables
 if os.path.exists("env.py"):
     import env
@@ -97,7 +99,7 @@ def contact():
 
 
 # Render the sign up page
-@app.route("/sign_up")
+@app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
     return render_template("sign-up.html", page_title="Sign up")
 
