@@ -126,6 +126,9 @@ def sign_up():
 
     return render_template("sign-up.html", page_title="Sign up")
 
+@app.route("/log_in", methods=["GET", "POST"])
+def log_in():
+    return render_template("log-in.html", page_title="Log in")
 
 # Set up port & IP environment variables
 if __name__ == "__main__":

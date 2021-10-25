@@ -12,11 +12,22 @@
 
 <div class="row center-align">
     <div class="col s12">
-        <h1>Join the adventure</h1>
+        <h1>Join the adventure!</h1>
     </div>
 </div>
 <!--Sign up form-->
 <div class="row sign-up">
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="col s4 offset-s4 flashes center-align">
+                {% for message in messages %}
+                    <h3>{{ message }}</h3>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
     <form method="POST" action="{{ url_for('sign_up') }}" class="col s11 offset-s1 m11 offset-m1 l7 offset-l3 xl7 offset-xl3">
         <div class="row">
             <div class="input-field col s11 m5 l5 x5">
@@ -52,7 +63,7 @@
         </div>
         <div class="row">
             <div class="col s11 center-align">
-                <p>Already part of the crew? <a href="#" target="_self">Come on in.</a></p>
+                <p>Already part of the crew? <a href="{{ url_for('log_in') }}" target="_self">Come on in.</a></p>
             </div>
         </div>
     </form>
