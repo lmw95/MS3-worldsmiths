@@ -21,12 +21,12 @@
         <div class="row">
             <div class="input-field col s11 m5 l5 x5">
                 <i class="fas fa-user prefix"></i>
-                <input id="fname" type="text" class="validate" name="fname" id="fname" required>
+                <input id="fname" type="text" class="validate" name="fname" id="fname" minlength="1" maxlength="40" pattern="^[a-zA-z0-9,.'-]{1,40}$" required>
                 <label for="fname">First name</label>
             </div>
             <div class="input-field col s11 m5 offset-m1 l5 offset-l1 xl5 offset-xl1">
                 <i class="fas fa-user-friends prefix"></i>
-                <input id="lname" type="text" class="validate" name="lname" id="lname" required>
+                <input id="lname" type="text" class="validate" name="lname" id="lname" minlength="1" maxlength="40" pattern="^[a-zA-z0-9,.'-]{1,40}$" required>
                 <label for="lname">Last name</label>
             </div>
         </div>
@@ -39,10 +39,10 @@
         </div>
         <div class="row">
             <div class="input-field col s11">
-                <i class="fas fa-lock prefix"></i>
-                <input id="password" type="password" class="validate" name="password" id="password" required>
+                <i id="visibilityBtn" class="visibility fas fa-lock prefix"></i>
+                <input id="password" type="password" class="validate" name="password" id="password" minlength="8" maxlength="16" pattern="^[a-zA-z0-9!#*%]{8,16}$" required>
                 <label for="password">Create password</label>
-                <span class="helper-text" data-error="wrong" data-success="right">Password must be 8 characters or more and must include a number and a special character ! @ * #</span>
+                <span class="helper-text">Password must be between 8 and 16 characters and must include a number and at least one of the following: ! # * %</span>
             </div>
         </div>
         <div class="row">

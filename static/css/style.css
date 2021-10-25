@@ -88,6 +88,7 @@ form {
 
 form .helper-text {
     font-family: var(--josefin-sans);
+    font-size: 0.9em !important;
 }
 
 form label {
@@ -115,6 +116,10 @@ form textarea:focus {
     width: 100%;
     min-width: 375px;
     padding-left: 5rem;
+}
+
+.sign-up .visibility {
+    cursor: pointer;
 }
 
 label {

@@ -101,6 +101,20 @@ def contact():
 # Render the sign up page
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
+    if request.method == "POST":
+        register_user = {
+            "first_name": request.form.get("fname").lower(),
+            "last_name": request.form.get("lname").lower(),
+            "email": request.form.get("email").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+
+        # Check if user already exists in database
+        try:
+            mongo.db.users.insert_one(register_user)
+        except Exception as e:
+            print(e)
+
     return render_template("sign-up.html", page_title="Sign up")
 
 
