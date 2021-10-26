@@ -162,6 +162,13 @@ def welcome(first_name):
     return redirect(url_for("log_in"))
 
 
+# Render the logout function
+@app.route("/log_out")
+def log_out():
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("log_in"))
+
 # Set up port & IP environment variables
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

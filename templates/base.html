@@ -41,7 +41,7 @@
                     <li><a href="#"><i class="fas fa-search"></i></a></li>
                     <li><a href="#"><i class="fas fa-user"></i></i></a></li>
                     <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i></a></li>
-                    <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
+                    <li><a href="{{ url_for('log_out') }}" target="_self"><i class="fas fa-sign-out-alt"></i></a></li>
                 </ul>
 
                 <!--User logged in (mobile)-->
@@ -50,8 +50,8 @@
                     <li><a href="#"><i class="fas fa-search"></i>Browse</a></li>
                     <li><a href="#"><i class="fas fa-user"></i>My profile</a></li>
                     <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i>Contact us</a></li>
-                    <li><a href="#"><i class="fas fa-sign-out-alt"></i>Sign out</a></li>
-                </ul>-->
+                    <li><a href="{{ url_for('log_out') }}" target="_self"><i class="fas fa-sign-out-alt"></i>Sign out</a></li>
+                </ul>
 
                 {% else %}
 
