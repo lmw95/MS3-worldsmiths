@@ -133,6 +133,24 @@ label {
 color: var(--black) !important;
 }
 
+/** Welcome **/
+.welcome-socials {
+    margin-bottom: 50px;
+}
+
+.welcome-socials i {
+    color: var(--magenta);
+}
+
+.welcome-socials .fa-patreon {
+    margin-top: 15px;
+}
+
+.welcome-social-links {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 /** FAQs **/
 .faqs p {
     font-size: 1em;
@@ -245,13 +263,17 @@ footer .useful-links a {
     box-shadow: none;
 }
 
+.welcome-links {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
 /** Headers **/
 h1,
 h2,
 h3,
 h4,
-h5,
-h6 {
+h5 {
     font-family: var(--yanone-kaffeesatz);
     text-transform: uppercase;
 }
@@ -278,7 +300,8 @@ h5 {
 
 h6 {
     font-size: 1.6em;
-    font-weight: 500;
+    font-weight: 400;
+    font-family: var(--yanone-kaffeesatz);
 }
 
 /* Mobile queries */
@@ -290,6 +313,14 @@ h6 {
     nav .brand-icon {
         height: 35px;
         width: 35px;
+    }
+
+    .welcome-link-wrapper {
+        margin-bottom: 0;
+    }
+
+    .welcome-link {
+        margin-bottom: 20px;
     }
 
     footer {
@@ -312,6 +343,14 @@ h6 {
         width: 45px;
     }
 
+    .welcome-link-wrapper {
+        margin-bottom: 0;
+    }
+
+    .welcome-link {
+        margin-bottom: 20px;
+    }
+
     footer .footer-logo {
         height: 125px;
         width: 125px;
@@ -324,7 +363,7 @@ h6 {
     }
     
     h1 {
-        font-size: 2.5em;
+        font-size: 2.7em;
     }
 }
 

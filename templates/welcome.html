@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block page_title %}{{ page_title }}{% endblock %}
+
+{% block hero %}
+<div class="hero">
+    <img class="responsive-img" src="{{ url_for('static', filename='imgs/project-banner.png')}}">
+</div>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="row center-align">
+    <div class="col s12">
+        <h1>Hello, {{ first_name }}</h1>
+    </div>
+    <div class="col s10 offset-s1 m10 offset-m1 l6 offset-l3 xl4 offset-xl4 center align">
+        <h6 class="welcome-text">Welcome to Worldsmiths. We are the biggest platform for UK worldbuilders on the net, dedicated to bringing together our amazing community.</h6>
+    </div>
+    <div class="col s10 offset-s1 m10 offset-m1 l6 offset-l3 xl4 offset-xl4 center align">
+        <h6 class="welcome-text"><strong>Where do you want to start?</strong></h6>
+    </div>
+</div>
+<div class="row welcome-links">
+    <div class="col s12">
+        <div class="row center-align welcome-link-wrapper">
+            <div class="col s12 m5 offset-m1 l4 offset-l2 xl4 offset-xl2 welcome-link">
+                <a href="#" class="btn-large col s12">Homepage</a>
+            </div>
+            <div class="col s12 m5 l4 xl4">
+                <a href="#" class="btn-large col s12 welcome-link">My profile</a>
+            </div>
+        </div>
+        <div class="row center-align">
+            <div class="col s12 m5 offset-m1 l4 offset-l2 xl4 offset-xl2">
+                <a href="#" class="btn-large col s12 welcome-link">Browse events & groups</a>
+            </div>
+            <div class="col s12 m5 l4 xl4">
+                <a href="{{ url_for('contact') }}" target="_self" class="btn-large col s12 welcome-link">Contact us</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row center-align welcome-socials">
+    <div class="col s12">
+        <h3>Join our other online communities!</h3>
+    </div>
+    <div class="col s12 m4 offset-m4 l4 offset-l4 xl-4 offset-xl4 welcome-social-links">
+        <a href="#"><i class="fab fa-discord fa-3x"></i></a>
+        <a href="#"><i class="fab fa-reddit fa-3x"></i></a>
+        <a href="#"><i class="fab fa-instagram fa-3x"></i></a>
+        <a href="#"><i class="fab fa-twitter fa-3x"></i></a>
+    </div>
+</div>
+<div class="row center-align">
+    <div class="col s12">
+        <h3>Toss a coin to your developers...</h3>
+    </div>
+    <div class="col s10 offset-s1 m10 offset-m1 l8 offset-l2 xl8 offset-xl2 center align">
+        <h6>It is thanks to our wonderful community (including you!) that this project is up and running.
+            We rely 100% on volunteers and collaborations between our very talented development team and experts in the field, 
+            but every little donation from our members and community makes a world of difference and allows us to bring you new
+            and exciting features!
+        </h6>
+    </div>
+    <div class="col s10 offset-s1 m10 offset-m1 l10 offset-l1 xl10 offset-xl1 center align">
+        <h6><strong>Support our small, but growing, business on Patreon below</strong></h6>
+    </div>
+    <div class="col s12 welcome-socials">
+        <a href="#"><i class="fab fa-patreon fa-4x"></i></a>
+    </div>
+</div>
+
+{% endblock %}

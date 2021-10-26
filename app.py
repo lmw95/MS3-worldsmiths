@@ -122,6 +122,7 @@ def sign_up():
                 mongo.db.users.insert_one(register_user)
                 session["user"] = request.form.get("email").lower()
                 flash("Welcome aboard! You may now log-in and start exploring.")
+                return redirect(url_for("welcome"))
             except Exception as e:
                 print(e)
 
@@ -139,14 +140,23 @@ def log_in():
             if check_password_hash(existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("email").lower()
                 flash("Successful login!")
+                return redirect(url_for("welcome", first_name=session["user"]))
             else:
                 flash("Email and/or password incorrect")
                 return redirect(url_for("log_in"))
         else:
             flash("No account exists with this email")
-            return redirect(url_for("log_in"))
+            return redirect(url_for("welcome", first_name=session["user"]))
         
     return render_template("log-in.html", page_title="Log in")
+
+
+# Render the welcome page
+@app.route("/welcome/<first_name>", methods=["GET", "POST"])
+def welcome(first_name):
+    # Get user's first name from the DB
+    first_name = mongo.db.users.find_one({"email": session["user"]})["first_name"]
+    return render_template("welcome.html", page_title="Welcome page", first_name=first_name)
 
 
 # Set up port & IP environment variables
