@@ -121,8 +121,8 @@ def sign_up():
             try:
                 mongo.db.users.insert_one(register_user)
                 session["user"] = request.form.get("email").lower()
-                flash("Welcome aboard! You may now log-in and start exploring.")
-                return redirect(url_for("welcome"))
+                flash("Welcome aboard! You are now logged in and can start exploring.")
+                return redirect(url_for("welcome", first_name=session["user"]))
             except Exception as e:
                 print(e)
 
