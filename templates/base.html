@@ -33,14 +33,27 @@
                 <a href="#" data-activities="mobile" data-target="mobile-nav" class="sidenav-trigger right"><i
                         class="fas fa-bars"></i></a>
 
-                <!--User logged in
-            <ul class="right hide-on-med-and-down">
-                <li><a href="#"><i class="fas fa-home"></i></a></li>
-                <li><a href="#"><i class="fas fa-search"></i></a></li>
-                <li><a href="#"><i class="fas fa-user"></i></i></a></li>
-                <li><a href="#"><i class="fas fa-headset"></i></a></li>
-                <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
-            </ul>-->
+                {% if session.user %}
+
+                <!--User logged in-->
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#"><i class="fas fa-home"></i></a></li>
+                    <li><a href="#"><i class="fas fa-search"></i></a></li>
+                    <li><a href="#"><i class="fas fa-user"></i></i></a></li>
+                    <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i></a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
+                </ul>
+
+                <!--User logged in (mobile)-->
+                <ul class="sidenav" id="mobile-nav">
+                    <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+                    <li><a href="#"><i class="fas fa-search"></i>Browse</a></li>
+                    <li><a href="#"><i class="fas fa-user"></i>My profile</a></li>
+                    <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i>Contact us</a></li>
+                    <li><a href="#"><i class="fas fa-sign-out-alt"></i>Sign out</a></li>
+                </ul>-->
+
+                {% else %}
 
                 <!--User not logged in/signed up-->
                 <ul class="right hide-on-med-and-down">
@@ -50,29 +63,23 @@
                     <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i></a></li>
                     <li><a href="{{ url_for('faqs') }}" target="_self"><i class="fas fa-question-circle"></i></a></li>
                 </ul>
+
+                <!--Mobile navigation-->
+                <ul class="sidenav" id="mobile-nav">
+                    <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+                    <li><a href="{{ url_for('log_in') }}" target="_self"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
+                    <li><a href="{{ url_for('sign_up') }}" target="_self"><i class="fas fa-user-plus"></i>Sign up</a></li>
+                    <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i>Get in touch</a></li>
+                    <li><a href="{{ url_for('faqs') }}" target="_self"><i class="fas fa-question-circle"></i>Our statements</a></li>
+                </ul>
+
+                {% endif %}
+
             </div>
             <div class="nav-content">
                 <span class="nav-title">UK networking for worldbuilders, by worldbuilders</span>
             </div>
         </nav>
-
-        <!--Mobile navigation-->
-        <ul class="sidenav" id="mobile-nav">
-            <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-            <li><a href="{{ url_for('log_in') }}" target="_self"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
-            <li><a href="{{ url_for('sign_up') }}" target="_self"><i class="fas fa-user-plus"></i>Sign up</a></li>
-            <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i>Get in touch</a></li>
-            <li><a href="{{ url_for('faqs') }}" target="_self"><i class="fas fa-question-circle"></i>Our statements</a></li>
-        </ul>
-
-        <!--Mobile navigation (logged in)
-    <ul class="sidenav" id="mobile-nav">
-        <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-        <li><a href="#"><i class="fas fa-search"></i>Browse</a></li>
-        <li><a href="#"><i class="fas fa-user"></i>My profile</a></li>
-        <li><a href="#"><i class="fas fa-headset"></i>Contact us</a></li>
-        <li><a href="#"><i class="fas fa-sign-out-alt"></i>Sign out</a></li>
-    </ul>-->
     </div>
 </header>
 

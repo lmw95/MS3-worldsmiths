@@ -139,7 +139,6 @@ def log_in():
         if existing_user:
             if check_password_hash(existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("email").lower()
-                flash("Successful login!")
                 return redirect(url_for("welcome", first_name=session["user"]))
             else:
                 flash("Email and/or password incorrect")
@@ -156,7 +155,11 @@ def log_in():
 def welcome(first_name):
     # Get user's first name from the DB
     first_name = mongo.db.users.find_one({"email": session["user"]})["first_name"]
-    return render_template("welcome.html", page_title="Welcome page", first_name=first_name)
+
+    if session["user"]:
+        return render_template("welcome.html", page_title="Welcome page", first_name=first_name)
+    
+    return redirect(url_for("log_in"))
 
 
 # Set up port & IP environment variables
