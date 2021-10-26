@@ -123,9 +123,11 @@ form textarea:focus {
     padding-left: 5rem;
 }
 
-.sign-up .visibility {
+.sign-up .visibility,
+.log-in .visibility {
     cursor: pointer;
 }
+
 
 label {
 color: var(--black) !important;

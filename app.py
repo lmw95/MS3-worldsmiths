@@ -1,7 +1,7 @@
 # Import operating system
 import os
 # Import Flask
-from flask import (Flask, render_template, request, flash, url_for, redirect)
+from flask import (Flask, render_template, request, flash, url_for, redirect, session)
 # Import Flask-Mail 
 from flask_mail import Mail, Message
 # Import PyMongo
@@ -120,15 +120,34 @@ def sign_up():
         else:
             try:
                 mongo.db.users.insert_one(register_user)
+                session["user"] = request.form.get("email").lower()
                 flash("Welcome aboard! You may now log-in and start exploring.")
             except Exception as e:
                 print(e)
 
     return render_template("sign-up.html", page_title="Sign up")
 
+
+# Render the log in page
 @app.route("/log_in", methods=["GET", "POST"])
 def log_in():
+    if request.method == "POST":
+        # Check if user email exists
+        existing_user = mongo.db.users.find_one({"email": request.form.get("email").lower()})
+
+        if existing_user:
+            if check_password_hash(existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("email").lower()
+                flash("Successful login!")
+            else:
+                flash("Email and/or password incorrect")
+                return redirect(url_for("log_in"))
+        else:
+            flash("No account exists with this email")
+            return redirect(url_for("log_in"))
+        
     return render_template("log-in.html", page_title="Log in")
+
 
 # Set up port & IP environment variables
 if __name__ == "__main__":
