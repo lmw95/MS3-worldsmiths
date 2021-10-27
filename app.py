@@ -162,12 +162,29 @@ def welcome(first_name):
     return redirect(url_for("log_in"))
 
 
+# Render the user profile
+@app.route("/profile", methods=["GET", "POST"])
+def profile():
+    # Check to see user in session's email
+    user = mongo.db.users.find_one({"email": session["user"]})["email"].lower()
+    first_name = mongo.db.users.find_one({"email": session["user"]})["first_name"]
+    last_name = mongo.db.users.find_one({"email": session["user"]})["last_name"]
+
+
+    # Render page if user is in session
+    if session["user"]:
+        return render_template("profile.html", page_title="My profile", 
+                                user=user, first_name=first_name,
+                                last_name=last_name)
+
+
 # Render the logout function
 @app.route("/log_out")
 def log_out():
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("log_in"))
+
 
 # Set up port & IP environment variables
 if __name__ == "__main__":
