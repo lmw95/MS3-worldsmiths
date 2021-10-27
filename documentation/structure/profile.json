@@ -4,13 +4,9 @@
         "_id": {
             "bsonType": "objectId"
         },
-        "first_name": {
+        "nickname": {
             "bsonType": "string",
-            "description": "must be a string and is required"
-        },
-        "last_name": {
-            "bsonType": "string",
-            "description": "must be a string and is required"
+            "description": "must be a string and can be empty"
         },
         "profile_pic_url": {
             "bsonType": "string",
@@ -60,7 +56,23 @@
             },
             "minItems": "0"
         },
+        "events_organised": {
+            "bsonType": "array",
+            "description": "must be an array of ObjectId and can be empty",
+            "items": {
+                "bsonType": "objectId"
+            },
+            "minItems": "0"
+        },
         "groups_member_of": {
+            "bsonType": "array",
+            "description": "must be an array of ObjectId and can be empty",
+            "items": {
+                "bsonType": "objectId"
+            },
+            "minItems": "0"
+        },
+        "groups_created": {
             "bsonType": "array",
             "description": "must be an array of ObjectId and can be empty",
             "items": {
