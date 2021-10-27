@@ -10,6 +10,8 @@ from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
 # Import Regex
 import re
+# Import datetime
+from datetime import datetime
 # Set up environment variables
 if os.path.exists("env.py"):
     import env
@@ -106,12 +108,39 @@ def sign_up():
         # Check if user exists
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
+        
+        # Get user sign up date - https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
+        def get_reg_date():
+            now = datetime.now()
+            now_date = now.date()
+            reg_date = now_date.strftime("%b %d %Y")
+            return reg_date
 
+        # User data to be added to DB
         register_user = {
             "first_name": request.form.get("fname").lower(),
             "last_name": request.form.get("lname").lower(),
             "email": request.form.get("email").lower(),
-            "password": generate_password_hash(request.form.get("password"))
+            "password": generate_password_hash(request.form.get("password")),
+        }
+
+        register_profile = {
+            "nickname": "",
+            "profile_pic_url": "",
+            "user_banner_url": "",
+            "user_member_since": get_reg_date(),
+            "user_city": "",
+            "user_location": "",
+            "user_interests": "",
+            "user_biography": "",
+            "user_project_1": "",
+            "user_project_2": "",
+            "user_project_3": "",
+            "events_attending": [],
+            "events_organised": [],
+            "groups_member_of": [],
+            "groups_created": [],
+            "following": []
         }
         
         if existing_user:
@@ -120,8 +149,8 @@ def sign_up():
         else:
             try:
                 mongo.db.users.insert_one(register_user)
+                mongo.db.profile.insert_one(register_profile)
                 session["user"] = request.form.get("email").lower()
-                flash("Welcome aboard! You are now logged in and can start exploring.")
                 return redirect(url_for("welcome", first_name=session["user"]))
             except Exception as e:
                 print(e)
