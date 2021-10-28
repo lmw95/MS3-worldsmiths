@@ -17,8 +17,8 @@
             "description": "must be a string and can be empty"
         },
         "user_member_since": {
-            "bsonType": "date",
-            "description": "must be a date and always displayed"
+            "bsonType": "string",
+            "description": "must be a string and always displayed"
         },
         "user_city": {
             "bsonType": "string",
