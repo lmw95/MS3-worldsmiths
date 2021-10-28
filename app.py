@@ -179,7 +179,7 @@ def log_in():
                 return redirect(url_for("log_in"))
         else:
             flash("No account exists with this email")
-            return redirect(url_for("log_in", first_name=session["user"]))
+            return redirect(url_for("log_in"))
 
     return render_template("log-in.html", page_title="Log in")
 
