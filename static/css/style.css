@@ -152,6 +152,12 @@ color: var(--black) !important;
     margin-bottom: 10px;
 }
 
+.collapsible-header {
+    background-color: var(--munsell);
+    box-shadow: none;
+    border: none;
+}
+
 /** Welcome **/
 .welcome-socials {
     margin-bottom: 50px;
