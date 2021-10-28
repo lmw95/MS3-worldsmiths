@@ -2,12 +2,14 @@
 import os
 # Import Flask
 from flask import (Flask, render_template, request, flash, url_for, redirect, session)
-# Import Flask-Mail 
+# Import Flask-Mail
 from flask_mail import Mail, Message
 # Import PyMongo
 from flask_pymongo import PyMongo
 # Import Werkzeug security helpers
 from werkzeug.security import generate_password_hash, check_password_hash
+# Import objecId
+from bson.objectid import ObjectId
 # Import Regex
 import re
 # Import datetime
@@ -69,7 +71,8 @@ def faqs():
     return render_template("faqs.html", page_title="FAQs")
 
 
-# Render the contact form template and implement Flask Mail - https://pythonbasics.org/flask-mail/
+# Render the contact form template and implement Flask Mail
+# https://pythonbasics.org/flask-mail/
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     if request.method == "POST":
@@ -91,11 +94,13 @@ def contact():
                     subject = "Thank your for your message..."
                     message = f"Thank you, {sender_name}! \nWe have received your message will get back to you within 2-3 working days."
 
-                msg = Message(recipients=[recipient], body=message, subject=subject)
+                msg = Message(
+                    recipients=[recipient], body=message, subject=subject)
 
                 conn.send(msg)
 
-            flash("Thanks {}, we have recieved your message".format(request.form.get("full-name")))
+            flash("Thanks {}, we have recieved your message".format(
+                request.form.get("full-name")))
             return redirect(url_for('contact'))
 
     return render_template("contact.html", page_title="Contact us")
@@ -108,13 +113,10 @@ def sign_up():
         # Check if user exists
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
-        
-        # Get user sign up date - https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
-        def get_reg_date():
-            now = datetime.now()
-            now_date = now.date()
-            reg_date = now_date.strftime("%b %d %Y")
-            return reg_date
+
+        # Get user sign up date
+        # https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
+        reg_date = datetime.now().strftime("%d %b %Y")
 
         # User data to be added to DB
         register_user = {
@@ -128,7 +130,7 @@ def sign_up():
             "nickname": "",
             "profile_pic_url": "",
             "user_banner_url": "",
-            "user_member_since": get_reg_date(),
+            "user_member_since": reg_date,
             "user_city": "",
             "user_location": "",
             "user_interests": "",
@@ -142,7 +144,7 @@ def sign_up():
             "groups_created": [],
             "following": []
         }
-        
+
         if existing_user:
             flash("This email is already linked to an account. Please try a different one or log-in.")
             return redirect(url_for("sign_up"))
@@ -150,8 +152,10 @@ def sign_up():
             try:
                 mongo.db.users.insert_one(register_user)
                 mongo.db.profile.insert_one(register_profile)
+                # Create  "user" session cookie upon login to store user info
+                # and reuse
                 session["user"] = request.form.get("email").lower()
-                return redirect(url_for("welcome", first_name=session["user"]))
+                return redirect(url_for("profile", first_name=session["user"]))
             except Exception as e:
                 print(e)
 
@@ -163,7 +167,8 @@ def sign_up():
 def log_in():
     if request.method == "POST":
         # Check if user email exists
-        existing_user = mongo.db.users.find_one({"email": request.form.get("email").lower()})
+        existing_user = mongo.db.users.find_one(
+            {"email": request.form.get("email").lower()})
 
         if existing_user:
             if check_password_hash(existing_user["password"], request.form.get("password")):
@@ -174,37 +179,51 @@ def log_in():
                 return redirect(url_for("log_in"))
         else:
             flash("No account exists with this email")
-            return redirect(url_for("welcome", first_name=session["user"]))
-        
+            return redirect(url_for("log_in", first_name=session["user"]))
+
     return render_template("log-in.html", page_title="Log in")
 
 
-# Render the welcome page
+# Render the general welcome page
 @app.route("/welcome/<first_name>", methods=["GET", "POST"])
 def welcome(first_name):
     # Get user's first name from the DB
-    first_name = mongo.db.users.find_one({"email": session["user"]})["first_name"]
+    first_name = mongo.db.users.find_one(
+        {"email": session["user"]})["first_name"]
 
     if session["user"]:
-        return render_template("welcome.html", page_title="Welcome page", first_name=first_name)
-    
+        return render_template(
+            "welcome.html", page_title="Welcome back", first_name=first_name)
+
     return redirect(url_for("log_in"))
 
 
 # Render the user profile
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
-    # Check to see user in session's email
-    user = mongo.db.users.find_one({"email": session["user"]})["email"].lower()
-    first_name = mongo.db.users.find_one({"email": session["user"]})["first_name"]
-    last_name = mongo.db.users.find_one({"email": session["user"]})["last_name"]
 
+    # Get user id to generate 'member since'
+    user_id = mongo.db.users.find_one(
+        {"email": session["user"]})["_id"]
+
+    # Check to see user in session's email
+    user = mongo.db.users.find_one(
+        {"email": session["user"]})["email"].lower()
+
+    # Get user details to populate profile
+    first_name = mongo.db.users.find_one(
+        {"email": session["user"]})["first_name"]
+    last_name = mongo.db.users.find_one(
+        {"email": session["user"]})["last_name"]
+    email = mongo.db.users.find_one(
+        {"email": session["user"]})["email"]
 
     # Render page if user is in session
     if session["user"]:
         return render_template("profile.html", page_title="My profile", 
-                                user=user, first_name=first_name,
-                                last_name=last_name)
+                                user_id=user_id, user=user, 
+                                first_name=first_name,
+                                last_name=last_name, email=email)
 
 
 # Render the logout function

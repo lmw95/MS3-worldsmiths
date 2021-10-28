@@ -4,5 +4,27 @@
 
 {% block content %}
 
+    <div class="row p-banner" id="bannerImg"></div>
+    <div class="p-info">
+        <div class="row valign-wrapper details">
+            <div class="col s12 m12 l2 xl2">
+                <img src="/static/imgs/profile-avatar.png" class="responsive-img col s6 offset-s3 m4 offset-m4 l12 xl12">
+            </div>
+            <div class="col s12 m12 l7 xl7">
+                <div class="row valign-wrapper">
+                    <div class="col s12">
+                        <h1>{{ first_name }} {{ last_name }}</h1>
+                        <p><i class="fas fa-user"></i>Member since: {{ user_id.generation_time.date().strftime("%dth %B %Y") }}</p>
+                        <p><i class="fas fa-map-marker-alt"></i>Location:</p>
+                        <p><i class="fas fa-heart"></i>Interests:</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m12 l2 xl2">
+                <a href="#" class="btn-large col s12">Edit profile</a>
+                <a href="#" class="btn-large col s12">Settings</a>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
