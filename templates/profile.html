@@ -9,7 +9,7 @@
     <div class="p-info">
         <div class="row valign-wrapper details">
             <div class="col s12 m12 l2 xl2">
-                <img src="/static/imgs/profile-avatar.png" class="responsive-img col s6 offset-s3 m4 offset-m4 l12 xl12">
+                <img src="{{user.profile_pic_url}}" class="responsive-img col s6 offset-s3 m4 offset-m4 l12 xl12">
             </div>
             <div class="col s12 m12 l7 xl7">
                 <div class="row valign-wrapper">
@@ -22,8 +22,8 @@
                 </div>
             </div>
             <div class="col s12 m12 l2 xl2">
-                <a href="#" class="btn-large col s12">Edit profile</a>
-                <a href="#" class="btn-large col s12">Settings</a>
+                <button href="#" class="btn-large col s12 m5 l12 xl12 offset-m1 modal-trigger edit" data-target="editModal">Edit profile</button>
+                <button href="#" class="btn-large col s12 m5 l12 xl12 modal-trigger settings" data-target="settingsModal">Settings</button>
             </div>
         </div>
     </div>
@@ -83,6 +83,60 @@
     <div class="row">
 
     </div>
-
+    <!--Edit profile modal-->
+    <div id="editModal" class="row modal-container modal">
+        <!--Modal content-->
+        <div class="col s12 m6 offset-m3 l12 xl12 modal-content edit-modal center-align">
+            <h2>Edit your profile</h2>
+            <form id="formEditModal" class="modal-form" method="POST" action="">
+                <div class="row">
+                    <div class="col s12 left-align">
+                        <img src="{{user.profile_pic_url}}" class="responsive-img col s6 offset-s3 m4 offset-m4 l12 xl12 profile-pic-modal">
+                    </div>
+                    <div class="input-field col s10 offset-s1">
+                        <input id="banner" name="banner" type="text" class="validate">
+                        <label for="banner">Banner image URL</label>
+                    </div>
+                    <div class="input-field col s10 offset-s1">
+                        <input id="picture" name="picture" type="text" class="validate">
+                        <label for="picture">Profile image URL</label>
+                    </div>
+                    <div class="input-field col s10 offset-s1">
+                        <input id="city" name="city" type="text" class="validate" minlength="1" maxlength="40" pattern="^[a-zA-z0-9,.'-]{1,40}$" required>
+                        <label for="location">Edit city</label>
+                    </div>
+                    <div class="input-field col s10 offset-s1">
+                        <input id="country" name="country" type="text" class="validate" minlength="1" maxlength="40" pattern="^[a-zA-z0-9,.'-]{1,40}$" required>
+                        <label for="country">Edit country</label>
+                    </div>
+                    <div class="input-field col s10 offset-s1 left-align">
+                        <input id="interests" name="interests" type="text" class="validate" data-length="300" minlength="1" maxlength="300" pattern="^[a-zA-z0-9,.'-]{1,40}$" required>
+                        <label for="interests">Edit interests</label>
+                        <span class="helper-text">(Max. 300 characters)</p>
+                    </div>
+                    <div class="input-field col s10 offset-s1">
+                        <textarea class="materialize-textarea" data-length="300" name="bio" id="bio" required></textarea>
+                        <label for="bio">Your bio - tell us about you</label>
+                    </div>
+                    <div class="input-field col s10 offset-s1">
+                        <input id="link1" name="link1" type="text" class="validate">
+                        <label for="link1">Project 1</label>
+                    </div>
+                    <div class="input-field col s10 offset-s1">
+                        <input id="link2" name="link2" type="text" class="validate">
+                        <label for="link2">Project 2</label>
+                    </div>
+                    <div class="input-field col s10 offset-s1">
+                        <input id="link3" name="link3" type="text" class="validate">
+                        <label for="link3">Project 3</label>
+                    </div>
+                    <div class="col s10 offset-s1">
+                        <button class="btn-large modal-button" type="submit" name="action">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
 
 {% endblock %}
