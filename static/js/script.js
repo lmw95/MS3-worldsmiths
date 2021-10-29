@@ -6,7 +6,11 @@
   // MaterializeCSS Character counter
   $('input#input_text, textarea#textarea1').characterCounter();
 
+  $('.collapsible').collapsible({
+    accordion : false
+  })
 });
+
 
 // Visibility button - https://www.youtube.com/watch?v=INhtMA54iMM
 const visibilityBtn = document.getElementById("visibilityBtn");
