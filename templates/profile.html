@@ -3,8 +3,9 @@
 {% block page_title %}{{ page_title }}{% endblock %}
 
 {% block content %}
-
+    <!--Profile banner image-->
     <div class="row p-banner" id="bannerImg"></div>
+    <!--User info-->
     <div class="p-info">
         <div class="row valign-wrapper details">
             <div class="col s12 m12 l2 xl2">
@@ -14,9 +15,9 @@
                 <div class="row valign-wrapper">
                     <div class="col s12">
                         <h1 class="user-name">{{ first_name }} {{ last_name }}</h1>
-                        <p><i class="fas fa-user"></i>Member since: {{ user_id.generation_time.date().strftime("%dth %B %Y") }}</p>
-                        <p><i class="fas fa-map-marker-alt"></i>Location:</p>
-                        <p><i class="fas fa-heart"></i>Interests:</p>
+                        <p><i class="fas fa-user"></i><span class="info-label">Member since:</span> {{ user_id.generation_time.date().strftime("%dth %B %Y") }}</p>
+                        <p><i class="fas fa-map-marker-alt"></i><span class="info-label">Location:</span></p>
+                        <p><i class="fas fa-heart"></i><span class="info-label">Interests:</span></p>
                     </div>
                 </div>
             </div>
@@ -26,23 +27,61 @@
             </div>
         </div>
     </div>
+    <!--User biography and project links-->
     <div class="row">
         <div class="col s12 m12 l6 xl6">
             <ul class="collapsible" data-collapsible="accordion">
                 <li>
                     <div class="collapsible-header"><h2><i class="fas fa-book-open"></i>Biography</h2></div>
-                    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    <div class="collapsible-body">
+                        <p class="bio-text"> Lorem ipsum dolor sit amet.</p>
+                    </div>
                 </li>
             </ul>
         </div>
         <div class="col s12 m12 l6 xl6">
             <ul class="collapsible" data-collapsible="accordion">
                 <li>
-                    <div class="collapsible-header"><h2><i class="fas fa-tools"></i></i>My worlds</h2></div>
-                    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    <div class="collapsible-header"><h2><i class="fas fa-tools"></i>My worlds</h2></div>
+                    <div class="collapsible-body">
+                        <h6>Share your top 3 projects by URL below:</h6>
+                        <p class="url-label">Project 1:<p>
+                        <p class="url-label">Project 2:</p>
+                        <p class="url-label">Project 3:</p>
+                    </div>
                 </li>
             </ul>
         </div>
+    </div>
+    <!--User groups with pagination (member of)-->
+    <div class="groups">
+        <div class="row">
+            <div class="col s12">
+                <h2>Groups</h2>
+            </div>
+        </div>
+    </div>
+    <div class="events">
+        <div class="row">
+            <div class="col s12">
+                <h2>Events</h2>
+            </div>
+        </div>
+    </div>
+    <div class="following">
+        <div class="row">
+            <div class="col s12">
+                <h2>Following</h2>
+            </div>
+        </div>
+    </div>
+    <!--User events with pagination (attending)-->
+    <div class="row">
+
+    </div>
+    <!--User following with pagination -->
+    <div class="row">
+
     </div>
 
 

@@ -144,6 +144,10 @@ color: var(--black) !important;
     background-color: var(--munsell-t);
 }
 
+.info-label {
+    font-weight: 700;
+}
+
 .p-info i {
     margin-right: 10px;
 }
@@ -154,8 +158,18 @@ color: var(--black) !important;
 
 .collapsible-header {
     background-color: var(--munsell);
+}
+
+.collapsible-body {
     box-shadow: none;
     border: none;
+    box-shadow: none;
+}
+
+.url-label,
+.bio-text {
+    font-weight: 700;
+    color: var(--magenta);
 }
 
 /** Welcome **/
@@ -355,6 +369,12 @@ h6 {
 
     .welcome-link {
         margin-bottom: 20px;
+    }
+
+    .groups h2,
+    .events h2,
+    .following h2 {
+        text-align: center;
     }
 
     footer {
