@@ -39,7 +39,7 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a href="#"><i class="fas fa-home"></i></a></li>
                     <li><a href="#"><i class="fas fa-search"></i></a></li>
-                    <li><a href="{{ url_for('profile') }}" target="_self"><i class="fas fa-user"></i></i></a></li>
+                    <li><a href="{{ url_for('get_profile') }}" target="_self"><i class="fas fa-user"></i></i></a></li>
                     <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i></a></li>
                     <li><a href="{{ url_for('log_out') }}" target="_self"><i class="fas fa-sign-out-alt"></i></a></li>
                 </ul>
@@ -48,7 +48,7 @@
                 <ul class="sidenav" id="mobile-nav">
                     <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
                     <li><a href="#"><i class="fas fa-search"></i>Browse</a></li>
-                    <li><a href="{{ url_for('profile') }}"><i class="fas fa-user"></i>My profile</a></li>
+                    <li><a href="{{ url_for('get_profile') }}"><i class="fas fa-user"></i>My profile</a></li>
                     <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i>Contact us</a></li>
                     <li><a href="{{ url_for('log_out') }}" target="_self"><i class="fas fa-sign-out-alt"></i>Sign out</a></li>
                 </ul>
@@ -106,7 +106,7 @@
                 <h5>Navigate this site</h5>
                 <ul>
                     {% if session.user %}
-                    <li><a href="{{ url_for('profile') }}" target="_self">My profile</a></li>
+                    <li><a href="{{ url_for('get_profile') }}" target="_self">My profile</a></li>
                     <li><a href="{{ url_for('welcome', first_name=session['user'])}}" target="_self">Welcome page</a></li>
                     <li><a href="{{ url_for('statements') }}" target="_self">Our statements</a></li>
                     <li><a href="{{ url_for('faqs') }}" target="_self">FAQs</a></li>
