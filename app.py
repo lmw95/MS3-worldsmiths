@@ -8,7 +8,7 @@ from flask_mail import Mail, Message
 from flask_pymongo import PyMongo
 # Import Werkzeug security helpers
 from werkzeug.security import generate_password_hash, check_password_hash
-# Import objecId
+# Import objectId
 from bson.objectid import ObjectId
 # Import Regex
 import re
@@ -124,9 +124,6 @@ def sign_up():
             "last_name": request.form.get("lname").lower(),
             "email": request.form.get("email").lower(),
             "password": generate_password_hash(request.form.get("password")),
-        }
-
-        register_profile = {
             "nickname": "",
             "profile_pic_url": "",
             "user_banner_url": "",
@@ -151,11 +148,8 @@ def sign_up():
         else:
             try:
                 mongo.db.users.insert_one(register_user)
-                mongo.db.profile.insert_one(register_profile)
-                # Create  "user" session cookie upon login to store user info
-                # and reuse
-                session["user"] = request.form.get("email").lower()
-                return redirect(url_for("profile", first_name=session["user"]))
+                flash("Registration successful, welcome aboard! You can now log in.")
+                return redirect(url_for("log_in"))
             except Exception as e:
                 print(e)
 
@@ -184,7 +178,7 @@ def log_in():
     return render_template("log-in.html", page_title="Log in")
 
 
-# Render the general welcome page
+# Render the welcome page
 @app.route("/welcome/<first_name>", methods=["GET", "POST"])
 def welcome(first_name):
     # Get user's first name from the DB
@@ -199,8 +193,9 @@ def welcome(first_name):
 
 
 # Render the user profile
-@app.route("/profile", methods=["GET", "POST"])
-def profile():
+@app.route("/get_profile", methods=["GET", "POST"])
+def get_profile():
+    
 
     # Get user id to generate 'member since'
     user_id = mongo.db.users.find_one(
@@ -209,7 +204,7 @@ def profile():
     # Check to see user in session's email
     user = mongo.db.users.find_one(
         {"email": session["user"]})["email"].lower()
-
+        
     # Get user details to populate profile
     first_name = mongo.db.users.find_one(
         {"email": session["user"]})["first_name"]
@@ -218,12 +213,50 @@ def profile():
     email = mongo.db.users.find_one(
         {"email": session["user"]})["email"]
 
+
     # Render page if user is in session
     if session["user"]:
         return render_template("profile.html", page_title="My profile", 
                                 user_id=user_id, user=user, 
                                 first_name=first_name,
                                 last_name=last_name, email=email)
+
+
+@app.route("/settings", methods=["GET", "POST"])
+def settings():
+    return render_template("settings.html", page_title="Settings")
+
+
+
+# Edit profile
+#@app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
+#def edit_profile(user_id):
+
+#  if request.method == "POST":
+
+   #     user_info = {
+    #        "nickname": request.form.get("nickname"),
+     #       "profile_pic_url": request.form.get("picture"),
+      #      "user_banner_url": request.form.get("banner"),
+       #     "user_city": request.form.get("city"),
+        #    "user_location": request.form.get("location"),
+         #   "user_interests": request.form.get("interests"),
+          #  "user_biography": request.form.get("bio"),
+           # "user_project_1": request.form.get("link1"),
+            #"user_project_2": request.form.get("link2"),
+            #"user_project_3": request.form.get("link3")
+       # }
+
+        #try:
+          #  mongo.db.users.update({"_id": ObjectId(user_id)}, user_info)
+          #  flash("Information updated!")
+          #  return redirect(url_for("get_profile", page_title="My profile", user=user))
+     #   except Exception as e:
+           # print(e)
+
+   # user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+   # return render_template("edit_profile.html", page_title="Edit profile", user=user)
+
 
 
 # Render the logout function
