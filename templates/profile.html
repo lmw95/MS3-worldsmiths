@@ -5,8 +5,20 @@
 {% block content %}
 
     <!--Profile banner image-->
-    <div class="row p-banner" id="bannerImg"></div>
+    <div class="row p-banner" id="bannerImg" style="background: url({{banner}}) no-repeat center; background-size: cover;"></div>
     <!--User info-->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="row profile-flash">
+        <div class="col s12 flashes center-align">
+            {% for message in messages %}
+                <h3>{{ message }} <i class="fas fa-sync-alt" id="refreshPage"></i></h3>
+                <hr class="underline">
+            {% endfor %}
+        </div>
+    </div>
+        {% endif %}
+    {% endwith %}
     <div class="p-info">
         <div class="row valign-wrapper details">
             <div class="col s12 m12 l2 xl2">
@@ -31,27 +43,31 @@
     <!--User biography and project links-->
     <div class="row">
         <div class="col s12 m12 l6 xl6">
-            <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header"><h2><i class="fas fa-book-open"></i>Biography</h2></div>
-                    <div class="collapsible-body">
-                        <p class="bio-text">{{ bio }}</p>
-                    </div>
-                </li>
-            </ul>
+            <div class="card">
+                <div class="card-content center-align">
+                    <i class="fas fa-book-open fa-2x"></i>
+                    <span class="card-title activator"><h2 class="activator">Biography</h2></span>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title"><i class="fas fa-times-circle right"></i></span>
+                    <p>{{ bio }}</p>
+                </div>
+            </div>
         </div>
         <div class="col s12 m12 l6 xl6">
-            <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header"><h2><i class="fas fa-tools"></i>My worlds</h2></div>
-                    <div class="collapsible-body">
-                        <h6>Share your top 3 projects by URL below:</h6>
-                        <p class="url-label">Project 1: {{ project_1 }}<p>
-                        <p class="url-label">Project 2: {{ project_2 }}</p>
-                        <p class="url-label">Project 3: {{ project_3 }}</p>
-                    </div>
-                </li>
-            </ul>
+            <div class="card">
+                <div class="card-content center-align">
+                    <i class="fas fa-tools fa-2x"></i>
+                    <span class="card-title activator"><h2 class="activator">My projects</h2></span>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title"><i class="fas fa-times-circle right"></i></span>
+                    <h6>Share your top 3 projects by URL below:</h6>
+                    <p class="url-label">Project 1: {{ project_1 }}<p>
+                    <p class="url-label">Project 2: {{ project_2 }}</p>
+                    <p class="url-label">Project 3: {{ project_3 }}</p>
+                </div>
+            </div>
         </div>
     </div>
     <!--User groups with pagination (member of)-->
