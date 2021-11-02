@@ -87,6 +87,17 @@ div .hero {
     color: var(--magenta);
 }
 
+.profile-flash {
+    margin-bottom: 0;
+    padding-top: 10px;
+    background-color: var(--munsell-t);
+}
+
+.profile-flash i {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
 /* Forms */
 form {
     margin-bottom: 40px;
@@ -136,8 +147,8 @@ color: var(--black) !important;
 /** Profile **/
 .p-banner {
     height: 400px;
-    background: url(/static/imgs/upload-small.png) no-repeat center fixed;
     background-color: var(--almond);
+    margin-bottom: 0;
 }
 
 .details {
@@ -161,17 +172,23 @@ color: var(--black) !important;
 }
 
 .p-info .profile-pic {
-    max-height: 220px;
+    height: 220px;
+    width: 220px;
 }
 
-.collapsible-header {
+.card {
     background-color: var(--munsell);
+    height: 240px;
 }
 
-.collapsible-body {
-    box-shadow: none;
-    border: none;
-    box-shadow: none;
+.card-reveal {
+    overflow-y: scroll;
+    background-color: var(--black) !important;
+    color: var(--almond);
+}
+
+.card-content i {
+    margin-top: 20px;
 }
 
 .url-label,
