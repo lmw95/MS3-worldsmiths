@@ -222,41 +222,16 @@ def get_profile():
                                 last_name=last_name, email=email)
 
 
+# Render the settings page
 @app.route("/settings", methods=["GET", "POST"])
 def settings():
     return render_template("settings.html", page_title="Settings")
 
 
-
-# Edit profile
-#@app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
-#def edit_profile(user_id):
-
-#  if request.method == "POST":
-
-   #     user_info = {
-    #        "nickname": request.form.get("nickname"),
-     #       "profile_pic_url": request.form.get("picture"),
-      #      "user_banner_url": request.form.get("banner"),
-       #     "user_city": request.form.get("city"),
-        #    "user_location": request.form.get("location"),
-         #   "user_interests": request.form.get("interests"),
-          #  "user_biography": request.form.get("bio"),
-           # "user_project_1": request.form.get("link1"),
-            #"user_project_2": request.form.get("link2"),
-            #"user_project_3": request.form.get("link3")
-       # }
-
-        #try:
-          #  mongo.db.users.update({"_id": ObjectId(user_id)}, user_info)
-          #  flash("Information updated!")
-          #  return redirect(url_for("get_profile", page_title="My profile", user=user))
-     #   except Exception as e:
-           # print(e)
-
-   # user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-   # return render_template("edit_profile.html", page_title="Edit profile", user=user)
-
+# Render the edit profile page
+@app.route("/edit_profile", methods=["GET", "POST"])
+def edit_profile():
+    return render_template("edit_profile.html", page_title="Edit profile")
 
 
 # Render the logout function
