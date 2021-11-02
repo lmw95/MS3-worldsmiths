@@ -3,12 +3,24 @@
   // Activate MaterializeCSS sidenav
   $('.sidenav').sidenav();
 
-  // MaterializeCSS Character counter
+  // MaterializeCSS character counter
   $('input#input_text, textarea#textarea1').characterCounter();
 
+  // MaterializeCSS collapsable accordians
   $('.collapsible').collapsible({
     accordion : false
   })
+
+  // MaterializeCSS modal
+  $('.modal').modal({
+    dismissible: true,
+  });
+
+  // Refreshes page to clear flash message on profile
+  $('#refreshPage').click(function() {
+    location.reload();
+});
+
 });
 
 
