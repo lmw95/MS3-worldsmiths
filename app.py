@@ -139,7 +139,8 @@ def sign_up():
             "events_organised": [],
             "groups_member_of": [],
             "groups_created": [],
-            "following": []
+            "following": [],
+            "followers": ""
         }
 
         if existing_user:
@@ -212,6 +213,20 @@ def get_profile():
         {"email": session["user"]})["last_name"]
     email = mongo.db.users.find_one(
         {"email": session["user"]})["email"]
+    city = mongo.db.users.find_one({
+        "email": session["user"]})["user_city"]
+    location = mongo.db.users.find_one({
+        "email": session["user"]})["user_location"]
+    interests = mongo.db.users.find_one({
+        "email": session["user"]})["user_interests"]
+    project_1 = mongo.db.users.find_one({
+        "email": session["user"]})["user_project_1"]
+    project_2 = mongo.db.users.find_one({
+        "email": session["user"]})["user_project_2"]
+    project_3 = mongo.db.users.find_one({
+        "email": session["user"]})["user_project_3"]
+    bio = mongo.db.users.find_one({
+        "email": session["user"]})["user_biography"]
 
 
     # Render page if user is in session
@@ -219,7 +234,12 @@ def get_profile():
         return render_template("profile.html", page_title="My profile", 
                                 user_id=user_id, user=user, 
                                 first_name=first_name,
-                                last_name=last_name, email=email)
+                                last_name=last_name, email=email,
+                                city=city, location=location,
+                                interests=interests,
+                                project_1=project_1,
+                                project_2=project_2,
+                                project_3=project_3, bio=bio)
 
 
 # Render the settings page
@@ -229,9 +249,32 @@ def settings():
 
 
 # Render the edit profile page
-@app.route("/edit_profile", methods=["GET", "POST"])
-def edit_profile():
-    return render_template("edit_profile.html", page_title="Edit profile")
+@app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
+def edit_profile(user_id):
+
+    if request.method == "POST":
+
+        user_info = {"$set": {
+            "user_city": request.form.get("city"),
+            "user_location": request.form.get("country"),
+            "nickname": request.form.get("nickname"),
+            "user_interests": request.form.get("interests"),
+            "user_project_1": request.form.get("link-1"),
+            "user_project_2": request.form.get("link-2"),
+            "user_project_3": request.form.get("link-3"),
+            "user_biography": request.form.get("bio")
+        }
+        }
+
+        try:
+            mongo.db.users.update({"_id": ObjectId(user_id)}, user_info)
+            flash("Information updated")
+            return redirect(url_for("get_profile", page_title="My profile", user=user))
+        except Exception as e:
+            print(e)
+
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    return render_template("edit_profile.html", page_title="Edit profile", user=user)
 
 
 # Render the logout function

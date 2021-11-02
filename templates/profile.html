@@ -8,15 +8,6 @@
     <div class="row p-banner" id="bannerImg"></div>
     <!--User info-->
     <div class="p-info">
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class="col s12 flashes center-align">
-                {% for message in messages %}
-                    <h3>{{ message }}</h3>
-                {% endfor %}
-            </div>
-        {% endif %}
-    {% endwith %}
         <div class="row valign-wrapper details">
             <div class="col s12 m12 l2 xl2">
                 <img src="{{user.profile_pic_url}}" class="responsive-img col s6 offset-s3 m4 offset-m4 l12 xl12">
@@ -25,14 +16,14 @@
                 <div class="row valign-wrapper">
                     <div class="col s12">
                         <h1 class="user-name">{{ first_name }} {{ last_name }}</h1>
-                        <p><i class="fas fa-user"></i><span class="info-label">Member since:</span> {{ user_id.generation_time.date().strftime("%dth %B %Y") }}</p>
-                        <p><i class="fas fa-map-marker-alt"></i><span class="info-label">Location:</span></p>
-                        <p><i class="fas fa-heart"></i><span class="info-label">Interests:</span></p>
+                        <p><i class="fas fa-user"></i><span class="info-label">Member since:</span> {{ user_id.generation_time.date().strftime("%d %B %Y") }}</p>
+                        <p><i class="fas fa-map-marker-alt"></i><span class="info-label">Location:</span> {{ city }}, {{ location }}</p>
+                        <p><i class="fas fa-heart"></i><span class="info-label">Interests:</span> {{ interests }}</p>
                     </div>
                 </div>
             </div>
             <div class="col s12 m12 l2 xl2">
-                <a href="{{ url_for('edit_profile') }}" class="btn-large col s12 m5 l12 xl12 offset-m1 edit">Edit profile</a>
+                <a href="{{ url_for('edit_profile', user_id=user_id) }}" class="btn-large col s12 m5 l12 xl12 offset-m1 edit">Edit profile</a>
                 <a href="{{ url_for('settings') }}" class="btn-large col s12 m5 l12 xl12 modal-trigger settings">Settings</a>
             </div>
         </div>
@@ -44,7 +35,7 @@
                 <li>
                     <div class="collapsible-header"><h2><i class="fas fa-book-open"></i>Biography</h2></div>
                     <div class="collapsible-body">
-                        <p class="bio-text"></p>
+                        <p class="bio-text">{{ bio }}</p>
                     </div>
                 </li>
             </ul>
@@ -55,9 +46,9 @@
                     <div class="collapsible-header"><h2><i class="fas fa-tools"></i>My worlds</h2></div>
                     <div class="collapsible-body">
                         <h6>Share your top 3 projects by URL below:</h6>
-                        <p class="url-label">Project 1:<p>
-                        <p class="url-label">Project 2:</p>
-                        <p class="url-label">Project 3:</p>
+                        <p class="url-label">Project 1: {{ project_1 }}<p>
+                        <p class="url-label">Project 2: {{ project_2 }}</p>
+                        <p class="url-label">Project 3: {{ project_3 }}</p>
                     </div>
                 </li>
             </ul>
