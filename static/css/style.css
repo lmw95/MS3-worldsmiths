@@ -144,6 +144,12 @@ label {
 color: var(--black) !important;
 }
 
+.edit-page h3 {
+    background-color: var(--munsell-t);
+    padding: 30px 15px;
+    margin-bottom: 30px;
+}
+
 /** Profile **/
 .p-banner {
     height: 400px;
@@ -306,6 +312,12 @@ footer .useful-links a {
     width: 150px;
     border: solid var(--magenta);
     margin-bottom: 40px;
+}
+
+.long-underline {
+    margin-bottom: 40px;
+    border: solid var(--magenta);
+    opacity: 0.2;
 }
 
 /** Buttons **/

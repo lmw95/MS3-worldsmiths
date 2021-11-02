@@ -196,7 +196,6 @@ def welcome(first_name):
 # Render the user profile
 @app.route("/get_profile", methods=["GET", "POST"])
 def get_profile():
-    
 
     # Get user id to generate 'member since'
     user_id = mongo.db.users.find_one(
@@ -231,7 +230,8 @@ def get_profile():
         "email": session["user"]})["profile_pic_url"]
     banner = mongo.db.users.find_one({
         "email": session["user"]})["user_banner_url"]
-
+    nickname = mongo.db.users.find_one({
+        "email": session["user"]})["nickname"]
 
     # Render page if user is in session
     if session["user"]:
@@ -244,21 +244,26 @@ def get_profile():
                                 project_1=project_1,
                                 project_2=project_2,
                                 project_3=project_3, bio=bio,
-                                profile_pic=profile_pic, banner=banner)
+                                profile_pic=profile_pic, banner=banner,
+                                nickname=nickname)
 
 
 # Render the settings page
 @app.route("/settings", methods=["GET", "POST"])
 def settings():
-    return render_template("settings.html", page_title="Settings")
+    return render_template("profile-settings.html", page_title="Profile settings")
 
 
 # Render the edit profile page
 @app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
 def edit_profile(user_id):
 
+    # Get user ID
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    
     if request.method == "POST":
 
+        # Create details dict to be added to DB
         user_info = {"$set": {
             "user_city": request.form.get("city"),
             "user_location": request.form.get("country"),
@@ -275,13 +280,12 @@ def edit_profile(user_id):
 
         try:
             mongo.db.users.update({"_id": ObjectId(user_id)}, user_info)
-            flash("Information updated")
+            flash("Profile updated!")
             return redirect(url_for("get_profile", page_title="My profile", user=user))
         except Exception as e:
             print(e)
 
-    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-    return render_template("edit_profile.html", page_title="Edit profile", user=user)
+    return render_template("edit-profile.html", page_title="Edit profile", user=user)
 
 
 # Render the logout function

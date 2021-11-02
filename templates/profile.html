@@ -28,6 +28,7 @@
                 <div class="row valign-wrapper">
                     <div class="col s12">
                         <h1 class="user-name">{{ first_name }} {{ last_name }}</h1>
+                        <p><i class="fas fa-comment-dots"></i><span class="info-label">Nickname:</span> {{ nickname }}</p>
                         <p><i class="fas fa-user"></i><span class="info-label">Member since:</span> {{ user_id.generation_time.date().strftime("%d %B %Y") }}</p>
                         <p><i class="fas fa-map-marker-alt"></i><span class="info-label">Location:</span> {{ city }}, {{ location }}</p>
                         <p><i class="fas fa-heart"></i><span class="info-label">Interests:</span> {{ interests }}</p>
@@ -58,7 +59,7 @@
             <div class="card">
                 <div class="card-content center-align">
                     <i class="fas fa-tools fa-2x"></i>
-                    <span class="card-title activator"><h2 class="activator">My projects</h2></span>
+                    <span class="card-title activator"><h2 class="activator">Projects</h2></span>
                 </div>
                 <div class="card-reveal">
                     <span class="card-title"><i class="fas fa-times-circle right"></i></span>
