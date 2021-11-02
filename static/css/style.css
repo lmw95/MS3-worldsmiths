@@ -140,8 +140,12 @@ color: var(--black) !important;
     background-color: var(--almond);
 }
 
-.p-info {
+.details {
     background-color: var(--munsell-t);
+}
+
+.p-info {
+    background: url(/static/icons/book.png) center;
 }
 
 .info-label {
@@ -154,6 +158,10 @@ color: var(--black) !important;
 
 .p-info a {
     margin-bottom: 10px;
+}
+
+.p-info .profile-pic {
+    max-height: 220px;
 }
 
 .collapsible-header {
@@ -347,6 +355,15 @@ h6 {
     font-family: var(--yanone-kaffeesatz);
 }
 
+/** Modals **/
+.modal {
+    background-color: var(--almond);
+}
+
+.modal-button {
+    margin-top: 20px;
+}
+
 /* Mobile queries */
 @media only screen and (max-width:425px) {
     nav .brand-logo {
@@ -418,6 +435,9 @@ h6 {
         font-size: 3.5em;
     }
 
+    .edit {
+        margin-right: 10px;
+    }
 
     footer .footer-logo {
         height: 125px;

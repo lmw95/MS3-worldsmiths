@@ -227,6 +227,10 @@ def get_profile():
         "email": session["user"]})["user_project_3"]
     bio = mongo.db.users.find_one({
         "email": session["user"]})["user_biography"]
+    profile_pic = mongo.db.users.find_one({
+        "email": session["user"]})["profile_pic_url"]
+    banner = mongo.db.users.find_one({
+        "email": session["user"]})["user_banner_url"]
 
 
     # Render page if user is in session
@@ -239,7 +243,8 @@ def get_profile():
                                 interests=interests,
                                 project_1=project_1,
                                 project_2=project_2,
-                                project_3=project_3, bio=bio)
+                                project_3=project_3, bio=bio,
+                                profile_pic=profile_pic, banner=banner)
 
 
 # Render the settings page
@@ -262,7 +267,9 @@ def edit_profile(user_id):
             "user_project_1": request.form.get("link-1"),
             "user_project_2": request.form.get("link-2"),
             "user_project_3": request.form.get("link-3"),
-            "user_biography": request.form.get("bio")
+            "user_biography": request.form.get("bio"),
+            "profile_pic_url": request.form.get("profile_pic"),
+            "user_banner_url": request.form.get("banner")
         }
         }
 
