@@ -59,6 +59,11 @@ def test_groups():
     return render_template("test.html", groups=groups)
 
 
+# Render the home page
+@app.route("/homepage")
+def homepage():
+    
+
 # Render the privacy and accessibility statement template
 @app.route("/statements")
 def statements():

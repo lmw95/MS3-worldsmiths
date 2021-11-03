@@ -28,7 +28,7 @@
         <!--Navbar-->
         <nav class="nav-extended">
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo left main-logo">Worldsmiths <img
+                <a href="{{ url_for('homepage') }}" class="brand-logo left main-logo">Worldsmiths <img
                         src="{{ url_for('static', filename='icons/book.png')}}" class="brand-icon" alt="Globe on top of a book"></a>
                 <a href="#" data-activities="mobile" data-target="mobile-nav" class="sidenav-trigger right"><i
                         class="fas fa-bars"></i></a>
@@ -37,7 +37,7 @@
 
                 <!--User logged in-->
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="#"><i class="fas fa-home"></i></a></li>
+                    <li><a href="{{ url_for('homepage') }}"><i class="fas fa-home"></i></a></li>
                     <li><a href="#"><i class="fas fa-search"></i></a></li>
                     <li><a href="{{ url_for('get_profile') }}" target="_self"><i class="fas fa-user"></i></i></a></li>
                     <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i></a></li>
@@ -46,7 +46,7 @@
 
                 <!--User logged in (mobile)-->
                 <ul class="sidenav" id="mobile-nav">
-                    <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+                    <li><a href="{{ url_for('homepage') }}"><i class="fas fa-home"></i>Home</a></li>
                     <li><a href="#"><i class="fas fa-search"></i>Browse</a></li>
                     <li><a href="{{ url_for('get_profile') }}"><i class="fas fa-user"></i>My profile</a></li>
                     <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i>Contact us</a></li>
@@ -57,7 +57,7 @@
 
                 <!--User not logged in/signed up-->
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="#"><i class="fas fa-home"></i></a></li>
+                    <li><a href="{{ url_for('homepage') }}"><i class="fas fa-home"></i></a></li>
                     <li><a href="{{ url_for('log_in') }}" target="_self"><i class="fas fa-sign-in-alt"></i></a></li>
                     <li><a href="{{ url_for('sign_up') }}" target="_self"><i class="fas fa-user-plus"></i></a></li>
                     <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i></a></li>
@@ -66,7 +66,7 @@
 
                 <!--Mobile navigation-->
                 <ul class="sidenav" id="mobile-nav">
-                    <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+                    <li><a href="{{ url_for('homepage') }}"><i class="fas fa-home"></i>Home</a></li>
                     <li><a href="{{ url_for('log_in') }}" target="_self"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
                     <li><a href="{{ url_for('sign_up') }}" target="_self"><i class="fas fa-user-plus"></i>Sign up</a></li>
                     <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i>Get in touch</a></li>
