@@ -50,8 +50,8 @@
         </div>
         <div class="row">
             <div class="input-field col s11">
-                <i id="visibilityBtn" class="visibility fas fa-lock prefix"></i>
-                <input id="password" type="password" class="validate" name="password" id="password" minlength="8" maxlength="16" pattern="^[a-zA-z0-9!#*%]{8,16}$" required>
+                <i class="visibility toggle-password fas fa-lock prefix" data-target="password"></i>
+                <input id="password" type="password" class="validate" name="password" minlength="8" maxlength="16" pattern="^[a-zA-z0-9!#*%]{8,16}$" required>
                 <label for="password">Create password</label>
                 <span class="helper-text">Password must be between 8 and 16 characters and must include a number and at least one of the following: ! # * %</span>
             </div>

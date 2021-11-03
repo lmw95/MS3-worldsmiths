@@ -23,22 +23,22 @@
 {% endwith %}
 <div class="row">
     <div class="col s10 offset-s1 m10 offset-m1 l10 offset-l1 xl10 offset-xl1 center-align edit-page">
-        <form method="POST" action="{{ url_for('settings', user_id=user._id) }}">
+        <form method="POST" action="{{ url_for('edit_email', user_id=user._id) }}">
             <div class="row">
                 <div class="col s10 offset-s1 left-align">
                     <h3>Email <i class="fas fa-at right"></i></h3>
                 </div>
-                <div class="input-field col s10 offset-s1 m4 offset-m1 l5 offset-l1 xl5 offset-xl1">
+                <div class="input-field col s10 offset-s1 m10 offset-m1 l5 offset-l1 xl5 offset-xl1">
                     <input disabled id="current-email" name="current-email" type="text" class="validate" value="{{ email }}">
                     <label for="current-email">Current email</label>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s10 offset-s1 m4 offset-m1 l5 offset-l1 xl5 offset-xl1">
+                <div class="input-field col s10 offset-s1 m10 offset-m1 l5 offset-l1 xl5 offset-xl1">
                     <input id="new-email" name="new-email" type="text" class="validate" required>
                     <label for="new-email">New email</label>
                 </div>
-                <div class="input-field col s10 offset-s1 m4 offset-m1 l5 xl5">
+                <div class="input-field col s10 offset-s1 m10 offset-m1 l5 xl5">
                     <input id="confirm-email" name="confirm-email" type="text" class="validate" required>
                     <label for="confirm-email">Confirm email</label>
                 </div>
@@ -53,6 +53,26 @@
             <div class="row">
                 <div class="col s10 offset-s1 left-align">
                     <h3>Password <i class="fas fa-lock right"></i></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s10 offset-s1 m10 offset-m1 l5 offset-l1 xl5 offset-xl1">
+                    <i class="visibility toggle-password fas fa-lock prefix" data-target="current-password"></i>
+                    <input id="current-password" type="password" class="validate pwd-input" name="current-password" minlength="8" maxlength="16" pattern="^[a-zA-z0-9!#*%]{8,16}$" required>
+                    <label for="current-password">Current password</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s10 offset-s1 m10 offset-m1 l5 offset-l1 xl5 offset-xl1">
+                    <i class="visibility toggle-password fas fa-lock prefix" data-target="new-password"></i>
+                    <input id="new-password" type="password" class="validate pwd-input" name="new-password" minlength="8" maxlength="16" pattern="^[a-zA-z0-9!#*%]{8,16}$" required>
+                    <label for="new-password">New password</label>
+                    <span class="helper-text left-align">Password must be between 8 and 16 characters and must include a number and at least one of the following: ! # * %</span>
+                </div>
+                <div class="input-field col s10 offset-s1 m10 offset-m1 l5 l5">
+                    <i class="visibility toggle-password fas fa-lock prefix" data-target="confirm-password"></i>
+                    <input id="confirm-password" type="password" class="validate pwd-input" name="confirm-password" minlength="8" maxlength="16" pattern="^[a-zA-z0-9!#*%]{8,16}$" required>
+                    <label for="confirm-password">Confirm password</label>
                 </div>
             </div>
         </form>
