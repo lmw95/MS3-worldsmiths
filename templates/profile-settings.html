@@ -9,27 +9,54 @@
         <h1>Change your settings</h1>
     </div>
 </div>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="row profile-flash">
+        <div class="col s12 flashes center-align">
+            {% for message in messages %}
+                <h3>{{ message }}</h3>
+                <hr class="underline">
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+{% endwith %}
 <div class="row">
     <div class="col s10 offset-s1 m10 offset-m1 l10 offset-l1 xl10 offset-xl1 center-align edit-page">
-        <form method="POST" action="">
+        <form method="POST" action="{{ url_for('settings', user_id=user._id) }}">
             <div class="row">
                 <div class="col s10 offset-s1 left-align">
                     <h3>Email <i class="fas fa-at right"></i></h3>
                 </div>
-                <div class="input-field col s10 offset-s1 m4 offset-m1 l4 offset-l1 xl5 offset-xl1">
-                    <input disabled id="current_email" name="current_email" type="text" class="validate" value="">
-                    <label for="current_email">Current email</label>
-                </div>
-                <div class="input-field col s10 offset-s1 m4 offset-m1 l4 offset-l1 xl5">
-                    <input id="last_mame" name="last_name" type="text" class="validate" value="">
-                    <label for="last_name">Update email</label>
+                <div class="input-field col s10 offset-s1 m4 offset-m1 l5 offset-l1 xl5 offset-xl1">
+                    <input disabled id="current-email" name="current-email" type="text" class="validate" value="{{ email }}">
+                    <label for="current-email">Current email</label>
                 </div>
             </div>
+            <div class="row">
+                <div class="input-field col s10 offset-s1 m4 offset-m1 l5 offset-l1 xl5 offset-xl1">
+                    <input id="new-email" name="new-email" type="text" class="validate" required>
+                    <label for="new-email">New email</label>
+                </div>
+                <div class="input-field col s10 offset-s1 m4 offset-m1 l5 xl5">
+                    <input id="confirm-email" name="confirm-email" type="text" class="validate" required>
+                    <label for="confirm-email">Confirm email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    <button class="btn-large" type="submit">Save</button>
+                </div>
+            </div>
+        </form>
+        <form method="POST" action="">
             <div class="row">
                 <div class="col s10 offset-s1 left-align">
                     <h3>Password <i class="fas fa-lock right"></i></h3>
                 </div>
             </div>
+        </form>
+        <form method="POST" action="">
             <div class="row">
                 <div class="col s10 offset-s1 left-align">
                     <h3>Account <i class="fas fa-user right"></i></h3>

@@ -83,7 +83,6 @@ div .hero {
 
 /** Flash messages **/
 .flashes {
-    margin-bottom: 30px;
     color: var(--magenta);
 }
 

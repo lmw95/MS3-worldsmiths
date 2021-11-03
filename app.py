@@ -249,9 +249,41 @@ def get_profile():
 
 
 # Render the settings page
-@app.route("/settings", methods=["GET", "POST"])
-def settings():
-    return render_template("profile-settings.html", page_title="Profile settings")
+@app.route("/settings/<user_id>", methods=["GET", "POST"])
+def settings(user_id):
+
+    # Get user ID
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+
+    # Get user email to update Flask session
+    email = mongo.db.users.find_one({"_id": ObjectId(user_id)})["email"]
+
+    # Check to see if new email and confirmation match
+    if request.form.get("new-email") == request.form.get("confirm-email"):
+        if request.method == "POST":
+
+            # Update new email to DB
+            update_email = {"$set": {"email": request.form.get("new-email")}}
+
+            # Set new email in Flask session
+            new_email = request.form.get("new-email")
+
+            try:
+                mongo.db.users.update({"_id": ObjectId(user_id)}, update_email)
+                flash("Email updated successfully!")
+                session["user"] = new_email
+                return render_template("profile-settings.html", page_title="Profile settings",
+                                user=user, email=new_email)
+            except Exception as e:
+                print(e)
+            
+    else:
+        flash("Emails do not match! Try entering them again.")
+        return render_template("profile-settings.html", page_title="Profile settings",
+                                user=user, email=email)
+
+    return render_template("profile-settings.html", page_title="Profile settings",
+                                user=user, email=email)
 
 
 # Render the edit profile page

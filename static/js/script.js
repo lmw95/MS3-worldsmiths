@@ -17,7 +17,7 @@
   });
 
   // Refreshes page to clear flash message on profile
-  $('#refreshPage').click(function() {
+  $('.refresh-page').click(function() {
     location.reload();
 });
 
