@@ -326,6 +326,39 @@ def edit_password(user_id):
         return render_template("profile-settings.html", page_title="Profile settings", user=user)
 
 
+# Render 'edit account' form
+@app.route("/edit_account/<user_id>", methods=["POST", "GET"])
+def edit_account(user_id):
+
+    # Get user ID
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+
+    # Get user details to display in form
+    first_name = mongo.db.users.find_one({"_id": ObjectId(user_id)})["first_name"]
+    last_name = mongo.db.users.find_one({"_id": ObjectId(user_id)})["last_name"]
+
+    if request.method == "POST":
+        update_names = {"$set": {
+            "first_name": request.form.get("new-fname"),
+            "last_name": request.form.get("new-lname")
+        }}
+
+        new_first_name = request.form.get("new-fname")
+        new_last_name = request.form.get("new-lname")
+
+        try: 
+            mongo.db.users.update({"_id": ObjectId(user_id)}, update_names)
+            flash("Account details successfully updated!")
+            return render_template("profile-settings.html", page_title="Profile settings", user=user,
+                                    first_name=new_first_name,
+                                    last_name=new_last_name)
+        except Exception as e:
+            print(e)
+    else:
+        flash("Sorry, account could not be updated right now.")
+        return render_template("profile-settings.html", page_title="Profile settings", user=user)
+
+
 # Render the edit profile page
 @app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
 def edit_profile(user_id):
