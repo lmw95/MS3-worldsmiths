@@ -122,7 +122,7 @@
 <!--Deletion modal-->
 <div id="delete-confirmation" class="modal">
     <div class="modal-content">
-        <form method="POST", action="">
+        <form method="POST", action="{{ url_for('delete_account', user_id=user._id) }}">
             <h1 class="center">Woah, there!</h1>
             <p>Before you make any rash desicions, just know that deleting your account will:</p>
                 <ul>
@@ -139,10 +139,10 @@
     <div class="modal-footer">
         <div class="row center-align">
             <div class="col s12 m12 l6 xl6">
-                <a href="#!" class="modal-close btn col s12">I've changed my mind!</a>
+                <button class="modal-close btn col s12">I've changed my mind!</a>
             </div>
             <div class="col s12 m12 l6 xl6">
-                <a href="#!" class="modal-close btn red col s12">Delete my precious</a>
+                <a href="{{ url_for('delete_account', user_id=user._id) }}" class="modal-close btn red col s12">Delete my precious</a>
             </div>
         </div>
     </div>

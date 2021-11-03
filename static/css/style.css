@@ -84,6 +84,7 @@ div .hero {
 /** Flash messages **/
 .flashes {
     color: var(--magenta);
+    margin-bottom: 20px;
 }
 
 .profile-flash {
@@ -405,7 +406,8 @@ h6 {
     background-color: var(--black);
 }
 
-.modal .modal-footer a {
+.modal .modal-footer a,
+.modal .modal-footer button {
     font-family: var(--josefin-sans);
 }
 

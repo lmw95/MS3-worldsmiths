@@ -326,6 +326,21 @@ def edit_password(user_id):
         return render_template("profile-settings.html", page_title="Profile settings", user=user)
 
 
+# Render the 'delete account' form
+@app.route("/delete_account/<user_id>")
+def delete_account(user_id):
+
+    # Remove email from session cookie
+    session.pop("email", None)
+    session.pop("user")
+
+    # Remove user from DB
+    mongo.db.users.delete_one({"_id": ObjectId(user_id)})
+
+    flash("We're sorry to see you go! Please do come back and join the adventure again soon.")
+    return redirect(url_for("sign_up"))
+
+
 # Render 'edit account' form
 @app.route("/edit_account/<user_id>", methods=["POST", "GET"])
 def edit_account(user_id):
