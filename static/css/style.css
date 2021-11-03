@@ -429,6 +429,14 @@ h6 {
     font-weight: 700;
 }
 
+.reset-password {
+    padding-bottom: 20px;
+}
+
+input[type=text]:not(.browser-default) {
+    color: var(--magenta);
+}
+
 /* Mobile queries */
 @media only screen and (max-width:425px) {
     nav .brand-logo {

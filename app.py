@@ -125,8 +125,8 @@ def sign_up():
             "email": request.form.get("email").lower(),
             "password": generate_password_hash(request.form.get("password")),
             "nickname": "",
-            "profile_pic_url": "",
-            "user_banner_url": "",
+            "profile_pic_url": "/static/imgs/profile-avatar.png",
+            "user_banner_url": "/static/icons/book.png",
             "user_member_since": reg_date,
             "user_city": "",
             "user_location": "",
@@ -176,6 +176,13 @@ def log_in():
             flash("No account exists with this email")
             return redirect(url_for("log_in"))
 
+    return render_template("log-in.html", page_title="Log in")
+
+
+# Render 'reset password' modal
+@app.route("/reset_password", methods=["GET", "POST"])
+def reset_password():
+    flash("Password reset link sent! Please check your inbox (and junk!)")
     return render_template("log-in.html", page_title="Log in")
 
 

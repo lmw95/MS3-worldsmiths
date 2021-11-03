@@ -52,11 +52,38 @@
         </div>
         <div class="row">
             <div class="col s11 center-align">
-                <p><a href="#" target="_self">Help, I can't speak "friend" and enter!</a></p>
+                <p><a href="#reset-password" class="modal-trigger" data-target="reset-password">Help, I can't speak "friend" and enter!</a></p>
                 <p>Want to start your adventure?<a href="{{ url_for('sign_up') }}" target="_self"> Sign up here.</a></p>
             </div>
         </div>
     </form>
+</div>
+
+<!--Reset password modal-->
+<div id="reset-password" class="modal">
+    <div class="modal-content">
+        <form method="POST" action="{{ url_for('reset_password') }}">
+            <h1 class="center">Panic not, we can sort this</h1>
+            <p class="center">Please enter your email address to recieve your reset link:</p>
+            <div class="row">
+                <div class="col s12 input-field">
+                    <i class="fas fa-at prefix"></i>
+                    <input id="reset-input" type="text" class="validate reset" name="reset-input" required>
+                    <label for="reset-input">Enter your email</label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div class="row center-align">
+            <div class="col s12 m12 l6 xl6">
+                <button class="modal-close btn col s12">Nevermind!</a>
+            </div>
+            <div class="col s12 m12 l6 xl6">
+                <a href="{{ url_for('reset_password') }}" class="modal-close btn col s12">Send me a link</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

@@ -113,7 +113,7 @@
         </form>
         <div class="row">
             <div class="col s10 offset-s1">
-                <button class="btn-large red delete-btn modal-trigger" type="submit" data-target="delete-confirmation">Delete account</button>
+                <button class="btn-large red delete-btn modal-trigger" data-target="delete-confirmation">Delete account</button>
             </div>
         </div>
     </div>
@@ -122,7 +122,7 @@
 <!--Deletion modal-->
 <div id="delete-confirmation" class="modal">
     <div class="modal-content">
-        <form method="POST", action="{{ url_for('delete_account', user_id=user._id) }}">
+        <form method="POST" action="{{ url_for('delete_account', user_id=user._id) }}">
             <h1 class="center">Woah, there!</h1>
             <p>Before you make any rash desicions, just know that deleting your account will:</p>
                 <ul>
