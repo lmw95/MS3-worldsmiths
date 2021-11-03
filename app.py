@@ -248,9 +248,22 @@ def get_profile():
                                 nickname=nickname)
 
 
-# Render the settings page
+# Render settings page
 @app.route("/settings/<user_id>", methods=["GET", "POST"])
 def settings(user_id):
+
+    # Get user ID
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+
+    # Get user email to display 'current email'
+    email = mongo.db.users.find_one({"_id": ObjectId(user_id)})["email"]
+
+    return render_template("profile-settings.html", page_title="Profile settings", user=user, email=email)
+
+
+# Render the 'change email' form
+@app.route("/edit_email/<user_id>", methods=["GET", "POST"])
+def edit_email(user_id):
 
     # Get user ID
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
@@ -282,8 +295,35 @@ def settings(user_id):
         return render_template("profile-settings.html", page_title="Profile settings",
                                 user=user, email=email)
 
-    return render_template("profile-settings.html", page_title="Profile settings",
-                                user=user, email=email)
+
+# Render the change password form
+@app.route("/edit_password/<user_id>", methods=["GET", "POST"])
+def edit_password(user_id):
+
+    # Get user ID
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+
+    # Check to see if password input matches
+    if request.form.get("new-password") == request.form.get("confirm-password"):
+        # Check to see if password matches confirmation
+        if request.method == "POST":
+
+            # Update new password to DB
+            update_password = {"$set": {"password": generate_password_hash(request.form.get("new-password"))}}
+
+            # Get new password for settings page
+            new_password = request.form.get("new-password")
+
+            try:
+                mongo.db.users.update({"_id": ObjectId(user_id)}, update_password)
+                flash("Password successfully updated!")
+                return render_template("profile-settings.html", page_title="Profile settings", user=user)
+            except Exception as e:
+                print(e)
+
+    else:
+        flash("Passwords do not match! Please try entering them again.")
+        return render_template("profile-settings.html", page_title="Profile settings", user=user)
 
 
 # Render the edit profile page
