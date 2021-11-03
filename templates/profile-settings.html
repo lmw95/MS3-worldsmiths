@@ -31,7 +31,7 @@
                     <h3>Email <i class="fas fa-at right"></i></h3>
                 </div>
                 <div class="input-field col s10 offset-s1 m10 offset-m1 l5 offset-l1 xl5 offset-xl1">
-                    <input disabled id="current-email" name="current-email" type="text" class="validate" value="{{ email }}">
+                    <input disabled id="current-email" name="current-email" type="text" class="validate" value="{{ user.email }}">
                     <label for="current-email">Current email</label>
                 </div>
             </div>
@@ -91,17 +91,17 @@
             </div>
             <div class="row">
                 <div class="input-field col s10 offset-s1 m10 offset-m1 l5 offset-l1 xl5 offset-xl1">
-                    <input disabled id="current-name" name="current-name" type="text" class="validate" value="{{ first_name }} {{ last_name }}">
+                    <input disabled id="current-name" name="current-name" type="text" class="validate" value="{{ user.first_name }} {{ user.last_name }}">
                     <label for="current-name">Current account name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s10 offset-s1 m10 offset-m1 l5 offset-l1 xl5 offset-xl1">
-                    <input id="new-fname" name="new-fname" type="text" class="validate">
+                    <input id="new-fname" name="new-fname" type="text" class="validate" required>
                     <label for="new-fname">Change first name</label>
                 </div>
                 <div class="input-field col s10 offset-s1 m10 offset-m1 l5 offset-l1 xl5">
-                    <input id="new-lname" name="new-lname" type="text" class="validate">
+                    <input id="new-lname" name="new-lname" type="text" class="validate" required>
                     <label for="new-lname">Change last name</label>
                 </div>
             </div>
@@ -111,6 +111,40 @@
                 </div>
             </div>
         </form>
+        <div class="row">
+            <div class="col s10 offset-s1">
+                <button class="btn-large red delete-btn modal-trigger" type="submit" data-target="delete-confirmation">Delete account</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Deletion modal-->
+<div id="delete-confirmation" class="modal">
+    <div class="modal-content">
+        <form method="POST", action="">
+            <h1 class="center">Woah, there!</h1>
+            <p>Before you make any rash desicions, just know that deleting your account will:</p>
+                <ul>
+                    <li>Delete any groups and events you own or organise</li>
+                    <li>Delete your comments from all chats</li>
+                    <li>Delete your profile and all personal data</li>
+                    <li>Remove you from any group or event you are part of</li>
+                    <li>Remove you as a follower</li>
+                </ul>
+            <hr class="underline">
+            <h6 class="center">Are you sure you want to continue?</h6>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div class="row center-align">
+            <div class="col s12 m12 l6 xl6">
+                <a href="#!" class="modal-close btn col s12">I've changed my mind!</a>
+            </div>
+            <div class="col s12 m12 l6 xl6">
+                <a href="#!" class="modal-close btn red col s12">Delete my precious</a>
+            </div>
+        </div>
     </div>
 </div>
 

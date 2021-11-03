@@ -134,8 +134,7 @@ form textarea:focus {
     padding-left: 5rem;
 }
 
-.sign-up .visibility,
-.log-in .visibility {
+.visibility {
     cursor: pointer;
 }
 
@@ -147,6 +146,10 @@ color: var(--black) !important;
     background-color: var(--munsell-t);
     padding: 30px 15px;
     margin-bottom: 30px;
+}
+
+.modal-content form {
+    margin-bottom: 0;
 }
 
 /** Profile **/
@@ -347,6 +350,10 @@ footer .useful-links a {
     margin-bottom: 50px;
 }
 
+.delete-btn {
+    margin-top: 40px;
+}
+
 /** Headers **/
 h1,
 h2,
@@ -385,11 +392,39 @@ h6 {
 
 /** Modals **/
 .modal {
-    background-color: var(--almond);
+    background-color: var(--black);
+    color: var(--almond);
 }
 
-.modal-button {
-    margin-top: 20px;
+.modal .modal-content {
+    font-family: var(--josefin-sans);
+    padding-bottom: 0;
+}
+
+.modal .modal-footer {
+    background-color: var(--black);
+}
+
+.modal .modal-footer a {
+    font-family: var(--josefin-sans);
+}
+
+.modal ul {
+    list-style-type: none;
+  }
+
+.modal li {
+    padding-left: 1.3em;
+}
+
+.modal ul li:before {
+    content: "\f071";
+    font-family: "Font Awesome 5 Free";
+    display: inline-block;
+    margin-left: -1.3em; 
+    width: 1.3em; 
+    color: var(--magenta);
+    font-weight: 700;
 }
 
 /* Mobile queries */
