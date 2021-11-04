@@ -8,12 +8,13 @@
     --almond: #E9DFD6;
     --magenta: #A44E7B;
     --cadet: #1F253F;
+    --cadet-t: rgba(31, 37, 63, 0.6);
     --munsell: #4092AA;
     --munsell-t: rgb(64,146,170, 0.3);
     --josefin-sans: 'Josefin Sans', sans-serif;
     --yanone-kaffeesatz: 'Yanone Kaffeesatz', sans-serif;
     --nav: 5em;
-    --page-header: 5em;
+    --page-header: 6em;
     --big-header: 3em;
     --medium-header: 2em;
     --big-paragraph: 1.7em;
@@ -37,6 +38,7 @@ body p {
 body a {
     font-family: var(--josefin-sans);
     font-size: var(--links);
+    color: var(--munsell);
 }
 
 /** Navigation **/
@@ -182,10 +184,53 @@ color: var(--black) !important;
 
 .card-wrapper {
     background-color: var(--black);
+    margin-bottom: 0;
 }
 
 .home-card i {
     color: var(--munsell);
+}
+
+.title-wrapper {
+    padding: 20px 0;
+}
+
+.title-wrapper h1 {
+    margin-bottom: 0;
+}
+
+.search-wrapper {
+    padding: 40px 0;
+}
+
+.header-wrapper {
+    padding-bottom: 30px;
+    background-color: var(--black);
+    color: var(--almond);
+    margin-bottom: 0;
+}
+
+.events-wrapper {
+    height: 500px;
+    background: url(/static/imgs/events-wrapper-4.jpg) no-repeat center;
+    background-size: cover;
+    margin-top: 0;
+}
+
+.events-link a {
+    color: var(--black);
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.homepage-icon {
+    height: 100px;
+    width: 100px;
+}
+
+.homepage-img {
+    height: 200px;
+    width: 200px;
 }
 
 /** Profile **/
@@ -346,7 +391,7 @@ footer .useful-links a {
 }
 
 .long-underline {
-    margin-bottom: 40px;
+    margin-top: 25px;
     border: solid var(--magenta);
     opacity: 0.2;
 }
