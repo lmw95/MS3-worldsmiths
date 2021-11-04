@@ -12,6 +12,17 @@
     --munsell-t: rgb(64,146,170, 0.3);
     --josefin-sans: 'Josefin Sans', sans-serif;
     --yanone-kaffeesatz: 'Yanone Kaffeesatz', sans-serif;
+    --nav: 5em;
+    --page-header: 5em;
+    --big-header: 3em;
+    --medium-header: 2em;
+    --big-paragraph: 1.7em;
+    --paragraph: 1.1em;
+    --links: 1.1em;
+    --buttons-large: 1.2em;
+    --buttons: 0.7em;
+    --logo: 1.2em;
+    --helper-text: 0.9em;
 }
 
 body {
@@ -20,7 +31,12 @@ body {
 
 body p {
     font-family: var(--josefin-sans);
-    font-size: 1.1em;
+    font-size: var(--paragraph);
+}
+
+body a {
+    font-family: var(--josefin-sans);
+    font-size: var(--links);
 }
 
 /** Navigation **/
@@ -36,7 +52,7 @@ nav .brand-logo {
     line-height: 60px;
     font-weight: 600;
     letter-spacing: 2px;
-    font-size: 5em;
+    font-size: var(--nav);
     color: var(--almond);
 }
 
@@ -48,7 +64,7 @@ nav .brand-icon {
 nav .nav-title {
     padding: 20px 0 15px 15px;
     font-family: var(--josefin-sans);
-    font-size: 1.2em;
+    font-size: var(--logo);
     color: var(--almond);
 }
 
@@ -105,7 +121,7 @@ form {
 
 form .helper-text {
     font-family: var(--josefin-sans);
-    font-size: 0.9em !important;
+    font-size: var(--helper-text) !important;
 }
 
 form label {
@@ -151,6 +167,25 @@ color: var(--black) !important;
 
 .modal-content form {
     margin-bottom: 0;
+}
+
+/** Homepage **/
+.home-intro {
+    margin-bottom: 40px;
+}
+
+.home-card {
+    background-color: var(--black);
+    box-shadow: none;
+    color: var(--almond);
+}
+
+.card-wrapper {
+    background-color: var(--black);
+}
+
+.home-card i {
+    color: var(--munsell);
 }
 
 /** Profile **/
@@ -225,10 +260,6 @@ color: var(--black) !important;
 }
 
 /** FAQs **/
-.faqs p {
-    font-size: 1em;
-}
-
 .faqs i {
     color: var(--munsell);
     margin-right: 10px;
@@ -284,15 +315,12 @@ footer h5 {
 }
 
 footer .footer-social-media i {
-    font-size: 2em;
     padding: 0.5em;
     color: var(--almond);
 }
 
 footer p {
     margin-top: 0;
-    font-family: var(--josefin-sans);
-    font-size: 1.1em;
 }
 
 footer .row {
@@ -307,7 +335,7 @@ footer .copyright-statement {
 footer .useful-links a {
     color: var(--almond);
     font-family: var(--josefin-sans);
-    font-size: 1.1em;
+    font-size: var(--links);
 }
 
 /** Decoration **/
@@ -328,7 +356,7 @@ footer .useful-links a {
     background-color: var(--munsell);
     font-family: var(--josefin-sans);
     box-shadow: none;
-    font-size: 0.7em;
+    font-size: var(--buttons);
     font-weight: 700;
 }
 
@@ -336,7 +364,7 @@ footer .useful-links a {
     background-color: var(--munsell);
     font-family: var(--josefin-sans);
     box-shadow: none;
-    font-size: 1.2em;
+    font-size: var(--buttons-large);
     font-weight: 700;
 }
 
@@ -368,27 +396,29 @@ h5 {
 h1 {
     font-weight: 700;
     margin-bottom: 20px;
+    font-size: var(--page-header);
+    color: var(--black);
 }
 
 h2 {
     font-weight: 700;
-    font-size: 3em;
+    font-size: var(--big-header);
     margin-bottom: 0;
 }
 
 h3 {
     font-weight: 700;
-    font-size: 2em;
+    font-size: var(--medium-header);
 }
 
-h5 {
-    font-size: 2.5em;
-}
-
-h6 {
-    font-size: 1.6em;
-    font-weight: 400;
+.big-paragraph {
+    font-size: var(--big-paragraph);
+    font-size: 400;
     font-family: var(--yanone-kaffeesatz);
+}
+
+.home-title {
+    color: var(--magenta);
 }
 
 /** Modals **/
