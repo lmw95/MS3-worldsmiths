@@ -211,17 +211,30 @@ color: var(--black) !important;
 }
 
 .events-wrapper {
-    height: 500px;
     background: url(/static/imgs/events-wrapper-4.jpg) no-repeat center;
     background-size: cover;
     margin-top: 0;
 }
 
-.events-link a {
-    color: var(--black);
+.event-time-wrapper {
+    margin-bottom: 0;
+}
+
+.events-card {
+    border-radius: 5px;
+}
+
+.all-events-link {
+    padding-bottom: 20px !important;
+}
+
+.all-events-link a {
+    color: var(--almond);
     text-transform: uppercase;
     font-weight: 800;
+    margin-bottom: 20px;
 }
+
 
 .homepage-icon {
     height: 100px;
@@ -278,6 +291,11 @@ color: var(--black) !important;
 
 .card-content i {
     margin-top: 20px;
+}
+
+.events-card {
+    height: 100%;
+    margin: 0;
 }
 
 .url-label,
@@ -428,6 +446,21 @@ footer .useful-links a {
     margin-top: 40px;
 }
 
+.favourite-btn {
+    background-color: var(--cadet-t);
+    color: var(--almond);
+    transition: all 0.1s ease-in-out;
+}
+
+.favourite-btn:hover {
+    background-color: var(--cadet);
+    transform: scale(1.2);
+}
+
+.event-btn {
+    background-color: var(--magenta);
+}
+
 /** Headers **/
 h1,
 h2,
@@ -442,7 +475,6 @@ h1 {
     font-weight: 700;
     margin-bottom: 20px;
     font-size: var(--page-header);
-    color: var(--black);
 }
 
 h2 {
@@ -470,6 +502,7 @@ h3 {
 .modal {
     background-color: var(--black);
     color: var(--almond);
+    padding-bottom: 10px;
 }
 
 .modal .modal-content {
@@ -510,6 +543,23 @@ h3 {
 
 input[type=text]:not(.browser-default) {
     color: var(--magenta);
+}
+
+/** Carousels **/
+.carousel-wrapper {
+    margin-bottom: 40px;
+}
+
+.carousel {
+    height: auto;
+}
+
+.carousel-cell {
+  width: 33%;
+  margin-top: 50px;
+  margin-right: 10px;
+  background: #8C8;
+  border-radius: 5px;
 }
 
 /* Mobile queries */
