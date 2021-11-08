@@ -420,6 +420,11 @@ def edit_profile(user_id):
     return render_template("edit-profile.html", page_title="Edit profile", user=user)
 
 
+# Browse all events page
+@app.route("/all_events_groups")
+def all_events_groups():
+    return render_template("all-events-groups.html", page_title="Browse all events and groups")
+
 # Render the logout function
 @app.route("/log_out")
 def log_out():
