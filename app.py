@@ -62,7 +62,7 @@ def test_groups():
 # Render the home page
 @app.route("/homepage")
 def homepage():
-    
+    return render_template("homepage.html", page_title="Home")
 
 # Render the privacy and accessibility statement template
 @app.route("/statements")

@@ -545,6 +545,10 @@ input[type=text]:not(.browser-default) {
     color: var(--magenta);
 }
 
+.gandalf {
+    height: 150px !important;
+}
+
 /** Carousels **/
 .carousel-wrapper {
     margin-bottom: 40px;
