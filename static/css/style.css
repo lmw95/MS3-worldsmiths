@@ -5,7 +5,7 @@
 /** Global style variables **/
 :root {
     --black: #1E1D1C;
-    --almond: #E9DFD6;
+    --almond: #F3F3F4;
     --magenta: #A44E7B;
     --cadet: #1F253F;
     --cadet-t: rgba(31, 37, 63, 0.6);
@@ -547,6 +547,32 @@ input[type=text]:not(.browser-default) {
 
 .gandalf {
     height: 150px !important;
+}
+
+/** Tabs **/
+.tabs {
+    background-color: var(--cadet-t);
+    border-radius: 5px;
+    height: 80px;
+}
+
+.tab:hover {
+    background-color: var(--cadet);
+}
+
+.tabs .tab a.active {
+    background-color: var(--cadet);
+}
+
+.tabs .tab {
+    width: 33.3%;
+    height: 100%;
+}
+
+.tabs .tab a {
+    font-family: var(--yanone-kaffeesatz);
+    color: var(--almond) !important;
+    line-height: 80px;
 }
 
 /** Carousels **/
