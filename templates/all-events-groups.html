@@ -48,6 +48,14 @@
         </ul>
     </div>
 </div>
+<div class="row create-wrapper">
+    <div class="col s5 offset-s1">
+        <a href="#" class="btn-large col s12"><i class="fas fa-calendar-alt left"></i> Create event</a>
+    </div>
+    <div class="col s5">
+        <a href="{{ url_for('create_group') }}" class="btn-large col s12"><i class="fas fa-users left"></i> Create group</a>
+    </div>
+</div>
 
 <div class="row" id="browse-events">
     <!--Event cards-->
@@ -58,7 +66,7 @@
             </div>
             <div class="card-stacked">
                 <div class="card-content">
-                    <h2 class="group-name">Event name</h2>
+                    <a href="#" class="event-link"><h2 class="group-name">Event name</h2></a>
                     <p>Event type</p>
                     <p>Event organiser</p>
                     <p>Event address</p>
@@ -93,9 +101,8 @@
             </div>
             <div class="card-stacked">
                 <div class="card-content">
-                    <h2 class="group-name">{{ group.group_name }}</h2>
+                    <a href="#" class="group-link"><h2 class="group-name">{{ group.group_name }}</h2></a>
                     <p>Admin: {% set user = users|selectattr("_id", "equalto", group.group_admin )|first %}</p>
-                    <p>{{ group.type }}</p>
                     <p>{{ group.group_location }}</p>
                     <p class="truncate">{{ group.group_description }}</p>
                 </div>
@@ -126,7 +133,7 @@
         <div class="card member-card">
             <div class="card-image">
                 <img src="/static/imgs/profile-avatar.png">
-                <span class="card-title member-nickname valign-wrapper">Nickname</span>
+                <a href="#"><span class="card-title member-nickname valign-wrapper">Nickname</span></a>
                 <a class="btn-floating halfway-fab favourite-btn"><i class="fas fa-plus"></i></a>
             </div>
         </div>
