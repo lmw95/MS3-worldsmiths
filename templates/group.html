@@ -4,4 +4,57 @@
 
 {% block content %}
 
+<div class="row">
+    <!--Group banner image-->
+    <div class="row p-banner" id="bannerImg" style="background: url({{group.group_cover_img_url}}) no-repeat center; background-size: cover;"></div>
+</div>
+<!--Group info-->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+<div class="row profile-flash">
+    <div class="col s12 flashes center-align">
+        {% for message in messages %}
+            <h3>{{ message }} <i class="fas fa-sync-alt refresh-page"></i></h3>
+            <hr class="underline">
+        {% endfor %}
+    </div>
+</div>
+
+{% endif %}
+{% endwith %}
+<div class="g-info">
+    <div class="row valign-wrapper details">
+        <div class="col s12 m12 l10 xl10">
+            <div class="col s12">
+                <h1 class="user-name">{{ group.group_name }}</h1>
+                <p><i class="fas fa-user"></i><span class="info-label"> Group created:</span> {{ group._id.generation_time.date().strftime("%d %B %Y") }}</p>
+                <p><i class="fas fa-map-marker-alt"></i><span class="info-label"> Location:</span> {{ group.group_location }}, UK</p>
+            </div>
+        </div>
+        <div class="col s12 m12 l2 xl2">
+            <a href="" class="btn-large col s12 m5 l12 xl12 offset-m1 join-group">Edit group</a>
+            <a href="" class="btn-large col s12 m5 l12 xl12 modal-trigger group-settings">Settings</a>
+        </div>
+    </div>
+</div>
+<div class="row group-section">
+    <div class="col s10 offset-s1">
+        <h3>Description <i class="fas fa-question-circle right"></i></h3>
+    </div>
+    <div class="col s10 offset-s1">
+        <p>{{ group.group_description }}</p>
+    </div>
+</div>
+<div class="row group-section">
+    <div class="col s10 offset-s1">
+        <h3>Guild members ({{ group.num_of_members|length}}) <i class="fas fa-users right"></i></h3>
+    </div>
+</div>
+<div class="row group-section">
+    <div class="col s10 offset-s1">
+        <h3>Guild chat <i class="fas fa-comments right"></i></h3>
+    </div>
+</div>
+
 {% endblock %}
