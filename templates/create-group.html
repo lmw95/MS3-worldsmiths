@@ -27,8 +27,9 @@
             </div>
             <div class="row">
                 <div class="input-field col s10 offset-s1 m4 offset-m1 l4 offset-l1 xl4 offset-xl1">
-                    <input id="group-description" name="group-description" type="text" class="validate" value="" required>
+                    <input id="group-description" name="group-description" type="text" class="validate" value="" pattern="^[a-zA-z0-9,.'-&*/\'£$%)(]{1,300}$" required>
                     <label for="group-description">Group description</label>
+                    <span class="helper-text left-align">(Max. 300 characters)</p>
                 </div>
                 <div class="input-field col s10 offset-s1 m4 offset-m1 l4 offset-l1 xl4 offset-xl1">
                     <input id="group-banner" name="group-banner" type="text" class="validate" value="" required>
