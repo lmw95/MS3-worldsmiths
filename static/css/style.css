@@ -303,8 +303,10 @@ color: var(--black) !important;
     width: 220px;
 }
 
-.card {
+.bio-card,
+.project-card {
     background-color: var(--munsell);
+    max-height: 240px;
 }
 
 .card-reveal {
