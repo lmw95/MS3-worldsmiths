@@ -433,6 +433,13 @@ def all_events_groups():
                             events=events, event_type=event_type,
                             groups=groups, group_type=group_type, users=users)
 
+# Render group page
+@app.route("/group/<group_id>")
+def group(group_id):
+    group = mongo.db.groups.find_one({"_id": ObjectId(group_id)})
+    return render_template("group.html", page_title="{{ group.group_name }}", group=group)
+
+
 # Render the logout function
 @app.route("/log_out")
 def log_out():
