@@ -48,7 +48,7 @@
         <div class="col s12 m12 l6 xl6">
             <div class="card bio-card">
                 <div class="card-content center-align">
-                    <i class="fas fa-book-open fa-2x"></i>
+                    <i class="fas fa-book-open fa-3x"></i>
                     <span class="card-title activator"><h2 class="activator">Biography</h2></span>
                 </div>
                 <div class="card-reveal">
@@ -60,7 +60,7 @@
         <div class="col s12 m12 l6 xl6">
             <div class="card project-card">
                 <div class="card-content center-align">
-                    <i class="fas fa-tools fa-2x"></i>
+                    <i class="fas fa-tools fa-3x"></i>
                     <span class="card-title activator"><h2 class="activator">Projects</h2></span>
                 </div>
                 <div class="card-reveal">
@@ -75,33 +75,43 @@
     </div>
     <!--User groups with pagination (member of)-->
     <div class="groups">
-        <div class="row">
-            <div class="col s12">
+        <div class="row profile-section">
+            <div class="col s12 center-align">
                 <h2>Groups</h2>
+                <hr class="long-underline">
+            </div>
+            <div class="col s6 center-align">
+                <h3>Owner ({{ user.groups_created|length }})</h3>
+            </div>
+            <div class="col s6 center-align">
+                <h3>Member ({{ user.groups_member_of|length }})</h3>
             </div>
         </div>
     </div>
     <div class="events">
-        <div class="row">
-            <div class="col s12">
+        <div class="row profile-section">
+            <div class="col s12 center-align">
                 <h2>Events</h2>
+                <hr class="long-underline">
+            </div>
+            <div class="col s6 center-align">
+                <h3>Organising ({{ user.events_organised|length }})</h3>
+            </div>
+            <div class="col s6 center-align">
+                <h3>Attending ({{ user.events_attending|length }})</h3>
             </div>
         </div>
     </div>
     <div class="following">
         <div class="row">
-            <div class="col s12">
+            <div class="col s12 center-align">
                 <h2>Following</h2>
+                <hr class="long-underline">
+            </div>
+            <div class="col s12 profile-section">
+                <!--Jinja template for follower avatars-->
             </div>
         </div>
-    </div>
-    <!--User events with pagination (attending)-->
-    <div class="row">
-
-    </div>
-    <!--User following with pagination -->
-    <div class="row">
-
     </div>
 
 {% endblock %}

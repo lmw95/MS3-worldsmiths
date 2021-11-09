@@ -162,7 +162,8 @@ color: var(--black) !important;
 }
 
 .edit-page h3,
-.group-section h3 {
+.group-section h3,
+.profile-section h3 {
     background-color: var(--munsell-t);
     padding: 30px 15px;
     margin-bottom: 30px;
@@ -325,7 +326,7 @@ color: var(--black) !important;
 .bio-card,
 .project-card {
     background-color: var(--munsell);
-    max-height: 240px;
+    height: 350px;
 }
 
 .card-reveal {
@@ -335,7 +336,7 @@ color: var(--black) !important;
 }
 
 .card-content i {
-    margin-top: 20px;
+    margin-top: 60px;
 }
 
 .events-card {
