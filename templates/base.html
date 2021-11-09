@@ -39,7 +39,7 @@
                 <!--User logged in-->
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('homepage') }}"><i class="fas fa-home"></i></a></li>
-                    <li><a href="#"><i class="fas fa-search"></i></a></li>
+                    <li><a href="{{ url_for('all_events_groups') }}"><i class="fas fa-search"></i></a></li>
                     <li><a href="{{ url_for('get_profile') }}" target="_self"><i class="fas fa-user"></i></i></a></li>
                     <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i></a></li>
                     <li><a href="{{ url_for('log_out') }}" target="_self"><i class="fas fa-sign-out-alt"></i></a></li>
@@ -48,7 +48,7 @@
                 <!--User logged in (mobile)-->
                 <ul class="sidenav" id="mobile-nav">
                     <li><a href="{{ url_for('homepage') }}"><i class="fas fa-home"></i>Home</a></li>
-                    <li><a href="#"><i class="fas fa-search"></i>Browse</a></li>
+                    <li><a href="{{ url_for('all_events_groups') }}"><i class="fas fa-search"></i>Browse</a></li>
                     <li><a href="{{ url_for('get_profile') }}"><i class="fas fa-user"></i>My profile</a></li>
                     <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i>Contact us</a></li>
                     <li><a href="{{ url_for('log_out') }}" target="_self"><i class="fas fa-sign-out-alt"></i>Sign out</a></li>
