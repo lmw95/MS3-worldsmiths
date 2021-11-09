@@ -90,7 +90,7 @@
             <div class="input-field col s6 offset-s3">
                 <i class="fas fa-search prefix"></i>
                 <input id="finder-homepage" type="text" class="validate" name="finder-homepage">
-                <label for="finder-homepage">search for groups and events...</label>
+                <label for="finder-homepage">search for groups, events and members...</label>
             </div>
             <div class="col s6 offset-s3 center-align">
                 <button class="btn btn-large" type="submit" name="submit">Search</button>
@@ -131,18 +131,11 @@
                             <div class="col s12">
                                 <p><i class="fas fa-user-circle"></i> No. of attendees</p>
                             </div>
-                            <div class="col s6 event-btns">
+                            <div class="col s10 offset-s1 event-btns">
                                 {% if session.user %}
                                 <a href="#" class="btn event-btn col s12 modal-trigger">View event</a>
                                 {% else %}
                                 <a href="#prompt" class="btn event-btn col s12 modal-trigger">View event</a>
-                                {% endif %}
-                            </div>
-                            <div class="col s6 event-btns">
-                                {% if session.user %}
-                                <a href="#" class="btn event-btn col s12 modal-trigger">Attend</a>
-                                {% else %}
-                                <a href="#prompt" class="btn event-btn col s12 modal-trigger">Attend</a>
                                 {% endif %}
                             </div>
                         </div>
@@ -173,18 +166,11 @@
                             <div class="col s12">
                                 <p><i class="fas fa-user-circle"></i> No. of attendees</p>
                             </div>
-                            <div class="col s6 event-btns">
+                            <div class="col s10 offset-s1 event-btns">
                                 {% if session.user %}
                                 <a href="#" class="btn event-btn col s12 modal-trigger">View event</a>
                                 {% else %}
                                 <a href="#prompt" class="btn event-btn col s12 modal-trigger">View event</a>
-                                {% endif %}
-                            </div>
-                            <div class="col s6 event-btns">
-                                {% if session.user %}
-                                <a href="#" class="btn event-btn col s12 modal-trigger">Attend</a>
-                                {% else %}
-                                <a href="#prompt" class="btn event-btn col s12 modal-trigger">Attend</a>
                                 {% endif %}
                             </div>
                         </div>
@@ -215,18 +201,11 @@
                             <div class="col s12">
                                 <p><i class="fas fa-user-circle"></i> No. of attendees</p>
                             </div>
-                            <div class="col s6 event-btns">
+                            <div class="col s10 offset-s1 event-btns">
                                 {% if session.user %}
                                 <a href="#" class="btn event-btn col s12 modal-trigger">View event</a>
                                 {% else %}
                                 <a href="#prompt" class="btn event-btn col s12 modal-trigger">View event</a>
-                                {% endif %}
-                            </div>
-                            <div class="col s6 event-btns">
-                                {% if session.user %}
-                                <a href="#" class="btn event-btn col s12">Attend</a>
-                                {% else %}
-                                <a href="#prompt" class="btn event-btn col s12">Attend</a>
                                 {% endif %}
                             </div>
                         </div>
@@ -236,7 +215,7 @@
         </div>
     </div>
     <div class="col s12 all-events-link center-align">
-        <a href="#" class="big-paragraph">See all events</a>
+        <a href="{{ url_for('all_events_groups') }}" class="big-paragraph">See all events</a>
     </div>
 </div>
 <div class="row">
@@ -278,7 +257,7 @@
                 </div>
             </div>
             <h3 class="center">Want to explore further?</h3>
-            <p class="center">To view, join or attend our events and groups, you need to be a member with us and logged in.
+            <p class="center">To view, join or attend our events and group pages, you need to be a member with us and logged in.
                 Click below to join us, or log-in if you already have an account with us!
             </p>
         </form>
