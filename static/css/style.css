@@ -276,6 +276,15 @@ color: var(--black) !important;
     height: 25%;
 }
 
+.group-link,
+.event-link {
+    color: var(--black);
+}
+
+.create-wrapper {
+    margin-bottom: 70px;
+}
+
 /** Profile **/
 .p-banner {
     height: 400px;
