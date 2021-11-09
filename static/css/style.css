@@ -161,7 +161,8 @@ label {
 color: var(--black) !important;
 }
 
-.edit-page h3 {
+.edit-page h3,
+.group-section h3 {
     background-color: var(--munsell-t);
     padding: 30px 15px;
     margin-bottom: 30px;
@@ -284,6 +285,10 @@ color: var(--black) !important;
 .create-wrapper {
     margin-bottom: 70px;
 }
+
+
+/** Group **/
+
 
 /** Profile **/
 .p-banner {
@@ -507,6 +512,10 @@ footer .useful-links a {
 
 .join-btn:hover {
     color: var(--almond);
+}
+
+.edit-group {
+    margin-bottom: 20px;
 }
 
 /** Headers **/
