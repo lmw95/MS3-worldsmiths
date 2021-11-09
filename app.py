@@ -423,11 +423,13 @@ def edit_profile(user_id):
 # Browse all events page
 @app.route("/all_events_groups")
 def all_events_groups():
+
     events = list(mongo.db.events.find())
     event_type = list(mongo.db.event_type.find())
     groups = list(mongo.db.groups.find())
     group_type = list(mongo.db.group_type.find())
     users = list(mongo.db.users.find())
+
     return render_template("all-events-groups.html", 
                             page_title="Browse all events and groups",
                             events=events, event_type=event_type,
@@ -459,8 +461,11 @@ def create_group():
 # Render group page
 @app.route("/group/<group_id>")
 def group(group_id):
+
+    users = list(mongo.db.groups.find({"_id": {"$in": ["members"]}}))
     group = mongo.db.groups.find_one({"_id": ObjectId(group_id)})
-    return render_template("group.html", page_title="{{ group.group_name }}", group=group)
+
+    return render_template("group.html", page_title="{{ group.group_name }}", group=group, users=users)
 
 
 # Render the logout function
