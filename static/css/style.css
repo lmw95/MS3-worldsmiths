@@ -235,7 +235,6 @@ color: var(--black) !important;
     margin-bottom: 20px;
 }
 
-
 .homepage-icon {
     height: 100px;
     width: 100px;
@@ -244,6 +243,32 @@ color: var(--black) !important;
 .homepage-img {
     height: 200px;
     width: 200px;
+}
+
+/** Browse events, groups & members **/
+
+.browse-img img {
+    object-fit: cover;
+    max-height: 100% !important;
+    min-height: 100% !important;
+}
+
+.action-wrapper {
+    margin-bottom: 0;
+}
+
+.member-card {
+    background-color: transparent !important;
+    box-shadow: none;
+    height: 250px;
+    width: 250px;
+}
+
+.member-nickname {
+    font-family: var(--josefin-sans) !important;
+    background-color: var(--magenta);
+    width: 100%;
+    height: 25%;
 }
 
 /** Profile **/
@@ -280,7 +305,6 @@ color: var(--black) !important;
 
 .card {
     background-color: var(--munsell);
-    height: 240px;
 }
 
 .card-reveal {
@@ -461,6 +485,15 @@ footer .useful-links a {
     background-color: var(--magenta);
 }
 
+.join-btn {
+    background-color: var(--almond);
+    color: var(--black);
+}
+
+.join-btn:hover {
+    color: var(--almond);
+}
+
 /** Headers **/
 h1,
 h2,
@@ -496,6 +529,10 @@ h3 {
 
 .home-title {
     color: var(--magenta);
+}
+
+.group-name {
+    margin-top: 0;
 }
 
 /** Modals **/
@@ -550,6 +587,10 @@ input[type=text]:not(.browser-default) {
 }
 
 /** Tabs **/
+.tab-wrapper {
+    margin-top: 70px;
+}
+
 .tabs {
     background-color: var(--cadet-t);
     border-radius: 5px;
@@ -572,7 +613,6 @@ input[type=text]:not(.browser-default) {
 .tabs .tab a {
     font-family: var(--yanone-kaffeesatz);
     color: var(--almond) !important;
-    line-height: 80px;
 }
 
 /** Carousels **/

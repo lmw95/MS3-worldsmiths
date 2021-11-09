@@ -12,7 +12,109 @@
 
 <div class="row">
     <div class="col s12 center-align">
-        <h1>Browse all events and groups</h1>
+        <h1>Discover...</h1>
+    </div>
+    <div class="col s12">
+        <form>
+            <div class="input-field col s6 offset-s3">
+                <i class="fas fa-search prefix"></i>
+                <input id="finder-homepage" type="text" class="validate" name="finder-homepage">
+                <label for="finder-homepage">Browse all events, groups and members</label>
+            </div>
+            <div class="col s6 offset-s3 center-align">
+                <button class="btn btn-large" type="submit" name="submit">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row tab-wrapper">
+    <div class="col s10 offset-s1">
+        <ul class="tabs">
+            <li class="tab col s4">
+                <a href="#" class="active">
+                    <h3>Events</h3>
+                </a>
+            </li>
+            <li class="tab col s4">
+                <a href="#">
+                    <h3>Guilds</h3>
+                </a>
+            </li>
+            <li class="tab col s4">
+                <a href="#">
+                    <h3>Members</h3>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row" id="browse-events">
+    <!--Event cards-->
+    <div class="col s10 offset-s1">
+        <div class="card horizontal">
+            <div class="card-image browse-img">
+                <img src="/static/imgs/worldbuilding2.jpg">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <h2 class="group-name">Event name</h2>
+                    <p>Event type</p>
+                    <p>Event organiser</p>
+                    <p>Event address</p>
+                    <p>Event location</p>
+                </div>
+                <div class="card-action">
+                    <div class="row action-wrapper valign-wrapper">
+                        <div class="col s6 valign-wrapper">
+                            <p><i class="fas fa-user-circle"></i> No. of adventurers</p>
+                        </div>
+                        <div class="col s6">
+                            <a href="#" class="btn join-btn col s12 m6 offset-m6">Attend</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" id="browse-groups">
+    <!--Group cards-->
+    <div class="col s10 offset-s1">
+        <div class="card horizontal">
+            <div class="card-image browse-img">
+                <img src="/static/imgs/heroes.jpg">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <h2 class="group-name">Guild name</h2>
+                    <p>Group owner</p>
+                    <p>Guild location</p>
+                    <p class="truncate">Guild description</p>
+                </div>
+                <div class="card-action">
+                    <div class="row action-wrapper valign-wrapper">
+                        <div class="col s6 valign-wrapper">
+                            <p><i class="fas fa-user-circle"></i> No. of guild members</p>
+                        </div>
+                        <div class="col s6">
+                            <a href="#" class="btn join-btn col s12 m6 offset-m6">Join</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" id="browse-members">
+    <div class="col s3 offset-s1">
+        <!--Member cards-->
+        <div class="card member-card">
+            <div class="card-image">
+                <img src="/static/imgs/profile-avatar.png">
+                <span class="card-title member-nickname valign-wrapper">Nickname</span>
+                <a class="btn-floating halfway-fab favourite-btn"><i class="fas fa-plus"></i></a>
+            </div>
+        </div>
     </div>
 </div>
 
