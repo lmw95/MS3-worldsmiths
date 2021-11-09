@@ -433,6 +433,12 @@ def all_events_groups():
                             events=events, event_type=event_type,
                             groups=groups, group_type=group_type, users=users)
 
+
+# Render the create group page
+@app.route("/create_group")
+def create_group():
+    return render_template("create-group.html", page_title="Create a group")
+
 # Render group page
 @app.route("/group/<group_id>")
 def group(group_id):
