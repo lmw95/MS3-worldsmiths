@@ -50,10 +50,16 @@
 </div>
 <div class="row create-wrapper">
     <div class="col s5 offset-s1">
+        {% if session.user %}
         <a href="#" class="btn-large col s12"><i class="fas fa-calendar-alt left"></i> Create event</a>
+        {% else %}
+        {% endif %}
     </div>
     <div class="col s5">
+        {% if session.user %}
         <a href="{{ url_for('create_group') }}" class="btn-large col s12"><i class="fas fa-users left"></i> Create group</a>
+        {% else %}
+        {% endif %}
     </div>
 </div>
 
