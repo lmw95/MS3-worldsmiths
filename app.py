@@ -437,35 +437,36 @@ def all_events_groups():
 
 
 # Render the create group page
-@app.route("/create_group", methods=["GET", "POST"])
-def create_group():
+#@app.route("/create_group", methods=["GET", "POST"])
+#def create_group():
 
-    user = mongo.db.users.find_one({"email": session["user"]})["email"]
+#    user = mongo.db.users.find_one({"email": session["user"]})["email"]
 
-    new_group = {
-        "group_name": request.form.get("group-name"),
-        "group_location": request.form.get("group-location"),
-        "group_description": request.form.get("group-description"),
-        "group_cover_img_url": request.form.get("group-banner"),
-        "group_admin": mongo.db.users.find_one({"email": session["user"]})["_id"]
-    }
+#    new_group = {
+#        "group_name": request.form.get("group-name"),
+#        "group_location": request.form.get("group-location"),
+#        "group_description": request.form.get("group-description"),
+#        "group_cover_img_url": request.form.get("group-banner"),
+#        "group_admin": mongo.db.users.find_one({"email": session["user"]})["_id"]
+#    }
 
-    if request.method == "POST":
-        mongo.db.groups.insert_one(new_group)
-        return render_template("group.html", page_title="{{ group.group_name }}")
+#    if request.method == "POST":
+#        mongo.db.groups.insert_one(new_group)
+#        return render_template("group.html", page_title="{{ group.group_name }}", group=group)
 
-    return render_template("create-group.html", page_title="Create a group",
-                            user=user)
+#    return render_template("create-group.html", page_title="Create a group",
+#                            user=user)
 
 
 # Render group page
 @app.route("/group/<group_id>")
 def group(group_id):
 
-    users = list(mongo.db.groups.find({"_id": {"$in": ["members"]}}))
+    members = list(mongo.db.groups.find({"_id": {"$in": ["members"]}}))
     group = mongo.db.groups.find_one({"_id": ObjectId(group_id)})
 
-    return render_template("group.html", page_title="{{ group.group_name }}", group=group, users=users)
+    return render_template("group.html", page_title="{{ group.group_name }}",
+                            members=members, group=group)
 
 
 # Render the logout function
