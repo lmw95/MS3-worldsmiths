@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block page_title %}{% endblock %}
+
+{% block hero %}
+<div class="hero">
+    <img class="responsive-img" src="{{ url_for('static', filename='imgs/project-banner.png')}}" alt="Website banner collage">
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col s12 center-align">
+        <h1>Discover...</h1>
+    </div>
+    <div class="col s12">
+        <form>
+            <div class="input-field col s12 l6 offset-l3">
+                <i class="fas fa-search prefix"></i>
+                <input id="finder-homepage" type="text" class="validate" name="finder-homepage">
+                <label for="finder-homepage">Browse all groups and members</label>
+            </div>
+            <div class="col s12 l6 offset-l3 center-align">
+                <button class="btn btn-large" type="submit" name="submit">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row tab-wrapper">
+    <div class="col s12 l10 offset-l1">
+        <ul class="tabs">
+            <li class="tab col s12 m6">
+                <a href="#">
+                    <h3>Groups</h3>
+                </a>
+            </li>
+            <li class="tab col s12 m6">
+                <a href="#">
+                    <h3>Members</h3>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row create-wrapper">
+    <div class="col s10 offset-s1">
+        {% if session.user %}
+        <a href="" class="btn-large col s12"><i class="fas fa-users left"></i> Create group</a>
+        {% else %}
+        {% endif %}
+    </div>
+</div>
+
+{% if groups|length > 0 %}
+{% for group in groups %}
+<div class="row" id="browse-groups">
+    <!--Group cards-->
+    <div class="col s10 offset-s1">
+        <div class="card horizontal group-card">
+            <div class="card-image browse-img">
+                <img src="{{ group.group_cover_img_url }}">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <a href="{{ url_for('groups.group_page', group_id=group._id) }}" class="group-link"><h2 class="group-name">{{ group.group_name }}</h2></a>
+                    <p>Admin: {% set user = users|selectattr("_id", "equalto", group.group_admin )|first %}</p>
+                    <p>{{ group.group_location }}</p>
+                    <p class="truncate">{{ group.group_description }}</p>
+                </div>
+                <div class="card-action">
+                    <div class="row action-wrapper valign-wrapper">
+                        <div class="col s6 valign-wrapper">
+                            <p><i class="fas fa-user-circle"></i> {{ group.num_of_members|length}} guild members</p>
+                        </div>
+                        <div class="col s6">
+                            <a href="#" class="btn join-btn col s12 m6 offset-m6">Join</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="col s12 center-align">
+        <h3>There's nothing here!</h3>
+    </div>
+    {% endif %}
+</div>
+
+<div class="row" id="browse-members">
+    <div class="col s10 offset-s1">
+        <div class="row">
+        {% if users|length > 0 %}
+        {% for user in users %}
+            <div class="col s4">
+                <!--Member cards-->
+                <div class="card member-card">
+                    <div class="card-image">
+                        <img src="/static/imgs/profile-avatar.png">
+                        <a href="#"><span class="card-title member-nickname valign-wrapper">{{ user.first_name.capitalize() }} {{ user.last_name.capitalize() }}</span></a>
+                        <a class="btn-floating halfway-fab favourite-btn"><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
