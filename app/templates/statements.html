@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block page_title %}{{ page_title }}{% endblock %}
+
+{% block hero %}
+<div class="hero">
+    <img class="responsive-img" src="{{ url_for('static', filename='imgs/project-banner.png')}}">
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col s12 center-align">
+        <h1>Our statements</h1>
+    </div>
+</div>
+<div class="row statements">
+    <div class="col s10 offset-s1 m10 offset-m1 l4 offset-l1 xl-4 offset-xl1 privacy center-align">
+        <div class="row">
+            <div class="col s12">
+                <h2>Privacy</h2>
+                <hr class="underline">
+                <p>There is no Dark Lord of Nefarious Data Stealing here. It’s not that we’re not evil – we’re as corruptible as anyone – we’re just too busy with keeping this platform safe and awesome to think up a malevolent subplot to steal your identity. 
+                    We collect and store the info we need to provide you with the service you use from our platform. We display the data you provide and share with the community. That’s really it.</p>
+                <br>
+                <h3>Cookies</h3>
+                <p>We only use session cookies to allow registration to our website and do not collect any data. Once logged-out your email will be removed from the session cookie.</p>
+                <p>Your web browser should allow you to delete any cookie you choose. It should also allow you to prevent or limit their use.
+                <p>If you don’t want our delicious home-baked chocolate chip scripts, then you need to block cookies on your browser... but things may not work the way they're supposed to.</p>
+                <br>
+                <h3>Data collection & storage</h3>
+                <p>Deep within the Great Library of DATA, the Worldsmith Wizards collect data from those who wish to sell their souls for ultimate powerrrr...</p>
+                <p>No but seriously, we only collect and store data that you have directly provided us, including:</p>
+                <ul>
+                    <li><i class="fas fa-check-double"></i> Personal identifiers, such as your first and last names</li>
+                    <li><i class="fas fa-check-double"></i> Personal information, such as your city and country</li>
+                    <li><i class="fas fa-check-double"></i> Account information, including email and password used to access our website and our services</li>
+                    <li><i class="fas fa-check-double"></i> Records of communication between us including messages sent through our website such as queries, questions and answers about events on the platform.</li>
+                    <li><i class="fas fa-check-double"></i> Preferences that tell us what types of information you would like to display on our platform</li>
+                    <li><i class="fas fa-check-double"></i> We may also process your profile and banner image, if you choose to provide one</li>
+                </ul>
+                <p>We reasonably assume that you consent to other users being able to view, copy, download or use your information, copied, downloaded, or used by other people you have provided and agreed to be displayed in the following situations:</p>
+                <ul>
+                    <li><i class="fas fa-check-double"></i> Events and groups you are part of or have created</li>
+                    <li><i class="fas fa-check-double"></i> Any interactions such as leaving comments or other community contributions</li>
+                    <li><i class="fas fa-check-double"></i> Your profile page</li>
+                </ul>
+                <br>
+                <h3>Keeping a hold of your data</h3>
+                <p>Under data protection law, you have rights (that's always a relief, isn't it?):</p>
+                <ul>
+                    <li><i class="fas fa-check-double"></i> Your right of access: You have the right to ask us for copies of your personal information</li>
+                    <li><i class="fas fa-check-double"></i> Your right to rectification: You have the right to ask us to rectify personal information you think is inaccurate and you also have the right to ask us to complete information you think is incomplete</li>
+                    <li><i class="fas fa-check-double"></i> Your right to erasure: You have the right to ask us to erase your personal information in certain circumstances</li>
+                    <li><i class="fas fa-check-double"></i> Your right to restriction of processing: You have the right to ask us to restrict the processing of your personal information in certain circumstances</li>
+                    <li><i class="fas fa-check-double"></i> Your right to object to processing: You have the the right to object to the processing of your personal information in certain circumstances</li>
+                    <li><i class="fas fa-check-double"></i> Your right to data portability: You have the right to ask that we transfer the personal information you gave us to another organisation, or to you, in certain circumstances</li>
+                </ul>
+                <br>
+                <hr class="long-underline">
+                <p>If you want to go into "undercover spy mode" within the Empire, just chuck us an email at admin@worldsmiths.org and we’ll delete all the info we have on you from our systems (for the Resistance, of course)</p>
+            </div>
+        </div>
+    </div>
+    <div class="col s10 offset-s1 m10 offset-m1 l4 offset-l2 xl-4 offset-xl2 accessibility center-align">
+        <div class="row">
+            <div class="col s12">
+                <h2>Accessibility</h2>
+                <hr class="underline">
+                <p>This is an accessibility statement from Worldsmiths.</p>
+                <br>
+                <h3>Measures to support accessibility</h3>
+                <p>Worldsmiths takes the following measures to ensure accessibility of Worldsmiths:</p>
+                <ul>
+                    <li><i class="fas fa-check-double"></i> Include accessibility as part of our mission statement.</li>
+                    <li><i class="fas fa-check-double"></i> Assign clear accessibility goals and responsibilities.</li>
+                    <li><i class="fas fa-check-double"></i> Employ formal accessibility quality assurance methods.</li>
+                </ul>
+                <br>
+                <h3>Conformance status</h3>
+                <p>The <a href="https://www.w3.org/WAI/standards-guidelines/wcag/" target="_blank">Web Content Accessibility Guidelines (WCAG)</a> defines requirements for designers and developers to 
+                    improve accessibility for people with disabilities. It defines three levels of conformance: Level A, 
+                    Level AA, and Level AAA. Worldsmiths is partially conformant with WCAG 2.1 level AA. Partially conformant 
+                    means that some parts of the content do not fully conform to the accessibility standard.</p>
+                <br>
+                <h3>Feedback</h3>
+                <p>We welcome your feedback on the accessibility of Worldsmiths. Please let us know if you encounter accessibility barriers on Worldsmiths:</p>
+                <ul>
+                    <li><i class="fas fa-at"></i> access@worldsmiths.org</li>
+                </ul>
+                <p>We try to respond to feedback within 3 business days.</p>
+                <br>
+                <hr class="long-underline">
+                <ul>
+                    <li>This statement was created on 20 October 2021 using the <a href="https://www.w3.org/WAI/planning/statements/" target="_blank">W3C Accessibility Statement Generator Tool.</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
