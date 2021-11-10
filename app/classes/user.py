@@ -97,7 +97,7 @@ class User():
     @staticmethod
     def find_users_in_array(collection):
         all_users = mongo.db.users.find({"_id": {"$in": collection}})
-        return users
+        return all_users
 
 
     # Checks if user already exists
