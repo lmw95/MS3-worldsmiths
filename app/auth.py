@@ -50,12 +50,12 @@ def sign_up():
 
         if existing_user:
             flash("This email is already linked to an account. Please try a different one or log-in.")
-            return redirect(url_for("sign_up"))
+            return redirect(url_for("auth.sign_up"))
         else:
             try:
                 new.add_to_db()
                 flash("Registration successful, welcome aboard! You can now log in.")
-                return redirect(url_for("log_in"))
+                return redirect(url_for("auth.log_in"))
             except Exception as e:
                 print(e)
     
@@ -81,10 +81,10 @@ def log_in():
         if existing_user:
             if check_password_hash(existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("email").lower()
-                return redirect(url_for("welcome", first_name=session["user"]))
+                return redirect(url_for("auth.welcome", first_name=session["user"]))
             else:
                 flash("Email and/or password incorrect, please try again")
-                return redirect(url_for("log_in"))
+                return redirect(url_for("auth.log_in"))
 
     return render_template("log-in.html", page_title="Log in")
 
@@ -97,8 +97,10 @@ def welcome(first_name):
     Gets user's first name from DB using email
     Displays user's first name in heading
     """
+
+    first_name = User.check_user_exists(session["user"])["first_name"]
+
     if session["user"]:
-        first_name = User.check_user_exists(email)["first_name"]
         return render_template(
             "welcome.html", page_title="Welcome back", first_name=first_name)
 
@@ -125,5 +127,5 @@ def log_out():
     """
     session.pop("user")
     flash("You have been logged out. Come back soon!")
-    return redirect(url_for("log_in"))
+    return redirect(url_for("auth.log_in"))
 
