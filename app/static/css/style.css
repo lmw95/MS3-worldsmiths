@@ -349,6 +349,10 @@ color: var(--black) !important;
     color: var(--magenta);
 }
 
+.groups-card {
+    background-color: var(--black);
+}
+
 /** Welcome **/
 .welcome-socials {
     margin-bottom: 50px;
@@ -524,7 +528,8 @@ h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+h6 {
     font-family: var(--yanone-kaffeesatz);
     text-transform: uppercase;
 }
@@ -544,6 +549,15 @@ h2 {
 h3 {
     font-weight: 700;
     font-size: var(--medium-header);
+}
+
+.little-header {
+    font-weight: 700;
+    margin: 0;
+    padding: 10px 15px;
+    font-family: var(--yanone-kaffeesatz);
+    font-size: 2em;
+    color: var(--munsell);
 }
 
 .big-paragraph {
