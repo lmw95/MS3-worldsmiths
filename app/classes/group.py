@@ -1,5 +1,6 @@
 from flask import Flask
 from bson.objectid import ObjectId
+from app import mongo
 
 
 class Group():
