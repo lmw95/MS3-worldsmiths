@@ -5,7 +5,7 @@
 {% block content %}
 
     <!--Profile banner image-->
-    <div class="row p-banner" id="bannerImg" style="background: url({{banner}}) no-repeat center; background-size: cover;"></div>
+    <div class="row p-banner" id="bannerImg" style="background: url({{user.user_banner_url}}) no-repeat center; background-size: cover;"></div>
     <!--User info-->
     {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -22,22 +22,22 @@
     <div class="p-info">
         <div class="row valign-wrapper details">
             <div class="col s12 m12 l2 xl2 profile-pic-wrapper">
-                <img src="{{ profile_pic }}" class="responsive-img circle col s6 offset-s3 m4 offset-m4 l12 xl12 profile-pic" alt="{{ nickname }}'s profile picture">
+                <img src="{{ user.profile_pic_url }}" class="responsive-img circle col s6 offset-s3 m4 offset-m4 l12 xl12 profile-pic" alt="{{ user.nickname }}'s profile picture">
             </div>
             <div class="col s12 m12 l7 xl7">
                 <div class="row valign-wrapper">
                     <div class="col s12">
-                        <h1 class="user-name">{{ first_name }} {{ last_name }}</h1>
-                        <p><i class="fas fa-comment-dots"></i><span class="info-label">Nickname:</span> {{ nickname }}</p>
+                        <h1 class="user-name">{{ user.first_name }} {{ user.last_name }}</h1>
+                        <p><i class="fas fa-comment-dots"></i><span class="info-label">Nickname:</span> {{ user.nickname }}</p>
                         <p><i class="fas fa-user"></i><span class="info-label">Member since:</span> {{ user_id.generation_time.date().strftime("%d %B %Y") }}</p>
-                        <p><i class="fas fa-map-marker-alt"></i><span class="info-label">Location:</span> {{ city }}, {{ location }}</p>
-                        <p><i class="fas fa-heart"></i><span class="info-label">Interests:</span> {{ interests }}</p>
+                        <p><i class="fas fa-map-marker-alt"></i><span class="info-label">Location:</span> {{ user.user_city }}, {{ user.user_location }}</p>
+                        <p><i class="fas fa-heart"></i><span class="info-label">Interests:</span> {{ user.user_interests }}</p>
                     </div>
                 </div>
             </div>
             <div class="col s12 m12 l2 xl2">
-                <a href="{{ url_for('edit_profile', user_id=user_id) }}" class="btn-large col s12 m5 l12 xl12 offset-m1 edit">Edit profile</a>
-                <a href="{{ url_for('settings', user_id=user_id) }}" class="btn-large col s12 m5 l12 xl12 modal-trigger settings">Settings</a>
+                <a href="{{ url_for('users.edit_profile', user_id=user_id) }}" class="btn-large col s12 m5 l12 xl12 offset-m1 edit">Edit profile</a>
+                <a href="{{ url_for('users.settings', user_id=user_id) }}" class="btn-large col s12 m5 l12 xl12 modal-trigger settings">Settings</a>
                 <a href="" class="btn-large col s12 m5 l12 xl12 modal-trigger create-event">Create event</a>
                 <a href="" class="btn-large col s12 m5 l12 xl12 modal-trigger create-group">Create group</a>
             </div>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="card-reveal">
                     <span class="card-title"><i class="fas fa-times-circle right"></i></span>
-                    <p>{{ bio }}</p>
+                    <p>{{ user.user_biography }}</p>
                 </div>
             </div>
         </div>
@@ -66,9 +66,9 @@
                 <div class="card-reveal">
                     <span class="card-title"><i class="fas fa-times-circle right"></i></span>
                     <h6>Share your top 3 projects by URL below:</h6>
-                    <p class="url-label">Project 1: {{ project_1 }}<p>
-                    <p class="url-label">Project 2: {{ project_2 }}</p>
-                    <p class="url-label">Project 3: {{ project_3 }}</p>
+                    <p class="url-label">Project 1: {{ user.user_project_1 }}<p>
+                    <p class="url-label">Project 2: {{ user.user_project_2 }}</p>
+                    <p class="url-label">Project 3: {{ user.user_project_3 }}</p>
                 </div>
             </div>
         </div>
