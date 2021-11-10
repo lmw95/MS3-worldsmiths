@@ -26,10 +26,11 @@ def get_profile():
     """
     user = User.check_user_exists(session["user"].lower())
     user_id = User.get_user_id(session["user"].lower())
+    groups_created = list(Group.find_groups_by_id(user["groups_created"]))
 
     if user:
         return render_template("profile.html", page_title="My profile", user=user,
-                                user_id=user_id)
+                                user_id=user_id, groups_created=groups_created)
 
 
 # Profile settings
