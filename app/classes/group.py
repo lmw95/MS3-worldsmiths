@@ -8,7 +8,7 @@ class Group():
     Create an instance of Group
     """
     def __init__(self, group_name, group_cover_img_url,
-                group_admin, group_location, num_of_members,
+                group_admin, group_location,
                 group_description, members=None, _id=None):
 
         """
@@ -19,19 +19,17 @@ class Group():
         self.group_cover_img_url = group_cover_img_url
         self.group_admin = group_admin
         self.group_location = group_location
-        self.num_of_members = num_of_members
         self.group_description = group_description
         self.members = members if isinstance(members, list) else []
 
 
     # Gets all possible info about Group
-    def all_group_info():
+    def all_group_info(self):
         group_info = {
             "group_name": self.group_name,
             "group_cover_img_url": self.group_cover_img_url,
             "group_admin": self.group_admin,
             "group_location": self.group_location,
-            "num_of_members": self.num_of_members,
             "group_description": self.group_description,
             "members": self.members
         }
@@ -41,13 +39,13 @@ class Group():
 
     # Adds a group to MongoDB and get group_id
     def add_to_db(self):
-        group_id = mongo.db.users.insert_one(self.all_group_info())
+        group_id = mongo.db.groups.insert_one(self.all_group_info())
         return group_id
 
 
     # Finds a group by ID
     @staticmethod
-    def get_group_by_id(group_id):
+    def get_group(group_id):
         group = mongo.db.groups.find_one({"_id": ObjectId(group_id)})
         return group
 
