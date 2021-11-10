@@ -34,7 +34,7 @@ def get_profile():
 
 # Profile settings
 @users.route("/settings/<user_id>", methods=["GET", "POST"])
-def settings():
+def settings(user_id):
     """
     Gets user id and current email
     Renders settings page
@@ -110,6 +110,43 @@ def edit_password(user_id):
         flash("Passwords do not match! Please try entering them again.")
         return render_template("profile-settings.html", page_title="Profile settings", user=user)
 
+
+# Edit account
+@users.route("/edit_account", methods=["GET", "POST"])
+def edit_account():
+    """
+    Gets user id
+    Gets user details from DB to display in form
+    Update user info to the DB
+    Redirect user to 'profile-settings.html'
+    """
+    user = User.get_user_by_id(user_id)
+
+    first_name = User.get_user_by_id(user_id)["first_name"]
+    last_name = User.get_user_by_id(user_id)["last_name"]
+
+    if request.method == "POST":
+        updated_names = { 
+            "first_name": request.form.get("new-fname"),
+            "last_name": request.form.get("new-lname")
+        }
+
+        new_fname = request.form.get("new-fname")
+        new_lname = request.form.get("new-lname")
+
+        try:
+            Users.add_to_db(user_id, updated_names)
+            flash("Account details successfully updated!")
+            return render_template("profile-settings.html", page_title="Profile settings", user=user,
+                                    first_name=new_fname,
+                                    last_name=new_lname)
+        except Exception as e:
+            print(e)
+
+    else:
+        flash("Sorry, account could not be updated right now.")
+        return render_template("profile-settings.html", page_title="Profile settings", user=user)
+        
                 
 # Edit profile
 @users.route("/edit_profile/<user_id>", methods=["GET", "POST"])
@@ -140,7 +177,7 @@ def edit_profile(user_id):
         try:
             User.edit_user(user_id, updated_info)
             flash("Profile updated!")
-            return redirect(url_for("get_profile", page_title="My profile", user=user))
+            return redirect(url_for("users.get_profile", page_title="My profile", user=user))
         except Exception as e:
             print(e)
 
@@ -149,7 +186,7 @@ def edit_profile(user_id):
 
 # Delete account
 @users.route("/delete_account/<user_id>", methods=["GET", "POST"])
-def delete_account():
+def delete_account(user_id):
     """
     Triggers confirmation modal
     Removes user from session cookie
@@ -161,4 +198,4 @@ def delete_account():
     session.pop("user")
     User.delete_user(user_id)
     flash("We're sorry to see you go! Please do come back and join the adventure again soon.")
-    return redirect(url_for("sign_up"))
+    return redirect(url_for("auth.sign_up"))
