@@ -29,7 +29,7 @@
         <!--Navbar-->
         <nav class="nav-extended">
             <div class="nav-wrapper">
-                <a href="{{ url_for('.homepage') }}" class="brand-logo left main-logo">Worldsmiths <img
+                <a href="{{ url_for('main.homepage') }}" class="brand-logo left main-logo">Worldsmiths <img
                         src="{{ url_for('static', filename='icons/book.png')}}" class="brand-icon" alt="Globe on top of a book"></a>
                 <a href="#" data-activities="mobile" data-target="mobile-nav" class="sidenav-trigger right"><i
                         class="fas fa-bars"></i></a>
@@ -38,40 +38,40 @@
 
                 <!--User logged in-->
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="{{ url_for('.homepage') }}"><i class="fas fa-home"></i></a></li>
-                    <li><a href="{{ url_for('.browse_all') }}"><i class="fas fa-search"></i></a></li>
-                    <li><a href="{{ url_for('.get_profile') }}" target="_self"><i class="fas fa-user"></i></i></a></li>
-                    <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i></a></li>
-                    <li><a href="{{ url_for('log_out') }}" target="_self"><i class="fas fa-sign-out-alt"></i></a></li>
+                    <li><a href="{{ url_for('main.homepage') }}"><i class="fas fa-home"></i></a></li>
+                    <li><a href="{{ url_for('main.browse_all') }}"><i class="fas fa-search"></i></a></li>
+                    <li><a href="{{ url_for('users.get_profile') }}" target="_self"><i class="fas fa-user"></i></i></a></li>
+                    <li><a href="{{ url_for('main.contact') }}" target="_self"><i class="fas fa-headset"></i></a></li>
+                    <li><a href="{{ url_for('auth.log_out') }}" target="_self"><i class="fas fa-sign-out-alt"></i></a></li>
                 </ul>
 
                 <!--User logged in (mobile)-->
                 <ul class="sidenav" id="mobile-nav">
-                    <li><a href="{{ url_for('.homepage') }}"><i class="fas fa-home"></i>Home</a></li>
-                    <li><a href="{{ url_for('.browse_all') }}"><i class="fas fa-search"></i>Browse</a></li>
-                    <li><a href="{{ url_for('.get_profile') }}"><i class="fas fa-user"></i>My profile</a></li>
-                    <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i>Contact us</a></li>
-                    <li><a href="{{ url_for('log_out') }}" target="_self"><i class="fas fa-sign-out-alt"></i>Sign out</a></li>
+                    <li><a href="{{ url_for('main.homepage') }}"><i class="fas fa-home"></i>Home</a></li>
+                    <li><a href="{{ url_for('main.browse_all') }}"><i class="fas fa-search"></i>Browse</a></li>
+                    <li><a href="{{ url_for('users.get_profile') }}"><i class="fas fa-user"></i>My profile</a></li>
+                    <li><a href="{{ url_for('main.contact') }}" target="_self"><i class="fas fa-headset"></i>Contact us</a></li>
+                    <li><a href="{{ url_for('auth.log_out') }}" target="_self"><i class="fas fa-sign-out-alt"></i>Sign out</a></li>
                 </ul>
 
                 {% else %}
 
                 <!--User not logged in/signed up-->
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="{{ url_for('.homepage') }}"><i class="fas fa-home"></i></a></li>
-                    <li><a href="{{ url_for('log_in') }}" target="_self"><i class="fas fa-sign-in-alt"></i></a></li>
-                    <li><a href="{{ url_for('sign_up') }}" target="_self"><i class="fas fa-user-plus"></i></a></li>
-                    <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i></a></li>
-                    <li><a href="{{ url_for('faqs') }}" target="_self"><i class="fas fa-question-circle"></i></a></li>
+                    <li><a href="{{ url_for('main.homepage') }}"><i class="fas fa-home"></i></a></li>
+                    <li><a href="{{ url_for('auth.log_in') }}" target="_self"><i class="fas fa-sign-in-alt"></i></a></li>
+                    <li><a href="{{ url_for('auth.sign_up') }}" target="_self"><i class="fas fa-user-plus"></i></a></li>
+                    <li><a href="{{ url_for('main.contact') }}" target="_self"><i class="fas fa-headset"></i></a></li>
+                    <li><a href="{{ url_for('main.faqs') }}" target="_self"><i class="fas fa-question-circle"></i></a></li>
                 </ul>
 
                 <!--Mobile navigation-->
                 <ul class="sidenav" id="mobile-nav">
-                    <li><a href="{{ url_for('homepage') }}"><i class="fas fa-home"></i>Home</a></li>
-                    <li><a href="{{ url_for('log_in') }}" target="_self"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
-                    <li><a href="{{ url_for('sign_up') }}" target="_self"><i class="fas fa-user-plus"></i>Sign up</a></li>
-                    <li><a href="{{ url_for('contact') }}" target="_self"><i class="fas fa-headset"></i>Get in touch</a></li>
-                    <li><a href="{{ url_for('faqs') }}" target="_self"><i class="fas fa-question-circle"></i>Our statements</a></li>
+                    <li><a href="{{ url_for('main.homepage') }}"><i class="fas fa-home"></i>Home</a></li>
+                    <li><a href="{{ url_for('auth.log_in') }}" target="_self"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
+                    <li><a href="{{ url_for('auth.sign_up') }}" target="_self"><i class="fas fa-user-plus"></i>Sign up</a></li>
+                    <li><a href="{{ url_for('main.contact') }}" target="_self"><i class="fas fa-headset"></i>Get in touch</a></li>
+                    <li><a href="{{ url_for('main.faqs') }}" target="_self"><i class="fas fa-question-circle"></i>Our statements</a></li>
                 </ul>
 
                 {% endif %}
@@ -98,7 +98,7 @@
             <div class="col s12 m4 l4 xl4 left-align">
                 <h5>Worldsmiths</h5>
                 <p>UK networking for worldbuilders, by worldbuilders</p>
-                <a class="btn-large col s12" href="{{ url_for('contact') }}" target="_self">Send us a raven</a>
+                <a class="btn-large col s12" href="{{ url_for('main.contact') }}" target="_self">Send us a raven</a>
             </div>
             <div class="col s12 m4 l4 xl4 center-align">
                 <img class="responsive-img col s6 offset-s3 m12 l7 offset-l2 xl7 offset-xl2" src="{{ url_for('static', filename='icons/book.png')}}" alt="Globe on top of a book">
@@ -107,17 +107,17 @@
                 <h5>Navigate this site</h5>
                 <ul>
                     {% if session.user %}
-                    <li><a href="{{ url_for('get_profile') }}" target="_self">My profile</a></li>
-                    <li><a href="{{ url_for('welcome', first_name=session['user'])}}" target="_self">Welcome page</a></li>
-                    <li><a href="{{ url_for('statements') }}" target="_self">Our statements</a></li>
-                    <li><a href="{{ url_for('faqs') }}" target="_self">FAQs</a></li>
-                    <li><a href="{{ url_for('contact') }}" target="_self">Contact us</a></li>
+                    <li><a href="{{ url_for('users.get_profile') }}" target="_self">My profile</a></li>
+                    <li><a href="{{ url_for('auth.welcome', first_name=session['user'])}}" target="_self">Welcome page</a></li>
+                    <li><a href="{{ url_for('main.statements') }}" target="_self">Our statements</a></li>
+                    <li><a href="{{ url_for('main.faqs') }}" target="_self">FAQs</a></li>
+                    <li><a href="{{ url_for('main.contact') }}" target="_self">Contact us</a></li>
                     {% else %}
-                    <li><a href="{{ url_for('log_in') }}" target="_self">Sign in</a></li>
-                    <li><a href="{{ url_for('sign_up') }}" target="_self">Sign up</a></li>
-                    <li><a href="{{ url_for('statements') }}" target="_self">Our statements</a></li>
-                    <li><a href="{{ url_for('faqs') }}" target="_self">FAQs</a></li>
-                    <li><a href="{{ url_for('contact') }}" target="_self">Contact us</a></li>
+                    <li><a href="{{ url_for('auth.log_in') }}" target="_self">Sign in</a></li>
+                    <li><a href="{{ url_for('auth.sign_up') }}" target="_self">Sign up</a></li>
+                    <li><a href="{{ url_for('main.statements') }}" target="_self">Our statements</a></li>
+                    <li><a href="{{ url_for('main.faqs') }}" target="_self">FAQs</a></li>
+                    <li><a href="{{ url_for('main.contact') }}" target="_self">Contact us</a></li>
                     {% endif %}
                 </ul>
             </div>

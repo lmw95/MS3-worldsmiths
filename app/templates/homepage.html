@@ -19,9 +19,9 @@
             Worldsmiths, a love and passion of <span class="home-title">worldbuilding</span> is all that's needed.
         </p>
         {% if session.user %}
-        <a href="{{ url_for('get_profile') }}" target="_self" class="btn-large">Your profile</a>
+        <a href="{{ url_for('users.get_profile') }}" target="_self" class="btn-large">Your profile</a>
         {% else %}
-        <a href="{{ url_for('sign_up') }}" target="_self" class="btn-large">Join the quest!</a>
+        <a href="{{ url_for('auth.sign_up') }}" target="_self" class="btn-large">Join the quest!</a>
         {% endif %}
     </div>
 </div>
@@ -215,7 +215,7 @@
         </div>
     </div>
     <div class="col s12 all-events-link center-align">
-        <a href="{{ url_for('all_events_groups') }}" class="big-paragraph">Browse all</a>
+        <a href="{{ url_for('main.browse_all') }}" class="big-paragraph">Browse all</a>
     </div>
 </div>
 <div class="row">

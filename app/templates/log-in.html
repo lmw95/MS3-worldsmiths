@@ -30,7 +30,7 @@
     {% endwith %}
 
 
-    <form method="POST" action="{{ url_for('log_in') }}" class="col s11 offset-s1 m11 offset-m1 l7 offset-l3 xl7 offset-xl3">
+    <form method="POST" action="{{ url_for('auth.log_in') }}" class="col s11 offset-s1 m11 offset-m1 l7 offset-l3 xl7 offset-xl3">
         <div class="row">
             <div class="input-field col s10">
                 <i class="fas fa-at prefix"></i>
@@ -53,7 +53,7 @@
         <div class="row">
             <div class="col s11 center-align">
                 <p><a href="#reset-password" class="modal-trigger" data-target="reset-password">Help, I can't speak "friend" and enter!</a></p>
-                <p>Want to start your adventure?<a href="{{ url_for('sign_up') }}" target="_self"> Sign up here.</a></p>
+                <p>Want to start your adventure?<a href="{{ url_for('auth.sign_up') }}" target="_self"> Sign up here.</a></p>
             </div>
         </div>
     </form>
@@ -62,7 +62,7 @@
 <!--Reset password modal-->
 <div id="reset-password" class="modal">
     <div class="modal-content">
-        <form method="POST" action="{{ url_for('reset_password') }}">
+        <form method="POST" action="{{ url_for('auth.reset_password') }}">
             <h1 class="center">Panic not, we can sort this</h1>
             <p class="center">Please enter your email address to recieve your reset link:</p>
             <div class="row">
@@ -80,7 +80,7 @@
                 <button class="modal-close btn col s12">Nevermind!</a>
             </div>
             <div class="col s12 m12 l6 xl6">
-                <a href="{{ url_for('reset_password') }}" class="modal-close btn col s12">Send me a link</a>
+                <a href="{{ url_for('auth.reset_password') }}" class="modal-close btn col s12">Send me a link</a>
             </div>
         </div>
     </div>

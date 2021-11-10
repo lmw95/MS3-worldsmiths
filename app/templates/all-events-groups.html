@@ -107,7 +107,7 @@
             </div>
             <div class="card-stacked">
                 <div class="card-content">
-                    <a href="{{ url_for('group', group_id=group._id) }}" class="group-link"><h2 class="group-name">{{ group.group_name }}</h2></a>
+                    <a href="" class="group-link"><h2 class="group-name">{{ group.group_name }}</h2></a>
                     <p>Admin: {% set user = users|selectattr("_id", "equalto", group.group_admin )|first %}</p>
                     <p>{{ group.group_location }}</p>
                     <p class="truncate">{{ group.group_description }}</p>

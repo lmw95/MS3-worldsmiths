@@ -11,7 +11,7 @@
 </div>
 <div class="row">
     <div class="col s12 m12 l12 xl12 center-align edit-page">
-        <form method="POST" action="{{ url_for('create_group') }}">
+        <form method="POST" action="">
             <div class="row">
                 <div class="col s10 offset-s1 left-align">
                     <h3>Group details <i class="fas fa-users right"></i></h3>
@@ -37,7 +37,7 @@
             </div>
             <div class="row">
                 <div class="col s5 offset-s1">
-                    <a href="{{ url_for('homepage') }}" class="btn-large col s4 offset-s8">Cancel</a>
+                    <a href="{{ url_for('main.homepage') }}" class="btn-large col s4 offset-s8">Cancel</a>
                 </div>
                 <div class="col s5">
                     <button class="btn-large col s4" type="submit">Save</button>
