@@ -74,7 +74,7 @@
                             <p><i class="fas fa-user-circle"></i> {{ group.num_of_members|length}} guild members</p>
                         </div>
                         <div class="col s6">
-                            <a href="#" class="btn join-btn col s12 m6 offset-m6">Join</a>
+                            <a href="{{ url_for('groups.group_page', group_id=group._id) }}" class="btn join-btn col s12 m6 offset-m6">View group</a>
                         </div>
                     </div>
                 </div>
