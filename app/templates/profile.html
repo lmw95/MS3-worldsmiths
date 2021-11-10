@@ -39,7 +39,7 @@
                 <a href="{{ url_for('users.edit_profile', user_id=user_id) }}" class="btn-large col s12 m5 l12 xl12 offset-m1 edit">Edit profile</a>
                 <a href="{{ url_for('users.settings', user_id=user_id) }}" class="btn-large col s12 m5 l12 xl12 modal-trigger settings">Settings</a>
                 <a href="" class="btn-large col s12 m5 l12 xl12 modal-trigger create-event">Create event</a>
-                <a href="" class="btn-large col s12 m5 l12 xl12 modal-trigger create-group">Create group</a>
+                <a href="{{ url_for('groups.create_group') }}" class="btn-large col s12 m5 l12 xl12 modal-trigger create-group">Create group</a>
             </div>
         </div>
     </div>
