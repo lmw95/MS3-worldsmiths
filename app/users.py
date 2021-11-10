@@ -185,6 +185,26 @@ def edit_profile(user_id):
     return render_template("edit-profile.html", page_title="Edit profile", user=user)
 
 
+# Join group
+@users.route("/join_group", methods=["GET", "POST"])
+def join_group():
+    """
+    Gets user id
+    Adds group to 'groups_member_of' in user collection
+    Adds user to 
+
+    """
+    user = User.find_user_by_id(user_id)
+    admin = Group.get_group(group_id)["group_admin"]
+
+    if user:
+        User.add_to_list(user_id, "groups_member_of", group_id)
+        Group.add_to_list(group_id, "members", user_id)
+
+    return render_template("group.html", page_title="{{ group.group_name }}",
+                            group=group, admin=admin)   
+
+
 # Delete account
 @users.route("/delete_account/<user_id>", methods=["GET", "POST"])
 def delete_account(user_id):
