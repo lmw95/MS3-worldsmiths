@@ -38,8 +38,8 @@ def faqs():
 
 
 # Contact us
-@main.route("/contact-us", methods=["GET", "POST"])
-def contact_us():
+@main.route("/contact", methods=["GET", "POST"])
+def contact():
     if request.method == "POST":
         sender_name = request.form.get('full-name')
         sender_email = request.form.get('email')
@@ -66,7 +66,7 @@ def contact_us():
 
             flash("Thanks {}, we have recieved your message".format(
                 request.form.get("full-name")))
-            return redirect(url_for('contact'))
+            return redirect(url_for('main.contact'))
 
     return render_template("contact.html", page_title="Contact us")
 
