@@ -21,9 +21,14 @@ main = Blueprint("main", __name__)
 @main.route("/homepage")
 def homepage():
     """
+    Gets all groups
     Render homepage.html template
     """
-    return render_template("homepage.html", page_title="Home")
+    groups = list(Group.get_all_groups())
+    users = list(User.get_all_users())
+
+    return render_template("homepage.html", page_title="Home", groups=groups,
+                            users=users)
 
 
 # Statements
