@@ -1,6 +1,8 @@
 # Flask
 from flask import (Flask, render_template, request,
                    flash, url_for, redirect, session, Blueprint)
+# Flask Paginate
+from flask_paginate import Pagination, get_page_args
 # Werkzeug security
 from werkzeug.security import generate_password_hash, check_password_hash
 # Regex
@@ -24,6 +26,7 @@ def get_profile():
     Gets user's email from MongoDB to check in session
     Get's user's id to generate 'user since' value
     """
+
     user = User.check_user_exists(session["user"].lower())
     user_id = User.get_user_id(session["user"].lower())
     groups_created = list(Group.find_groups_by_id(user["groups_created"]))
@@ -186,23 +189,26 @@ def edit_profile(user_id):
 
 
 # Join group
-@users.route("/join_group", methods=["GET", "POST"])
-def join_group():
+@users.route("/join_group/<group_id>", methods=["GET", "POST"])
+def join_group(group_id):
     """
     Gets user id
     Adds group to 'groups_member_of' in user collection
     Adds user to 
 
     """
-    user = User.find_user_by_id(user_id)
-    admin = Group.get_group(group_id)["group_admin"]
+    user = User.get_user_id(session["user"])
+    user_id = user
+    print(user)
+
+    group = Group.get_group(group_id)["_id"]
+    group_id = group
 
     if user:
         User.add_to_list(user_id, "groups_member_of", group_id)
         Group.add_to_list(group_id, "members", user_id)
 
-    return render_template("group.html", page_title="{{ group.group_name }}",
-                            group=group, admin=admin)   
+    return redirect(url_for('groups.group_page', group_id=group_id))  
 
 
 # Delete account
