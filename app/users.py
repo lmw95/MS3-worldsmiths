@@ -30,10 +30,12 @@ def get_profile():
     user = User.check_user_exists(session["user"].lower())
     user_id = User.get_user_id(session["user"].lower())
     groups_created = list(Group.find_groups_by_id(user["groups_created"]))
+    groups_member = list(Group.find_groups_by_id(user["groups_member_of"]))
 
     if user:
         return render_template("profile.html", page_title="My profile", user=user,
-                                user_id=user_id, groups_created=groups_created)
+                                user_id=user_id, groups_created=groups_created,
+                                groups_member=groups_member)
 
 
 # Profile settings
@@ -192,14 +194,14 @@ def edit_profile(user_id):
 @users.route("/join_group/<group_id>", methods=["GET", "POST"])
 def join_group(group_id):
     """
-    Gets user id
+    Gets session user id
+    Gets's group id
     Adds group to 'groups_member_of' in user collection
-    Adds user to 
+    Adds user to 'members' in group collection
 
     """
     user = User.get_user_id(session["user"])
     user_id = user
-    print(user)
 
     group = Group.get_group(group_id)["_id"]
     group_id = group
@@ -211,18 +213,55 @@ def join_group(group_id):
     return redirect(url_for('groups.group_page', group_id=group_id))  
 
 
+# Leave group
+@users.route("/leave_group/<group_id>")
+def leave_group(group_id):
+    """
+    Gets session user id
+    Gets group id
+    Adds group to 'groups_member_of' in user collection
+    Adds user to 'members' in group collection
+    """
+    user = User.check_user_exists(session["user"])
+    user_id = user
+
+    group = Group.get_group(group_id)["_id"]
+    group_id = group
+
+    if user:
+        User.remove_from_list(user_id, "groups_member_of", group_id)
+        Group.remove_from_list(group_id, "members", user_id)
+
+    return redirect(url_for('groups.group_page', group_id=group_id))
+
+
 # Delete account
 @users.route("/delete_account/<user_id>", methods=["GET", "POST"])
 def delete_account(user_id):
     """
     Triggers confirmation modal
+    Removes user from any groups
     Removes user from session cookie
     Removes user from MongoDB
     Flashes user to confirm account deletion
     Redicts user to 'sign-up.html'
     """
+    user = User.check_user_exists(session["user"])
+    user_id = user
+
+    group = Group.get_group(group_id)["_id"]
+    group_id = group
+
+    user_groups = Group.find_groups_by_id(user["groups_created"])
+
+    if user:
+        User.remove_from_list(user_id, "groups_member_of", group_id)
+        Group.remove_from_list(group_id, "members", user_id)
+        Group.delete_group(group_id)
+
     session.pop("email", None)
     session.pop("user")
+
     User.delete_user(user_id)
     flash("We're sorry to see you go! Please do come back and join the adventure again soon.")
     return redirect(url_for("auth.sign_up"))
