@@ -50,7 +50,9 @@ def group_page(group_id):
     Gets group id
     Renders group page with group info
     """
+    user = User.check_user_exists(session["user"])["_id"]
     group = Group.get_group(group_id)
+    admin = Group.get_group(group_id)["group_admin"]
 
     return render_template("group.html", page_title="{{ group.group_name }}",
-                            group=group)
+                            group=group, admin=admin, user=user)
