@@ -50,16 +50,22 @@ def group_page(group_id):
     Gets group id
     Renders group page with group info
     """
+
     user = User.check_user_exists(session["user"])["_id"]
-    group = Group.get_group(group_id)
 
-    members_of = User.get_user_by_id(user)["groups_member_of"]
+    if user:
+        group = Group.get_group(group_id)
 
-    admin = Group.get_group(group_id)["group_admin"]
-    admin_fname = User.get_user_by_id(admin)["first_name"]
-    admin_lname = User.get_user_by_id(admin)["last_name"]
+        members_of = User.get_user_by_id(user)["groups_member_of"]
+        members = list(User.find_users_in_array(group["members"]))
 
-    return render_template("group.html", page_title="{{ group.group_name }}",
-                            group=group, admin=admin, user=user,
-                            admin_fname=admin_fname, admin_lname=admin_lname,
-                            members_of=members_of)
+        print(members)
+
+        admin = Group.get_group(group_id)["group_admin"]
+        admin_fname = User.get_user_by_id(admin)["first_name"]
+        admin_lname = User.get_user_by_id(admin)["last_name"]
+
+        return render_template("group.html", page_title="{{ group.group_name }}",
+                                group=group, admin=admin, user=user,
+                                admin_fname=admin_fname, admin_lname=admin_lname,
+                                members_of=members_of, members=members)
