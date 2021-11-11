@@ -31,12 +31,12 @@
     <div class="col s12 l10 offset-l1">
         <ul class="tabs">
             <li class="tab col s12 m6">
-                <a href="#">
+                <a href="#browse-groups">
                     <h3>Groups</h3>
                 </a>
             </li>
             <li class="tab col s12 m6">
-                <a href="#">
+                <a href="#browse-members">
                     <h3>Members</h3>
                 </a>
             </li>
@@ -44,18 +44,23 @@
     </div>
 </div>
 <div class="row create-wrapper">
-    <div class="col s10 offset-s1">
+    <div class="col s12 l10 offset-l1">
         {% if session.user %}
         <a href="" class="btn-large col s12"><i class="fas fa-users left"></i> Create group</a>
         {% else %}
         {% endif %}
     </div>
 </div>
-
+<div class="row">
+    <div class="col s12 center-align">
+        <h2>All groups</h2>
+        <hr class="long-underline">
+    </div>
+</div>
+<!--All groups-->
 {% if groups|length > 0 %}
 {% for group in groups %}
 <div class="row" id="browse-groups">
-    <!--Group cards-->
     <div class="col s10 offset-s1">
         <div class="card horizontal group-card">
             <div class="card-image browse-img">
@@ -76,10 +81,10 @@
                 </div>
                 <div class="card-action">
                     <div class="row action-wrapper valign-wrapper">
-                        <div class="col s6 valign-wrapper">
+                        <div class="col s12 m6 l6 xl6 valign-wrapper">
                             <p><i class="fas fa-user-circle"></i> {{ group.members|length}} guild members</p>
                         </div>
-                        <div class="col s6">
+                        <div class="col s12 m6 l6 xl6">
                             {% if session.user %}
                             <a href="{{ url_for('groups.group_page', group_id=group._id) }}" class="btn join-btn col s12 m6 offset-m6">View group</a>
                             {% else %}
@@ -98,23 +103,29 @@
     </div>
     {% endif %}
 </div>
-
+<!--Member results-->
+<div class="row">
+    <div class="col s12 center-align">
+        <h2>All members</h2>
+        <hr class="long-underline">
+    </div>
+</div>
 <div class="row" id="browse-members">
-    <div class="col s10 offset-s1">
+    <div class="col s12 m10 offset-m1 l10 offset-l1 xl10 offset-xl1">
         <div class="row">
         {% if users|length > 0 %}
         {% for user in users %}
-            <div class="col s4">
+            <div class="col s12 m6 l4 xl4 member-card-wrapper">
                 <!--Member cards-->
                 <div class="card member-card">
                     <div class="card-image">
-                        <img src="/static/imgs/profile-avatar.png">
+                        <img src="{{ user.profile_pic_url }}">
                         {% if session.user %}
-                        <a href="{{ url_for('users.get_profile', user_id=user._id) }}"><span class="card-title member-nickname valign-wrapper">{{ user.first_name.capitalize() }} {{ user.last_name.capitalize() }}</span></a>
-                        <a class="btn-floating halfway-fab favourite-btn"><i class="fas fa-plus"></i></a>
+                        <a href="{{ url_for('users.get_profile', user_id=user._id) }}"><span class="card-title member-name valign-wrapper">{{ user.first_name.capitalize() }} {{ user.last_name.capitalize() }}</span></a>
+                        <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
                         {% else %}
                         <a href="#prompt" class="modal-trigger"><span class="card-title member-nickname valign-wrapper">{{ user.first_name.capitalize() }} {{ user.last_name.capitalize() }}</span></a>
-                        <a class="btn-floating halfway-fab favourite-btn"><i class="fas fa-plus"></i></a>
+                        <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
                         {% endif %}
                     </div>
                 </div>
