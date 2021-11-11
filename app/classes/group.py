@@ -62,7 +62,6 @@ class Group():
     def find_groups_by_id(collection):
         group_list = mongo.db.groups.find({"_id": {"$in": collection}})
         return group_list
-
     
     # Adds to array/list in group
     @staticmethod
@@ -77,4 +76,8 @@ class Group():
         mongo.db.groups.remove_one({"_id": ObjectId(group_id)},
                                    {"$pull": {field: ObjectId(value)}})
 
+    # Delete group
+    @staticmethod
+    def delete_group(group_id):
+        mongo.db.groups.delete_one({"_id": ObjectId(group_id)})
 
