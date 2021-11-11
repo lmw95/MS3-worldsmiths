@@ -35,126 +35,124 @@
                     </div>
                 </div>
             </div>
-            <div class="col s12 m12 l2 xl2">
-                <a href="{{ url_for('users.edit_profile', user_id=user_id) }}" class="btn-large col s12 m5 l12 xl12 offset-m1 edit">Edit profile</a>
-                <a href="{{ url_for('users.settings', user_id=user_id) }}" class="btn-large col s12 m5 l12 xl12 modal-trigger settings">Settings</a>
-                <a href="{{ url_for('groups.create_group') }}" class="btn-large col s12 m5 l12 xl12 modal-trigger create-group">Create group</a>
+            <div class="col s12 m12 l3 xl2">
+                <a href="{{ url_for('users.edit_profile', user_id=user_id) }}" class="btn-large col s12 m3 offset-m1 l12 xl12 edit">Edit profile</a>
+                <a href="{{ url_for('users.settings', user_id=user_id) }}" class="btn-large col s12 m3 l12 xl12 modal-trigger settings">Settings</a>
+                <a href="{{ url_for('groups.create_group') }}" class="btn-large col s12 m3 l12 xl12 modal-trigger create-group">Create group</a>
             </div>
         </div>
     </div>
-    <!--User biography and project links-->
+    <!--User biography-->
     <div class="row">
-        <div class="col s12 m12 l6 xl6">
-            <div class="card bio-card">
-                <div class="card-content center-align">
-                    <i class="fas fa-book-open fa-3x"></i>
-                    <span class="card-title activator"><h2 class="activator">Biography</h2></span>
+        <div class="col s12 m12 l12 xl12">
+            <div class="card bio-card col s12">
+                <div class="row bio-card-title">
+                    <div class="col s12 bio-title">
+                        <h2><i class="fas fa-book-open"></i> Biography</h2>
+                    </div>
                 </div>
-                <div class="card-reveal">
-                    <span class="card-title"><i class="fas fa-times-circle right"></i></span>
+                <div class="card-content">
                     <p>{{ user.user_biography }}</p>
                 </div>
             </div>
         </div>
-        <div class="col s12 m12 l6 xl6">
-            <div class="card project-card">
-                <div class="card-content center-align">
-                    <i class="fas fa-tools fa-3x"></i>
-                    <span class="card-title activator"><h2 class="activator">Projects</h2></span>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title"><i class="fas fa-times-circle right"></i></span>
-                    <h6>Share your top 3 projects by URL below:</h6>
-                    <p class="url-label">Project 1: {{ user.user_project_1 }}<p>
-                    <p class="url-label">Project 2: {{ user.user_project_2 }}</p>
-                    <p class="url-label">Project 3: {{ user.user_project_3 }}</p>
-                </div>
-            </div>
-        </div>
     </div>
-    <!--User groups with pagination (member of)-->
-    <div class="groups">
+    <!--Member of-->
+    <cdiv class="row">
         <div class="row">
-            <div class="col s12 center-align">
-                <h2>Groups</h2>
-                <hr class="long-underline">
+            <div class="col s12 left-align profile-header">
+                <h2><i class="fas fa-users"></i> Groups</h2>
             </div>
         </div>
-        <div class="row profile-section">
-            <div class="col s12 center-align">
-                <h3>Owner ({{ user.groups_created|length }})</h3>
+    </cdiv>
+    <div class="row profile-section">
+        <div class="col s12 m12 l6 xl6">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <h3>Owner ({{ user.groups_created|length }})</h3>
+                </div>
             </div>
-        </div>
-        <div class="row">
-        {% if groups_created|length > 0 %}
-        {% for group in groups_created %}
-            <div class="col s12 m6 l3 xl3">
-                <div class="card groups-card">
-                    <div class="card-image">
-                    <img src="{{ group.group_cover_img_url }}">
+            <div class="row">
+                <div class="col s12">
                     <div class="row">
-                        <div class="col s7">
-                            <a href="{{ url_for('groups.group_page', group_id=group._id) }}"><p class="little-header">{{ group.group_name }}</p></a>
+                        <div class="col s12">
+                        {% if groups_created|length > 0 %}
+                        {% for group in groups_created %}
+                            <div class="col s12 m12 l6 xl6">
+                                <div class="card groups-card">
+                                    <div class="card-image">
+                                        <img src="{{ group.group_cover_img_url }}">
+                                        <div class="row">
+                                            <div class="col s7">
+                                                <a href="{{ url_for('groups.group_page', group_id=group._id) }}"><p class="little-header">{{ group.group_name }}</p></a>
+                                            </div>
+                                            <div class="col s5 right-align">
+                                                <p class="little-header"><i class="fas fa-user-circle"></i> {{ group.members|length }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% else %} 
+                            <div class="col s12 center-align">
+                                <img src="/static/imgs/nothing-here-2.png" height="250" width="200">
+                                <p class="big-paragraph">There's nothing here! (yet...)</p>
+                                <hr class="underline-no-margin">
+                            </div>
+                        {% endif %}  
                         </div>
-                        <div class="col s5 right-align">
-                            <p class="little-header"><i class="fas fa-user-circle"></i> {{ group.members|length }}</p>
-                        </div>
-                    </div>
                     </div>
                 </div>
             </div>
-        {% endfor %}
-        {% else %}
-        <div class="col s12 center-align">
-            <img src="/static/imgs/nothing-here-2.png" height="250" width="200">
-            <p class="big-paragraph">There's nothing here! (yet...)</p>
-            <hr class="underline-no-margin">
         </div>
-        {% endif %}
-        </div>
-        <div class="row profile-section">
+        <div class="col s12 m12 l6 xl6">
             <div class="col s12 center-align">
                 <h3>Member ({{ user.groups_member_of|length }})</h3>
             </div>
-        </div>
-        <div class="row">
-        {% if groups_member|length > 0 %}
-        {% for group in groups_member %}
-            <div class="col s12 m6 l3 xl3">
-                <div class="card groups-card">
-                    <div class="card-image">
-                        <img src="{{ group.group_cover_img_url }}">
-                        <div class="row">
-                            <div class="col s7">
-                                <a href="{{ url_for('groups.group_page', group_id=group._id) }}"><p class="little-header">{{ group.group_name }}</p></a>
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="col s12">
+                        {% if groups_member|length > 0 %}
+                        {% for group in groups_member %}
+                            <div class="col s12 m6 l3 xl3">
+                                <div class="card groups-card">
+                                    <div class="card-image">
+                                        <img src="{{ group.group_cover_img_url }}">
+                                        <div class="row">
+                                            <div class="col s7">
+                                                <a href="{{ url_for('groups.group_page', group_id=group._id) }}"><p class="little-header">{{ group.group_name }}</p></a>
+                                            </div>
+                                            <div class="col s5 right-align">
+                                                <p class="little-header"><i class="fas fa-user-circle"></i> {{ group.members|length }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col s5 right-align">
-                                <p class="little-header"><i class="fas fa-user-circle"></i> {{ group.members|length }}</p>
+                            {% endfor %}
+                            {% else %}
+                            <div class="col s12 center-align">
+                                <img src="/static/imgs/nothing-here-2.png" height="250" width="200">
+                                <p class="big-paragraph nothing-here-p">There's nothing here! (yet...)</p>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
-        {% endfor %}
-        {% else %}
-        <div class="col s12 center-align">
-            <img src="/static/imgs/nothing-here.png" height="250" width="200">
-            <p class="big-paragraph">There's nothing here! (yet...)</p>
-            <hr class="underline-no-margin">
-        </div>
-        {% endif %}
         </div>
     </div>
-    <div class="following">
-        <div class="row">
-            <div class="col s12 center-align">
-                <h2>Following</h2>
-                <hr class="long-underline">
-            </div>
-            <div class="col s12 profile-section">
-                <!--Jinja template for follower avatars-->
-            </div>
+    <div class="row">
+        <div class="col s12 profile-header">
+            <h2><i class="fas fa-handshake"></i> Following</h2>
+            <hr class="long-underline">
+        </div>
+        <div class="col s12 profile-section">
+            <!--Jinja template for follower avatars-->
         </div>
     </div>
+</div>
 
 {% endblock %}
