@@ -176,7 +176,7 @@ def edit_profile(user_id):
             "user_project_2": request.form.get("link-2"),
             "user_project_3": request.form.get("link-3"),
             "user_biography": request.form.get("bio"),
-            "profile_pic_url": request.form.get("profile_pic"),
+            "profile_pic_url": request.form.get("profile-pic"),
             "user_banner_url": request.form.get("banner")
         }
 
@@ -212,6 +212,36 @@ def join_group(group_id):
 
     return redirect(url_for('groups.group_page', group_id=group_id))  
 
+# Edit group
+@users.route("/edit_group/<group_id>", methods=["GET", "POST"])
+def edit_group(group_id):
+    """
+    Renders 'edit-group.html
+    Gets group id
+    Upon submission, adds updated info to a dictionary
+    Updates MongoDB
+    Redirects user to group page
+    """
+
+    group = Group.get_group(group_id)
+
+    if request.method == "POST":
+        updated_info = {
+            "group_name": request.form.get("name"),
+            "group_location": request.form.get("location"),
+            "group_description": request.form.get("description"),
+            "group_cover_img_url": request.form.get("banner")
+        }
+
+        try:
+            Group.edit_group(group_id, updated_info)
+            flash("Group infomation updated!")
+            return redirect(url_for("groups.group_page", group_id=group_id))
+        except Exception as e:
+            print(e)
+
+    return render_template("edit-group.html", group_id=group_id, group=group)
+
 
 # Leave group
 @users.route("/leave_group/<group_id>")
@@ -246,22 +276,8 @@ def delete_account(user_id):
     Flashes user to confirm account deletion
     Redicts user to 'sign-up.html'
     """
-    user = User.check_user_exists(session["user"])
-    user_id = user
-
-    group = Group.get_group(group_id)["_id"]
-    group_id = group
-
-    user_groups = Group.find_groups_by_id(user["groups_created"])
-
-    if user:
-        User.remove_from_list(user_id, "groups_member_of", group_id)
-        Group.remove_from_list(group_id, "members", user_id)
-        Group.delete_group(group_id)
-
     session.pop("email", None)
     session.pop("user")
-
     User.delete_user(user_id)
     flash("We're sorry to see you go! Please do come back and join the adventure again soon.")
     return redirect(url_for("auth.sign_up"))
