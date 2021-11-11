@@ -80,6 +80,6 @@ def browse_all():
     groups = list(Group.get_all_groups())
     users = list(User.get_all_users())
 
-    return render_template("all-events-members.html", 
-                            page_title="Browse all events and groups",
+    return render_template("all-groups-members.html", 
+                            page_title="Browse all groups and members",
                             groups=groups, users=users)
