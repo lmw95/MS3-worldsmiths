@@ -86,6 +86,10 @@ def log_in():
                 flash("Email and/or password incorrect, please try again")
                 return redirect(url_for("auth.log_in"))
 
+        else:
+            flash("No account exists with this email")
+            return redirect(url_for("auth.log_in"))
+
     return render_template("log-in.html", page_title="Log in")
 
 
