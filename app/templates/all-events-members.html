@@ -63,18 +63,28 @@
             </div>
             <div class="card-stacked">
                 <div class="card-content">
+                    {% if session.user %}
                     <a href="{{ url_for('groups.group_page', group_id=group._id) }}" class="group-link"><h2 class="group-name">{{ group.group_name }}</h2></a>
-                    <p>Admin: {% set user = users|selectattr("_id", "equalto", group.group_admin )|first %}</p>
-                    <p>{{ group.group_location }}</p>
+                    {% else %}
+                    <a href="#prompt" class="group-link modal-trigger"><h2 class="group-name">{{ group.group_name }}</h2></a>
+                    {% endif %}
+                    <p>Admin: {% set admin = users|selectattr("_id", "equalto", group.group_admin )|first %}
+                        {{ admin.first_name.capitalize() }} {{admin.last_name.capitalize() }}
+                    </p>
+                    <p>{{ group.group_location }}, UK</p>
                     <p class="truncate">{{ group.group_description }}</p>
                 </div>
                 <div class="card-action">
                     <div class="row action-wrapper valign-wrapper">
                         <div class="col s6 valign-wrapper">
-                            <p><i class="fas fa-user-circle"></i> {{ group.num_of_members|length}} guild members</p>
+                            <p><i class="fas fa-user-circle"></i> {{ group.members|length}} guild members</p>
                         </div>
                         <div class="col s6">
+                            {% if session.user %}
                             <a href="{{ url_for('groups.group_page', group_id=group._id) }}" class="btn join-btn col s12 m6 offset-m6">View group</a>
+                            {% else %}
+                            <a href="#prompt" class="btn join-btn col s12 m6 offset-m6 modal-trigger">View group</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -99,13 +109,44 @@
                 <div class="card member-card">
                     <div class="card-image">
                         <img src="/static/imgs/profile-avatar.png">
-                        <a href="#"><span class="card-title member-nickname valign-wrapper">{{ user.first_name.capitalize() }} {{ user.last_name.capitalize() }}</span></a>
+                        {% if session.user %}
+                        <a href="{{ url_for('users.get_profile', user_id=user._id) }}"><span class="card-title member-nickname valign-wrapper">{{ user.first_name.capitalize() }} {{ user.last_name.capitalize() }}</span></a>
                         <a class="btn-floating halfway-fab favourite-btn"><i class="fas fa-plus"></i></a>
+                        {% else %}
+                        <a href="#prompt" class="modal-trigger"><span class="card-title member-nickname valign-wrapper">{{ user.first_name.capitalize() }} {{ user.last_name.capitalize() }}</span></a>
+                        <a class="btn-floating halfway-fab favourite-btn"><i class="fas fa-plus"></i></a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         {% endfor %}
         {% endif %}
+        </div>
+    </div>
+</div>
+
+<!--Sign-up/log-in modal-->
+<div id="prompt" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <div class="col s12 center-align">
+                <img src="/static/imgs/gandalf.png" class="responsive-img gandalf">
+                <h1 class="center">The way is shut</h1>
+            </div>
+        </div>
+        <h3 class="center">Want to explore further?</h3>
+        <p class="center">To view, join or attend our group pages or view and follow our members' profiles, you need to be a member with us and logged in.
+                Click below to join us, or log-in if you already have an account with us!
+        </p>
+    </div>
+    <div class="modal-footer">
+        <div class="row center-align">
+            <div class="col s12 m12 l6 xl6">
+                <button class="modal-close btn col s12">Join the adventure</a>
+            </div>
+            <div class="col s12 m12 l6 xl6">
+                <a href="" class="modal-close btn col s12">Sign me in</a>
+            </div>
         </div>
     </div>
 </div>
