@@ -52,7 +52,11 @@ def group_page(group_id):
     """
     user = User.check_user_exists(session["user"])["_id"]
     group = Group.get_group(group_id)
+
     admin = Group.get_group(group_id)["group_admin"]
+    admin_fname = User.get_user_by_id(admin)["first_name"]
+    admin_lname = User.get_user_by_id(admin)["last_name"]
 
     return render_template("group.html", page_title="{{ group.group_name }}",
-                            group=group, admin=admin, user=user)
+                            group=group, admin=admin, user=user,
+                            admin_fname=admin_fname, admin_lname=admin_lname)
