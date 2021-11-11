@@ -58,6 +58,7 @@ def group_page(group_id):
 
         members_of = User.get_user_by_id(user)["groups_member_of"]
         members = list(User.find_users_in_array(group["members"]))
+        print(members)
 
         admin = Group.get_group(group_id)["group_admin"]
         admin_fname = User.get_user_by_id(admin)["first_name"]
@@ -125,12 +126,20 @@ def join_group(group_id):
 def delete_group(group_id):
     """
     Triggers confirmation modal
-    Gets group id
-    Removes group from owner's list
-    Removes group from member's list
+    Gets group id, group admin and user
+    Removes group from members' lists
+    Removes group from admin's list
     Removes group from MongoDB
     Flashes user to confirm deletion
     Redirects user to their profile page
     """
-
+    user = User.check_user_exists(session["user"])
     group = Group.get_group(group_id)
+    admin = Group.get_group(group_id)["group_admin"]
+
+    User.remove_from_list(user["_id"], "group_member_of", group_id)
+    User.remove_from_list(admin, "groups_created", group_id)
+    Group.delete_group(group_id)
+
+    flash("Group successfully deleted!")
+    return redirect(url_for('users.get_profile', user_id=admin))
