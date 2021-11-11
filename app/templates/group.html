@@ -28,8 +28,9 @@
         <div class="col s12 m12 l10 xl10">
             <div class="col s12">
                 <h1 class="user-name">{{ group.group_name }}</h1>
+                <p><i class="fas fa-user"></i><span class="info-label"> Admin:</span> {{ admin_fname.capitalize() }} {{ admin_lname.capitalize() }}</p>
                 <p><i class="fas fa-user"></i><span class="info-label"> Group created:</span> {{ group._id.generation_time.date().strftime("%d %B %Y") }}</p>
-                <p><i class="fas fa-map-marker-alt"></i><span class="info-label"> Location:</span> {{ group.group_location }}, UK</p>
+                <p class="bottom-p"><i class="fas fa-map-marker-alt"></i><span class="info-label"> Location:</span> {{ group.group_location }}, UK</p>
             </div>
         </div>
         <div class="col s12 m12 l2 xl2">
@@ -37,7 +38,7 @@
             <a href="" class="btn-large col s12 m5 l12 xl12 offset-m1 edit-group">Edit group</a>
             <a href="" class="btn-large col s12 m5 l12 xl12 modal-trigger group-settings">Settings</a>
             {% elif user != admin %}
-            <a href="" class="btn-large col s12 m5 l12 xl12 offset-m1 join-group">Join</a>
+            <a href="{{ url_for('users.join_group', group_id=group._id) }}" class="btn-large col s12 m5 l12 xl12 offset-m1 join-group">Join</a>
             {% else %}
             <a href="#prompt" class="btn-large col s12 m5 l12 xl12 offset-m1 modal-trigger join-group">Join</a>
             {% endif %}
@@ -54,7 +55,7 @@
 </div>
 <div class="row group-section">
     <div class="col s10 offset-s1">
-        <h3>Guild members ({{ group.num_of_members|length }}) <i class="fas fa-users right"></i></h3>
+        <h3>Guild members ({{ group.members|length }}) <i class="fas fa-users right"></i></h3>
     </div>
     {% if users|length > 0 %}
     {% for user in users %}
