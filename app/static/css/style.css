@@ -254,6 +254,10 @@ color: var(--black) !important;
     background-color: var(--munsell);
 }
 
+.browse-img {
+    width: 35%;
+}
+
 .browse-img img {
     object-fit: cover;
     max-height: 100% !important;
@@ -357,6 +361,9 @@ color: var(--black) !important;
     height: 190px;
 }
 
+.bottom-p {
+    margin-bottom: 40px;
+}
 
 /** Welcome **/
 .welcome-socials {
@@ -460,6 +467,12 @@ footer .useful-links a {
     width: 150px;
     border: solid var(--magenta);
     margin-bottom: 40px;
+}
+
+.underline-no-margin {
+    width: 150px;
+    border: solid var(--magenta);
+    margin-bottom: 0;
 }
 
 .long-underline {
@@ -577,6 +590,7 @@ h3 {
 
 .group-name {
     margin-top: 0;
+    margin-bottom: 10px;
 }
 
 /** Modals **/
@@ -713,6 +727,11 @@ input[type=text]:not(.browser-default) {
     .copyright-statement {
         justify-content: center;
     }
+
+    .button-wrapper {
+        padding: 0 !important;
+    }
+    
 }
 
 @media only screen and (min-width:425px) and (max-width: 992px) {
@@ -787,6 +806,11 @@ input[type=text]:not(.browser-default) {
     .footer-lower {
         margin-top: 30px;
     }
+
+    .button-wrapper {
+        padding: 0 !important;
+    }
+    
 }
 
 
