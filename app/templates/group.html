@@ -70,7 +70,9 @@
             <div class="card member-card">
                 <div class="card-image">
                     <img src="/static/imgs/profile-avatar.png">
-                    <a href="{{ url_for('users.get_profile', user_id=user_id)}}"><span class="card-title member-nickname valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
+                    <a href="{{ url_for('users.get_profile', user_id=user_id)}}"><span class="card-title member-nickname valign-wrapper">
+                        {{ member.first_name.capitalize() }} {{member.last_name.capitalize() }}
+                    </span></a>
                     <a class="btn-floating halfway-fab favourite-btn"><i class="fas fa-plus"></i></a>
                 </div>
             </div>
