@@ -13,7 +13,7 @@
     <div class="col s12 center-align">
         <h1 class="page-header">Welcome to <span class="home-title">Worldsmiths!</span></h1>
     </div>
-    <div class="col s10 offset-s1 m10 offset-m1 l6 xl6 offset-xl3 center-align">
+    <div class="col s10 offset-s1 m10 offset-m1 l6 offset-l3 xl6 offset-xl3 center-align">
         <p class="big-paragraph">
             Writers, game designers, dungeon masters, daydreamers... the list goes on. To join
             Worldsmiths, a love and passion of <span class="home-title">worldbuilding</span> is all that's needed.
@@ -35,7 +35,7 @@
                 <div class="col s12 center-align">
                     <h2>Build</h2>
                 </div>
-                <div class="col s12 center-align">
+                <div class="col s12 m6 offset-m3 center-align">
                     <p class="big-paragraph">
                         Build your Worldsmith's profile and showcase your stories, portfilio and worlds to share with other 
                         worldsmiths members
@@ -53,7 +53,7 @@
                 <div class="col s12 center-align">
                     <h2>Connect</h2>
                 </div>
-                <div class="col s12 center-align">
+                <div class="col s12 m6 offset-m3 center-align">
                     <p class="big-paragraph">
                         Join and create groups for specific worldbuilding genres, to discuss certain topics
                         or to simply shoot the breeze
@@ -71,10 +71,10 @@
                 <div class="col s12 center-align">
                     <h2>Meet</h2>
                 </div>
-                <div class="col s12 center-align">
+                <div class="col s12 m6 offset-m3 center-align">
                     <p class="big-paragraph">
-                        Organise events and socials to meet with other worldbuilders - don't forget to watch
-                        out for Worldsmith's speical events that anyone can attend!
+                        Why not organise to meet with other worldbuilders through our groups and connect
+                        with the UK worldbuilding community?
                     </p>
                 </div>
             </div>
@@ -87,7 +87,7 @@
     </div>
     <div class="col s12">
         <form>
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s12 m12 l6 xl6 offset-l3 offset-xl3">
                 <i class="fas fa-search prefix"></i>
                 <input id="finder-homepage" type="text" class="validate" name="finder-homepage">
                 <label for="finder-homepage">search for groups, events and members...</label>
@@ -100,7 +100,7 @@
 </div>
 <div class="row header-wrapper">
     <div class="col s12 center-align">
-        <h2>Upcoming events</h2>
+        <h2>Popular groups</h2>
     </div>
 </div>
 <div class="row events-wrapper">
@@ -108,110 +108,39 @@
     <div class="col s12 carousel-wrapper">
         <div class="carousel" data-flickity='{ "draggable": false }'>
             <!--Cell 1-->
+            {% for group in groups %}
+            {% if group.members|length > 0 %}
             <div class="carousel-cell">
                 <div class="card events-card">
-                    <div class="row event-time-wrapper">
-                        <div class="col s12 center-align">
-                            <h3 class="big-paragraph">Time and date</h3>
-                        </div>
-                    </div>
                     <div class="card-image events-card-img">
                       <img src="/static/imgs/worldbuilding2.jpg">
-                      <a class="btn-floating halfway-fab waves-effect waves-light favourite-btn"><i class="far fa-heart"></i></a>
+                      <a class="btn-floating halfway-fab tooltipped popular-btn" data-position="bottom" data-tooltip="One of our top 5 groups!"><i class="far fa-heart"></i></a>
                     </div>
                     <div class="card-content">
-                        <strong><p class="big-paragraph">Event name</p></strong>
-                        <p>Event organiser</p>
-                        <p>Event type</p>
-                        <p>Location</p>
-                        <p>Address</p>
+                        <h2 class="homepage-card-title">{{ group.group_name }}</h2>
+                        <p>{% set admin = users|selectattr("_id", "equalto", group.group_admin )|first %}
+                            {{ admin.first_name.capitalize() }} {{admin.last_name.capitalize() }}</p>
+                        <p>{{ group.group_location }}</p>
+                        <p>{{ group.group_description }}</p>
                     </div>
                     <div class="card-action events-card-action">
                         <div class="row">
                             <div class="col s12">
-                                <p><i class="fas fa-user-circle"></i> No. of attendees</p>
+                                <p><i class="fas fa-user-circle"></i> {{ group.members|length }} members</p>
                             </div>
                             <div class="col s10 offset-s1 event-btns">
                                 {% if session.user %}
-                                <a href="#" class="btn event-btn col s12 modal-trigger">View event</a>
+                                <a href="#" class="btn event-btn col s12 modal-trigger">View group</a>
                                 {% else %}
-                                <a href="#prompt" class="btn event-btn col s12 modal-trigger">View event</a>
+                                <a href="#prompt" class="btn event-btn col s12 modal-trigger">View group</a>
                                 {% endif %}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--Cell 2-->
-            <div class="carousel-cell">
-                <div class="card events-card">
-                    <div class="row event-time-wrapper">
-                        <div class="col s12 center-align">
-                            <h3 class="big-paragraph">Time and date</h3>
-                        </div>
-                    </div>
-                    <div class="card-image events-card-img">
-                      <img src="/static/imgs/worldbuilding2.jpg">
-                      <a class="btn-floating halfway-fab waves-effect waves-light favourite-btn"><i class="far fa-heart"></i></a>
-                    </div>
-                    <div class="card-content">
-                        <strong><p class="big-paragraph">Event name</p></strong>
-                        <p>Event organiser</p>
-                        <p>Event type</p>
-                        <p>Location</p>
-                        <p>Address</p>
-                    </div>
-                    <div class="card-action events-card-action">
-                        <div class="row">
-                            <div class="col s12">
-                                <p><i class="fas fa-user-circle"></i> No. of attendees</p>
-                            </div>
-                            <div class="col s10 offset-s1 event-btns">
-                                {% if session.user %}
-                                <a href="#" class="btn event-btn col s12 modal-trigger">View event</a>
-                                {% else %}
-                                <a href="#prompt" class="btn event-btn col s12 modal-trigger">View event</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--Cell 3-->
-            <div class="carousel-cell">
-                <div class="card events-card">
-                    <div class="row event-time-wrapper">
-                        <div class="col s12 center-align">
-                            <h3 class="big-paragraph">Time and date</h3>
-                        </div>
-                    </div>
-                    <div class="card-image events-card-img">
-                      <img src="/static/imgs/worldbuilding2.jpg">
-                      <a class="btn-floating halfway-fab waves-effect waves-light favourite-btn"><i class="far fa-heart"></i></a>
-                    </div>
-                    <div class="card-content">
-                        <strong><p class="big-paragraph">Event name</p></strong>
-                        <p>Event organiser</p>
-                        <p>Event type</p>
-                        <p>Location</p>
-                        <p>Address</p>
-                    </div>
-                    <div class="card-action events-card-action">
-                        <div class="row">
-                            <div class="col s12">
-                                <p><i class="fas fa-user-circle"></i> No. of attendees</p>
-                            </div>
-                            <div class="col s10 offset-s1 event-btns">
-                                {% if session.user %}
-                                <a href="#" class="btn event-btn col s12 modal-trigger">View event</a>
-                                {% else %}
-                                <a href="#prompt" class="btn event-btn col s12 modal-trigger">View event</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
     <div class="col s12 all-events-link center-align">
