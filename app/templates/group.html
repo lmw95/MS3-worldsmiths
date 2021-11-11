@@ -33,14 +33,18 @@
                 <p class="bottom-p"><i class="fas fa-map-marker-alt"></i><span class="info-label"> Location:</span> {{ group.group_location }}, UK</p>
             </div>
         </div>
-        <div class="col s12 m12 l2 xl2">
+        <div class="col s12 m12 l2 xl2 button-wrapper">
             {% if user == admin %}
             <a href="" class="btn-large col s12 m5 l12 xl12 offset-m1 edit-group">Edit group</a>
             <a href="" class="btn-large col s12 m5 l12 xl12 modal-trigger group-settings">Settings</a>
             {% elif user != admin %}
-            <a href="{{ url_for('users.join_group', group_id=group._id) }}" class="btn-large col s12 m5 l12 xl12 offset-m1 join-group">Join</a>
+                {% if group._id in members_of %}
+                <a href="" class="btn-large col s12 m12 l12 xl12 offset-m1 modal-trigger leave-group">Leave</a>
+                {% else %}
+                <a href="{{ url_for('users.join_group', group_id=group._id) }}" class="btn-large col s12 m12 l12 xl12 join-group">Join</a>
+                {% endif %}
             {% else %}
-            <a href="#prompt" class="btn-large col s12 m5 l12 xl12 offset-m1 modal-trigger join-group">Join</a>
+            <a href="#prompt" class="btn-large col s12 m12 l12 xl12 offset-m1 modal-trigger join-group">Join</a>
             {% endif %}
         </div>
     </div>
@@ -57,20 +61,29 @@
     <div class="col s10 offset-s1">
         <h3>Guild members ({{ group.members|length }}) <i class="fas fa-users right"></i></h3>
     </div>
-    {% if users|length > 0 %}
-    {% for user in users %}
-    <div class="col s3 offset-s1">
-        <!--Member cards-->
-        <div class="card member-card">
-            <div class="card-image">
-                <img src="/static/imgs/profile-avatar.png">
-                <a href="#"><span class="card-title member-nickname valign-wrapper">Nickname</span></a>
-                <a class="btn-floating halfway-fab favourite-btn"><i class="fas fa-plus"></i></a>
+    <div class="row">
+        <div class="col s12 l10 offset-l1"> 
+        {% if members|length > 0 %}
+        {% for member in members %}
+        <div class="col s12 l3">
+            <!--Member cards-->
+            <div class="card member-card">
+                <div class="card-image">
+                    <img src="/static/imgs/profile-avatar.png">
+                    <a href="{{ url_for('users.get_profile', user_id=user_id)}}"><span class="card-title member-nickname valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
+                    <a class="btn-floating halfway-fab favourite-btn"><i class="fas fa-plus"></i></a>
+                </div>
             </div>
         </div>
+        {% endfor %}
+        {% else %}
+        </div>
     </div>
-    {% endfor %}
-    {% else %}
+    <div class="col s12 center-align">
+        <img src="/static/imgs/nothing-here.png" height="250" width="200">
+        <p class="big-paragraph">There's nothing here! (yet...)</p>
+        <hr class="underline-no-margin">
+    </div>
     {% endif %}
 </div>
 <div class="row group-section">

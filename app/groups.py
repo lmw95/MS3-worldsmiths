@@ -53,8 +53,7 @@ def group_page(group_id):
     user = User.check_user_exists(session["user"])["_id"]
     group = Group.get_group(group_id)
 
-    members = list(User.find_users_in_array(group["members"]))
-    print(members)
+    members_of = User.get_user_by_id(user)["groups_member_of"]
 
     admin = Group.get_group(group_id)["group_admin"]
     admin_fname = User.get_user_by_id(admin)["first_name"]
@@ -63,4 +62,4 @@ def group_page(group_id):
     return render_template("group.html", page_title="{{ group.group_name }}",
                             group=group, admin=admin, user=user,
                             admin_fname=admin_fname, admin_lname=admin_lname,
-                            members=members)
+                            members_of=members_of)
