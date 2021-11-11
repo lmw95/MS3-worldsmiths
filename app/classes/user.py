@@ -12,7 +12,6 @@ class User():
                 profile_pic_url=None, user_banner_url=None, user_city=None, 
                 user_location=None, user_interests=None, user_biography=None,
                 user_project_1=None, user_project_2=None, user_project_3=None,
-                events_attending=None, events_organised=None,
                 groups_member_of=None, groups_created=None, following=None,
                 followers=None, _id=None):
         """
@@ -24,8 +23,8 @@ class User():
         self.email = email
         self.password = generate_password_hash(password)
         self.nickname = nickname if isinstance(nickname, str) else str("")
-        self.profile_pic_url = profile_pic_url if isinstance(profile_pic_url, str) else str("")
-        self.user_banner_url = user_banner_url if isinstance(user_banner_url, str) else str("")
+        self.profile_pic_url = profile_pic_url if isinstance(profile_pic_url, str) else str("/static/imgs/profile-avatar.png")
+        self.user_banner_url = user_banner_url if isinstance(user_banner_url, str) else str("/static/icons/book.png")
         self.user_member_since = user_member_since
         self.user_city = user_city if isinstance(user_city, str) else str("")
         self.user_location = user_location if isinstance(user_location, str) else str("")
@@ -34,14 +33,14 @@ class User():
         self.user_project_1 = user_project_1 if isinstance(user_project_1, str) else str("")
         self.user_project_2 = user_project_2 if isinstance(user_project_2, str) else str("")
         self.user_project_3 = user_project_3 if isinstance(user_project_3, str) else str("")
-        self.events_attending = events_attending if isinstance(events_attending, list) else []
-        self.events_organised = events_organised if isinstance(events_organised, list) else []
-        self.groups_member_of = groups_member_of if instance(groups_member_of, list) else []
-        self.groups_created = groups_created if instance(groups_created, list) else []
+        self.groups_member_of = groups_member_of if isinstance(groups_member_of, list) else []
+        self.groups_created = groups_created if isinstance(groups_created, list) else []
+        self.followers = followers if isinstance(followers, list) else []
+        self.following = following if isinstance(following, list) else []
 
     
     # Gets all possible info about User
-    def user_info():
+    def user_info(self):
         user_info = {
             "first_name": self.first_name.lower(),
             "last_name": self.last_name.lower(),
@@ -58,10 +57,10 @@ class User():
             "user_project_1": self.user_project_1,
             "user_project_2": self.user_project_2,
             "user_project_3": self.user_project_3,
-            "events_attending": self.events_attending,
-            "events_organised": self.events_organised,
             "groups_member_of": self.groups_member_of,
-            "groups_created": self.groups_created 
+            "groups_created": self.groups_created,
+            "followers": self.followers,
+            "following": self.following
         }
 
         return user_info
@@ -69,7 +68,7 @@ class User():
 
     # Add a user to MongoDB
     def add_to_db(self):
-        mongo.db.users.insert_one(self.all_user_info())
+        mongo.db.users.insert_one(self.user_info())
 
     
     # Finds a user's id using email
