@@ -30,7 +30,7 @@
                         <h1 class="user-name">{{ user.first_name }} {{ user.last_name }}</h1>
                         <p><i class="fas fa-comment-dots"></i><span class="info-label">Nickname:</span> {{ user.nickname }}</p>
                         <p><i class="fas fa-user"></i><span class="info-label">Member since:</span> {{ user_id.generation_time.date().strftime("%d %B %Y") }}</p>
-                        <p><i class="fas fa-map-marker-alt"></i><span class="info-label">Location:</span> {{ user.user_city }}, {{ user.user_location }}</p>
+                        <p><i class="fas fa-map-marker-alt"></i><span class="info-label">Location:</span> {{ user.user_city }} {{ user.user_location.capitalize() }}</p>
                         <p><i class="fas fa-heart"></i><span class="info-label">Interests:</span> {{ user.user_interests }}</p>
                     </div>
                 </div>
@@ -104,6 +104,12 @@
                 </div>
             </div>
         {% endfor %}
+        {% else %}
+        <div class="col s12 center-align">
+            <img src="/static/imgs/nothing-here-2.png" height="250" width="200">
+            <p class="big-paragraph">There's nothing here! (yet...)</p>
+            <hr class="underline-no-margin">
+        </div>
         {% endif %}
         </div>
         <div class="row profile-section">
@@ -112,28 +118,33 @@
             </div>
         </div>
         <div class="row">
-            {% if groups_member_of|length > 0 %}
-            {% for group in groups_member_of %}
+        {% if groups_member|length > 0 %}
+        {% for group in groups_member %}
             <div class="col s12 m6 l3 xl3">
-            <div class="card groups-card">
-                <div class="card-image">
-                  <img src="{{ group.group_cover_img_url }}">
-                  <div class="row">
-                      <div class="col s7">
-                        <a href="{{ url_for('groups.group_page', group_id=group._id) }}"><p class="little-header">{{ group.group_name }}</p></a>
-                      </div>
-                      <div class="col s5 right-align">
-                        <p class="little-header"><i class="fas fa-user-circle"></i> {{ group.members|length }}</p>
-                      </div>
-                  </div>
+                <div class="card groups-card">
+                    <div class="card-image">
+                        <img src="{{ group.group_cover_img_url }}">
+                        <div class="row">
+                            <div class="col s7">
+                                <a href="{{ url_for('groups.group_page', group_id=group._id) }}"><p class="little-header">{{ group.group_name }}</p></a>
+                            </div>
+                            <div class="col s5 right-align">
+                                <p class="little-header"><i class="fas fa-user-circle"></i> {{ group.members|length }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </div>
-            {% endfor %}
-            {% endif %}
+        {% endfor %}
+        {% else %}
+        <div class="col s12 center-align">
+            <img src="/static/imgs/nothing-here.png" height="250" width="200">
+            <p class="big-paragraph">There's nothing here! (yet...)</p>
+            <hr class="underline-no-margin">
+        </div>
+        {% endif %}
         </div>
     </div>
-
     <div class="following">
         <div class="row">
             <div class="col s12 center-align">
