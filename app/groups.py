@@ -4,6 +4,7 @@ from flask import (Flask, render_template, request,
 # Classes
 from app.classes.user import User
 from app.classes.group import Group
+from app import mongo
 
 
 # Groups blueprint
@@ -50,7 +51,7 @@ def group_page(group_id):
     Gets group id
     Renders group page with group info
     """
-
+    
     user = User.check_user_exists(session["user"])["_id"]
 
     if user:
@@ -58,7 +59,6 @@ def group_page(group_id):
 
         members_of = User.get_user_by_id(user)["groups_member_of"]
         members = list(User.find_users_in_array(group["members"]))
-        print(members)
 
         admin = Group.get_group(group_id)["group_admin"]
         admin_fname = User.get_user_by_id(admin)["first_name"]
@@ -137,7 +137,10 @@ def delete_group(group_id):
     group = Group.get_group(group_id)
     admin = Group.get_group(group_id)["group_admin"]
 
-    User.remove_from_list(user["_id"], "group_member_of", group_id)
+    members = mongo.db.users.distinct("_id")
+    for member in members:
+        User.remove_from_list(member, "groups_member_of", group_id)
+
     User.remove_from_list(admin, "groups_created", group_id)
     Group.delete_group(group_id)
 
