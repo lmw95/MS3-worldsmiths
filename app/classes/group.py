@@ -64,6 +64,13 @@ class Group():
         return group_list
     
 
+    # Finds groups from a query
+    def find_groups_by_query(user_query):
+        mongo.db.groups.create_index([("$**", 'text')])
+        results = mongo.db.groups.find({"$text": {"$search": str(user_query)}})
+        return results
+
+
     # Adds to array/list in group
     @staticmethod
     def add_to_list(group_id, field, value):

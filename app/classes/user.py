@@ -99,6 +99,13 @@ class User():
         return all_users
 
 
+    # Finds users from a query
+    def find_users_by_query(query):
+        mongo.db.users.create_index([("$**", 'text')])
+        results = mongo.db.users.find({"$text": {"$search": str(query)}})
+        return results
+
+
     # Checks if user already exists
     @staticmethod
     def check_user_exists(email):
