@@ -25,12 +25,11 @@ def homepage():
     Gets all groups
     Render homepage.html template
     """
-    user = User.check_user_exists(session["user"])
     groups = list(Group.get_all_groups())
     users = list(User.get_all_users())
 
     return render_template("homepage.html", page_title="Home", groups=groups,
-                            users=users, user=user)
+                            users=users)
 
 
 # Statements
