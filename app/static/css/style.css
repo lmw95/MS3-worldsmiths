@@ -1,0 +1,941 @@
+/** Import Google Fonts **/
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap');
+
+/** Global style variables **/
+:root {
+    --black: #1E1D1C;
+    --almond: #F3F3F4;
+    --magenta: #A44E7B;
+    --cadet: #1F253F;
+    --cadet-t: rgba(31, 37, 63, 0.6);
+    --munsell: #4092AA;
+    --munsell-t: rgb(64,146,170, 0.3);
+    --josefin-sans: 'Josefin Sans', sans-serif;
+    --yanone-kaffeesatz: 'Yanone Kaffeesatz', sans-serif;
+    --nav: 5em;
+    --page-header: 6em;
+    --big-header: 3em;
+    --medium-header: 2em;
+    --big-paragraph: 1.7em;
+    --paragraph: 1.1em;
+    --links: 1.1em;
+    --buttons-large: 1.2em;
+    --buttons: 0.7em;
+    --logo: 1.2em;
+    --helper-text: 0.9em;
+}
+
+body {
+    background-color: var(--almond);
+}
+
+body p {
+    font-family: var(--josefin-sans);
+    font-size: var(--paragraph);
+}
+
+body a {
+    font-family: var(--josefin-sans);
+    font-size: var(--links);
+}
+
+/** Navigation **/
+nav {
+    box-shadow: none;
+    background-color: var(--magenta);
+}
+
+nav .brand-logo {
+    font-family: var(--yanone-kaffeesatz);
+    text-transform: uppercase;
+    padding: 10px 0 0 15px;
+    line-height: 60px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: var(--nav);
+    color: var(--almond);
+}
+
+nav .brand-icon {
+    height: 60px;
+    width: 60px;
+}
+
+nav .nav-title {
+    padding: 20px 0 15px 15px;
+    font-family: var(--josefin-sans);
+    font-size: var(--logo);
+    color: var(--almond);
+}
+
+nav ul {
+    margin: 2em 0.5em 1em 0.5em;
+}
+
+nav ul a {
+    transition: all 0.1s ease-in-out;
+    color: var(--almond);
+}
+
+nav ul a:hover {
+    background-color: transparent;
+    transform: scale(1.3);
+}
+
+.sidenav {
+    font-family: var(--josefin-sans);
+}
+
+.sidenav li a,
+.sidenav li a i {
+    color: var(--black);
+}
+
+/** Hero image **/
+div .hero { 
+    width: 100%;
+    height: 300px;
+}
+
+/** Flash messages **/
+.flashes {
+    color: var(--magenta);
+    margin-bottom: 20px;
+}
+
+.profile-flash {
+    margin-bottom: 0;
+    padding-top: 10px;
+    background-color: var(--munsell-t);
+}
+
+.profile-flash i {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Forms */
+form {
+    margin-bottom: 40px;
+}
+
+form .helper-text {
+    font-family: var(--josefin-sans);
+    font-size: var(--helper-text) !important;
+}
+
+form label {
+    font-family: var(--yanone-kaffeesatz);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+form input,
+form textarea {
+    font-family: var(--josefin-sans);
+    border-bottom: 2px solid var(--munsell) !important;
+}
+
+form input:focus, 
+form textarea:focus {
+    box-shadow: 0 1px 0 0 var(--munsell) !important;
+}
+
+.input-field .prefix.active {
+    color: var(--munsell);
+}
+
+.contact-img {
+    width: 100%;
+    min-width: 375px;
+    padding-left: 5rem;
+}
+
+.visibility {
+    cursor: pointer;
+}
+
+label {
+color: var(--black) !important;
+}
+
+.edit-page h3,
+.group-section h3,
+.profile-section h3 {
+    background-color: var(--munsell-t);
+    padding: 30px 15px;
+    margin-bottom: 30px;
+}
+
+.modal-content form {
+    margin-bottom: 0;
+}
+
+/** Cards **/
+.home-card {
+    background-color: var(--black);
+    box-shadow: none;
+    color: var(--almond);
+}
+
+.home-card i {
+    color: var(--munsell);
+}
+
+/** Homepage **/
+.home-intro {
+    margin-bottom: 40px;
+}
+
+.card-wrapper {
+    background-color: var(--black);
+    margin-bottom: 0;
+    padding-top: 20px;
+}
+
+.title-wrapper {
+    padding: 20px 0;
+}
+
+.title-wrapper h1 {
+    margin-bottom: 0;
+}
+
+.search-wrapper {
+    padding: 40px 0;
+}
+
+.header-wrapper {
+    padding-bottom: 30px;
+    background-color: var(--black);
+    color: var(--almond);
+    margin-bottom: 0;
+}
+
+.events-wrapper {
+    background: url(/static/imgs/events-wrapper-4.jpg) no-repeat center;
+    background-size: cover;
+    margin-top: 0;
+}
+
+.event-time-wrapper {
+    margin-bottom: 0;
+}
+
+.events-card {
+    border-radius: 5px;
+}
+
+.all-events-link {
+    padding-bottom: 20px !important;
+}
+
+.all-events-link a {
+    color: var(--almond);
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.homepage-icon {
+    height: 100px;
+    width: 100px;
+}
+
+.homepage-img {
+    height: 200px;
+    width: 200px;
+}
+
+.homepage-card-title {
+    margin-bottom: 10px;
+}
+
+/** Browse events, groups & members **/
+.events-card,
+.event-card,
+.group-card {
+    background-color: var(--munsell);
+}
+
+.browse-img {
+    width: 35%;
+}
+
+.browse-img img {
+    object-fit: cover;
+    max-height: 100% !important;
+    min-height: 100% !important;
+}
+
+.action-wrapper {
+    margin-bottom: 0;
+}
+
+.member-card-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.member-card {
+    background-color: transparent !important;
+    box-shadow: none;
+    height: 200px;
+    width: 200px;
+}
+
+.member-name {
+    font-family: var(--josefin-sans) !important;
+    background-color: var(--magenta);
+    width: 100%;
+    height: 25%;
+}
+
+.card-title {
+    font-size: 1em !important;
+}
+
+.group-link,
+.event-link {
+    color: var(--black);
+}
+
+.create-wrapper {
+    margin-bottom: 70px;
+}
+
+
+/** Group **/
+
+
+/** Profile **/
+.p-banner {
+    height: 400px;
+    background-color: var(--almond);
+    margin-bottom: 0;
+}
+
+.details {
+    background-color: var(--munsell-t);
+}
+
+.p-info {
+    background: url(/static/icons/book.png) center;
+}
+
+.info-label {
+    font-weight: 700;
+}
+
+.p-info i {
+    margin-right: 10px;
+}
+
+.p-info a {
+    margin-bottom: 10px;
+}
+
+.p-info .profile-pic {
+    height: 220px;
+    width: 220px;
+}
+
+.project-card {
+    background-color: var(--munsell);
+}
+
+.bio-card {
+    box-shadow: none;
+    background-color: var(--munsell);
+    color: var(--almond);
+}
+
+.bio-card-title,
+.profile-header {
+    background-color: var(--black);
+    padding-bottom: 20px;
+    color: var(--almond);
+    margin-bottom: 0;
+}
+
+.profile-header h2 {
+    margin-left: 5px;
+    margin-bottom: 25px;
+}
+
+.bio-card .card-content {
+    text-align: justify;
+}
+
+.bio-card-title i,
+.profile-header i {
+    color: var(--munsell);
+    margin-right: 5px;
+    margin-left: 10px;
+}
+
+.nothing-here-p {
+    margin-top: 0;
+}
+
+.events-card {
+    margin: 0;
+}
+
+.url-label,
+.bio-text {
+    font-weight: 700;
+    color: var(--magenta);
+}
+
+.groups-card {
+    background-color: var(--black);
+}
+
+.groups-card .card-image img {
+    height: 190px;
+}
+
+.member-card .card-image {
+    position: static;
+}
+
+.bottom-p {
+    margin-bottom: 40px;
+}
+
+/** Welcome page **/
+.socials-wrapper {
+    background-color: var(--black);
+    padding-bottom: 5px;
+}
+
+.socials-wrapper h3 {
+    color: var(--almond);
+    margin-bottom: 30px;
+}
+
+.socials {
+    margin-bottom: 50px;
+}
+
+.socials i {
+    color: var(--magenta);
+}
+
+.socials .fa-patreon {
+    margin-top: 15px;
+}
+
+.socials-links {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/** FAQs **/
+.faqs i {
+    color: var(--munsell);
+    margin-right: 10px;
+}
+
+.faqs li {
+    font-family: var(--josefin-sans);
+}
+
+.faqs li i {
+    color: var(--munsell);
+}
+
+/** Statements.html **/
+.statements {
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.accessibility li,
+.privacy li {
+    font-family: var(--josefin-sans);
+}
+
+.accessibility li i,
+.privacy li i {
+    color: var(--munsell);
+}
+
+.accessibility a {
+    color: var(--munsell);
+}
+
+/** Sign-up **/
+.sign-up a {
+    color: var(--munsell);
+}
+
+/** Log-in **/
+.log-in a {
+    color: var(--munsell);
+}
+
+/** Footer **/
+footer {
+    padding: 70px 20px 10px 20px;
+    background-color: var(--magenta);
+    color: var(--almond);
+}
+
+footer h5 {
+    margin-bottom: 0px;
+}
+
+footer .footer-social-media i {
+    padding: 0.5em;
+    color: var(--almond);
+}
+
+footer p {
+    margin-top: 0;
+}
+
+footer .row {
+    margin-bottom: 0;
+}
+
+footer .copyright-statement {
+    font-family: var(--josefin-sans);
+    padding-top: 1.25em !important;
+}
+
+footer .useful-links a {
+    color: var(--almond);
+    font-family: var(--josefin-sans);
+    font-size: var(--links);
+}
+
+/** Decoration **/
+.underline {
+    width: 150px;
+    border: solid var(--magenta);
+    margin-bottom: 40px;
+}
+
+.underline-no-margin {
+    width: 150px;
+    border: solid var(--magenta);
+    margin-bottom: 0;
+}
+
+.long-underline {
+    margin-top: 25px;
+    border: solid var(--magenta);
+    opacity: 0.2;
+}
+
+/** Buttons **/
+.btn {
+    background-color: var(--munsell);
+    font-family: var(--josefin-sans);
+    box-shadow: none;
+    font-size: var(--buttons);
+    font-weight: 700;
+}
+
+.btn-large {
+    background-color: var(--munsell);
+    font-family: var(--josefin-sans);
+    box-shadow: none;
+    font-size: var(--buttons-large);
+    font-weight: 700;
+}
+
+.btn:hover,
+.btn-large:hover {
+    background-color: var(--cadet);
+    box-shadow: none;
+}
+
+.welcome-links {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.delete-btn {
+    margin-top: 40px;
+}
+
+.popular-btn,
+.follow-btn {
+    background-color: var(--cadet-t);
+    color: var(--almond);
+    transition: all 0.1s ease-in-out;
+}
+
+.popular-btn:hover,
+.follow-btn:hover {
+    background-color: var(--cadet);
+    transform: scale(1.2);
+    cursor: none;
+}
+
+.event-btn {
+    background-color: var(--magenta);
+}
+
+.join-group {
+    margin-bottom: 20px;
+}
+
+.join-btn {
+    background-color: var(--almond);
+    color: var(--black);
+}
+
+.join-btn:hover {
+    color: var(--almond);
+}
+
+.edit-group,
+.leave-group {
+    margin-bottom: 20px;
+}
+
+/** Headers **/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--yanone-kaffeesatz);
+    text-transform: uppercase;
+}
+
+h1 {
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: var(--page-header);
+}
+
+h2 {
+    font-weight: 700;
+    font-size: var(--big-header);
+    margin-bottom: 0;
+}
+
+h3 {
+    font-weight: 700;
+    font-size: var(--medium-header);
+}
+
+.little-header {
+    font-weight: 700;
+    margin: 0;
+    padding: 10px 15px;
+    font-family: var(--yanone-kaffeesatz);
+    font-size: 2em;
+    color: var(--munsell);
+}
+
+.big-paragraph {
+    font-size: var(--big-paragraph);
+    font-size: 400;
+    font-family: var(--yanone-kaffeesatz);
+}
+
+.home-title {
+    color: var(--magenta);
+}
+
+.group-name {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/** Modals **/
+.modal {
+    background-color: var(--black);
+    color: var(--almond);
+    padding-bottom: 10px;
+}
+
+.modal .modal-content {
+    font-family: var(--josefin-sans);
+    padding-bottom: 0;
+}
+
+.modal .modal-footer {
+    background-color: var(--black);
+}
+
+.modal .modal-footer a,
+.modal .modal-footer button {
+    font-family: var(--josefin-sans);
+}
+
+.modal ul {
+    list-style-type: none;
+  }
+
+.modal li {
+    padding-left: 1.3em;
+}
+
+.modal ul li:before {
+    content: "\f071";
+    font-family: "Font Awesome 5 Free";
+    display: inline-block;
+    margin-left: -1.3em; 
+    width: 1.3em; 
+    color: var(--magenta);
+    font-weight: 700;
+}
+
+.reset-password {
+    padding-bottom: 20px;
+}
+
+input[type=text]:not(.browser-default) {
+    color: var(--magenta);
+}
+
+.gandalf {
+    height: 150px !important;
+}
+
+/** Tabs **/
+.tab-wrapper {
+    margin-top: 70px;
+}
+
+.tabs {
+    background-color: var(--cadet-t);
+    border-radius: 5px;
+    height: 80px;
+}
+
+.tab:hover {
+    background-color: var(--cadet);
+}
+
+.tabs .tab a.active {
+    background-color: var(--cadet);
+}
+
+.tabs .tab {
+    width: 33.3%;
+    height: 100%;
+}
+
+.tabs .tab a {
+    font-family: var(--yanone-kaffeesatz);
+    color: var(--almond) !important;
+}
+
+/** Carousels **/
+.carousel-wrapper {
+    margin-bottom: 40px;
+}
+
+.carousel {
+    height: auto;
+}
+
+.carousel-cell {
+  width: 33%;
+  margin-top: 50px;
+  margin-right: 10px;
+  background: #8C8;
+  border-radius: 5px;
+}
+
+/* Mobile queries */
+@media only screen and (max-width:425px) {
+    nav .brand-logo {
+        font-size: 3em;
+    }
+
+    nav .brand-icon {
+        height: 35px;
+        width: 35px;
+    }
+
+    div .details {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .welcome-link-wrapper {
+        margin-bottom: 0;
+    }
+
+    .welcome-link {
+        margin-bottom: 20px;
+    }
+
+    .groups h2,
+    .events h2,
+    .following h2 {
+        text-align: center;
+    }
+
+    footer {
+        text-align: left;
+    }
+
+    .copyright-statement {
+        justify-content: center;
+    }
+
+    .button-wrapper {
+        padding: 0 !important;
+    }
+
+    .footer-social-media i {
+        font-size: 1.5em;
+    }
+
+    .footer-social-media {
+        padding-left: 0;
+        margin-top: 20px;
+    }
+
+    .action-wrapper {
+        flex-direction: column;
+    } 
+    
+    .page-header {
+        font-size: 4em;
+    }
+
+    .bio-card-title {
+        text-align: center;
+    }
+
+    .bio-card-title i {
+        margin-left: 0;
+    }
+
+}
+
+@media only screen and (min-width:425px) and (max-width: 992px) {
+    nav {
+        height: 64px !important;
+    }
+    
+    nav .brand-logo {
+        font-size: 4em;
+        margin-top: 5px;
+    }
+
+    nav .brand-icon {
+        height: 45px;
+        width: 45px;
+    }
+
+    .welcome-link-wrapper {
+        margin-bottom: 0;
+    }
+
+    .welcome-link {
+        margin-bottom: 20px;
+    }
+
+    div .details {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .user-name {
+        font-size: 3.5em;
+    }
+
+    .edit,
+    .settings {
+        margin-right: 10px;
+    }
+
+    footer .footer-logo {
+        height: 125px;
+        width: 125px;
+    }
+
+    .page-header {
+        font-size: 5em;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .carousel-cell {
+        width: 100%;
+    }
+
+    .event-btn {
+        font-size: 0.9em;
+        line-height: 40px;
+    }
+
+    .browse-img {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    .browse-img img {
+        max-width: 100%;
+    }
+
+    .group-card {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .nav-content .nav-title {
+        display: none;
+    }
+    
+    h1 {
+        font-size: 2.7em;
+    }
+
+    .p-info img {
+        margin-top: 20px;
+    }
+
+    .user-name {
+        text-align: center;
+    }
+
+    footer img {
+        margin: 30px 0;
+    }
+
+    .footer-social-media {
+        justify-content: space-between;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .footer-lower {
+        margin-top: 30px;
+    }
+
+    .button-wrapper {
+        padding: 0 !important;
+    }
+
+    .page-header {
+        margin-top: 10px;
+    }
+
+    .card-wrapper i {
+        font-size: 5em;
+    }
+
+    .bio-card .card-content {
+        height: 300px;
+        overflow-x: scroll;
+    }
+    
+}
+
+

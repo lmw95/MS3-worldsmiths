@@ -25,10 +25,6 @@
             "bsonType": "string",
             "description": "must be a string and is required"
         },
-        "num_of_members": {
-            "bsonType": "integer",
-            "description": "must be an integer and is always displayed"
-        },
         "group_description": {
             "bsonType": "string",
             "description": "must be a string and is required"
@@ -42,6 +38,6 @@
             "minItems": "0"
         }
     },
-    "required": ["_id", "group_name", "group_cover_img_url", "group_type", "group_admin", "group_location", "group_description"],
+    "required": ["_id", "group_name", "group_cover_img_url", "group_admin", "group_location", "group_description"],
     "title": "groups"
 }

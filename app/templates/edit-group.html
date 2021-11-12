@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block page_title %}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col s12 center-align faqs">
+        <h1>Edit <span class="home-title">{{ group.group_name }}</span></h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12">
+        <div class="col s12 m12 l12 xl12 center-align edit-page">
+            <form method="POST" action="{{ url_for('groups.edit_group', group_id=group._id) }}">
+                <div class="row">
+                    <div class="col s10 offset-s1 left-align">
+                        <h3>Group details <i class="fas fa-cogs right"></i></h3>
+                    </div>
+                    <div class="input-field col s10 offset-s1 m4 offset-m1 l4 offset-l1 xl4 offset-xl1">
+                        <input id="name" name="name" type="text" class="validate" value="{{ group.group_name }}" required>
+                        <label for="name">Group name</label>
+                    </div>
+                    <div class="input-field col s10 offset-s1 m4 offset-m1 l4 offset-l1 xl4 offset-xl1">
+                        <input id="location" name="location" type="text" class="validate" value="{{ group.group_location }}" required>
+                        <label for="location">Group location</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s10 offset-s1 m4 offset-m1 l4 offset-l1 xl4 offset-xl1">
+                        <input id="description" name="description" type="text" class="validate" value="{{ group.group_description }}" required>
+                        <label for="description">Group description</label>
+                    </div>
+                    <div class="input-field col s10 offset-s1 m4 offset-m1 l4 offset-l1 xl4 offset-xl1">
+                        <input id="banner" name="banner" type="text" class="validate" value="{{ group.group_cover_img_url }}" required>
+                        <label for="banner">Banner image (choose a URL)</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s10 offset-s1">
+                        <button class="btn-large" type="submit">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
