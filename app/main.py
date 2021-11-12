@@ -32,6 +32,34 @@ def homepage():
                             users=users)
 
 
+# Search through all events and memembers
+@main.route("/search", methods=["GE", "POST"])
+def search():
+    """
+    Renders template for 'all-members-groups.html"
+    Displays query results
+    Uses user info to render correct functions and displays
+    """
+
+    if session:
+        user = User.check_user_exists(session["user"])
+    else:
+        user = None
+
+    members = list(User.get_all_users())
+    print(members)
+    groups = list(Group.get_all_groups())
+    print(groups)
+    
+    user_query = request.form.get("finder")
+    group_results = list(Group.find_groups_by_query(user_query))
+    member_results = list(User.find_users_by_query(user_query))
+
+    return render_template("all-groups-members.html", user=user,
+                                user_query=user_query, group_results=group_results,
+                                member_results=member_results, members=members,
+                                groups=groups, search=True)
+
 # Statements
 @main.route("/statements")
 def statements():
@@ -83,15 +111,14 @@ def browse_all():
     """
     Renders template with all existing groups and events
     """
-    user = User.get_user_id(session["user"])
-    #print(user)
     groups = list(Group.get_all_groups())
     members = list(User.get_all_users())
-    #print(members)
 
-    ids = mongo.db.users.distinct("_id")
-    print(ids)
+    if session:
+        user = User.check_user_exists(session["user"])
+    else:
+        user = None
 
     return render_template("all-groups-members.html", 
                             page_title="Browse all groups and members",
-                            groups=groups, members=members, ids=ids)
+                            groups=groups, members=members)

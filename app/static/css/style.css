@@ -305,9 +305,22 @@ color: var(--black) !important;
     margin-bottom: 70px;
 }
 
+.search-confirmation {
+    font-size: 2.5em !important;
+    margin-top: 70px;
+    background-color: var(--munsell-t);
+    padding: 20px 0;
+}
 
-/** Group **/
+.search-confirmation span {
+    color: var(--munsell);
+    font-weight: 700;
+}
 
+.browse-members,
+.browse-events {
+    margin-bottom: 50px;;
+}
 
 /** Profile **/
 .p-banner {
