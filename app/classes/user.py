@@ -125,7 +125,7 @@ class User():
     def remove_from_list(user_id, field, value):
         mongo.db.users.update_one({"_id": ObjectId(user_id)},
                                    {"$pull": {field: ObjectId(value)}})
-                                   
+
 
     # Deletes a user from DB
     @staticmethod
