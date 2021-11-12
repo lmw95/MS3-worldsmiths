@@ -12,6 +12,7 @@ from datetime import datetime
 # Classes
 from app.classes.user import User
 from app.classes.group import Group
+from app import mongo
 
 
 # User blueprint
@@ -29,6 +30,7 @@ def get_profile():
 
     user = User.check_user_exists(session["user"].lower())
     user_id = User.get_user_id(session["user"].lower())
+
     groups_created = list(Group.find_groups_by_id(user["groups_created"]))
     groups_member = list(Group.find_groups_by_id(user["groups_member_of"]))
 
@@ -36,6 +38,25 @@ def get_profile():
         return render_template("profile.html", page_title="My profile", user=user,
                                 user_id=user_id, groups_created=groups_created,
                                 groups_member=groups_member)
+
+
+# Get other member profiles
+@users.route("/member_profile/<user_id>")
+def member_profile(user_id):
+    """
+    Gets the user id
+    Get's member's groups and following
+    """
+    user = User.get_user_by_id(user_id)
+    user_id = User.get_user_id(user["email"])
+
+    groups_created = list(Group.find_groups_by_id(user["groups_created"]))
+    groups_member = list(Group.find_groups_by_id(user["groups_member_of"]))
+
+    return render_template("member.html", page_title="", 
+                            user_id=user_id, user=user,
+                            groups_member=groups_member,
+                            groups_created=groups_created)
 
 
 # Profile settings
@@ -152,8 +173,8 @@ def edit_account():
     else:
         flash("Sorry, account could not be updated right now.")
         return render_template("profile-settings.html", page_title="Profile settings", user=user)
-        
-                
+
+
 # Edit profile
 @users.route("/edit_profile/<user_id>", methods=["GET", "POST"])
 def edit_profile(user_id):
@@ -196,11 +217,28 @@ def delete_account(user_id):
     """
     Triggers confirmation modal
     Removes user from any groups
+    Deletes groups associated with user
     Removes user from session cookie
     Removes user from MongoDB
     Flashes user to confirm account deletion
     Redicts user to 'sign-up.html'
     """
+
+    # TO SORT
+    
+    # Get user
+    #user = User.check_user_exists(session["user"])
+    # Get user's groups
+    #groups = mongo.db.groups.distinct("_id")
+    #OR
+    #groups_two = list(Group.find_groups_by_id(user["groups_created"]))
+    # Get and delete user's groups
+    #user = User.check_user_exists(session["user"])
+    #user_groups = list(Group.find_groups_by_id(user["groups_created"]))
+    #for group in user_groups:
+    # Group.delete_group(group)
+    #User.remove_from_list(user["_id"], "groups_member_of", group_id)
+  
     session.pop("email", None)
     session.pop("user")
     User.delete_user(user_id)
