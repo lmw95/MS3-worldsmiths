@@ -4,7 +4,7 @@
   $('.sidenav').sidenav();
 
   // MaterializeCSS character counter
-  $('input#input_text, textarea#textarea1').characterCounter();
+  $('input#input_text, textarea#textarea1, input#interests').characterCounter();
 
   // MaterializeCSS collapsable accordians
   $('.collapsible').collapsible({
@@ -32,5 +32,8 @@ $(".toggle-password").click(function () {
     $(this).removeClass("fa-lock-open").addClass("fa-lock");
   }
 });
+
+//Materialize tooltips
+$('.tooltipped').tooltip();
 
 });
