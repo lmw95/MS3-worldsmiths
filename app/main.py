@@ -10,6 +10,7 @@ from datetime import datetime
 # Classes
 from app.classes.user import User
 from app.classes.group import Group
+from app import mongo
 
 
 # Main blueprint
@@ -24,11 +25,12 @@ def homepage():
     Gets all groups
     Render homepage.html template
     """
+    user = User.check_user_exists(session["user"])
     groups = list(Group.get_all_groups())
     users = list(User.get_all_users())
 
     return render_template("homepage.html", page_title="Home", groups=groups,
-                            users=users)
+                            users=users, user=user)
 
 
 # Statements
@@ -82,9 +84,15 @@ def browse_all():
     """
     Renders template with all existing groups and events
     """
+    user = User.get_user_id(session["user"])
+    #print(user)
     groups = list(Group.get_all_groups())
-    users = list(User.get_all_users())
+    members = list(User.get_all_users())
+    #print(members)
+
+    ids = mongo.db.users.distinct("_id")
+    print(ids)
 
     return render_template("all-groups-members.html", 
                             page_title="Browse all groups and members",
-                            groups=groups, users=users)
+                            groups=groups, members=members, ids=ids)
