@@ -86,14 +86,14 @@
         <h2>Begin your adventure...</h2>
     </div>
     <div class="col s12">
-        <form action="{{ url_for('main.search') }}" action="POST">
-            <div class="input-field col s12 m12 l6 xl6 offset-l3 offset-xl3">
+        <form method="POST" action="{{ url_for('main.search') }}">
+            <div class="input-field col s12 l6 offset-l3">
                 <i class="fas fa-search prefix"></i>
-                <input id="finder" type="text" class="validate" name="finder">
-                <label for="finder">search for groups, events and members...</label>
+                <input id="finder-browse" type="text" class="validate" name="finder">
+                <label for="finder-browse">Browse all groups and members</label>
             </div>
-            <div class="col s6 offset-s3 center-align">
-                <button class="btn btn-large" type="submit" name="submit">Search</button>
+            <div class="col s12 l6 offset-l3 center-align">
+                <button class="btn btn-large" type="submit">Search</button>
             </div>
         </form>
     </div>

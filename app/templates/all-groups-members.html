@@ -54,7 +54,7 @@
 </div>
 <div class="row create-wrapper">
     <div class="col s12 l10 offset-l1">
-        {% if user %}
+        {% if session.user %}
         <a href="{{ url_for('groups.create_group') }}" class="btn-large col s12"><i class="fas fa-users left"></i> Create group</a>
         {% else %}
         {% endif %}
@@ -131,7 +131,7 @@
                 <a href="{{ url_for('users.member_profile', user_id=member._id) }}"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
                 <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
                 {% else %}
-                <a href="#prompt" class="modal-trigger"><span class="card-title member-nickname valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
+                <a href="#prompt" class="modal-trigger"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
                 <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
                 {% endif %}
             </div>

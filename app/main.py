@@ -33,7 +33,7 @@ def homepage():
 
 
 # Search through all events and memembers
-@main.route("/search", methods=["GE", "POST"])
+@main.route("/search", methods=["GET", "POST"])
 def search():
     """
     Renders template for 'all-members-groups.html"
@@ -47,9 +47,7 @@ def search():
         user = None
 
     members = list(User.get_all_users())
-    print(members)
     groups = list(Group.get_all_groups())
-    print(groups)
     
     user_query = request.form.get("finder")
     group_results = list(Group.find_groups_by_query(user_query))
@@ -114,10 +112,7 @@ def browse_all():
     groups = list(Group.get_all_groups())
     members = list(User.get_all_users())
 
-    if session:
-        user = User.check_user_exists(session["user"])
-    else:
-        user = None
+    user = User.check_user_exists(session["user"])
 
     return render_template("all-groups-members.html", 
                             page_title="Browse all groups and members",
