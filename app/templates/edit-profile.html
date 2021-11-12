@@ -17,8 +17,8 @@
                     <h3>Profile decoration <i class="fas fa-paint-roller right"></i></h3>
                 </div>
                 <div class="input-field col s10 offset-s1 m4 offset-m1 l4 offset-l1 xl4 offset-xl1">
-                    <input id="profile_pic" name="profile_pic" type="text" class="validate" value="{{ user.profile_pic_url }}">
-                    <label for="profile_pic">Profile picture (choose a URL)</label>
+                    <input id="profile-pic" name="profile-pic" type="text" class="validate" value="{{ user.profile_pic_url }}">
+                    <label for="profile-pic">Profile picture (choose a URL)</label>
                 </div>
                 <div class="input-field col s10 offset-s1 m4 offset-m1 l4 offset-l1 xl4 offset-xl1">
                     <input id="banner" name="banner" type="text" class="validate" value="{{ user.user_banner_url }}">
@@ -42,9 +42,10 @@
                     <label for="nickname">Nickname</label>
                 </div>
                 <div class="input-field col s10 offset-s1 m4 offset-m1 l4 offset-l1 xl4 offset-xl1">
-                    <input id="interests" name="interests" type="text" class="validate" value="{{ user.user_interests }}" patter="^[a-zA-z0-9,.'-&]{1,300}$" required>
+                    <input id="interests" name="interests" type="text" class="validate" value="{{ user.user_interests }}" patter="^[a-zA-z0-9,.'-&]{1,300}$" data-length="300" required>
                     <label for="interests">Interests</label>
-                    <span class="helper-text left-align">(Max. 300 characters)</p>
+                    <span class="helper-text left-align">(Max. 300 characters)</span>
+
                 </div>
             </div>
             <div class="row">
