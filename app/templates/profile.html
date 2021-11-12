@@ -27,7 +27,7 @@
             <div class="col s12 m12 l7 xl7">
                 <div class="row valign-wrapper">
                     <div class="col s12">
-                        <h1 class="user-name">{{ user.first_name }} {{ user.last_name }}</h1>
+                        <h1 class="user-name truncate">{{ user.first_name }} {{ user.last_name }}</h1>
                         <p><i class="fas fa-comment-dots"></i><span class="info-label">Nickname:</span> {{ user.nickname }}</p>
                         <p><i class="fas fa-user"></i><span class="info-label">Member since:</span> {{ user_id.generation_time.date().strftime("%d %B %Y") }}</p>
                         <p><i class="fas fa-map-marker-alt"></i><span class="info-label">Location:</span> {{ user.user_city }} {{ user.user_location.capitalize() }}</p>
@@ -98,7 +98,6 @@
                             <div class="col s12 center-align">
                                 <img src="/static/imgs/nothing-here-2.png" height="250" width="200">
                                 <p class="big-paragraph">There's nothing here! (yet...)</p>
-                                <hr class="underline-no-margin">
                             </div>
                         {% endif %}  
                         </div>
@@ -107,8 +106,10 @@
             </div>
         </div>
         <div class="col s12 m12 l6 xl6">
-            <div class="col s12 center-align">
-                <h3>Member ({{ user.groups_member_of|length }})</h3>
+            <div class="row">
+                <div class="col s12 center-align">
+                    <h3>Member ({{ user.groups_member_of|length }})</h3>
+                </div>
             </div>
             <div class="row">
                 <div class="col s12">
@@ -116,7 +117,7 @@
                         <div class="col s12">
                         {% if groups_member|length > 0 %}
                         {% for group in groups_member %}
-                            <div class="col s12 m6 l3 xl3">
+                            <div class="col s12 m6 l6 xl6">
                                 <div class="card groups-card">
                                     <div class="card-image">
                                         <img src="{{ group.group_cover_img_url }}">
@@ -131,13 +132,13 @@
                                     </div>
                                 </div>
                             </div>
-                            {% endfor %}
-                            {% else %}
+                        {% endfor %}
+                        {% else %}
                             <div class="col s12 center-align">
                                 <img src="/static/imgs/nothing-here-2.png" height="250" width="200">
                                 <p class="big-paragraph nothing-here-p">There's nothing here! (yet...)</p>
                             </div>
-                            {% endif %}
+                        {% endif %}
                         </div>
                     </div>
                 </div>
