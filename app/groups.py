@@ -1,9 +1,11 @@
 # Flask
 from flask import (Flask, render_template, request,
                    flash, url_for, redirect, session, Blueprint)
+from datetime import datetime
 # Classes
 from app.classes.user import User
 from app.classes.group import Group
+from app.classes.comment import Comment
 
 
 # Groups blueprint
@@ -98,6 +100,7 @@ def edit_group(group_id):
 
     return render_template("edit-group.html", group_id=group_id, group=group)
 
+
 # Join group
 @groups.route("/join_group/<group_id>", methods=["GET", "POST"])
 def join_group(group_id):
@@ -119,6 +122,41 @@ def join_group(group_id):
         Group.add_to_list(group_id, "members", user_id)
 
     return redirect(url_for('groups.group_page', group_id=group_id))
+
+
+# Add comment
+@groups.route("/add_comment/<group_id>", methods=["GET", "POST"])
+def add_comment(group_id):
+    """
+    Gets group id
+    Gets poster id (user in session)
+    Adds comment to Mongo DB
+    Renders comment on group page
+    """
+
+    user = User.check_user_exists(session["user"])
+    group = Group.get_group(group_id)["_id"]
+
+    # https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
+    c_time = datetime.now().strftime("%H:%M")
+    c_date = datetime.now().strftime("%d %b %Y")
+
+    if request.method == "POST":
+        new_comment = Comment(comment=request.form.get("comment"),
+                            commenter=user["_id"],
+                            group_id=ObjectId(group),
+                            time_posted=c_time,
+                            date_posted=c_date)
+        try:
+            new_comment.add_to_db()
+            print(new_comment)
+            flash("Comment in database")
+            return redirect(url_for('groups.group_page', group_id=group_id))
+        except Exception as e:
+            print(e)
+
+    return redirect(url_for('groups.group_page', group_id=group_id))
+
 
 # Delete group
 @groups.route("/delete_group/<group_id>")

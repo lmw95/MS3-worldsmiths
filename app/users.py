@@ -12,6 +12,7 @@ from datetime import datetime
 # Classes
 from app.classes.user import User
 from app.classes.group import Group
+from app.classes.comment import Comment
 from app import mongo
 
 

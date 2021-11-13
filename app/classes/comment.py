@@ -24,13 +24,14 @@ class Comment():
             "date_posted": self.date_posted,
             "group_id": self.group_id,
         }
+        return comment_info
 
 
     # Add comment to db
     # Generate id for commnent
     def add_to_db(self):
-        comment_id = mongo.db.comments.insert_one(self.comment_info())
-        return comment_id
+        new_id = mongo.db.comments.insert_one(self.comment_info())
+        return new_id
 
 
     # Update comment/reply
