@@ -119,7 +119,7 @@ def join_group(group_id):
         User.add_to_list(user_id, "groups_member_of", group_id)
         Group.add_to_list(group_id, "members", user_id)
 
-    return redirect(url_for('groups.group_page', group_id=group_id)) 
+    return redirect(url_for('groups.group_page', group_id=group_id))
 
 # Delete group
 @groups.route("/delete_group/<group_id>")
