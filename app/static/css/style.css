@@ -829,6 +829,11 @@ input[type=text]:not(.browser-default) {
         margin-left: 0;
     }
 
+    .group-member-card {
+        display: flex;
+        justify-content: center;
+    }
+
 }
 
 @media only screen and (min-width:425px) and (max-width: 992px) {

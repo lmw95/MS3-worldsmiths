@@ -20,11 +20,12 @@
                         <p><i class="fas fa-user"></i><span class="info-label">Member since:</span> {{ user_id.generation_time.date().strftime("%d %B %Y") }}</p>
                         <p><i class="fas fa-map-marker-alt"></i><span class="info-label">Location:</span> {{ user.user_city }} {{ user.user_location.capitalize() }}</p>
                         <p><i class="fas fa-heart"></i><span class="info-label">Interests:</span> {{ user.user_interests }}</p>
+                        <p><i class="far fa-handshake"></i><span class="info-label">Followers:</span> {{ followers|length }}</p>
                     </div>
                 </div>
             </div>
             <div class="col s12 m12 l3 xl2">
-                <a href="" class="btn-large col s12 m3 offset-m1 l12 xl12 edit">Follow</a>
+                <a href="{{ url_for('users.follow', user_id=user_id) }}" class="btn-large col s12 m3 offset-m1 l12 xl12 edit">Follow</a>
                 <a href="" class="btn-large col s12 m3 l12 xl12 modal-trigger settings">Message</a>
             </div>
         </div>
@@ -134,10 +135,29 @@
     </div>
     <div class="row">
         <div class="col s12 profile-header">
-            <h2><i class="fas fa-handshake"></i> Following</h2>
+            <h2><i class="fas fa-handshake"></i> Following ({{ following|length }})</h2>
         </div>
-        <div class="col s12 profile-section">
-            <!--Jinja template for follower avatars-->
+    </div>
+    <div class="row">
+        <div class="col s12">
+            {% if following|length > 0 %}
+            {% for member in following %}
+            <div class="col s12 m6 l4 xl4 group-member-card">
+                <div class="card member-card">
+                    <div class="card-image">
+                        <img src="{{ member.profile_pic_url }}">
+                        {% if user %}
+                        <a href="{{ url_for('users.member_profile', user_id=member._id) }}"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
+                        <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
+                        {% else %}
+                        <a href="#prompt" class="modal-trigger"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
+                        <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>

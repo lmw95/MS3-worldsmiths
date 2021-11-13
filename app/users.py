@@ -34,10 +34,14 @@ def get_profile():
     groups_created = list(Group.find_groups_by_id(user["groups_created"]))
     groups_member = list(Group.find_groups_by_id(user["groups_member_of"]))
 
+    following = list(User.find_users_in_array(user["following"]))
+    followers = list(User.find_users_in_array(user["followers"]))
+
     if user:
         return render_template("profile.html", page_title="My profile", user=user,
                                 user_id=user_id, groups_created=groups_created,
-                                groups_member=groups_member)
+                                groups_member=groups_member, following=following,
+                                followers=followers)
 
 
 # Get other member profiles
@@ -53,10 +57,37 @@ def member_profile(user_id):
     groups_created = list(Group.find_groups_by_id(user["groups_created"]))
     groups_member = list(Group.find_groups_by_id(user["groups_member_of"]))
 
+    following = list(User.find_users_in_array(user["following"]))
+    followers = list(User.find_users_in_array(user["followers"]))
+
     return render_template("member.html", page_title="", 
                             user_id=user_id, user=user,
                             groups_member=groups_member,
-                            groups_created=groups_created)
+                            groups_created=groups_created,
+                            following=following, followers=followers)
+
+
+# Follow other members
+@users.route("/follow/<user_id>")
+def follow(user_id):
+    """
+    Gets session user id
+    Gets user id of member to be followed
+    Adds member to 'following' list
+    """
+    user = User.get_user_id(session["user"])
+    session_id = user
+    print(session_id)
+
+    member = User.get_user_by_id(user_id)["_id"]
+    user_id = member
+    print(user_id)
+
+    if user:
+        User.add_to_list(session_id, "following", user_id)
+        User.add_to_list(user_id, "followers", session_id)
+
+    return redirect(url_for('users.member_profile', user_id=user_id))
 
 
 # Profile settings
