@@ -25,7 +25,11 @@
                 </div>
             </div>
             <div class="col s12 m12 l3 xl2">
+                {% if user_id in session_following %}
+                <a href="" class="btn-large col s12 m3 offset-m1 l12 xl12 edit">Unfollow</a>
+                {% else %}
                 <a href="{{ url_for('users.follow', user_id=user_id) }}" class="btn-large col s12 m3 offset-m1 l12 xl12 edit">Follow</a>
+                {% endif %}
                 <a href="" class="btn-large col s12 m3 l12 xl12 modal-trigger settings">Message</a>
             </div>
         </div>

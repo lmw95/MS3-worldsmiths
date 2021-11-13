@@ -58,7 +58,6 @@ def group_page(group_id):
 
         members_of = User.get_user_by_id(user)["groups_member_of"]
         members = list(User.find_users_in_array(group["members"]))
-        print(members)
 
         admin = Group.get_group(group_id)["group_admin"]
         admin_fname = User.get_user_by_id(admin)["first_name"]

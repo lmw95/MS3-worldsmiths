@@ -51,20 +51,24 @@ def member_profile(user_id):
     Gets the user id
     Get's member's groups and following
     """
+    session_id = User.check_user_exists(session["user"])["_id"]
+
     user = User.get_user_by_id(user_id)
     user_id = User.get_user_id(user["email"])
 
     groups_created = list(Group.find_groups_by_id(user["groups_created"]))
     groups_member = list(Group.find_groups_by_id(user["groups_member_of"]))
 
+    session_following = User.get_user_by_id(session_id)["following"]
     following = list(User.find_users_in_array(user["following"]))
     followers = list(User.find_users_in_array(user["followers"]))
 
-    return render_template("member.html", page_title="", 
+    return render_template("member.html", page_title="",
                             user_id=user_id, user=user,
                             groups_member=groups_member,
                             groups_created=groups_created,
-                            following=following, followers=followers)
+                            following=following, followers=followers,
+                            session_id=session_id, session_following=session_following)
 
 
 # Follow other members
