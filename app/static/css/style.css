@@ -382,7 +382,8 @@ color: var(--black) !important;
 }
 
 .bio-card-title i,
-.profile-header i {
+.profile-header i,
+.header-wrapper i {
     color: var(--munsell);
     margin-right: 5px;
     margin-left: 10px;
