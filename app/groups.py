@@ -7,6 +7,8 @@ from bson.objectid import ObjectId
 from app.classes.user import User
 from app.classes.group import Group
 from app.classes.comment import Comment
+from app.classes.reply import Reply
+from app import mongo
 
 
 # Groups blueprint
@@ -63,6 +65,7 @@ def group_page(group_id):
         members = list(User.find_users_in_array(group["members"]))
 
         comments = list(Comment.get_all_comments(group_id))
+        replies = list(Reply.get_all_replies(group_id))
 
         admin = Group.get_group(group_id)["group_admin"]
         admin_fname = User.get_user_by_id(admin)["first_name"]
@@ -71,7 +74,8 @@ def group_page(group_id):
         return render_template("group.html", page_title="{{ group.group_name }}",
                                 group=group, admin=admin, user=user,
                                 admin_fname=admin_fname, admin_lname=admin_lname,
-                                members_of=members_of, members=members, comments=comments)
+                                members_of=members_of, members=members, comments=comments,
+                                replies=replies)
 
 # Edit group
 @groups.route("/edit_group/<group_id>", methods=["GET", "POST"])
@@ -141,14 +145,12 @@ def add_comment(group_id):
         group = Group.get_group(group_id)["_id"]
 
         # https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
-        c_time = datetime.now().strftime("%H:%M")
-        c_date = datetime.now().strftime("%d %b %Y")
+        time_date = datetime.now().strftime("%H:%M, %d %b %Y")
 
         new_comment = Comment(comment=request.form.get("comment"),
                             commenter=user["_id"],
                             group_id=ObjectId(group_id),
-                            time_posted=c_time,
-                            date_posted=c_date)
+                            time_date_posted=time_date)
 
         try:
             new_comment.add_to_db()
@@ -160,6 +162,39 @@ def add_comment(group_id):
 
     return redirect(url_for('groups.group_page', group_id=group_id))
 
+
+# Reply to a comment
+@groups.route("/reply/<group_id>", methods=["GET", "POST"])
+def reply(group_id):
+    """
+    Gets group id
+    Gets poster id (user in session)
+    Adds comment to Mongo DB
+    Renders comment on group page
+    """
+
+    if request.method == "POST":
+        user = User.check_user_exists(session["user"])
+        group = Group.get_group(group_id)["_id"]
+        comment = Comment.get_comment(comment_id)["_id"]
+
+        # https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
+        time_date = datetime.now().strftime("%H:%M, %d %b %Y")
+
+        new_reply = Reply(reply=request.form.get("reply"),
+                            reply_from=user["_id"],
+                            group_id=ObjectId(group_id),
+                            time_date_posted=time_date)
+
+        try:
+            new_reply.add_to_db()
+            print(new_reply)
+            flash("Reply in database")
+            return redirect(url_for('groups.group_page', group_id=group_id))
+        except Exception as e:
+            print(e)
+
+    return redirect(url_for('groups.group_page', group_id=group_id))
 
 # Delete group
 @groups.route("/delete_group/<group_id>")

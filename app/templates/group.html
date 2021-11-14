@@ -109,7 +109,7 @@
                     <div class="row">
                         <div class="col s12">
                             <span class="commenter big-paragraph">Commenter name</span>
-                            <p>{{ comment.time_posted }}, {{ comment.date_posted }}</p>
+                            <p>{{ comment.time_date_posted }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -118,12 +118,17 @@
                         </div>
                     </div>
                     <div class="row comment-options">
+                        {% if user != comment.commenter %}
                         <div class="col s2 offset-s8 m1 offset-m11 l1 offset-l11">
-                            <a href="#"><i class="fas fa-comment-dots fa-2x"></i></a>
+                            <a href="#reply" class="modal-trigger"><i class="fas fa-comment-dots fa-2x"></i></a>
                         </div>
+                        {% endif %}
                         {% if user == comment.commenter %}
-                        <div class="col s1 right-align">
-                            <a href="#"><i class="fas fa-trash-alt"></i></a>
+                        <div class="col s2 offset-s3 m1 offset-m8 l1 offset-l10 right-align">
+                            <a href="#reply{{ comment._id }}" class="modal-trigger" data-target="reply{{ comment._id }}"><i class="fas fa-comment-dots fa-2x"></i></a>
+                        </div>
+                        <div class="col s2 m1 l1 center-align">
+                            <a href="#"><i class="fas fa-trash-alt fa-2x"></i></a>
                         </div>
                         {% else %}
                         {% endif %}
@@ -139,6 +144,13 @@
             <p class="big-paragraph">There's nothing here! (yet...)</p>
         </div>
     {% endif %}
+    <div class="row">
+    {% if replies|length > 0 %}
+    {% for reply in replies %}
+    <p>{{ reply.reply }}</p>
+    {% endfor %}
+    {% endif %}
+    </div>
     <div class="row">
         <div class="col s10 offset-s1 add-comment-wrapper">
             <a href="#add-comment" class="btn-large col s12 l4 offset-l4 modal-trigger"><i class="fas fa-plus left"></i> Add comment</a>
@@ -174,6 +186,7 @@
     </div>
 </div>
 
+<!--Add comment modal-->
 <div id="add-comment" class="modal">
     <div class="modal-content">
         <form method="POST" action="{{ url_for('groups.add_comment', group_id=group._id) }}">
@@ -182,7 +195,6 @@
                 <div class="input-field col s12">
                     <i class="fas fa-comment-dots prefix"></i>
                     <input id="comment" name="comment" type="text" required></textarea>
-                    <label for="comment">Write your comment here...</label>
                 </div>
               </div>
               <div class="modal-footer">
@@ -196,6 +208,29 @@
     </div>
 </div>
 
+<!--Reply to comment-->
+<div id="reply" class="modal">
+    <div class="modal-content">
+        <form method="POST" action="{{ url_for('groups.reply', group_id=group._id) }}">
+            <h1 class="center">Add a reply</h1>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-comment-dots prefix"></i>
+                    <input id="reply" name="reply" type="text" required></textarea>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <div class="row">
+                    <div class="col s12 right">
+                        <button class="btn-large modal-close" type="submit"><i class="fas fa-plus-circle"></i> Add</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--Deletion confirmation-->
 <div id="delete-confirmation" class="modal">
     <div class="modal-content">
         <form method="POST" action="{{ url_for('groups.delete_group', group_id=group._id) }}">
