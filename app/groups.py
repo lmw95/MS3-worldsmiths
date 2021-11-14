@@ -3,6 +3,7 @@ from flask import (Flask, render_template, request,
                    flash, url_for, redirect, session, Blueprint)
 from datetime import datetime
 # Classes
+from bson.objectid import ObjectId
 from app.classes.user import User
 from app.classes.group import Group
 from app.classes.comment import Comment
@@ -133,20 +134,20 @@ def add_comment(group_id):
     Adds comment to Mongo DB
     Renders comment on group page
     """
-
-    user = User.check_user_exists(session["user"])
-    group = Group.get_group(group_id)["_id"]
-
-    # https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
-    c_time = datetime.now().strftime("%H:%M")
-    c_date = datetime.now().strftime("%d %b %Y")
-
     if request.method == "POST":
+        user = User.check_user_exists(session["user"])
+        group = Group.get_group(group_id)["_id"]
+
+        # https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
+        c_time = datetime.now().strftime("%H:%M")
+        c_date = datetime.now().strftime("%d %b %Y")
+
         new_comment = Comment(comment=request.form.get("comment"),
                             commenter=user["_id"],
-                            group_id=ObjectId(group),
+                            group_id=ObjectId(group_id),
                             time_posted=c_time,
                             date_posted=c_date)
+
         try:
             new_comment.add_to_db()
             print(new_comment)

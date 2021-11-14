@@ -9,7 +9,8 @@ class Group():
     """
     def __init__(self, group_name, group_cover_img_url,
                 group_admin, group_location,
-                group_description, members=None, _id=None):
+                group_description, comments=None,
+                members=None, _id=None):
 
         """
         Initialise Group
@@ -20,6 +21,7 @@ class Group():
         self.group_admin = group_admin
         self.group_location = group_location
         self.group_description = group_description
+        self.comments = comments if isinstance(comments, list) else []
         self.members = members if isinstance(members, list) else []
 
 
@@ -31,6 +33,7 @@ class Group():
             "group_admin": self.group_admin,
             "group_location": self.group_location,
             "group_description": self.group_description,
+            "comments": self.comments,
             "members": self.members
         }
 

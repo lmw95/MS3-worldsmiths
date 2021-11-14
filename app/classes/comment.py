@@ -30,8 +30,8 @@ class Comment():
     # Add comment to db
     # Generate id for commnent
     def add_to_db(self):
-        new_id = mongo.db.comments.insert_one(self.comment_info())
-        return new_id
+        comment_id = mongo.db.comments.insert_one(self.comment_info())
+        return comment_id
 
 
     # Update comment/reply
