@@ -312,9 +312,37 @@ color: var(--black) !important;
     padding: 20px 0;
 }
 
-.search-confirmation span {
+.search-confirmation span,
+.commenter {
     color: var(--munsell);
     font-weight: 700;
+}
+
+.collection .collection-item {
+    background-color: var(--black);
+    color: var(--almond);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.comment p {
+    font-weight: 300;
+}
+
+.comment-options {
+    margin-bottom: 0;
+}
+
+.comment-options .col {
+    padding-right: 0;
+}
+
+.comment-options a {
+    color: var(--munsell);
+}
+
+.add-comment-wrapper {
+    margin-top: 50px;
 }
 
 .browse-members,
