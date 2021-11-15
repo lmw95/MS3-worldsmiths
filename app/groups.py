@@ -7,7 +7,6 @@ from bson.objectid import ObjectId
 from app.classes.user import User
 from app.classes.group import Group
 from app.classes.comment import Comment
-from app.classes.reply import Reply
 from app import mongo
 
 
@@ -61,7 +60,7 @@ def group_page(group_id):
     if user:
         group = Group.get_group(group_id)
 
-        # Gets all users, comments and replies in db
+        # Gets all users in db
         users = list(User.get_all_users())
 
         # Gets members of the group
@@ -69,7 +68,6 @@ def group_page(group_id):
         members = list(User.find_users_in_array(group["members"]))
 
         comments = list(Comment.get_all_comments(group_id))
-        replies = list(Reply.get_all_replies(group_id))
 
         admin = Group.get_group(group_id)["group_admin"]
         admin_fname = User.get_user_by_id(admin)["first_name"]
@@ -79,7 +77,7 @@ def group_page(group_id):
                                 group=group, admin=admin, user=user,
                                 admin_fname=admin_fname, admin_lname=admin_lname,
                                 members_of=members_of, members=members, comments=comments,
-                                replies=replies, users=users)
+                                users=users)
 
 # Edit group
 @groups.route("/edit_group/<group_id>", methods=["GET", "POST"])
@@ -184,7 +182,9 @@ def add_comment(group_id):
                             commenter=user["_id"],
                             group_id=ObjectId(group_id),
                             time_posted=time,
-                            date_posted=date)
+                            date_posted=date, 
+                            reply=False,
+                            reply_to=None)
 
         try:
             new_comment.add_to_db()
@@ -210,16 +210,20 @@ def reply(group_id):
         user = User.check_user_exists(session["user"])
         group = Group.get_group(group_id)["_id"]
 
+        comments = Comment.find_comments_by_id(group)
+        print(comments)
 
         # https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
         time = datetime.now().strftime("%H:%M")
         date = datetime.now().strftime("%d %b %Y")
 
-        new_reply = Reply(reply=request.form.get("reply"),
-                            reply_from=user["_id"],
-                            group_id=ObjectId(group_id),
-                            time_posted=time,
-                            date_posted=date)
+        new_reply = Comment(comment=request.form.get("reply"),
+                                commenter=user["_id"],
+                                group_id=ObjectId(group_id),
+                                time_posted=time,
+                                date_posted=date,
+                                reply=True,
+                                reply_to=request.form.get("reply-to"))
 
         try:
             new_reply.add_to_db()
