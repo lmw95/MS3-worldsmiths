@@ -68,10 +68,7 @@ def group_page(group_id):
         members_of = User.get_user_by_id(user)["groups_member_of"]
         members = list(User.find_users_in_array(group["members"]))
 
-        # Gets comments in the group
         comments = list(Comment.get_all_comments(group_id))
-        print(comments)
-        # Gets replies in the group
         replies = list(Reply.get_all_replies(group_id))
 
         admin = Group.get_group(group_id)["group_admin"]
@@ -147,6 +144,7 @@ def leave_group(group_id):
     Removes group to 'groups_member_of' in user collection
     Removes user to 'members' in group collection
     """
+
     user = User.get_user_id(session["user"])
     user_id = user
 
@@ -188,7 +186,6 @@ def add_comment(group_id):
 
         try:
             new_comment.add_to_db()
-            print(new_comment)
             flash("Comment in database")
             return redirect(url_for('groups.group_page', group_id=group_id))
         except Exception as e:
@@ -222,7 +219,6 @@ def reply(group_id):
 
         try:
             new_reply.add_to_db()
-            print(new_reply)
             flash("Reply in database")
             return redirect(url_for('groups.group_page', group_id=group_id))
         except Exception as e:
