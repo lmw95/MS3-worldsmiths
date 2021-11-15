@@ -130,7 +130,7 @@
                             </div>
                             <div class="col s10 offset-s1 event-btns">
                                 {% if session.user %}
-                                <a href="#" class="btn event-btn col s12 modal-trigger">View group</a>
+                                <a href="{{ url_for('groups.group_page', group_id=group._id) }}" class="btn event-btn col s12 modal-trigger">View group</a>
                                 {% else %}
                                 <a href="#prompt" class="btn event-btn col s12 modal-trigger">View group</a>
                                 {% endif %}
