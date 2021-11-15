@@ -89,6 +89,7 @@ class Group():
 
 
     # Edit group
+    @staticmethod
     def edit_group(group_id, group_info):
         mongo.db.groups.update_one({"_id": ObjectId(group_id)},
           
