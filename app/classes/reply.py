@@ -1,5 +1,6 @@
 from app import mongo
 from bson.objectid import ObjectId
+from app.classes.Comment import Comment
 
 class Reply():
     """
@@ -7,14 +8,15 @@ class Reply():
     """
     def __init__(self, reply, reply_from,
                 time_posted, date_posted,
-                group_id, _id=None):
+                group_id, comment_id, _id=None):
 
         self._id = _id
         self.reply = reply
         self.reply_from = reply_from
-        self.time_posted,
-        self.date_posted,
+        self.time_posted
+        self.date_posted
         self.group_id = group_id
+        self.comment_id = comment_id
 
         
     def reply_info(self):
@@ -24,6 +26,7 @@ class Reply():
             "time_posted": self.time_posted,
             "date_posted": self.date_posted,
             "group_id": self.group_id,
+            "comment_id": self.comment_id
         }
 
         return reply_info
