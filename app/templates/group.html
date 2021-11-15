@@ -106,21 +106,41 @@
             <ul class="collection">
                 <li class="collection-item avatar">
                     {% set commenter = users|selectattr("_id", "equalto", comment.commenter )|first %}
+                    {% if commenter is defined %}
                     <img src="{{ commenter.profile_pic_url }}" height="42" width="42" alt="" class="circle">
+                    {% else %}
+                    <img src="/static/imgs/profile-avatar.png" height="42" width="42" alt="" class="circle">
+                    {% endif %}
                     <div class="row">
                         <div class="col s12">
-                            <span class="commenter big-paragraph">
-                                {% set commenter = users|selectattr("_id", "equalto", comment.commenter )|first %}
-                                {{ commenter.first_name.capitalize() }} {{ commenter.last_name.capitalize() }}</span>
+                            {% set commenter = users|selectattr("_id", "equalto", comment.commenter )|first %}
+                            {% if commenter is defined %}
+                            <span class="commenter big-paragraph">{{ commenter.first_name.capitalize() }} {{ commenter.last_name.capitalize() }}</span>
+                            {% else %}
+                            <span class="commenter big-paragraph">[User deleted]</span>
+                            {% endif %}
                             <p>{{ comment.time_posted }} {{ comment.date_posted }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col s12 comment">
                             {% if comment.reply == True %}
-                            <p><span class="replying-to">@{{ comment.reply_to.lower().replace(" ", "")}}:</span> {{ comment.comment }}</p>
+                                {% set replying_to = users|selectattr("_id", "equalto", comment.reply_to)|first %}
+                                {% set commenter = users|selectattr("_id", "equalto", comment.commenter)|first %}
+                                {% if replying_to is defined %}
+                                <p><span class="replying-to">@{{ comment.reply_to.lower().replace(" ", "")}}:</span> {{ comment.comment }}</p>
+                                {% elif commenter is defined %}
+                                <p><span class="replying-to">@[User deleted]:</span> {{ comment.comment }}</p>
+                                {% else %}
+                                <p><span class="replying-to">@[User deleted]:</span> [Comment unavailable]</p>
+                                {% endif %}
                             {% else %}
-                            <p>{{ comment.comment }}</p>
+                                {% set commenter = users|selectattr("_id", "equalto", comment.commenter)|first %}
+                                {% if commenter is defined %}
+                                <p>{{ comment.comment }}</p>
+                                {% else %}
+                                <p>[Comment unavailable]</p>
+                                {% endif %}
                             {% endif %}  
                         </div>
                     </div>
