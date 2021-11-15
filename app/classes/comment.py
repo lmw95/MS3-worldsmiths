@@ -6,12 +6,14 @@ class Comment():
     Creates instance of a comment
     """
     def __init__(self, comment, commenter,
-                time_date_posted, group_id, _id=None):
+                time_posted, date_posted, 
+                group_id, _id=None):
 
         self._id = _id
         self.comment = comment
         self.commenter = commenter
-        self.time_date_posted = time_date_posted
+        self.time_posted = time_posted
+        self.date_posted = date_posted
         self.group_id = group_id
 
         
@@ -19,7 +21,8 @@ class Comment():
         comment_info = {
             "comment": self.comment,
             "commenter": self.commenter,
-            "time_date_posted": self.time_date_posted,
+            "time_posted": self.time_posted,
+            "date_posted": self.date_posted,
             "group_id": self.group_id,
         }
 

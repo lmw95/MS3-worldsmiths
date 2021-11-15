@@ -6,13 +6,14 @@ class Reply():
     Creates instance of a reply
     """
     def __init__(self, reply, reply_from,
-                time_date_posted,
+                time_posted, date_posted,
                 group_id, _id=None):
 
         self._id = _id
         self.reply = reply
         self.reply_from = reply_from
-        self.time_date_posted = time_date_posted
+        self.time_posted,
+        self.date_posted,
         self.group_id = group_id
 
         
@@ -20,7 +21,8 @@ class Reply():
         reply_info = {
             "reply": self.reply,
             "reply_from": self.reply_from,
-            "time_date_posted": self.time_date_posted,
+            "time_posted": self.time_posted,
+            "date_posted": self.date_posted,
             "group_id": self.group_id,
         }
 
