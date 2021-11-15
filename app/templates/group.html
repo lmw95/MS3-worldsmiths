@@ -102,7 +102,7 @@
     <div class="row">
     {% if comments|length > 0 %}
     {% for comment in comments %}
-        <div class="col s10 offset-s1 l6 offset-l1">
+        <div class="col s10 offset-s1 l0 offset-l1">
             <ul class="collection">
                 <li class="collection-item avatar">
                     {% set commenter = users|selectattr("_id", "equalto", comment.commenter )|first %}
@@ -117,26 +117,23 @@
                     </div>
                     <div class="row">
                         <div class="col s12 comment">
-                            <p>{{ comment.comment }}</p>        
+                            {% if comment.reply == True %}
+                            <p><span class="replying-to">@{{ comment.reply_to.lower().replace(" ", "")}}:</span> {{ comment.comment }}</p>
+                            {% else %}
+                            <p>{{ comment.comment }}</p>
+                            {% endif %}  
                         </div>
                     </div>
                     <div class="row comment-options">
                         {% if user != comment.commenter %}
-                            {% if user in members %}
-                            <div class="secondary-content comment-option">
-                                <a href="#reply" class="modal-trigger"><i class="fas fa-comment-dots fa-2x"></i></a>
-                            </div>
-                            {% else %}
-                            <div class="secondary-content comment-option">
-                                <a href="#!" class="modal-trigger tooltipped" data-position="bottom" data-tooltip="Join the group to reply"><i class="fas fa-comment-dots fa-2x"></i></a>
-                            </div>
-                            {% endif %}
+                        <div class="secondary-content comment-option">
+                            <a href="#reply" class="modal-trigger"><i class="fas fa-comment-dots fa-2x"></i></a>
+                        </div>
                         {% endif %}
                         {% if user == comment.commenter %}
                         <div class="secondary-content comment-option">
-                            <a href="" class="modal-trigger edit-comment"><i class="fas fa-pencil-alt fa-2x"></i></a>
                             <a href="#reply" class="modal-trigger delete-comment"><i class="fas fa-comment-dots fa-2x"></i></a>
-                            <a href="" class=""><i class="fas fa-trash-alt fa-2x"></i></a>
+                            <a href="#" class=""><i class="fas fa-trash-alt fa-2x"></i></a>
                         </div>
                         {% else %}
                         {% endif %}
@@ -151,14 +148,6 @@
             <p class="big-paragraph">There's nothing here! (yet...)</p>
         </div>
     {% endif %}
-    <div class="row">
-    <!--Replies-->
-    {% if replies|length > 0 %}
-    {% for reply in replies %}
-    <p>{{ reply.reply }}</p>
-    {% endfor %}
-    {% endif %}
-    </div>
     <div class="row">
         {% if user != admin %}
             {% if group._id in members_of %}
@@ -233,17 +222,22 @@
 <div id="reply" class="modal">
     <div class="modal-content">
         <form method="POST" action="{{ url_for('groups.reply', group_id=group._id) }}">
-            <h1 class="center">Add a reply</h1>
+            <h1 class="center">Reply</h1>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-comment-dots prefix"></i>
                     <input id="reply" name="reply" type="text" required></textarea>
                 </div>
+                <div class="input-field col s12">
+                    <i class="fas fa-at prefix"></i>
+                    <input id="reply-to" name="reply-to" type="text" required></textarea>
+                    <label for="reply-to">Reply to...</label>
+                </div>
               </div>
               <div class="modal-footer">
                 <div class="row">
                     <div class="col s12 right">
-                        <button class="btn-large modal-close" type="submit"><i class="fas fa-plus-circle"></i> Add</a>
+                        <button class="btn-large" type="submit"><i class="fas fa-plus-circle"></i> Add</a>
                     </div>
                 </div>
             </div>

@@ -693,6 +693,11 @@ h3 {
     color: var(--magenta);
 }
 
+.replying-to {
+    font-weight: 700;
+    color: var(--munsell);
+}
+
 .group-name {
     margin-top: 0;
     margin-bottom: 10px;

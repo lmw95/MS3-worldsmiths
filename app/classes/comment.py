@@ -7,7 +7,8 @@ class Comment():
     """
     def __init__(self, comment, commenter,
                 time_posted, date_posted, 
-                group_id, _id=None):
+                group_id, reply, reply_to,
+                _id=None):
 
         self._id = _id
         self.comment = comment
@@ -15,8 +16,10 @@ class Comment():
         self.time_posted = time_posted
         self.date_posted = date_posted
         self.group_id = group_id
+        self.reply = reply
+        self.reply_to = reply_to
 
-        
+
     def comment_info(self):
         comment_info = {
             "comment": self.comment,
@@ -24,6 +27,8 @@ class Comment():
             "time_posted": self.time_posted,
             "date_posted": self.date_posted,
             "group_id": self.group_id,
+            "reply": self.reply,
+            "reply_to": self.reply_to
         }
 
         return comment_info
@@ -54,8 +59,15 @@ class Comment():
     @staticmethod
     def get_all_comments(group_id):
         all_comments = list(mongo.db.comments.find(
-                                 {"group_id": ObjectId(group_id)}).sort("time_date_posted", -1))
+                                 {"group_id": ObjectId(group_id)}).sort("date_posted", -1))
         return all_comments
+
+
+    # Finds groups by collection in array/list
+    @staticmethod
+    def find_comments_by_id(collection):
+        comments_list = mongo.db.comments.find({"_id": {"$in": collection}})
+        return comments_list
 
 
     # Delete comment
