@@ -13,8 +13,8 @@ class Reply():
         self._id = _id
         self.reply = reply
         self.reply_from = reply_from
-        self.time_posted
-        self.date_posted
+        self.time_posted = time_posted
+        self.date_posted = date_posted
         self.group_id = group_id
 
         
