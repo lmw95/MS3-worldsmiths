@@ -100,6 +100,7 @@ class User():
 
 
     # Finds users from a query
+    @staticmethod
     def find_users_by_query(query):
         mongo.db.users.create_index([("$**", 'text')])
         results = mongo.db.users.find({"$text": {"$search": str(query)}})
