@@ -345,6 +345,10 @@ color: var(--black) !important;
     margin-top: 50px;
 }
 
+.delete-comment {
+    margin-right: 8px;
+}
+
 .browse-members,
 .browse-events {
     margin-bottom: 50px;;
@@ -860,6 +864,14 @@ input[type=text]:not(.browser-default) {
     .group-member-card {
         display: flex;
         justify-content: center;
+    }
+
+    .comment-option i {
+        font-size: 1.5em;
+    }
+
+    .secondary-content {
+        position: sticky !important;
     }
 
 }
