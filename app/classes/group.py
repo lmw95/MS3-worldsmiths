@@ -84,12 +84,14 @@ class Group():
     # Removes from array/list in group
     @staticmethod
     def remove_from_list(group_id, field, value):
-        mongo.db.groups.remove_one({"_id": ObjectId(group_id)},
+        mongo.db.groups.update_one({"_id": ObjectId(group_id)},
                                    {"$pull": {field: ObjectId(value)}})
+
 
     # Edit group
     def edit_group(group_id, group_info):
         mongo.db.groups.update_one({"_id": ObjectId(group_id)},
+          
                                    {"$set": group_info})
 
     # Delete group
