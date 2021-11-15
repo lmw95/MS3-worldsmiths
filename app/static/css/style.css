@@ -345,7 +345,8 @@ color: var(--black) !important;
     margin-top: 50px;
 }
 
-.delete-comment {
+.delete-comment,
+.edit-comment {
     margin-right: 8px;
 }
 
@@ -865,15 +866,17 @@ input[type=text]:not(.browser-default) {
         display: flex;
         justify-content: center;
     }
-
-    .comment-option i {
-        font-size: 1.5em;
-    }
-
+    
     .secondary-content {
         position: sticky !important;
     }
 
+}
+
+@media only screen and (max-width: 599px) {
+    .comment-option i {
+        font-size: 1.5em;
+    }
 }
 
 @media only screen and (min-width:425px) and (max-width: 992px) {
