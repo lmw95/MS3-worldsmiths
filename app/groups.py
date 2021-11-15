@@ -61,10 +61,17 @@ def group_page(group_id):
     if user:
         group = Group.get_group(group_id)
 
+        # Gets all users, comments and replies in db
+        users = list(User.get_all_users())
+
+        # Gets members of the group
         members_of = User.get_user_by_id(user)["groups_member_of"]
         members = list(User.find_users_in_array(group["members"]))
 
+        # Gets comments in the group
         comments = list(Comment.get_all_comments(group_id))
+        print(comments)
+        # Gets replies in the group
         replies = list(Reply.get_all_replies(group_id))
 
         admin = Group.get_group(group_id)["group_admin"]
@@ -75,7 +82,7 @@ def group_page(group_id):
                                 group=group, admin=admin, user=user,
                                 admin_fname=admin_fname, admin_lname=admin_lname,
                                 members_of=members_of, members=members, comments=comments,
-                                replies=replies)
+                                replies=replies, users=users)
 
 # Edit group
 @groups.route("/edit_group/<group_id>", methods=["GET", "POST"])
@@ -131,6 +138,31 @@ def join_group(group_id):
     return redirect(url_for('groups.group_page', group_id=group_id))
 
 
+# Leave group
+@groups.route("/leave_group/<group_id>")
+def leave_group(group_id):
+    """
+    Gets session user id
+    Gets's group id
+    Removes group to 'groups_member_of' in user collection
+    Removes user to 'members' in group collection
+    """
+    user = User.get_user_id(session["user"])
+    user_id = user
+
+    group = Group.get_group(group_id)["_id"]
+    group_id = group
+
+    if user:
+        try:
+            User.remove_from_list(user_id, "groups_member_of", group_id)
+            Group.remove_from_list(group_id, "members", user_id)
+        except Exception as e:
+            print(e)
+
+    return redirect(url_for('groups.group_page', group_id=group_id))
+
+
 # Add comment
 @groups.route("/add_comment/<group_id>", methods=["GET", "POST"])
 def add_comment(group_id):
@@ -145,12 +177,14 @@ def add_comment(group_id):
         group = Group.get_group(group_id)["_id"]
 
         # https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
-        time_date = datetime.now().strftime("%H:%M, %d %b %Y")
+        time = datetime.now().strftime("%H:%M")
+        date = datetime.now().strftime("%d %b %Y")
 
         new_comment = Comment(comment=request.form.get("comment"),
                             commenter=user["_id"],
                             group_id=ObjectId(group_id),
-                            time_date_posted=time_date)
+                            time_posted=time,
+                            date_posted=date)
 
         try:
             new_comment.add_to_db()
@@ -176,15 +210,15 @@ def reply(group_id):
     if request.method == "POST":
         user = User.check_user_exists(session["user"])
         group = Group.get_group(group_id)["_id"]
-        comment = Comment.get_comment(comment_id)["_id"]
 
         # https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
-        time_date = datetime.now().strftime("%H:%M, %d %b %Y")
+        time = datetime.now().strftime("%H:%M")
+        date = datetime.now().strftime("%d %b %Y")
 
         new_reply = Reply(reply=request.form.get("reply"),
                             reply_from=user["_id"],
                             group_id=ObjectId(group_id),
-                            time_date_posted=time_date)
+                            time_posted=time, date_posted=date)
 
         try:
             new_reply.add_to_db()
