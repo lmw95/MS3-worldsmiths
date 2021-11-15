@@ -122,14 +122,21 @@
                     </div>
                     <div class="row comment-options">
                         {% if user != comment.commenter %}
-                        <div class="secondary-content comment-option">
-                            <a href="#reply" class="modal-trigger"><i class="fas fa-comment-dots fa-2x"></i></a>
-                        </div>
+                            {% if user in members %}
+                            <div class="secondary-content comment-option">
+                                <a href="#reply" class="modal-trigger"><i class="fas fa-comment-dots fa-2x"></i></a>
+                            </div>
+                            {% else %}
+                            <div class="secondary-content comment-option">
+                                <a href="#!" class="modal-trigger tooltipped" data-position="bottom" data-tooltip="Join the group to reply"><i class="fas fa-comment-dots fa-2x"></i></a>
+                            </div>
+                            {% endif %}
                         {% endif %}
                         {% if user == comment.commenter %}
                         <div class="secondary-content comment-option">
+                            <a href="" class="modal-trigger edit-comment"><i class="fas fa-pencil-alt fa-2x"></i></a>
                             <a href="#reply" class="modal-trigger delete-comment"><i class="fas fa-comment-dots fa-2x"></i></a>
-                            <a href="#" class=""><i class="fas fa-trash-alt fa-2x"></i></a>
+                            <a href="" class=""><i class="fas fa-trash-alt fa-2x"></i></a>
                         </div>
                         {% else %}
                         {% endif %}
@@ -145,6 +152,7 @@
         </div>
     {% endif %}
     <div class="row">
+    <!--Replies-->
     {% if replies|length > 0 %}
     {% for reply in replies %}
     <p>{{ reply.reply }}</p>
