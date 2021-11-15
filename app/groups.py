@@ -131,6 +131,7 @@ def join_group(group_id):
     if user:
         User.add_to_list(user_id, "groups_member_of", group_id)
         Group.add_to_list(group_id, "members", user_id)
+        flash("You are now a member")
 
     return redirect(url_for('groups.group_page', group_id=group_id))
 
@@ -155,6 +156,7 @@ def leave_group(group_id):
         try:
             User.remove_from_list(user_id, "groups_member_of", group_id)
             Group.remove_from_list(group_id, "members", user_id)
+            flash("You have left the group")
         except Exception as e:
             print(e)
 
@@ -186,7 +188,7 @@ def add_comment(group_id):
 
         try:
             new_comment.add_to_db()
-            flash("Comment in database")
+            flash("Comment added!")
             return redirect(url_for('groups.group_page', group_id=group_id))
         except Exception as e:
             print(e)
@@ -208,6 +210,7 @@ def reply(group_id):
         user = User.check_user_exists(session["user"])
         group = Group.get_group(group_id)["_id"]
 
+
         # https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
         time = datetime.now().strftime("%H:%M")
         date = datetime.now().strftime("%d %b %Y")
@@ -215,11 +218,12 @@ def reply(group_id):
         new_reply = Reply(reply=request.form.get("reply"),
                             reply_from=user["_id"],
                             group_id=ObjectId(group_id),
-                            time_posted=time, date_posted=date)
+                            time_posted=time,
+                            date_posted=date)
 
         try:
             new_reply.add_to_db()
-            flash("Reply in database")
+            flash("Reply added!")
             return redirect(url_for('groups.group_page', group_id=group_id))
         except Exception as e:
             print(e)
