@@ -71,18 +71,18 @@
         <div class="col s10 offset-s1"> 
         {% if members|length > 0 %}
         {% for member in members %}
-        <div class="col s12 m6 l3 group-member-card">
-            <!--Member cards-->
-            <div class="card member-card">
-                <div class="card-image">
-                    <img src="/static/imgs/profile-avatar.png">
-                    <a href="{{ url_for('users.member_profile', user_id=member._id)}}"><span class="card-title member-name valign-wrapper">
-                        {{ member.first_name.capitalize() }} {{member.last_name.capitalize() }}
-                    </span></a>
-                    <a class="btn-floating halfway-fab favourite-btn"><i class="fas fa-plus"></i></a>
+            <div class="col s12 m6 l3 group-member-card">
+                <!--Member cards-->
+                <div class="card member-card">
+                    <div class="card-image">
+                        <img src="/static/imgs/profile-avatar.png">
+                        <a href="{{ url_for('users.member_profile', user_id=member._id)}}"><span class="card-title member-name valign-wrapper">
+                            {{ member.first_name.capitalize() }} {{member.last_name.capitalize() }}
+                        </span></a>
+                        <a class="btn-floating halfway-fab favourite-btn"><i class="fas fa-plus"></i></a>
+                    </div>
                 </div>
             </div>
-        </div>
         {% endfor %}
         {% else %}
         </div>
@@ -113,7 +113,7 @@
                     {% endif %}
                     <div class="row">
                         <div class="col s12">
-                            {% set commenter = users|selectattr("_id", "equalto", comment.commenter )|first %}
+                            {% set commenter = users|selectattr("_id", "equalto", comment.commenter)|first %}
                             {% if commenter is defined %}
                             <span class="commenter big-paragraph">{{ commenter.first_name.capitalize() }} {{ commenter.last_name.capitalize() }}</span>
                             {% else %}
@@ -130,7 +130,7 @@
                                 {% if replying_to is defined %}
                                 <p><span class="replying-to">@{{ comment.reply_to.lower().replace(" ", "")}}:</span> {{ comment.comment }}</p>
                                 {% elif commenter is defined %}
-                                <p><span class="replying-to">@[User deleted]:</span> {{ comment.comment }}</p>
+                                <p><span class="replying-to">@{{ comment.reply_to.lower().replace(" ", "")}}:</span> {{ comment.comment }}</p>
                                 {% else %}
                                 <p><span class="replying-to">@[User deleted]:</span> [Comment unavailable]</p>
                                 {% endif %}
@@ -152,6 +152,7 @@
                         {% endif %}
                         {% if user == comment.commenter %}
                         <div class="secondary-content comment-option">
+                            <a href="#edit" class="modal-trigger edit-comment"><i class="fas fa-pencil-alt fa-2x"></i></a>
                             <a href="#reply" class="modal-trigger delete-comment"><i class="fas fa-comment-dots fa-2x"></i></a>
                             <a href="#" class=""><i class="fas fa-trash-alt fa-2x"></i></a>
                         </div>
