@@ -391,14 +391,16 @@ color: var(--black) !important;
     background-color: var(--munsell);
 }
 
-.bio-card {
+.bio-card,
+.project-card {
     box-shadow: none;
     background-color: var(--munsell);
     color: var(--almond);
 }
 
 .bio-card-title,
-.profile-header {
+.profile-header,
+.project-card-title {
     background-color: var(--black);
     padding-bottom: 20px;
     color: var(--almond);
@@ -416,10 +418,27 @@ color: var(--black) !important;
 
 .bio-card-title i,
 .profile-header i,
-.header-wrapper i {
+.header-wrapper i,
+.project-card-title i {
     color: var(--munsell);
     margin-right: 5px;
     margin-left: 10px;
+}
+
+.project-wrapper {
+    margin: 0;
+}
+
+.project-wrapper .col {
+    padding: 20px 0;
+}
+
+.project-wrapper .col:hover {
+    background-color: var(--cadet);
+}
+
+.project-wrapper a {
+    color: var(--almond);
 }
 
 .nothing-here-p {
@@ -860,11 +879,14 @@ input[type=text]:not(.browser-default) {
         font-size: 4em;
     }
 
-    .bio-card-title {
+    .bio-card-title,
+    .project-card-title,
+    .profile-header {
         text-align: center;
     }
 
-    .bio-card-title i {
+    .bio-card-title i,
+    .project-card-title i {
         margin-left: 0;
     }
 
@@ -1002,6 +1024,10 @@ input[type=text]:not(.browser-default) {
     .bio-card .card-content {
         height: 300px;
         overflow-x: scroll;
+    }
+
+    .project-card .card-content {
+        height: auto;
     }
     
 }
