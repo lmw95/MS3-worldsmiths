@@ -1,12 +1,9 @@
-# Operating system
 import os
-# Mail app
 from . import mail
-# Flask Mail
-from flask_mail import Message
-# Flask
 from flask import (Flask, render_template, request,
                    flash, url_for, redirect, session, Blueprint)
+# Flask Mail
+from flask_mail import Message
 # Import datetime
 from datetime import datetime
 # Classes
