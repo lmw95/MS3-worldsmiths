@@ -252,29 +252,12 @@ def edit_profile(user_id):
 def delete_account(user_id):
     """
     Triggers confirmation modal
-    Removes user from any groups
-    Deletes groups associated with user
-    Removes user from session cookie
-    Removes user from MongoDB
-    Flashes user to confirm account deletion
-    Redicts user to 'sign-up.html'
+    Deletes user account
+    Retains user content
+    Flashes account deletion confirmation
+    Redirects user to 'sign-up.html'
     """
 
-    # TO SORT
-    
-    # Get user
-    #user = User.check_user_exists(session["user"])
-    # Get user's groups
-    #groups = mongo.db.groups.distinct("_id")
-    #OR
-    #groups_two = list(Group.find_groups_by_id(user["groups_created"]))
-    # Get and delete user's groups
-    #user = User.check_user_exists(session["user"])
-    #user_groups = list(Group.find_groups_by_id(user["groups_created"]))
-    #for group in user_groups:
-    # Group.delete_group(group)
-    #User.remove_from_list(user["_id"], "groups_member_of", group_id)
-  
     session.pop("email", None)
     session.pop("user")
     User.delete_user(user_id)
