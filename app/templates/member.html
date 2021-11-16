@@ -48,7 +48,7 @@
     </div>
     <!--User biography-->
     <div class="row">
-        <div class="col s12 m12 l12 xl12">
+        <div class="col s12 m12 l6 xl6">
             <div class="card bio-card col s12">
                 <div class="row bio-card-title">
                     <div class="col s12 bio-title">
@@ -57,6 +57,28 @@
                 </div>
                 <div class="card-content">
                     <p>{{ user.user_biography }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m12 l6 xl6">
+            <div class="card project-card col s12">
+                <div class="row project-card-title">
+                    <div class="col s12">
+                        <h2><i class="fas fa-tools"></i> Projects</h2>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="row project-wrapper">
+                        <div class="col s12 m4 l4 xl4 center-align">
+                            <a href="{{ user.user_project_1 }}"><p class="big-paragraph">PROJECT 1</p></a>
+                        </div>
+                        <div class="col s12 m4 l4 xl4 center-align">
+                            <a href="{{ user.user_project_2 }}"><p class="big-paragraph">PROJECT 2</p></a>
+                        </div>
+                        <div class="col s12 m4 l4 xl4 center-align">
+                            <a href="{{ user.user_project_3 }}"><p class="big-paragraph">PROJECT 3</p></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
