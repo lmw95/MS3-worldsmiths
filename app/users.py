@@ -273,16 +273,32 @@ def edit_profile(user_id):
 
 
 # Delete account
+
 @users.route("/delete_account/<user_id>", methods=["GET", "POST"])
 def delete_account(user_id):
     """
     Triggers confirmation modal
+    Removes user from group
     Deletes user account
     Retains user content
     Flashes account deletion confirmation
     Redirects user to 'sign-up.html'
     """
 
+    # Get user id
+    user = User.check_user_exists(session["user"])["_id"]
+    print(user)
+
+    members_of = User.get_user_by_id(user)["groups_member_of"]
+    print(members_of)
+
+    groups = Group.get_all_groups()
+
+    for memb in members_of:
+        group = Group.find_groups_by_id(groups)
+        print(memb)
+
+    Group.remove_from_list(memb, "members", user)
     session.pop("email", None)
     session.pop("user")
     User.delete_user(user_id)
