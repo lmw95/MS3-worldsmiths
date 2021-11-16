@@ -110,35 +110,38 @@
             <!--Cell 1-->
             {% for group in groups %}
             {% if group.members|length > 0 %}
-            <div class="carousel-cell">
-                <div class="card events-card">
-                    <div class="card-image events-card-img">
-                      <img src="/static/imgs/worldbuilding2.jpg">
-                      <a class="btn-floating halfway-fab tooltipped popular-btn" data-position="bottom" data-tooltip="One of our top 5 groups!"><i class="far fa-heart"></i></a>
-                    </div>
-                    <div class="card-content">
-                        <h2 class="homepage-card-title">{{ group.group_name }}</h2>
-                        <p>{% set admin = users|selectattr("_id", "equalto", group.group_admin )|first %}
-                            {{ admin.first_name.capitalize() }} {{admin.last_name.capitalize() }}</p>
-                        <p>{{ group.group_location }}</p>
-                        <p>{{ group.group_description }}</p>
-                    </div>
-                    <div class="card-action events-card-action">
-                        <div class="row">
-                            <div class="col s12">
-                                <p><i class="fas fa-user-circle"></i> {{ group.members|length }} members</p>
-                            </div>
-                            <div class="col s10 offset-s1 event-btns">
-                                {% if session.user %}
-                                <a href="{{ url_for('groups.group_page', group_id=group._id) }}" class="btn event-btn col s12 modal-trigger">View group</a>
-                                {% else %}
-                                <a href="#prompt" class="btn event-btn col s12 modal-trigger">View group</a>
-                                {% endif %}
+            {% set admin = users|selectattr("_id", "equalto", group.group_admin )|first %}
+                {% if admin is defined %}
+                <div class="carousel-cell">
+                    <div class="card events-card">
+                        <div class="card-image events-card-img">
+                        <img src="/static/imgs/worldbuilding2.jpg">
+                        <a class="btn-floating halfway-fab tooltipped popular-btn" data-position="bottom" data-tooltip="One of our top 5 groups!"><i class="far fa-heart"></i></a>
+                        </div>
+                        <div class="card-content">
+                            <h2 class="homepage-card-title">{{ group.group_name }}</h2>
+                            <p>{{ admin.first_name.capitalize() }} {{admin.last_name.capitalize() }}</p>
+                            <p>{{ group.group_location }}</p>
+                            <p>{{ group.group_description }}</p>
+                        </div>
+                        <div class="card-action events-card-action">
+                            <div class="row">
+                                <div class="col s12">
+                                    <p><i class="fas fa-user-circle"></i> {{ group.members|length }} members</p>
+                                </div>
+                                <div class="col s10 offset-s1 event-btns">
+                                    {% if session.user %}
+                                    <a href="{{ url_for('groups.group_page', group_id=group._id) }}" class="btn event-btn col s12 modal-trigger">View group</a>
+                                    {% else %}
+                                    <a href="#prompt" class="btn event-btn col s12 modal-trigger">View group</a>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                {% else %}
+                {% endif %}
             {% endif %}
             {% endfor %}
         </div>
