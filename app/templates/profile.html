@@ -184,7 +184,7 @@
                         {% if user %}
                                 {% if member in following %}
                                 <!--If user is follower-->
-                                <a href="#unfollow"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
+                                <a href="{{ url_for('users.member_profile', user_id=member._id) }}"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
                                 <a class="btn-floating halfway-fab unfollow-btn"><i class="fas fa-times"></i></a>
                                 <!--If user is not follower-->
                                 {% else %}
