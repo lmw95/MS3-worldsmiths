@@ -138,8 +138,13 @@
             <div class="card-image">
                 <img src="{{ member.profile_pic_url }}">
                 {% if user %}
-                <a href="{{ url_for('users.member_profile', user_id=member._id) }}"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
-                <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
+                    {% if member in following %}
+                    <a href="{{ url_for('users.member_profile', user_id=member._id) }}"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
+                    <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-times"></i></a>
+                    {% else %}
+                    <a href="{{ url_for('users.member_profile', user_id=member._id) }}"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
+                    <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
+                    {% endif %}
                 {% else %}
                 <a href="#prompt" class="modal-trigger"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
                 <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>

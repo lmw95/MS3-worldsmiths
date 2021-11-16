@@ -91,6 +91,31 @@ def follow(user_id):
     if user:
         User.add_to_list(session_id, "following", user_id)
         User.add_to_list(user_id, "followers", session_id)
+        flash("You are now following this account")
+
+    return redirect(url_for('users.member_profile', user_id=user_id))
+
+
+# Unfollow account
+@users.route("/unfollow/<user_id>")
+def unfollow(user_id):
+    """
+    Gets session user id
+    Gets user id of member to be unfollowed
+    Removes member to 'following' list
+    """
+    user = User.get_user_id(session["user"])
+    session_id = user
+    print(session_id)
+
+    member = User.get_user_by_id(user_id)["_id"]
+    user_id = member
+    print(user_id)
+
+    if user:
+        User.remove_from_list(session_id, "following", user_id)
+        User.remove_from_list(user_id, "followers", session_id)
+        flash("You are no longer following this account")
 
     return redirect(url_for('users.member_profile', user_id=user_id))
 

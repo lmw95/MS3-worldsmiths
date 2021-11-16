@@ -46,6 +46,9 @@ def search():
     else:
         user = None
 
+    user_following = User.check_user_exists(session["user"].lower())
+    following = list(User.find_users_in_array(user_following["following"]))
+
     members = list(User.get_all_users())
     groups = list(Group.get_all_groups())
     
@@ -56,7 +59,7 @@ def search():
     return render_template("all-groups-members.html", user=user,
                                 user_query=user_query, group_results=group_results,
                                 member_results=member_results, members=members,
-                                groups=groups, search=True)
+                                groups=groups, following=following, search=True)
 
 # Statements
 @main.route("/statements")
@@ -114,6 +117,9 @@ def browse_all():
 
     user = User.check_user_exists(session["user"])
 
+    user_following = User.check_user_exists(session["user"].lower())
+    following = list(User.find_users_in_array(user_following["following"]))
+
     return render_template("all-groups-members.html", 
                             page_title="Browse all groups and members",
-                            groups=groups, members=members)
+                            groups=groups, members=members, following=following)

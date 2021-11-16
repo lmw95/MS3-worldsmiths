@@ -611,17 +611,18 @@ footer .useful-links a {
 }
 
 .popular-btn,
-.follow-btn {
+.follow-btn,
+.unfollow-btn {
     background-color: var(--cadet-t);
     color: var(--almond);
     transition: all 0.1s ease-in-out;
 }
 
 .popular-btn:hover,
-.follow-btn:hover {
+.follow-btn:hover,
+.unfollow-btn:hover {
     background-color: var(--cadet);
     transform: scale(1.2);
-    cursor: none;
 }
 
 .event-btn {

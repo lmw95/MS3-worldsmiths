@@ -56,6 +56,7 @@ def group_page(group_id):
     """
 
     user = User.check_user_exists(session["user"])["_id"]
+    user_following = User.check_user_exists(session["user"].lower())
 
     if user:
         group = Group.get_group(group_id)
@@ -67,6 +68,8 @@ def group_page(group_id):
         members_of = User.get_user_by_id(user)["groups_member_of"]
         members = list(User.find_users_in_array(group["members"]))
 
+        following = list(User.find_users_in_array(user_following["following"]))
+
         comments = list(Comment.get_all_comments(group_id))
 
         admin = Group.get_group(group_id)["group_admin"]
@@ -77,7 +80,7 @@ def group_page(group_id):
                                 group=group, admin=admin, user=user,
                                 admin_fname=admin_fname, admin_lname=admin_lname,
                                 members_of=members_of, members=members, comments=comments,
-                                users=users)
+                                users=users, following=following)
 
 # Edit group
 @groups.route("/edit_group/<group_id>", methods=["GET", "POST"])
