@@ -49,8 +49,13 @@ def search():
     else:
         user = None
 
-    user_following = User.check_user_exists(session["user"].lower())
-    following = list(User.find_users_in_array(user_following["following"]))
+
+    if user:
+        user_following = User.check_user_exists(session["user"].lower())
+        following = list(User.find_users_in_array(user_following["following"]))
+    else:
+        user_following = []
+        following = []
 
     members = list(User.get_all_users())
     groups = list(Group.get_all_groups())
