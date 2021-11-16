@@ -1,15 +1,18 @@
 # Operating system
 import os
+# Mail app
+from . import mail
+# Flask Mail
+from flask_mail import Message
 # Flask
 from flask import (Flask, render_template, request,
                    flash, url_for, redirect, session, Blueprint)
-# Flask Mail
-from flask_mail import Mail, Message
 # Import datetime
 from datetime import datetime
 # Classes
 from app.classes.user import User
 from app.classes.group import Group
+# Import MongoDB
 from app import mongo
 
 
@@ -51,15 +54,17 @@ def search():
 
     members = list(User.get_all_users())
     groups = list(Group.get_all_groups())
-    
+
+    # User query results
     user_query = request.form.get("finder")
     group_results = list(Group.find_groups_by_query(user_query))
     member_results = list(User.find_users_by_query(user_query))
 
     return render_template("all-groups-members.html", user=user,
                                 user_query=user_query, group_results=group_results,
-                                member_results=member_results, members=members,
-                                groups=groups, following=following, search=True)
+                                member_results=member_results,
+                                groups=groups, members=members,
+                                following=following, search=True)
 
 # Statements
 @main.route("/statements")
@@ -94,14 +99,14 @@ def contact():
                     subject = "Thank your for your message..."
                     message = f"Thank you, {sender_name}! \nWe have received your message will get back to you within 2-3 working days."
 
-                msg = Message(
-                    recipients=[recipient], body=message, subject=subject)
+            msg = Message(
+                recipients=[recipient], body=message, subject=subject)
 
-                conn.send(msg)
+            conn.send(msg)
 
-            flash("Thanks {}, we have recieved your message".format(
-                request.form.get("full-name")))
-            return redirect(url_for('main.contact'))
+        flash("Thanks {}, we have recieved your message".format(
+            request.form.get("full-name")))
+        return redirect(url_for('main.contact'))
 
     return render_template("contact.html", page_title="Contact us")
 
@@ -122,4 +127,5 @@ def browse_all():
 
     return render_template("all-groups-members.html", 
                             page_title="Browse all groups and members",
-                            groups=groups, members=members, following=following)
+                            following=following,
+                            groups=groups, members=members)
