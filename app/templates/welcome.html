@@ -9,6 +9,20 @@
 {% endblock %} 
 
 {% block content %}
+<!--Flash messages-->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="row profile-flash">
+	<div class="col s12 flashes center-align">
+		{% for message in messages %}
+		<h3>{{ message }} <i class="fas fa-sync-alt" id="refresh-page"></i></h3>
+		<hr class="underline">
+		{% endfor %}
+	</div>
+</div>
+{% endif %}
+{% endwith %}
+
 <div class="row center-align">
     <div class="col s12">
         <h1>Hello, {{ first_name }}</h1>
@@ -77,4 +91,46 @@
         </a>
     </div>
 </div>
+
+{% if new_user in comp_group.members %}
+{% else %}
+<!--Join new members group-->
+<div id="new-member" class="modal">
+	<div class="modal-content">
+		<div class="row">
+			<div class="col s12 center-align">
+				<h2 class="center">Hold your horses, captain...</h2>
+			</div>
+		</div>
+		<p class="center">Before you go galavanting off, please join and take the time to look around our New Members group.
+            It has all the information you need about this site, and gives you a chance to meet some other members right away!
+		</p>
+	</div>
+    <div class="col s10 offset-s1">
+		<div class="card horizontal group-card">
+			<div class="card-image browse-img">
+				<img src="{{ comp_group.group_cover_img_url }}" alt="{{ comp_group.group_name }}'s cover img">
+			</div>
+			<div class="card-stacked">
+				<div class="card-content">
+					<h3 class="group-name">{{ comp_group.group_name }}</h3>
+                    {% set admin = users|selectattr("_id", "equalto", comp_group.group_admin )|first %}
+                    <p><span class="info-label">Admin:</span> {{ admin.first_name.capitalize() }} {{ admin.last_name.capitalize() }}</p>
+				</div>
+                <div class="secondary-content welcome-card">
+                    <div class="row">
+                        <div class="col s12 l6">
+                            <p class="welcome-members valign-wrapper"><i class="fas fa-user-circle left fa-2x"></i> {{ comp_group.members|length }} members</p>
+                        </div>
+                        <div class="col s12 l5">
+                            <a href="{{ url_for('auth.comp_group', first_name=first_name) }}" class="btn comp-group col s10 offset-s1 modal-close"><i class="fas fa-plus left"></i> Join</a>
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</div>
+    </div>
+</div>
+{% endif %}
+
 {% endblock %}

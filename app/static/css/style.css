@@ -376,6 +376,10 @@ color: var(--black) !important;
     margin-bottom: 50px;;
 }
 
+.description {
+    max-width: 500px;
+}
+
 /** Profile **/
 .p-banner {
     height: 400px;
@@ -530,6 +534,23 @@ color: var(--black) !important;
 .patreon,
 .support-us {
     margin-top: 40px;
+}
+
+.welcome-card {
+    padding-left: 24px;
+    padding-bottom: 24px;
+}
+
+.welcome-members {
+    margin: 0;
+}
+.welcome-members i {
+    margin-right: 5px;
+}
+
+.welcome-members i,
+.welcome-members {
+    color: var(--black) !important;
 }
 
 /** FAQs **/
@@ -701,6 +722,10 @@ footer .useful-links a {
 .edit-group,
 .leave-group {
     margin-bottom: 20px;
+}
+
+.comp-group {
+    background-color: var(--magenta);
 }
 
 /** Headers **/
@@ -1083,6 +1108,18 @@ input[type=text]:not(.browser-default) {
         height: auto;
     }
     
+    .description {
+        max-width: 350px;
+    }
+
+    .welcome-card {
+        padding: 0;
+    }
+
+    .welcome-members {
+        margin-bottom: 20px;
+        padding-left: 24px;
+    }
 }
 
 

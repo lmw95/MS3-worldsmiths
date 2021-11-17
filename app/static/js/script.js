@@ -19,7 +19,7 @@
   // Refreshes page to clear flash message on profile
   $('#refresh-page').click(function() {
     location.reload();
-});
+  });
 
 //https://www.w3schools.com/howto/howto_js_toggle_password.asp
 $(".toggle-password").click(function () {
@@ -33,7 +33,12 @@ $(".toggle-password").click(function () {
   }
 });
 
-//Materialize tooltips
+// Materialize tooltips
 $('.tooltipped').tooltip();
+
+// Force modal open
+const elem = document.getElementById('new-member');
+const instance = M.Modal.init(elem, {dismissible: false});
+instance.open();
 
 });

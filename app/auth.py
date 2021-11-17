@@ -30,16 +30,17 @@ def sign_up():
     If user exists, flash message prompting user to login or try again
     If user does exist, creates dictionary of user info taken from form
     Gets registration date
+    Gets id for compulsory group for new members
+    Adds user to compulsory
     Checks if data is valid
     Adds data to MongoDB
-    Redirect user to 'log-in.html' 
+    Redirect user to 'log-in.html'
     """
     if request.method == "POST":
         existing_user = User.check_user_exists(
             request.form.get("email").lower()
         )
 
-        # https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
         reg_date = datetime.now().strftime("%d %b %Y")
 
         new = User(first_name=request.form.get("fname").lower(),
@@ -74,6 +75,7 @@ def log_in():
     Redirects user to 'welcome.html' with user's first name
     """
     if request.method == "POST":
+
         existing_user = User.check_user_exists(
             request.form.get("email").lower()
         )
@@ -97,15 +99,46 @@ def log_in():
 @auth.route("/welcome/<first_name>", methods=["GET", "POST"])
 def welcome(first_name):
     """
+    If user is part of comp_group, displays a modal to force user to join
     Checks in session user's email
     Gets user's first name from DB using email
     Displays user's first name in heading
     """
+    users = User.get_all_users()
+
     first_name = User.check_user_exists(session["user"])["first_name"]
+
+    comp_group = Group.get_group("619504ce29ccb3f794a3f0e3")
+    new_user = User.check_user_exists(session["user"])["_id"]
 
     if session["user"]:
         return render_template(
-            "welcome.html", page_title="Welcome back", first_name=first_name)
+            "welcome.html", page_title="Welcome back", first_name=first_name,
+                            comp_group=comp_group, new_user=new_user, users=users)
+
+
+# Place user in comp group
+@auth.route("/comp_group/", methods=["GET", "POST"])
+def comp_group():
+    """
+    Gets user's first name for redirection
+    Gets compulsory group's id
+    Adds user to compulsory group
+    Adds compulsory group to user's groups
+    """
+    first_name = User.check_user_exists(session["user"])["first_name"]
+
+    new_user = User.check_user_exists(session["user"])["_id"]
+    print(new_user)
+    comp_group_id = Group.get_group("619504ce29ccb3f794a3f0e3")["_id"]
+    print(comp_group_id)
+
+    Group.add_to_list(comp_group_id, "members", new_user)
+    User.add_to_list(new_user, "groups_member_of", comp_group_id)
+    flash("Thanks for joining New Members! You are not free to start exploring.")
+
+    return redirect(url_for('auth.welcome', first_name=first_name,
+                            comp_group=comp_group, new_user=new_user))
 
 
 # Reset password modal

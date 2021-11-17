@@ -97,7 +97,7 @@
 					{% endif %}
 					{% else %}
 					<a href="#prompt" class="group-link modal-trigger">
-						<h2 class="group-name">{{ group.group_name }}</h2>
+						<h2 class="group-name truncate">{{ group.group_name }}</h2>
 					</a>
 					{% endif %}
 					<p><span class="info-label">Admin:</span> 
@@ -109,7 +109,7 @@
 						{% endif %}
 					</p>
 					<p>{{ group.group_location }}, UK</p>
-					<p class="truncate">{{ group.group_description }}</p>
+					<p class="truncate description">{{ group.group_description }}</p>
 				</div>
 				<div class="card-action">
 					<div class="row action-wrapper valign-wrapper">
