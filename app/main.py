@@ -40,12 +40,10 @@ def search():
     Displays query results
     Uses user info to render correct functions and displays
     """
-
     if session:
         user = User.check_user_exists(session["user"])
     else:
         user = None
-
 
     if user:
         user_following = User.check_user_exists(session["user"].lower())
@@ -62,7 +60,8 @@ def search():
     group_results = list(Group.find_groups_by_query(user_query))
     member_results = list(User.find_users_by_query(user_query))
 
-    return render_template("all-groups-members.html", user=user,
+    return render_template("all-groups-members.html", 
+                                page_title="Search", user=user,
                                 user_query=user_query, group_results=group_results,
                                 member_results=member_results,
                                 groups=groups, members=members,
