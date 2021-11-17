@@ -1,15 +1,9 @@
-# Flask
 from flask import (Flask, render_template, request,
                    flash, url_for, redirect, session, Blueprint)
-# Flask Paginate
 from flask_paginate import Pagination, get_page_args
-# Werkzeug security
 from werkzeug.security import generate_password_hash, check_password_hash
-# Regex
 import re
-# Import datetime
 from datetime import datetime
-# Classes
 from app.classes.user import User
 from app.classes.group import Group
 from app.classes.comment import Comment
@@ -24,11 +18,14 @@ users = Blueprint("users", __name__)
 @users.route("/get_profile", methods=["GET", "POST"])
 def get_profile():
     """
-    Renders the user's profile
+    Checks if user is in session
+    Renders the user's profile and id
     Gets user's email from MongoDB to check in session
+    Retrieves user's groups, both member of and owned
+    Retrieves user's following and followers
     Get's user's id to generate 'user since' value
+    Renders user's profile
     """
-
     user = User.check_user_exists(session["user"].lower())
     user_id = User.get_user_id(session["user"].lower())
 
@@ -49,8 +46,12 @@ def get_profile():
 @users.route("/member_profile/<user_id>")
 def member_profile(user_id):
     """
+    Gets session user's id
     Gets the user id
+    Checks if session user is owner of account
     Get's member's groups and following
+    Checks if session user is following member
+    Renders member's profile
     """
     session_id = User.check_user_exists(session["user"])["_id"]
 
@@ -82,11 +83,9 @@ def follow(user_id):
     """
     user = User.get_user_id(session["user"])
     session_id = user
-    print(session_id)
 
     member = User.get_user_by_id(user_id)["_id"]
     user_id = member
-    print(user_id)
 
     if user:
         User.add_to_list(session_id, "following", user_id)
@@ -106,11 +105,9 @@ def unfollow(user_id):
     """
     user = User.get_user_id(session["user"])
     session_id = user
-    print(session_id)
 
     member = User.get_user_by_id(user_id)["_id"]
     user_id = member
-    print(user_id)
 
     if user:
         User.remove_from_list(session_id, "following", user_id)
@@ -143,7 +140,6 @@ def edit_email():
     Sets new email in session cookie
     Redirects user to 'profile-settings.html'
     If disparities, flashes user to prompt re-attempt
-
     """
     user = User.get_user_by_id(user_id)
     email = User.get_user_by_id(user_id)["email"]
@@ -273,7 +269,6 @@ def edit_profile(user_id):
 
 
 # Delete account
-
 @users.route("/delete_account/<user_id>", methods=["GET", "POST"])
 def delete_account(user_id):
     """
@@ -284,10 +279,7 @@ def delete_account(user_id):
     Flashes account deletion confirmation
     Redirects user to 'sign-up.html'
     """
-
-    # Get user id
     user = User.check_user_exists(session["user"])["_id"]
-    print(user)
 
     members_of = User.get_user_by_id(user)["groups_member_of"]
 

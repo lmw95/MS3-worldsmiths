@@ -1,8 +1,6 @@
-# Flask
 from flask import (Flask, render_template, request,
                    flash, url_for, redirect, session, Blueprint)
 from datetime import datetime
-# Classes
 from bson.objectid import ObjectId
 from app.classes.user import User
 from app.classes.group import Group
@@ -18,13 +16,12 @@ groups = Blueprint("groups", __name__)
 @groups.route("/create_group", methods=["GET", "POST"])
 def create_group():
     """
-    Get user in sessiond
+    Get user in session
     Renders 'create-group.html'
     Creates dictionary of new group info
     Creates new document in MongoDB
     Adds ObjectId of group to user collection
     """
-
     user = User.check_user_exists(session["user"])
 
     if request.method == "POST":
@@ -52,21 +49,19 @@ def create_group():
 def group_page(group_id):
     """
     Gets group id
-    Renders group page with group info
+    Renders group page with group info, members and comments
     """
 
     user = User.check_user_exists(session["user"])["_id"]
     check_user = User.check_user_exists(session["user"])
-    print(check_user)
+
     user_following = User.check_user_exists(session["user"].lower())
 
     if user:
         group = Group.get_group(group_id)
 
-        # Gets all users in db
         users = list(User.get_all_users())
 
-        # Gets members of the group
         members_of = User.get_user_by_id(user)["groups_member_of"]
         members = list(User.find_users_in_array(group["members"]))
 
@@ -84,11 +79,12 @@ def group_page(group_id):
                                 members_of=members_of, members=members, comments=comments,
                                 users=users, following=following, check_user=check_user)
 
+
 # Edit group
 @groups.route("/edit_group/<group_id>", methods=["GET", "POST"])
 def edit_group(group_id):
     """
-    Renders 'edit-group.html
+    Renders 'edit-group.html'
     Gets group id
     Upon submission, adds updated info to a dictionary
     Updates MongoDB
@@ -179,7 +175,6 @@ def add_comment(group_id):
         user = User.check_user_exists(session["user"])
         group = Group.get_group(group_id)["_id"]
 
-        # https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
         time = datetime.now().strftime("%H:%M")
         date = datetime.now().strftime("%d %b %Y")
 
@@ -214,10 +209,8 @@ def delete_comment(group_id, comment_id):
     if request.method == "POST":
         
         group = Group.get_group(group_id)["_id"]
-        print(group)
 
         comment = Comment.get_comment(comment_id)
-        print(comment_id)
 
         Comment.delete_comment(comment_id)
         flash("Comment deleted")
@@ -234,17 +227,14 @@ def reply(group_id, comment_id):
     Adds comment to Mongo DB
     Renders comment on group page
     """
-
     if request.method == "POST":
         user = User.check_user_exists(session["user"])
         group = Group.get_group(group_id)["_id"]
 
         comment = Comment.get_comment(comment_id)["_id"]
-        print(comment)
-        commenter = Comment.get_comment(comment_id)["commenter"]
-        print(commenter)
 
-        # https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
+        commenter = Comment.get_comment(comment_id)["commenter"]
+
         time = datetime.now().strftime("%H:%M")
         date = datetime.now().strftime("%d %b %Y")
 
@@ -265,6 +255,7 @@ def reply(group_id, comment_id):
             print(e)
 
     return redirect(url_for('groups.group_page', group_id=group_id))
+
 
 # Delete group
 @groups.route("/delete_group/<group_id>")

@@ -101,7 +101,6 @@ def welcome(first_name):
     Gets user's first name from DB using email
     Displays user's first name in heading
     """
-
     first_name = User.check_user_exists(session["user"])["first_name"]
 
     if session["user"]:

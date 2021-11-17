@@ -68,20 +68,34 @@ def search():
                                 groups=groups, members=members,
                                 following=following, search=True)
 
+
 # Statements
 @main.route("/statements")
 def statements():
+    """
+    Renders 'statements.html'
+    """
     return render_template("statements.html", page_title="Our statements")
+
 
 # FAQs
 @main.route("/faqs")
 def faqs():
+    """
+    Renders 'faqs.html'
+    """
     return render_template("faqs.html", page_title="FAQs")
 
 
 # Contact us
 @main.route("/contact", methods=["GET", "POST"])
 def contact():
+    """
+    Gets info from contact form submission
+    Sends confirmation email to sender via Flask Mail
+    Flashes confirmation
+    Redirects user to 'contact.html'
+    """
     if request.method == "POST":
         sender_name = request.form.get('full-name')
         sender_email = request.form.get('email')
@@ -117,7 +131,9 @@ def contact():
 @main.route("/browse_all")
 def browse_all():
     """
-    Renders template with all existing groups and events
+    Checks to see if user is following members
+    Checks to see if user is part of any groups
+    Renders template with all existing groups and events ready for searching
     """
     groups = list(Group.get_all_groups())
     members = list(User.get_all_users())
