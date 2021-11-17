@@ -418,6 +418,7 @@ color: var(--black) !important;
     box-shadow: none;
     background-color: var(--munsell);
     color: var(--almond);
+    min-height: 240px !important;
 }
 
 .bio-card-title,
@@ -510,6 +511,7 @@ color: var(--black) !important;
 
 .socials i {
     color: var(--magenta);
+    margin-top: 20px;
 }
 
 .socials .fa-patreon {
@@ -519,6 +521,15 @@ color: var(--black) !important;
 .socials-links {
     display: flex;
     justify-content: space-evenly;
+}
+
+.support-us {
+    margin-top: 25px;
+}
+
+.patreon,
+.support-us {
+    margin-top: 40px;
 }
 
 /** FAQs **/
