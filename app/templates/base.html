@@ -1,149 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="Description"
-        content="Worldsmiths provides a platform for worldbuilders to share their work, network and organise meet-ups">
-    <meta name="keywords"
-        content="event, meetup, worldbuilding meetup, worldbuilding event, networking, worldbuilding meetup, worldbuilding profile">
-    <meta name="author" content="Lydia Wright">
-    {% block styles %}
-    {% endblock %}
-    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}" type="text/css">
-    <link rel="icon" href="{{ url_for('static', filename='icons/favicon_io/favicon-32x32.png')}}">
-    <title>{% block page_title %}{% endblock %}</title>
-</head>
-
-<body>
-
-<header>
-    <!--Header-->
-    <div class="navbar">
-        <!--Navbar-->
-        <nav class="nav-extended">
-            <div class="nav-wrapper">
-                <a href="{{ url_for('main.homepage') }}" class="brand-logo left main-logo">Worldsmiths <img
+   <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="Description"
+            content="Worldsmiths provides a platform for worldbuilders to share their work, network and organise meet-ups">
+        <meta name="keywords"
+            content="event, meetup, worldbuilding meetup, worldbuilding event, networking, worldbuilding meetup, worldbuilding profile">
+        <meta name="author" content="Lydia Wright">
+        {% block styles %}
+        {% endblock %}
+        <!--CDNs-->
+        <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+            type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}" type="text/css">
+        <link rel="icon" href="{{ url_for('static', filename='icons/favicon_io/favicon-32x32.png')}}">
+        <title>{% block page_title %}{% endblock %}</title>
+   </head>
+   <body>
+        <header>
+            <!--Header-->
+            <div class="navbar">
+                <!--Navbar-->
+                <nav class="nav-extended">
+                    <div class="nav-wrapper">
+                        <a href="{{ url_for('main.homepage') }}" class="brand-logo left main-logo" target="_self" aria-label="Homepage">Worldsmiths <img
                         src="{{ url_for('static', filename='icons/book.png')}}" class="brand-icon" alt="Globe on top of a book"></a>
-                <a href="#" data-activities="mobile" data-target="mobile-nav" class="sidenav-trigger right"><i
+                        <a href="{{ url_for('main.homepage') }}" data-activities="mobile" data-target="mobile-nav" class="sidenav-trigger right" target="_self" aria-label="Burger menu"><i
                         class="fas fa-bars"></i></a>
-
-                {% if session.user %}
-
-                <!--User logged in-->
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="{{ url_for('main.homepage') }}"><i class="fas fa-home"></i></a></li>
-                    <li><a href="{{ url_for('main.browse_all') }}"><i class="fas fa-search"></i></a></li>
-                    <li><a href="{{ url_for('users.get_profile') }}" target="_self"><i class="fas fa-user"></i></i></a></li>
-                    <li><a href="{{ url_for('main.contact') }}" target="_self"><i class="fas fa-headset"></i></a></li>
-                    <li><a href="{{ url_for('auth.log_out') }}" target="_self"><i class="fas fa-sign-out-alt"></i></a></li>
-                </ul>
-
-                <!--User logged in (mobile)-->
-                <ul class="sidenav" id="mobile-nav">
-                    <li><a href="{{ url_for('main.homepage') }}"><i class="fas fa-home"></i>Home</a></li>
-                    <li><a href="{{ url_for('main.browse_all') }}"><i class="fas fa-search"></i>Browse</a></li>
-                    <li><a href="{{ url_for('users.get_profile') }}"><i class="fas fa-user"></i>My profile</a></li>
-                    <li><a href="{{ url_for('main.contact') }}" target="_self"><i class="fas fa-headset"></i>Contact us</a></li>
-                    <li><a href="{{ url_for('auth.log_out') }}" target="_self"><i class="fas fa-sign-out-alt"></i>Sign out</a></li>
-                </ul>
-
-                {% else %}
-
-                <!--User not logged in/signed up-->
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="{{ url_for('main.homepage') }}"><i class="fas fa-home"></i></a></li>
-                    <li><a href="{{ url_for('auth.log_in') }}" target="_self"><i class="fas fa-sign-in-alt"></i></a></li>
-                    <li><a href="{{ url_for('auth.sign_up') }}" target="_self"><i class="fas fa-user-plus"></i></a></li>
-                    <li><a href="{{ url_for('main.contact') }}" target="_self"><i class="fas fa-headset"></i></a></li>
-                    <li><a href="{{ url_for('main.faqs') }}" target="_self"><i class="fas fa-question-circle"></i></a></li>
-                </ul>
-
-                <!--Mobile navigation-->
-                <ul class="sidenav" id="mobile-nav">
-                    <li><a href="{{ url_for('main.homepage') }}"><i class="fas fa-home"></i>Home</a></li>
-                    <li><a href="{{ url_for('auth.log_in') }}" target="_self"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
-                    <li><a href="{{ url_for('auth.sign_up') }}" target="_self"><i class="fas fa-user-plus"></i>Sign up</a></li>
-                    <li><a href="{{ url_for('main.contact') }}" target="_self"><i class="fas fa-headset"></i>Get in touch</a></li>
-                    <li><a href="{{ url_for('main.faqs') }}" target="_self"><i class="fas fa-question-circle"></i>Our statements</a></li>
-                </ul>
-
-                {% endif %}
-
+                        {% if session.user %}
+                        <!--User logged in-->
+                        <ul class="right hide-on-med-and-down">
+                            <li><a href="{{ url_for('main.homepage') }}" target="_self" aria-label="Homepage"><i class="fas fa-home"></i></a></li>
+                            <li><a href="{{ url_for('main.browse_all') }}" target="_self" aria-label="Browse"><i class="fas fa-search"></i></a></li>
+                            <li><a href="{{ url_for('users.get_profile') }}" target="_self" aria-label="Profile"><i class="fas fa-user"></i></i></a></li>
+                            <li><a href="{{ url_for('main.contact') }}" target="_self" aria-label="Contact us"><i class="fas fa-headset"></i></a></li>
+                            <li><a href="{{ url_for('auth.log_out') }}" target="_self" aria-label="Sign out"><i class="fas fa-sign-out-alt"></i></a></li>
+                        </ul>
+                        <!--User logged in (mobile)-->
+                        <ul class="sidenav" id="mobile-nav">
+                            <li><a href="{{ url_for('main.homepage') }}" target="_self" aria-label="Homepage"><i class="fas fa-home"></i>Home</a></li>
+                            <li><a href="{{ url_for('main.browse_all') }}" target="_self" aria-label="Browse"><i class="fas fa-search"></i>Browse</a></li>
+                            <li><a href="{{ url_for('users.get_profile') }}" target="_self" aria-label="Profile"><i class="fas fa-user"></i>My profile</a></li>
+                            <li><a href="{{ url_for('main.contact') }}" target="_self" aria-label="Contact us"><i class="fas fa-headset"></i>Contact us</a></li>
+                            <li><a href="{{ url_for('auth.log_out') }}" target="_self" aria-label="Sign out"><i class="fas fa-sign-out-alt"></i>Sign out</a></li>
+                        </ul>
+                        {% else %}
+                        <!--User not logged in/signed up-->
+                        <ul class="right hide-on-med-and-down">
+                            <li><a href="{{ url_for('main.homepage') }}" target="_self" aria-label="Homepage"><i class="fas fa-home"></i></a></li>
+                            <li><a href="{{ url_for('auth.log_in') }}" target="_self" aria-label="Sign in"><i class="fas fa-sign-in-alt"></i></a></li>
+                            <li><a href="{{ url_for('auth.sign_up') }}" target="_self" aria-label="Sign up"><i class="fas fa-user-plus"></i></a></li>
+                            <li><a href="{{ url_for('main.contact') }}" target="_self" aria-label="Contact us"><i class="fas fa-headset"></i></a></li>
+                            <li><a href="{{ url_for('main.faqs') }}" target="_self" aria-label="FAQs"><i class="fas fa-question-circle"></i></a></li>
+                        </ul>
+                        <!--Mobile navigation-->
+                        <ul class="sidenav" id="mobile-nav">
+                            <li><a href="{{ url_for('main.homepage') }}" target="_self" aria-label="Homepage"><i class="fas fa-home"></i>Home</a></li>
+                            <li><a href="{{ url_for('auth.log_in') }}" target="_self" aria-label="Sign in"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
+                            <li><a href="{{ url_for('auth.sign_up') }}" target="_self" aria-label="Sign up"><i class="fas fa-user-plus"></i>Sign up</a></li>
+                            <li><a href="{{ url_for('main.contact') }}" target="_self" aria-label="Contact us"><i class="fas fa-headset"></i>Get in touch</a></li>
+                            <li><a href="{{ url_for('main.faqs') }}" target="_self" aria-label="FAQs"><i class="fas fa-question-circle"></i>Our statements</a></li>
+                        </ul>
+                        {% endif %}
+                    </div>     
+                    <div class="nav-content">
+                        <span class="nav-title">UK networking for worldbuilders, by worldbuilders</span>
+                    </div>
+                </nav>
             </div>
-            <div class="nav-content">
-                <span class="nav-title">UK networking for worldbuilders, by worldbuilders</span>
-            </div>
-        </nav>
-    </div>
-</header>
-
-    <!--Content-->
-    <main>
-        {% block hero %}
-        {% endblock %}
-        {% block content %}
-        {% endblock %}
-    </main>
-
-    <!--Footer user not logged in-->
-    <footer class="footer">
-        <div class="row">
-            <div class="col s12 m4 l4 xl4 left-align">
-                <h5>Worldsmiths</h5>
-                <p>UK networking for worldbuilders, by worldbuilders</p>
-                <a class="btn-large col s12" href="{{ url_for('main.contact') }}" target="_self">Send us a raven</a>
-            </div>
+        </header>
+        <!--Content-->
+        <main>
+            {% block hero %}
+            {% endblock %}
+            {% block content %}
+            {% endblock %}
+        </main>
+        <footer class="footer">
+            <div class="row">
+                <div class="col s12 m4 l4 xl4 left-align">
+                    <h5>Worldsmiths</h5>
+                    <p>UK networking for worldbuilders, by worldbuilders</p>
+                    <a class="btn-large col s12" href="{{ url_for('main.contact') }}" target="_self">Send us a raven</a>
+                </div>
             <div class="col s12 m4 l4 xl4 center-align">
                 <img class="responsive-img col s6 offset-s3 m12 l7 offset-l2 xl7 offset-xl2" src="{{ url_for('static', filename='icons/book.png')}}" alt="Globe on top of a book">
             </div>
             <div class="col s12 m4 l4 xl4 left-align useful-links">
-                <h5>Navigate this site</h5>
-                <ul>
+               <h5>Navigate this site</h5>
+               <ul>
+                   <!--Footer links (user logged in)-->
                     {% if session.user %}
-                    <li><a href="{{ url_for('users.get_profile') }}" target="_self">My profile</a></li>
-                    <li><a href="{{ url_for('auth.welcome', first_name=session['user'])}}" target="_self">Welcome page</a></li>
-                    <li><a href="{{ url_for('main.statements') }}" target="_self">Our statements</a></li>
-                    <li><a href="{{ url_for('main.faqs') }}" target="_self">FAQs</a></li>
-                    <li><a href="{{ url_for('main.contact') }}" target="_self">Contact us</a></li>
+                    <li><a href="{{ url_for('users.get_profile') }}" target="_self" aria-label="Profile">My profile</a></li>
+                    <li><a href="{{ url_for('auth.welcome', first_name=session['user'])}}" target="_self" aria-label="Welcome">Welcome page</a></li>
+                    <li><a href="{{ url_for('main.statements') }}" target="_self" aria-label="Statements">Our statements</a></li>
+                    <li><a href="{{ url_for('main.faqs') }}" target="_self" aria-label="FAQs">FAQs</a></li>
+                    <li><a href="{{ url_for('main.contact') }}" target="_self" aria-label="Contact us">Contact us</a></li>
+                    <!--Footer links (user not logged in)-->
                     {% else %}
-                    <li><a href="{{ url_for('auth.log_in') }}" target="_self">Sign in</a></li>
-                    <li><a href="{{ url_for('auth.sign_up') }}" target="_self">Sign up</a></li>
-                    <li><a href="{{ url_for('main.statements') }}" target="_self">Our statements</a></li>
-                    <li><a href="{{ url_for('main.faqs') }}" target="_self">FAQs</a></li>
-                    <li><a href="{{ url_for('main.contact') }}" target="_self">Contact us</a></li>
+                    <li><a href="{{ url_for('auth.log_in') }}" target="_self" aria-label="Sign in">Sign in</a></li>
+                    <li><a href="{{ url_for('auth.sign_up') }}" target="_self" aria-label="Sign up">Sign up</a></li>
+                    <li><a href="{{ url_for('main.statements') }}" target="_self" aria-label="Our statements">Our statements</a></li>
+                    <li><a href="{{ url_for('main.faqs') }}" target="_self" aria-label="FAQs">FAQs</a></li>
+                    <li><a href="{{ url_for('main.contact') }}" target="_self" aria-label="Contact us">Contact us</a></li>
                     {% endif %}
-                </ul>
+               </ul>
             </div>
-        </div>
-        <div class="row footer-lower">
+         </div>
+         <div class="row footer-lower">
             <div class="col s12 m6 l6 xl6 valign-wrapper copyright-statement">
-                This website was made for educational purposes only
+               This website was made for educational purposes only
             </div>
+            <!--Social media-->
             <div class="col s12 m6 l6 xl6 footer-social-media right-align">
-                <a href="#"><i class="fab fa-discord fa-2x"></i></a>
-                <a href="#"><i class="fab fa-patreon fa-2x"></i></a>
-                <a href="#"><i class="fab fa-reddit fa-2x"></i></a>
-                <a href="#"><i class="fab fa-instagram fa-2x"></i></a>
-                <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+                <a href="https://discord.com/" target="_blank" aria-label="Discord"><i class="fab fa-discord fa-2x"></i></a>
+                <a href="https://www.patreon.com/en-GB" target="_blank" aria-label="Patreon"><i class="fab fa-patreon fa-2x"></i></a>
+                <a href="https://www.reddit.com/" target="_blank" aria-label="Reddit"><i class="fab fa-reddit fa-2x"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram fa-2x"></i></a>
+                <a href="https://twitter.com/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter fa-2x"></i></a>
             </div>
-        </div>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    <script src="{{ url_for('static', filename='js/script.js')}}"></script>
-    {% block scripts %}
-    {% endblock %}
-
-</body>
-
+         </div>
+      </footer>
+      <!--Script files-->
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+      <script src="{{ url_for('static', filename='js/script.js')}}"></script>
+      {% block scripts %}
+      {% endblock %}
+   </body>
 </html>
