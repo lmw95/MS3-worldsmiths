@@ -135,7 +135,7 @@ def comp_group():
 
     Group.add_to_list(comp_group_id, "members", new_user)
     User.add_to_list(new_user, "groups_member_of", comp_group_id)
-    flash("Thanks for joining New Members! You are not free to start exploring.")
+    flash("Thanks for joining New Members! You are now free to start exploring.")
 
     return redirect(url_for('auth.welcome', first_name=first_name,
                             comp_group=comp_group, new_user=new_user))
