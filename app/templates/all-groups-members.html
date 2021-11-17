@@ -1,216 +1,219 @@
 {% extends "base.html" %}
 
-{% block page_title %}{% endblock %}
+{% block page_title %}{{ page_title }}{% endblock %}
 
 {% block hero %}
 <div class="hero">
-    <img class="responsive-img" src="{{ url_for('static', filename='imgs/project-banner.png')}}" alt="Website banner collage">
+	<img class="responsive-img" src="{{ url_for('static', filename='imgs/project-banner.png')}}" alt="Website banner collage">
 </div>
 {% endblock %}
 
 {% block content %}
-
 <div class="row">
-    <div class="col s12 center-align">
-        <h1>Discover...</h1>
-    </div>
-    <div class="col s12">
-        <form method="POST" action="{{ url_for('main.search') }}">
-            <div class="input-field col s12 l6 offset-l3">
-                <i class="fas fa-search prefix"></i>
-                <input id="finder-browse" type="text" class="validate" name="finder">
-                <label for="finder-browse">Browse all groups and members</label>
-            </div>
-            <div class="col s12 l6 offset-l3 center-align">
-                <button class="btn btn-large" type="submit">Search</button>
-            </div>
-        </form>
-    </div>
+	<div class="col s12 center-align">
+		<h1>Discover...</h1>
+	</div>
+	<div class="col s12">
+		<form method="POST" action="{{ url_for('main.search') }}">
+			<div class="input-field col s12 l6 offset-l3">
+				<i class="fas fa-search prefix"></i>
+				<input id="finder-browse" type="text" class="validate" name="finder">
+				<label for="finder-browse">Browse all groups and members</label>
+			</div>
+			<div class="col s12 l6 offset-l3 center-align">
+				<button class="btn btn-large" type="submit">Search</button>
+			</div>
+		</form>
+	</div>
 </div>
 {% if search %}
 <div class="row">
-    <div class="col s12 center-align">
-        <p class="big-paragraph search-confirmation">
-            Displaying results for "<span>{{ user_query }}</span>"
-        </p>
-    </div>
+	<div class="col s12 center-align">
+		<p class="big-paragraph search-confirmation">
+			Displaying results for "<span>{{ user_query }}</span>"
+		</p>
+	</div>
 </div>
 {% endif %}
 <div class="row tab-wrapper">
-    <div class="col s12 l10 offset-l1">
-        <ul class="tabs">
-            <li class="tab col s12 m6">
-                <a href="#browseGroups">
-                    <h3>Groups ({{ group_results|length}})</h3>
-                </a>
-            </li>
-            <li class="tab col s12 m6">
-                <a href="#browseMembers">
-                    <h3>Members ({{ member_results|length }})</h3>
-                </a>
-            </li>
-        </ul>
-    </div>
+	<div class="col s12 l10 offset-l1">
+		<ul class="tabs">
+			<li class="tab col s12 m6">
+				<a href="#browseGroups">
+					<h3>Groups ({{ group_results|length}})</h3>
+				</a>
+			</li>
+			<li class="tab col s12 m6">
+				<a href="#browseMembers">
+					<h3>Members ({{ member_results|length }})</h3>
+				</a>
+			</li>
+		</ul>
+	</div>
 </div>
 <div class="row create-wrapper">
-    <div class="col s12 l10 offset-l1">
-        {% if session.user %}
-        <a href="{{ url_for('groups.create_group') }}" class="btn-large col s12"><i class="fas fa-users left"></i> Create group</a>
-        {% else %}
-        {% endif %}
-    </div>
+	<div class="col s12 l10 offset-l1">
+		{% if session.user %}
+		<a href="{{ url_for('groups.create_group') }}" class="btn-large col s12" target="_self" aria-label="Create group"><i class="fas fa-users left"></i> Create group</a>
+		{% else %}
+		{% endif %}
+	</div>
 </div>
 <div id="browseGroups" class="browse-groups">
-    <div class="row">
-        <div class="col s12 m10 offset-m1 l10 offset-l1 xl10 offset-xl1 center-align">
-            <h2>Groups</h2>
-            <hr class="long-underline">
-        </div>
-    </div>
-    <div class="row">
-    {% if group_results|length > 0 %}
-    {% for group in group_results %}
-        <div class="col s10 offset-s1">
-            <div class="card horizontal group-card">
-                <div class="card-image browse-img">
-                    <img src="{{ group.group_cover_img_url }}">
-                </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        {% if session.user %}
-                        {% set admin = members|selectattr("_id", "equalto", group.group_admin )|first %}
-                            {% if admin is defined %}
-                            <a href="{{ url_for('groups.group_page', group_id=group._id) }}" class="group-link"><h2 class="group-name">{{ group.group_name }}</h2></a>
-                            {% else %}
-                            <a href="#inactive" class="group-link modal-trigger"><h2 class="group-name">{{ group.group_name }} [Inactive]</h2></a>
-                            {% endif %}
-                        {% else %}
-                        <a href="#prompt" class="group-link modal-trigger"><h2 class="group-name">{{ group.group_name }}</h2></a>
-                        {% endif %}
-                        <p><span class="info-label">Admin:</span> 
-                            {% set admin = members|selectattr("_id", "equalto", group.group_admin )|first %}
-                            {% if admin is defined %}
-                            {{ admin.first_name.capitalize() }} {{admin.last_name.capitalize() }}
-                            {% else %}
-                            [Admin deleted]
-                            {% endif %}
-                        </p>
-                        <p>{{ group.group_location }}, UK</p>
-                        <p class="truncate">{{ group.group_description }}</p>
-                    </div>
-                    <div class="card-action">
-                        <div class="row action-wrapper valign-wrapper">
-                            <div class="col s12 m6 l6 xl6 valign-wrapper">
-                                <p><i class="fas fa-user-circle"></i> {{ group.members|length}} guild members</p>
-                            </div>
-                            <div class="col s12 m6 l6 xl6">
-                                {% if session.user %}
-                                <a href="{{ url_for('groups.group_page', group_id=group._id) }}" class="btn join-btn col s12 m6 offset-m6">View group</a>
-                                {% else %}
-                                <a href="#prompt" class="btn join-btn col s12 m6 offset-m6 modal-trigger">View group</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-    {% else %}
-    <div class="row">
-        <div class="col s12 center-align">
-            <img src="/static/imgs/nothing-here.png" height="200" width="150">
-            <p class="big-paragraph">Nothing yet! Use search to find groups and members</p>
-        </div>
-    </div>
-    {% endif %}
+<div class="row">
+	<div class="col s12 m10 offset-m1 l10 offset-l1 xl10 offset-xl1 center-align">
+		<h2>Groups</h2>
+		<hr class="long-underline">
+	</div>
+</div>
+<div class="row">
+	{% if group_results|length > 0 %}
+	{% for group in group_results %}
+	<div class="col s10 offset-s1">
+		<div class="card horizontal group-card">
+			<div class="card-image browse-img">
+				<img src="{{ group.group_cover_img_url }}" alt="{{ group }}'s cover img">
+			</div>
+			<div class="card-stacked">
+				<div class="card-content">
+					{% if session.user %}
+					{% set admin = members|selectattr("_id", "equalto", group.group_admin )|first %}
+					{% if admin is defined %}
+					<a href="{{ url_for('groups.group_page', group_id=group._id) }}" class="group-link" target="_self" aria-label="To {{ group.group_name }}">
+						<h2 class="group-name">{{ group.group_name }}</h2>
+					</a>
+					{% else %}
+					<a href="#inactive" class="group-link modal-trigger" aria-label="Inactive group">
+						<h2 class="group-name">{{ group.group_name }} [Inactive]</h2>
+					</a>
+					{% endif %}
+					{% else %}
+					<a href="#prompt" class="group-link modal-trigger">
+						<h2 class="group-name">{{ group.group_name }}</h2>
+					</a>
+					{% endif %}
+					<p><span class="info-label">Admin:</span> 
+						{% set admin = members|selectattr("_id", "equalto", group.group_admin )|first %}
+						{% if admin is defined %}
+						{{ admin.first_name.capitalize() }} {{admin.last_name.capitalize() }}
+						{% else %}
+						[Admin deleted]
+						{% endif %}
+					</p>
+					<p>{{ group.group_location }}, UK</p>
+					<p class="truncate">{{ group.group_description }}</p>
+				</div>
+				<div class="card-action">
+					<div class="row action-wrapper valign-wrapper">
+						<div class="col s12 m6 l6 xl6 valign-wrapper">
+							<p><i class="fas fa-user-circle"></i> {{ group.members|length}} guild members</p>
+						</div>
+						<div class="col s12 m6 l6 xl6">
+							{% if session.user %}
+							<a href="{{ url_for('groups.group_page', group_id=group._id) }}" class="btn join-btn col s12 m6 offset-m6" target="_self" aria-label="View {{ group.group_name }}">View group</a>
+							{% else %}
+							<a href="#prompt" class="btn join-btn col s12 m6 offset-m6 modal-trigger">View group</a>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+	{% else %}
+	<div class="row">
+		<div class="col s12 center-align">
+			<img src="/static/imgs/nothing-here.png" height="200" width="150" alt="Pixie looking cross">
+			<p class="big-paragraph">Nothing yet! Use search to find groups and members</p>
+		</div>
+	</div>
+	{% endif %}
 </div>
 <div id="browseMembers" class="browse-members">
-    <div class="row">
-        <div class="col s12 m10 offset-m1 l10 offset-l1 xl10 offset-xl1 center-align">
-            <h2>Members</h2>
-            <hr class="long-underline">
-        </div>
-    </div>
-    <div class="row">
-    {% if member_results|length > 0 %}
-    {% for member in member_results %}
-        <div class="col s12 m6 l4 xl4 member-card-wrapper">
-            <div class="card member-card">
-                <div class="card-image">
-                    <img src="{{ member.profile_pic_url }}">
-                    {% if user %}
-                        {% if member in following %}
-                        <span class="card-title member-name valign-wrapper">
-                            <a href="{{ url_for('users.member_profile', user_id=member._id) }}" class="truncate">
-                                {{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}
-                            </a>
-                        </span>
-                        <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-times"></i></a>
-                        {% else %}
-                        <span class="card-title member-name valign-wrapper">
-                            <a href="{{ url_for('users.member_profile', user_id=member._id) }}" class="truncate">
-                                {{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}
-                            </a>
-                        </span>
-                        <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
-                        {% endif %}
-                    {% else %}
-                    <a href="#prompt" class="modal-trigger"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
-                    <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-    {% else %}
-    <div class="row">
-        <div class="col s12 center-align">
-            <img src="/static/imgs/nothing-here-2.png" height="200" width="150">
-            <p class="big-paragraph">Nothing yet! Use search to find groups and members</p>
-        </div>
-    </div>
-    {% endif %}
+<div class="row">
+	<div class="col s12 m10 offset-m1 l10 offset-l1 xl10 offset-xl1 center-align">
+		<h2>Members</h2>
+		<hr class="long-underline">
+	</div>
 </div>
-
+<div class="row">
+	{% if member_results|length > 0 %}
+	{% for member in member_results %}
+	<div class="col s12 m6 l4 xl4 member-card-wrapper">
+		<div class="card member-card">
+			<div class="card-image">
+				<img src="{{ member.profile_pic_url }}" alt="{{ member.first_name }}'s profile img">
+				{% if user %}
+				{% if member in following %}
+				<span class="card-title member-name valign-wrapper">
+				<a href="{{ url_for('users.member_profile', user_id=member._id) }}" class="truncate" target="_self" aria-label= "{{ member.first_name }}'s' profile">
+				{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}
+				</a>
+				</span>
+				<a class="btn-floating halfway-fab follow-btn" aria-label="Unfollow {{ member.first_name }}"><i class="fas fa-times"></i></a>
+				{% else %}
+				<span class="card-title member-name valign-wrapper">
+				<a href="{{ url_for('users.member_profile', user_id=member._id) }}" class="truncate">
+				{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}
+				</a>
+				</span>
+				<a class="btn-floating halfway-fab follow-btn" aria-label="Follow {{ member.first_name }}"><i class="fas fa-plus"></i></a>
+				{% endif %}
+				{% else %}
+				<a href="#prompt" class="modal-trigger"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
+				<a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+	{% else %}
+	<div class="row">
+		<div class="col s12 center-align">
+			<img src="/static/imgs/nothing-here-2.png" height="200" width="150" alt="Pixie looking cross">
+			<p class="big-paragraph">Nothing yet! Use search to find groups and members</p>
+		</div>
+	</div>
+	{% endif %}
+</div>
 <!--Sign-up/log-in modal-->
 <div id="prompt" class="modal">
-    <div class="modal-content">
-        <div class="row">
-            <div class="col s12 center-align">
-                <img src="/static/imgs/gandalf.png" class="responsive-img gandalf">
-                <h1 class="center">The way is shut</h1>
-            </div>
-        </div>
-        <h3 class="center">Want to explore further?</h3>
-        <p class="center">To view, join or attend our group pages or view and follow our members' profiles, you need to be a member with us and logged in.
-                Click below to join us, or log-in if you already have an account with us!
-        </p>
-    </div>
-    <div class="modal-footer">
-        <div class="row center-align">
-            <div class="col s12 m12 l6 xl6">
-                <button class="modal-close btn col s12">Join the adventure</a>
-            </div>
-            <div class="col s12 m12 l6 xl6">
-                <a href="" class="modal-close btn col s12">Sign me in</a>
-            </div>
-        </div>
-    </div>
+	<div class="modal-content">
+		<div class="row">
+			<div class="col s12 center-align">
+				<img src="/static/imgs/gandalf.png" class="responsive-img gandalf" alt="Gandalf">
+				<h1 class="center">The way is shut</h1>
+			</div>
+		</div>
+		<h3 class="center">Want to explore further?</h3>
+		<p class="center">To view, join or attend our group pages or view and follow our members' profiles, you need to be a member with us and logged in.
+			Click below to join us, or log-in if you already have an account with us!
+		</p>
+	</div>
+	<div class="modal-footer">
+		<div class="row center-align">
+			<div class="col s12 m12 l6 xl6">
+				<button class="modal-close btn col s12">Join the adventure</a>
+			</div>
+			<div class="col s12 m12 l6 xl6">
+				<a href="{{ url_for('auth.log_in') }}" class="modal-close btn col s12" target="_self" aria-label="Sign in">Sign me in</a>
+			</div>
+		</div>
+	</div>
 </div>
-
 <!--Inactive group-->
 <div id="inactive" class="modal">
-    <div class="modal-content">
-        <div class="row">
-            <div class="col s12 center-align">
-                <img src="/static/imgs/gandalf.png" class="responsive-img gandalf">
-                <h2 class="center">Sorry, this group is inactive</h2>
-            </div>
-        </div>
-        <p class="center">It seems the admin of this group decided they didn't want to 
-            be part of the awesomeness. Never mind, there are still plenty of groups to join!
-        </p>
-    </div>
+	<div class="modal-content">
+		<div class="row">
+			<div class="col s12 center-align">
+				<img src="/static/imgs/gandalf.png" class="responsive-img gandalf" alt="Gandalf">
+				<h2 class="center">Sorry, this group is inactive</h2>
+			</div>
+		</div>
+		<p class="center">It seems the admin of this group decided they didn't want to 
+			be part of the awesomeness. Never mind, there are still plenty of groups to join!
+		</p>
+	</div>
 </div>
 {% endblock %}
