@@ -53,9 +53,11 @@ def member_profile(user_id):
     Get's member's groups and following
     """
     session_id = User.check_user_exists(session["user"])["_id"]
+    print(session_id)
 
     user = User.get_user_by_id(user_id)
     user_id = User.get_user_id(user["email"])
+    print(user_id)
 
     groups_created = list(Group.find_groups_by_id(user["groups_created"]))
     groups_member = list(Group.find_groups_by_id(user["groups_member_of"]))
@@ -290,13 +292,11 @@ def delete_account(user_id):
     print(user)
 
     members_of = User.get_user_by_id(user)["groups_member_of"]
-    print(members_of)
 
     groups = Group.get_all_groups()
 
     for memb in members_of:
         group = Group.find_groups_by_id(groups)
-        print(memb)
 
     Group.remove_from_list(memb, "members", user)
     session.pop("email", None)
