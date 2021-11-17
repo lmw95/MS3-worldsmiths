@@ -56,6 +56,8 @@ def group_page(group_id):
     """
 
     user = User.check_user_exists(session["user"])["_id"]
+    check_user = User.check_user_exists(session["user"])
+    print(check_user)
     user_following = User.check_user_exists(session["user"].lower())
 
     if user:
@@ -80,7 +82,7 @@ def group_page(group_id):
                                 group=group, admin=admin, user=user,
                                 admin_fname=admin_fname, admin_lname=admin_lname,
                                 members_of=members_of, members=members, comments=comments,
-                                users=users, following=following)
+                                users=users, following=following, check_user=check_user)
 
 # Edit group
 @groups.route("/edit_group/<group_id>", methods=["GET", "POST"])
@@ -199,9 +201,32 @@ def add_comment(group_id):
     return redirect(url_for('groups.group_page', group_id=group_id))
 
 
+# Delete comment
+@groups.route("/delete_comment/<group_id>/<comment_id>", methods=["GET", "POST"])
+def delete_comment(group_id, comment_id):
+    """
+    Gets group id
+    Gets poster id (user in session)
+    Adds comment to Mongo DB
+    Renders comment on group page
+    """
+    if request.method == "POST":
+        
+        group = Group.get_group(group_id)["_id"]
+        print(group)
+
+        comment = Comment.get_comment(comment_id)
+        print(comment_id)
+
+        Comment.delete_comment(comment_id)
+        flash("Comment deleted")
+
+    return redirect(url_for('groups.group_page', group_id=group_id))
+    
+
 # Reply to a comment
-@groups.route("/reply/<group_id>", methods=["GET", "POST"])
-def reply(group_id):
+@groups.route("/reply/<group_id>/<comment_id>", methods=["GET", "POST"])
+def reply(group_id, comment_id):
     """
     Gets group id
     Gets poster id (user in session)
@@ -213,8 +238,8 @@ def reply(group_id):
         user = User.check_user_exists(session["user"])
         group = Group.get_group(group_id)["_id"]
 
-        comments = Comment.find_comments_by_id(group)
-        print(comments)
+        comment = Comment.get_comment(comment_id)["_id"]
+        print(comment)
 
         # https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
         time = datetime.now().strftime("%H:%M")
@@ -226,7 +251,7 @@ def reply(group_id):
                                 time_posted=time,
                                 date_posted=date,
                                 reply=True,
-                                reply_to=request.form.get("reply-to"))
+                                reply_to=ObjectId(comment_id))
 
         try:
             new_reply.add_to_db()
