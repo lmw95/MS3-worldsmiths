@@ -8,7 +8,7 @@ class Comment():
     def __init__(self, comment, commenter,
                 time_posted, date_posted, 
                 group_id, reply, reply_to,
-                _id=None):
+                reply_user, _id=None):
 
         self._id = _id
         self.comment = comment
@@ -18,6 +18,7 @@ class Comment():
         self.group_id = group_id
         self.reply = reply
         self.reply_to = reply_to
+        self.reply_user = reply_user
 
 
     def comment_info(self):
@@ -28,7 +29,9 @@ class Comment():
             "date_posted": self.date_posted,
             "group_id": self.group_id,
             "reply": self.reply,
-            "reply_to": self.reply_to
+            "reply_to": self.reply_to,
+            "reply_user": self.reply_user
+
         }
 
         return comment_info

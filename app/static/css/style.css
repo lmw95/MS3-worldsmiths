@@ -387,7 +387,8 @@ color: var(--black) !important;
     background-color: var(--munsell-t);
 }
 
-.p-info {
+.p-info,
+.g-info {
     background: url(/static/icons/book.png) center;
 }
 
@@ -1063,8 +1064,8 @@ input[type=text]:not(.browser-default) {
     }
 
     .bio-card .card-content {
-        height: 300px;
         overflow-x: scroll;
+        max-height: 300px;
     }
 
     .project-card .card-content {
