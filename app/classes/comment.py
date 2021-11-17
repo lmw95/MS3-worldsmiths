@@ -55,6 +55,13 @@ class Comment():
         return comment
 
     
+    # Gets all comments
+    @staticmethod
+    def get_comments():
+        comments = list(mongo.db.comments.find())
+        return comments
+
+
     # Gets all comments in a group
     @staticmethod
     def get_all_comments(group_id):
