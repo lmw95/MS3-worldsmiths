@@ -65,7 +65,7 @@ def member_profile(user_id):
     following = list(User.find_users_in_array(user["following"]))
     followers = list(User.find_users_in_array(user["followers"]))
 
-    return render_template("member.html", page_title="",
+    return render_template("member.html",
                             user_id=user_id, user=user,
                             groups_member=groups_member,
                             groups_created=groups_created,

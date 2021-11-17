@@ -40,7 +40,7 @@ def create_group():
         except Exception as e:
             print(e)
     
-    return render_template("create-group.html", page_title="Create a group",
+    return render_template("create-group.html",
                             user=user)
 
 
@@ -73,7 +73,7 @@ def group_page(group_id):
         admin_fname = User.get_user_by_id(admin)["first_name"]
         admin_lname = User.get_user_by_id(admin)["last_name"]
 
-        return render_template("group.html", page_title=page_title,
+        return render_template("group.html",
                                 group=group, admin=admin, user=user,
                                 admin_fname=admin_fname, admin_lname=admin_lname,
                                 members_of=members_of, members=members, comments=comments,
@@ -108,7 +108,7 @@ def edit_group(group_id):
         except Exception as e:
             print(e)
 
-    return render_template("edit-group.html", page_title="Edit group",
+    return render_template("edit-group.html",
                             group_id=group_id, group=group)
 
 
@@ -133,7 +133,7 @@ def join_group(group_id):
         Group.add_to_list(group_id, "members", user_id)
         flash("You are now a member")
 
-    return redirect(url_for('groups.group_page', page_title="{{group.group_name}}", group_id=group_id))
+    return redirect(url_for('groups.group_page', group_id=group_id))
 
 
 # Leave group
@@ -160,7 +160,7 @@ def leave_group(group_id):
         except Exception as e:
             print(e)
 
-    return redirect(url_for('groups.group_page', page_title="{{ group.group_name }}", group_id=group_id))
+    return redirect(url_for('groups.group_page', group_id=group_id))
 
 
 # Add comment
