@@ -53,11 +53,9 @@ def member_profile(user_id):
     Get's member's groups and following
     """
     session_id = User.check_user_exists(session["user"])["_id"]
-    print(session_id)
 
     user = User.get_user_by_id(user_id)
     user_id = User.get_user_id(user["email"])
-    print(user_id)
 
     groups_created = list(Group.find_groups_by_id(user["groups_created"]))
     groups_member = list(Group.find_groups_by_id(user["groups_member_of"]))

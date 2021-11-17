@@ -189,7 +189,8 @@ def add_comment(group_id):
                             time_posted=time,
                             date_posted=date, 
                             reply=False,
-                            reply_to=None)
+                            reply_to=None,
+                            reply_user=None)
 
         try:
             new_comment.add_to_db()
@@ -240,6 +241,8 @@ def reply(group_id, comment_id):
 
         comment = Comment.get_comment(comment_id)["_id"]
         print(comment)
+        commenter = Comment.get_comment(comment_id)["commenter"]
+        print(commenter)
 
         # https://thispointer.com/python-how-to-get-current-date-and-time-or-timestamp/
         time = datetime.now().strftime("%H:%M")
@@ -251,7 +254,8 @@ def reply(group_id, comment_id):
                                 time_posted=time,
                                 date_posted=date,
                                 reply=True,
-                                reply_to=ObjectId(comment_id))
+                                reply_to=ObjectId(comment_id),
+                                reply_user=ObjectId(commenter))
 
         try:
             new_reply.add_to_db()
