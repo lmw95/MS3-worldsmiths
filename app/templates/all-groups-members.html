@@ -26,6 +26,8 @@
 		</form>
 	</div>
 </div>
+
+<!--Query confirmation-->
 {% if search %}
 <div class="row">
 	<div class="col s12 center-align">
@@ -35,6 +37,8 @@
 	</div>
 </div>
 {% endif %}
+
+<!--Tabs-->
 <div class="row tab-wrapper">
 	<div class="col s12 l10 offset-l1">
 		<ul class="tabs">
@@ -51,6 +55,8 @@
 		</ul>
 	</div>
 </div>
+
+<!--Create group button-->
 <div class="row create-wrapper">
 	<div class="col s12 l10 offset-l1">
 		{% if session.user %}
@@ -59,6 +65,8 @@
 		{% endif %}
 	</div>
 </div>
+
+<!--Group results-->
 <div id="browseGroups" class="browse-groups">
 <div class="row">
 	<div class="col s12 m10 offset-m1 l10 offset-l1 xl10 offset-xl1 center-align">
@@ -130,6 +138,8 @@
 	</div>
 	{% endif %}
 </div>
+
+<!--Memebr results-->
 <div id="browseMembers" class="browse-members">
 <div class="row">
 	<div class="col s12 m10 offset-m1 l10 offset-l1 xl10 offset-xl1 center-align">
@@ -177,6 +187,7 @@
 	</div>
 	{% endif %}
 </div>
+
 <!--Sign-up/log-in modal-->
 <div id="prompt" class="modal">
 	<div class="modal-content">
@@ -202,7 +213,8 @@
 		</div>
 	</div>
 </div>
-<!--Inactive group-->
+
+<!--Inactive group modal-->
 <div id="inactive" class="modal">
 	<div class="modal-content">
 		<div class="row">
