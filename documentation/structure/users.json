@@ -6,84 +6,68 @@
         },
         "first_name": {
             "bsonType": "string",
-            "description": "must be a string and is required"
+            "description": "String and required"
         },
         "last_name": {
             "bsonType": "string",
-            "description": "must be a string and is required"
+            "description": "String and required"
         },
         "email": {
             "bsonType": "string",
-            "description": "must be a string and is required",
+            "description": "String and required",
             "uniqueItems": true
         },
         "password": {
             "bsonType": "string",
-            "description": "must be a string and is required"
+            "description": "String and required"
         },
         "nickname": {
             "bsonType": "string",
-            "description": "must be a string and can be empty"
+            "description": "String and can be empty"
         },
         "profile_pic_url": {
             "bsonType": "string",
-            "description": "must be a string and can be empty"
+            "description": "String and can be empty"
         },
         "user_banner_url": {
             "bsonType": "string",
-            "description": "must be a string and can be empty"
+            "description": "String and can be empty"
         },
         "user_member_since": {
-            "bsonType": "string",
-            "description": "must be a string and always displayed"
+            "bsonType": "datetime",
+            "description": "Datetime and always displayed"
         },
         "user_city": {
             "bsonType": "string",
-            "description": "must be a string and is required"
+            "description": "String and required"
         },
         "user_location": {
             "bsonType": "string",
-            "description": "must be a string and is required"
+            "description": "String and required"
         },
         "user_interests": {
             "bsonType": "string",
-            "description": "must be a string and is required"
+            "description": "String and required"
         },
         "user_biography": {
             "bsonType": "string",
-            "description": "must be a string and can be empty"
+            "description": "String and can be empty"
         },
         "user_project_1": {
             "bsonType": "string",
-            "description": "must be a string and can be empty"
+            "description": "String and can be empty"
         },
         "user_project_2": {
             "bsonType": "string",
-            "description": "must be a string and can be empty"
+            "description": "String and can be empty"
         },
         "user_project_3": {
             "bsonType": "string",
-            "description": "must be a string and can be empty"
-        },
-        "events_attending": {
-            "bsonType": "array",
-            "description": "must be an array of ObjectId and can be empty",
-            "items": {
-                "bsonType": "objectId"
-            },
-            "minItems": "0"
-        },
-        "events_organised": {
-            "bsonType": "array",
-            "description": "must be an array of ObjectId and can be empty",
-            "items": {
-                "bsonType": "objectId"
-            },
-            "minItems": "0"
+            "description": "String and can be empty"
         },
         "groups_member_of": {
             "bsonType": "array",
-            "description": "must be an array of ObjectId and can be empty",
+            "description": "Array of ObjectId and can be empty",
             "items": {
                 "bsonType": "objectId"
             },
@@ -91,7 +75,7 @@
         },
         "groups_created": {
             "bsonType": "array",
-            "description": "must be an array of ObjectId and can be empty",
+            "description": "Array of ObjectId and can be empty",
             "items": {
                 "bsonType": "objectId"
             },
@@ -99,13 +83,21 @@
         },
         "following": {
             "bsonType": "array",
-            "description": "must be an array of ObjectId and can be empty",
+            "description": "Array of ObjectId and can be empty",
+            "items": {
+                "bsonType": "objectId"
+            },
+            "minItems": "0"
+        },
+        "followers": {
+            "bsonType": "array",
+            "description": "Array of ObjectId and can be empty",
             "items": {
                 "bsonType": "objectId"
             },
             "minItems": "0"
         }
     },
-    "required": ["_id", "first_name", "last_name", "email", "password"],
+    "required": ["_id", "first_name", "last_name", "email", "password", "user_city", "user_location", "user_interests"],
     "title": "users"
 }

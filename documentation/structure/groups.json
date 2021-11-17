@@ -2,36 +2,43 @@
     "description": "Details of a group",
     "properties": {
         "_id": {
-            "bsonType": "objectId"
+            "bsonType": "objectid"
         },
         "group_name": {
             "bsonType": "string",
-            "description": "must be a string and is required",
-            "uniqueItems": true
+            "description": "String and required"
         },
         "group_cover_img_url": {
             "bsonType": "string",
-            "description": "must be a string and is required"
+            "description": "String and required"
         },
         "group_admin": {
-            "bsonType": "objectId",
-            "description": "must be an objectId and is required",
+            "bsonType": "objectid",
+            "description": "ObjectId and required",
             "items": {
-                "bsonType": "objectId"
+                "bsonType": "objectid"
             },
             "minItems": "1"
         },
         "group_location": {
             "bsonType": "string",
-            "description": "must be a string and is required"
+            "description": "String and required"
         },
         "group_description": {
             "bsonType": "string",
-            "description": "must be a string and is required"
+            "description": "String and required"
+        },
+        "comments": {
+            "bsonTyoe": "array",
+            "description": "Array and can be empty",
+            "items": {
+                "bsonType": "array"
+            },
+            "minItems": "0"
         },
         "members": {
             "bsonType": "array",
-            "description": "must be an array and can be empty",
+            "description": "Array of ObjectId and can be empty",
             "items": {
                 "bsonType": "array"
             },

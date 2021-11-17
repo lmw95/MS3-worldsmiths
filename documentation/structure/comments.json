@@ -1,28 +1,38 @@
 {
-    "description": "Details of a post in the chat and the poster",
+    "description": "Details of a comment",
     "properties": {
-        "_id": "objectId",
+        "_id": { 
+            "bsonType": "ObjectId"
+        },
         "comment": {
             "bsonType": "string",
-            "description": "must be a string and is required"
+            "description": "String and required"
+        },
+        "commenter": {
+            "bsonType": "objectid",
+            "description": "ObjectId and required"
+        },
+        "time_posted": {
+            "bsonType": "datetime",
+            "description": "Datetime and always displayed"
+        },
+        "date_posted": {
+            "bsonType": "datetime",
+            "description": "Datetime and always displayed"
+        },
+        "group_id": {
+            "bsonType": "objectid",
+            "description": "ObjectId and required"
         },
         "reply": {
             "bsonType": "string",
-            "description": "must be a string if the field exists"
+            "description": "String and required if field exists"
         },
-        "poster": {
-            "bsonType": "objectId",
-            "description": "must be an objectId and is required if field exists"
-        },
-        "time_posted": {
-            "bsonType": "timestamp",
-            "description": "must be a timestamp and is required if field exists"
-        },
-        "date_posted": {
-            "bsonType": "date",
-            "description": "must be a date and is required if field exists "
+        "reply_to": {
+            "bsonType": "objectid",
+            "description": "ObjectId and required if field existd"
         }
     },
-    "required": ["_id", "comment", "poster", "time_posted", "date_posted"],
+    "required": ["_id", "comment", "commenter", "time_posted", "date_posted", "group_id", "reply", "reply_to"],
     "title": "comments"
 }
