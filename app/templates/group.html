@@ -75,7 +75,7 @@
                 <!--Member cards-->
                 <div class="card member-card">
                     <div class="card-image">
-                        <img src="/static/imgs/profile-avatar.png">
+                        <img src="{{ member.profile_pic_url }}">
                         <a href="{{ url_for('users.member_profile', user_id=member._id)}}"><span class="card-title member-name valign-wrapper">
                             {{ member.first_name.capitalize() }} {{member.last_name.capitalize() }}
                         </span></a>
@@ -128,18 +128,17 @@
                     </div>
                     <div class="row">
                         <div class="col s12 comment">
+                            <!--If comment is a reply-->
                             {% if comment.reply == True %}
-                                {% set replying_to = users|selectattr("_id", "equalto", comment.reply_to)|first %}
-                                {% set commenter = users|selectattr("_id", "equalto", comment.commenter)|first %}
+                                {% set replying_to = users|selectattr("_id", "equalto", comment.commenter )|first %}
                                 {% if replying_to is defined %}
-                                <p><span class="replying-to">@{{ comment.reply_to.lower().replace(" ", "")}}:</span> {{ comment.comment }}</p>
-                                {% elif commenter is defined %}
-                                <p><span class="replying-to">@{{ comment.reply_to.lower().replace(" ", "")}}:</span> {{ comment.comment }}</p>
+                                <p><span class="replying-to">@{{ replying_to.first_name }}{{ replying_to.last_name }}</span> {{ comment.comment }}</p>
                                 {% else %}
-                                <p><span class="replying-to">@[User deleted]:</span> [Comment unavailable]</p>
+                                <p><span class="replying-to">@[User deleted]:</span> {{ comment.comment }}</p>
                                 {% endif %}
+                            <!--If comment is not a reply-->
                             {% else %}
-                                {% set commenter = users|selectattr("_id", "equalto", comment.commenter)|first %}
+                            {% set commenter = users|selectattr("_id", "equalto", comment.commenter)|first %}
                                 {% if commenter is defined %}
                                 <p>{{ comment.comment }}</p>
                                 {% else %}
@@ -151,14 +150,13 @@
                     <div class="row comment-options">
                         {% if user != comment.commenter %}
                         <div class="secondary-content comment-option">
-                            <a href="#reply" class="modal-trigger"><i class="fas fa-comment-dots fa-2x"></i></a>
+                            <a href="#reply_{{ comment._id}}" class="modal-trigger"><i class="fas fa-comment-dots fa-2x"></i></a>
                         </div>
                         {% endif %}
                         {% if user == comment.commenter %}
                         <div class="secondary-content comment-option">
-                            <a href="#edit" class="modal-trigger edit-comment"><i class="fas fa-pencil-alt fa-2x"></i></a>
-                            <a href="#reply" class="modal-trigger delete-comment"><i class="fas fa-comment-dots fa-2x"></i></a>
-                            <a href="#" class=""><i class="fas fa-trash-alt fa-2x"></i></a>
+                            <a href="#reply_{{ comment._id}}" class="modal-trigger delete-comment"><i class="fas fa-comment-dots fa-2x"></i></a>
+                            <a href="#delete_{{ comment._id}}" class="modal-trigger"><i class="fas fa-trash-alt fa-2x"></i></a>
                         </div>
                         {% else %}
                         {% endif %}
@@ -166,6 +164,76 @@
                 </li>
             </ul>
         </div>
+
+        <!--Add comment modal-->
+        <div id="add-comment" class="modal">
+            <div class="modal-content">
+                <form method="POST" action="{{ url_for('groups.add_comment', group_id=group._id) }}">
+                    <h1 class="center">Add a comment</h1>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="fas fa-comment-dots prefix"></i>
+                            <input id="comment" name="comment" type="text" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col s12 right">
+                                <button class="btn-large modal-close" type="submit"><i class="fas fa-plus-circle"></i> Add</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!--Reply to comment-->
+        <div id="reply_{{ comment._id}}" class="modal">
+            <div class="modal-content">
+                <form method="POST" action="{{ url_for('groups.reply', group_id=group._id, comment_id=comment._id) }}" id="form-reply_{{ comment._id}}">
+                    <h1 class="center">Reply</h1>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="fas fa-comment-dots prefix"></i>
+                            <input id="reply" name="reply" type="text" required></textarea>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="fas fa-at prefix"></i>
+                            {% set name = users|selectattr("_id", "equalto", comment.commenter)|first %}
+                            <input disabled id="reply-to" name="reply-to" type="text" placeholder="{{ name.first_name }}{{ name.last_name }}" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col s12 right">
+                                <button class="btn-large" type="submit"><i class="fas fa-plus-circle"></i> Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!--Delete comment modal-->
+        <div id="delete_{{ comment._id}}" class="modal">
+            <div class="modal-content">
+                <form method="POST" action="{{ url_for('groups.delete_comment', group_id=group._id, comment_id=comment._id) }}" id="form-delete_{{ comment._id}}">
+                    <div class="row">
+                        <h2 class="center">Delete comment?</h2>
+                    </div>
+                    <div class="row">
+                    <div class="modal-footer">
+                        <div class="row delete-comment-btn">
+                            <div class="col s12 center">
+                                <button class="btn-large red" type="submit"><i class="fas fa-trash-alt"></i> Be rid of it!</button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     {% endfor %}
     {% else %}
         <div class="col s12 center-align">
@@ -218,55 +286,6 @@
                 <a href="{{ url_for('auth.log_in') }}" class="modal-close btn col s12">Sign me in</a>
             </div>
         </div>
-    </div>
-</div>
-
-<!--Add comment modal-->
-<div id="add-comment" class="modal">
-    <div class="modal-content">
-        <form method="POST" action="{{ url_for('groups.add_comment', group_id=group._id) }}">
-            <h1 class="center">Add a comment</h1>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-comment-dots prefix"></i>
-                    <input id="comment" name="comment" type="text" required></textarea>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <div class="row">
-                    <div class="col s12 right">
-                        <button class="btn-large modal-close" type="submit"><i class="fas fa-plus-circle"></i> Add</a>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<!--Reply to comment-->
-<div id="reply" class="modal">
-    <div class="modal-content">
-        <form method="POST" action="{{ url_for('groups.reply', group_id=group._id) }}">
-            <h1 class="center">Reply</h1>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-comment-dots prefix"></i>
-                    <input id="reply" name="reply" type="text" required></textarea>
-                </div>
-                <div class="input-field col s12">
-                    <i class="fas fa-at prefix"></i>
-                    <input id="reply-to" name="reply-to" type="text" required></textarea>
-                    <label for="reply-to">Reply to...</label>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <div class="row">
-                    <div class="col s12 right">
-                        <button class="btn-large" type="submit"><i class="fas fa-plus-circle"></i> Add</a>
-                    </div>
-                </div>
-            </div>
-        </form>
     </div>
 </div>
 
