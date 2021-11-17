@@ -26,6 +26,10 @@
     --helper-text: 0.9em;
 }
 
+.hidden {
+    display: none;
+}
+
 body {
     background-color: var(--almond);
 }
@@ -85,11 +89,23 @@ nav ul a:hover {
 
 .sidenav {
     font-family: var(--josefin-sans);
+    background-color: var(--black) !important;
+    width: auto;
 }
 
-.sidenav li a,
+.sidenav li a {
+    color: var(--almond);
+}
+
 .sidenav li a i {
-    color: var(--black);
+    color: var(--munsell);
+}
+
+.side
+
+.sidenav li a:hover {
+    transition: none;
+    transform: none;
 }
 
 /** Hero image **/
@@ -290,6 +306,11 @@ color: var(--black) !important;
     background-color: var(--magenta);
     width: 100%;
     height: 25%;
+}
+
+.member-name a {
+    color: var(--almond);
+    font-weight: 700;
 }
 
 .card-title {
@@ -629,6 +650,10 @@ footer .useful-links a {
     margin-top: 40px;
 }
 
+.delete-comment.btn {
+    margin-bottom: 30px;
+}
+
 .popular-btn,
 .follow-btn,
 .unfollow-btn {
@@ -783,6 +808,7 @@ input[type=text]:not(.browser-default) {
     background-color: var(--cadet-t);
     border-radius: 5px;
     height: 80px;
+    color: var(--almond);
 }
 
 .tab:hover {
@@ -889,11 +915,6 @@ input[type=text]:not(.browser-default) {
     .project-card-title i {
         margin-left: 0;
     }
-
-    .group-member-card {
-        display: flex;
-        justify-content: center;
-    }
     
     .secondary-content {
         position: sticky !important;
@@ -902,9 +923,29 @@ input[type=text]:not(.browser-default) {
 }
 
 @media only screen and (max-width: 599px) {
+    .member-card {
+        height: 120px;
+        width: 120px;
+    }
+
+    .member-name {
+        padding: 18px !important;
+        font-size: 1em;
+    }
+
+    .group-member-card {
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn-floating.halfway-fab {
+        right: -15px;
+    }
+    
     .comment-option i {
         font-size: 1.5em;
     }
+
 }
 
 @media only screen and (min-width:425px) and (max-width: 992px) {
