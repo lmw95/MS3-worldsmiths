@@ -40,12 +40,12 @@
     <div class="col s12 l10 offset-l1">
         <ul class="tabs">
             <li class="tab col s12 m6">
-                <a href="#browse-groups">
+                <a href="#browseGroups">
                     <h3>Groups ({{ group_results|length}})</h3>
                 </a>
             </li>
             <li class="tab col s12 m6">
-                <a href="#browse-members">
+                <a href="#browseMembers">
                     <h3>Members ({{ member_results|length }})</h3>
                 </a>
             </li>
@@ -60,107 +60,118 @@
         {% endif %}
     </div>
 </div>
-<div class="row" id="browse-groups" class="browse-groups">
-    <div class="col s12 m10 offset-m1 l10 offset-l1 xl10 offset-xl1 center-align">
-        <h2>Groups</h2>
-        <hr class="long-underline">
+<div id="browseGroups" class="browse-groups">
+    <div class="row">
+        <div class="col s12 m10 offset-m1 l10 offset-l1 xl10 offset-xl1 center-align">
+            <h2>Groups</h2>
+            <hr class="long-underline">
+        </div>
     </div>
-</div>
-<div class="row">
-{% if group_results|length > 0 %}
-{% for group in group_results %}
-    <div class="col s10 offset-s1">
-        <div class="card horizontal group-card">
-            <div class="card-image browse-img">
-                <img src="{{ group.group_cover_img_url }}">
-            </div>
-            <div class="card-stacked">
-                <div class="card-content">
-                    {% if session.user %}
-                    {% set admin = members|selectattr("_id", "equalto", group.group_admin )|first %}
-                        {% if admin is defined %}
-                        <a href="{{ url_for('groups.group_page', group_id=group._id) }}" class="group-link"><h2 class="group-name">{{ group.group_name }}</h2></a>
-                        {% else %}
-                        <a href="#inactive" class="group-link modal-trigger"><h2 class="group-name">{{ group.group_name }} [Inactive]</h2></a>
-                        {% endif %}
-                    {% else %}
-                    <a href="#prompt" class="group-link modal-trigger"><h2 class="group-name">{{ group.group_name }}</h2></a>
-                    {% endif %}
-                    <p><span class="info-label">Admin:</span> 
-                        <!--Needs if statement-->
-                        {% set admin = members|selectattr("_id", "equalto", group.group_admin )|first %}
-                        {% if admin is defined %}
-                        {{ admin.first_name.capitalize() }} {{admin.last_name.capitalize() }}
-                        {% else %}
-                        [Admin deleted]
-                        {% endif %}
-                    </p>
-                    <p>{{ group.group_location }}, UK</p>
-                    <p class="truncate">{{ group.group_description }}</p>
+    <div class="row">
+    {% if group_results|length > 0 %}
+    {% for group in group_results %}
+        <div class="col s10 offset-s1">
+            <div class="card horizontal group-card">
+                <div class="card-image browse-img">
+                    <img src="{{ group.group_cover_img_url }}">
                 </div>
-                <div class="card-action">
-                    <div class="row action-wrapper valign-wrapper">
-                        <div class="col s12 m6 l6 xl6 valign-wrapper">
-                            <p><i class="fas fa-user-circle"></i> {{ group.members|length}} guild members</p>
-                        </div>
-                        <div class="col s12 m6 l6 xl6">
-                            {% if session.user %}
-                            <a href="{{ url_for('groups.group_page', group_id=group._id) }}" class="btn join-btn col s12 m6 offset-m6">View group</a>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        {% if session.user %}
+                        {% set admin = members|selectattr("_id", "equalto", group.group_admin )|first %}
+                            {% if admin is defined %}
+                            <a href="{{ url_for('groups.group_page', group_id=group._id) }}" class="group-link"><h2 class="group-name">{{ group.group_name }}</h2></a>
                             {% else %}
-                            <a href="#prompt" class="btn join-btn col s12 m6 offset-m6 modal-trigger">View group</a>
+                            <a href="#inactive" class="group-link modal-trigger"><h2 class="group-name">{{ group.group_name }} [Inactive]</h2></a>
                             {% endif %}
+                        {% else %}
+                        <a href="#prompt" class="group-link modal-trigger"><h2 class="group-name">{{ group.group_name }}</h2></a>
+                        {% endif %}
+                        <p><span class="info-label">Admin:</span> 
+                            {% set admin = members|selectattr("_id", "equalto", group.group_admin )|first %}
+                            {% if admin is defined %}
+                            {{ admin.first_name.capitalize() }} {{admin.last_name.capitalize() }}
+                            {% else %}
+                            [Admin deleted]
+                            {% endif %}
+                        </p>
+                        <p>{{ group.group_location }}, UK</p>
+                        <p class="truncate">{{ group.group_description }}</p>
+                    </div>
+                    <div class="card-action">
+                        <div class="row action-wrapper valign-wrapper">
+                            <div class="col s12 m6 l6 xl6 valign-wrapper">
+                                <p><i class="fas fa-user-circle"></i> {{ group.members|length}} guild members</p>
+                            </div>
+                            <div class="col s12 m6 l6 xl6">
+                                {% if session.user %}
+                                <a href="{{ url_for('groups.group_page', group_id=group._id) }}" class="btn join-btn col s12 m6 offset-m6">View group</a>
+                                {% else %}
+                                <a href="#prompt" class="btn join-btn col s12 m6 offset-m6 modal-trigger">View group</a>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-{% endfor %}
-{% else %}
-<div class="row">
-    <div class="col s12 center-align">
-        <img src="/static/imgs/nothing-here.png" height="250" width="200">
-        <p class="big-paragraph">Nothing yet! Use search to find groups and members</p>
-    </div>
-</div>
-{% endif %}
-<div class="row" id="browse-members" class="browse-members">
-    <div class="col s12 m10 offset-m1 l10 offset-l1 xl10 offset-xl1 center-align">
-        <h2>Members</h2>
-        <hr class="long-underline">
-    </div>
-</div>
-<div class="row">
-{% if member_results|length > 0 %}
-{% for member in member_results %}
-    <div class="col s12 m6 l4 xl4 member-card-wrapper">
-        <div class="card member-card">
-            <div class="card-image">
-                <img src="{{ member.profile_pic_url }}">
-                {% if user %}
-                    {% if member in following %}
-                    <a href="{{ url_for('users.member_profile', user_id=member._id) }}"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
-                    <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-times"></i></a>
-                    {% else %}
-                    <a href="{{ url_for('users.member_profile', user_id=member._id) }}"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
-                    <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
-                    {% endif %}
-                {% else %}
-                <a href="#prompt" class="modal-trigger"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
-                <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
-                {% endif %}
-            </div>
+    {% endfor %}
+    {% else %}
+    <div class="row">
+        <div class="col s12 center-align">
+            <img src="/static/imgs/nothing-here.png" height="200" width="150">
+            <p class="big-paragraph">Nothing yet! Use search to find groups and members</p>
         </div>
     </div>
-{% endfor %}
-{% else %}
-<div class="row">
-    <div class="col s12 center-align">
-        <img src="/static/imgs/nothing-here-2.png" height="250" width="200">
-        <p class="big-paragraph">Nothing yet! Use search to find groups and members</p>
-    </div>
+    {% endif %}
 </div>
-{% endif %}
+<div id="browseMembers" class="browse-members">
+    <div class="row">
+        <div class="col s12 m10 offset-m1 l10 offset-l1 xl10 offset-xl1 center-align">
+            <h2>Members</h2>
+            <hr class="long-underline">
+        </div>
+    </div>
+    <div class="row">
+    {% if member_results|length > 0 %}
+    {% for member in member_results %}
+        <div class="col s12 m6 l4 xl4 member-card-wrapper">
+            <div class="card member-card">
+                <div class="card-image">
+                    <img src="{{ member.profile_pic_url }}">
+                    {% if user %}
+                        {% if member in following %}
+                        <span class="card-title member-name valign-wrapper">
+                            <a href="{{ url_for('users.member_profile', user_id=member._id) }}" class="truncate">
+                                {{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}
+                            </a>
+                        </span>
+                        <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-times"></i></a>
+                        {% else %}
+                        <span class="card-title member-name valign-wrapper">
+                            <a href="{{ url_for('users.member_profile', user_id=member._id) }}" class="truncate">
+                                {{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}
+                            </a>
+                        </span>
+                        <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
+                        {% endif %}
+                    {% else %}
+                    <a href="#prompt" class="modal-trigger"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
+                    <a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% else %}
+    <div class="row">
+        <div class="col s12 center-align">
+            <img src="/static/imgs/nothing-here-2.png" height="200" width="150">
+            <p class="big-paragraph">Nothing yet! Use search to find groups and members</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
 
 <!--Sign-up/log-in modal-->
 <div id="prompt" class="modal">
