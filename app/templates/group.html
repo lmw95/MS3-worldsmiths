@@ -1,322 +1,322 @@
 {% extends "base.html" %}
 
-{% block page_title %}{% endblock %}
+{% block page_title %}{{ page_title }}{% endblock %}
 
 {% block content %}
-
+<!--Group banner image-->
 <div class="row">
-    <!--Group banner image-->
-    <div class="row p-banner" id="bannerImg" style="background: url({{group.group_cover_img_url}}) no-repeat center; background-size: cover;"></div>
+	<div class="row p-banner" id="bannerImg" style="background: url({{group.group_cover_img_url}}) no-repeat center; background-size: cover;"></div>
 </div>
-<!--Group info-->
+
+<!--Flash messages-->
 {% with messages = get_flashed_messages() %}
 {% if messages %}
-
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <div class="row profile-flash">
-        <div class="col s12 flashes center-align">
-            {% for message in messages %}
-                <h3>{{ message }} <i class="fas fa-sync-alt" id="refresh-page"></i></h3>
-                <hr class="underline">
-            {% endfor %}
-        </div>
-    </div>
-    {% endif %}
-{% endwith %}
-
+<div class="row profile-flash">
+	<div class="col s12 flashes center-align">
+		{% for message in messages %}
+		<h3>{{ message }} <i class="fas fa-sync-alt" id="refresh-page"></i></h3>
+		<hr class="underline">
+		{% endfor %}
+	</div>
+</div>
 {% endif %}
 {% endwith %}
+
+<!--Group info-->
 <div class="g-info">
-    <div class="row valign-wrapper details">
-        <div class="col s12 m12 l9 xl10">
-            <div class="col s12">
-                <h1 class="user-name">{{ group.group_name }}</h1>
-                <p><i class="fas fa-user"></i><span class="info-label"> Admin:</span> {{ admin_fname.capitalize() }} {{ admin_lname.capitalize() }}</p>
-                <p><i class="fas fa-user"></i><span class="info-label"> Group created:</span> {{ group._id.generation_time.date().strftime("%d %B %Y") }}</p>
-                <p class="bottom-p"><i class="fas fa-map-marker-alt"></i><span class="info-label"> Location:</span> {{ group.group_location }}, UK</p>
-            </div>
-        </div>
-        <div class="col s12 m12 l3 xl2 button-wrapper">
-            {% if user == admin %}
-            <a href="{{ url_for('groups.edit_group', group_id=group._id) }}" class="btn-large col s4 offset-s1 m4 offset-m1 l12 xl12 offset-m1 edit-group">Edit</a>
-            <a href="#delete-confirmation" class="btn-large col s4 offset-s2 m4 offset-m2 l12 xl12 modal-trigger red group-settings modal-trigger">Delete</a>
-            {% elif user != admin %}
-                {% if group._id in members_of %}
-                <a href="{{ url_for('groups.leave_group', group_id=group._id) }}" class="btn-large col s4 offset-s1 offset-s1 m12 l12 xl12 offset-m1 leave-group">Leave</a>
-                <a href="" class="btn-large col s12 m12 l12 xl12 join-group message-admin">Message admin</a>
-                {% else %}
-                <a href="{{ url_for('groups.join_group', group_id=group._id) }}" class="btn-large col s5 offset-s1 m12 l12 xl12 join-group">Join</a>
-                <a href="" class="btn-large col s5 offset-s1 m12 l12 xl12 join-group message-admin">Message admin</a>
-                {% endif %}
-            {% else %}
-            <a href="#prompt" class="btn-large col s12 m12 l12 xl12 offset-m1 modal-trigger join-group">Join</a>
-            {% endif %}
-        </div>
-    </div>
+	<div class="row valign-wrapper details">
+		<div class="col s12 m12 l9 xl10">
+			<div class="col s12">
+				<h1 class="user-name">{{ group.group_name }}</h1>
+				<p><i class="fas fa-user"></i><span class="info-label"> Admin:</span> {{ admin_fname.capitalize() }} {{ admin_lname.capitalize() }}</p>
+				<p><i class="fas fa-user"></i><span class="info-label"> Group created:</span> {{ group._id.generation_time.date().strftime("%d %B %Y") }}</p>
+				<p class="bottom-p"><i class="fas fa-map-marker-alt"></i><span class="info-label"> Location:</span> {{ group.group_location }}, UK</p>
+			</div>
+		</div>
+        <!--Group actions-->
+		<div class="col s12 m12 l3 xl2 button-wrapper">
+			{% if user == admin %}
+			<a href="{{ url_for('groups.edit_group', group_id=group._id) }}" class="btn-large col s4 offset-s1 m4 offset-m1 l12 xl12 offset-m1 edit-group" aria-label="Edit group">Edit</a>
+			<a href="#delete-confirmation" class="btn-large col s4 offset-s2 m4 offset-m2 l12 xl12 modal-trigger red group-settings modal-trigger" aria-label="Delete group">Delete</a>
+			{% elif user != admin %}
+			{% if group._id in members_of %}
+			<a href="{{ url_for('groups.leave_group', group_id=group._id) }}" class="btn-large col s4 offset-s1 offset-s1 m12 l12 xl12 offset-m1 leave-group" aria-label="Leave group">Leave</a>
+			<a href="" class="btn-large col s12 m12 l12 xl12 join-group message-admin" aria-label="Message admin">Message admin</a>
+			{% else %}
+			<a href="{{ url_for('groups.join_group', group_id=group._id) }}" class="btn-large col s5 offset-s1 m12 l12 xl12 join-group" aria-label="Join group">Join</a>
+			<a href="" class="btn-large col s5 offset-s1 m12 l12 xl12 join-group message-admin" aria-label="Message admin">Message admin</a>
+			{% endif %}
+			{% else %}
+			<a href="#prompt" class="btn-large col s12 m12 l12 xl12 offset-m1 modal-trigger join-group" aria-label="Join group">Join</a>
+			{% endif %}
+		</div>
+	</div>
 </div>
+
+<!--Group body-->
 <div class="row group-section">
-    <div class="col s10 offset-s1">
-        <h3>Description <i class="fas fa-question-circle right"></i></h3>
-    </div>
-    <div class="col s10 offset-s1">
-        <p>{{ group.group_description }}</p>
-    </div>
+	<div class="col s10 offset-s1">
+		<h3>Description <i class="fas fa-question-circle right"></i></h3>
+	</div>
+	<div class="col s10 offset-s1">
+		<p>{{ group.group_description }}</p>
+	</div>
 </div>
+
+<!--Members-->
 <div class="row group-section">
-    <div class="col s10 offset-s1">
-        <h3>Guild members ({{ group.members|length }}) <i class="fas fa-users right"></i></h3>
-    </div>
-    <div class="row">
-        <div class="col s10 offset-s1"> 
-        {% if members|length > 0 %}
-        {% for member in members %}
-            <div class="col s6 m6 l3 group-member-card">
-                <!--Member cards-->
-                <div class="card member-card">
-                    <div class="card-image">
-                        <img src="{{ member.profile_pic_url }}">
-                        <span class="member-name card-title valign-wrapper">
-                        <a href="{{ url_for('users.member_profile', user_id=member._id)}}" class="truncate"> 
-                            {{ member.first_name.capitalize() }} {{member.last_name.capitalize() }}
-                        </a>
-                        </span>
-                        {% if member in following %}
-                        <a href="{{ url_for('users.unfollow', user_id=member._id) }}" class="btn-floating halfway-fab unfollow-btn"><i class="fas fa-times"></i></a>
-                        {% else %}
-                        <a href="{{ url_for('users.follow', user_id=member._id) }}" class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-        {% else %}
-        </div>
-    </div>
-    <div class="col s12 center-align">
-        <img src="/static/imgs/nothing-here.png" height="250" width="200">
-        <p class="big-paragraph">There's nothing here! (yet...)</p>
-    </div>
-    {% endif %}
+	<div class="col s10 offset-s1">
+		<h3>Guild members ({{ group.members|length }}) <i class="fas fa-users right"></i></h3>
+	</div>
+	<div class="row">
+		<div class="col s10 offset-s1">
+			{% if members|length > 0 %}
+			{% for member in members %}
+			<div class="col s6 m6 l3 group-member-card">
+				<div class="card member-card">
+					<div class="card-image">
+						<img src="{{ member.profile_pic_url }}">
+						<span class="member-name card-title valign-wrapper">
+						<a href="{{ url_for('users.member_profile', user_id=member._id)}}" class="truncate"> 
+						{{ member.first_name.capitalize() }} {{member.last_name.capitalize() }}
+						</a>
+						</span>
+						{% if member in following %}
+						<a href="{{ url_for('users.unfollow', user_id=member._id) }}" class="btn-floating halfway-fab unfollow-btn"><i class="fas fa-times"></i></a>
+						{% else %}
+						<a href="{{ url_for('users.follow', user_id=member._id) }}" class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+			{% else %}
+		</div>
+	</div>
+	<div class="col s12 center-align">
+		<img src="/static/imgs/nothing-here.png" height="250" width="200" alt="Pixie looking cross">
+		<p class="little-header">There's nothing here!</p>
+	</div>
+	{% endif %}
 </div>
+
+<!--Comments-->
 <div class="row group-section">
-    <div class="row">
-        <div class="col s10 offset-s1">
-            <h3>Guild chat <i class="fas fa-comments right"></i></h3>
-        </div>
-    </div>
-    <div class="row">
-    {% if comments|length > 0 %}
-    {% for comment in comments %}
-        <div class="col s10 offset-s1 l0 offset-l1">
-            <ul class="collection">
-                <li class="collection-item avatar">
-                    {% set commenter = users|selectattr("_id", "equalto", comment.commenter )|first %}
-                    {% if commenter is defined %}
-                    <img src="{{ commenter.profile_pic_url }}" height="42" width="42" alt="" class="circle">
-                    {% else %}
-                    <img src="/static/imgs/profile-avatar.png" height="42" width="42" alt="" class="circle">
-                    {% endif %}
-                    <div class="row">
-                        <div class="col s12">
-                            {% set commenter = users|selectattr("_id", "equalto", comment.commenter)|first %}
-                            {% if commenter is defined %}
-                            <span class="commenter big-paragraph">{{ commenter.first_name.capitalize() }} {{ commenter.last_name.capitalize() }}</span>
-                            {% else %}
-                            <span class="commenter big-paragraph">[User deleted]</span>
-                            {% endif %}
-                            <p>{{ comment.time_posted }} {{ comment.date_posted }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 comment">
-                            <!--If comment is a reply-->
-                            {% if comment.reply == True %}
-                                {% set replying_to = users|selectattr("_id", "equalto", comment.reply_user )|first %}
-                                {% if replying_to is defined %}
-                                <p><span class="replying-to">@{{ replying_to.first_name }}{{ replying_to.last_name }}</span> {{ comment.comment }}</p>
-                                {% else %}
-                                <p><span class="replying-to">@[User deleted]:</span> {{ comment.comment }}</p>
-                                {% endif %}
-                            <!--If comment is not a reply-->
-                            {% else %}
-                            {% set commenter = users|selectattr("_id", "equalto", comment.commenter)|first %}
-                                {% if commenter is defined %}
-                                <p>{{ comment.comment }}</p>
-                                {% else %}
-                                <p>[Comment unavailable]</p>
-                                {% endif %}
-                            {% endif %}  
-                        </div>
-                    </div>
-                    <div class="row comment-options">
-                        {% if user != comment.commenter %}
-                        <div class="secondary-content comment-option">
-                            <a href="#reply_{{ comment._id}}" class="modal-trigger"><i class="fas fa-comment-dots fa-2x"></i></a>
-                        </div>
-                        {% endif %}
-                        {% if user == comment.commenter %}
-                        <div class="secondary-content comment-option">
-                            <a href="#reply_{{ comment._id}}" class="modal-trigger delete-comment"><i class="fas fa-comment-dots fa-2x"></i></a>
-                            <a href="#delete_{{ comment._id}}" class="modal-trigger"><i class="fas fa-trash-alt fa-2x"></i></a>
-                        </div>
-                        {% else %}
-                        {% endif %}
-                    </div>
-                </li>
-            </ul>
-        </div>
+<div class="row">
+	<div class="col s10 offset-s1">
+		<h3>Guild chat <i class="fas fa-comments right"></i></h3>
+	</div>
+</div>
+<div class="row">
+	{% if comments|length > 0 %}
+	{% for comment in comments %}
+	<div class="col s10 offset-s1 l0 offset-l1">
+		<ul class="collection">
+			<li class="collection-item avatar">
+				{% set commenter = users|selectattr("_id", "equalto", comment.commenter )|first %}
+				{% if commenter is defined %}
+				<img src="{{ commenter.profile_pic_url }}" height="42" width="42" alt="{{ commenter.profile_pic_url }}" class="circle">
+				{% else %}
+				<img src="/static/imgs/profile-avatar.png" height="42" width="42" alt="Avatar default" class="circle">
+				{% endif %}
+				<div class="row">
+					<div class="col s12">
+						{% set commenter = users|selectattr("_id", "equalto", comment.commenter)|first %}
+						{% if commenter is defined %}
+						<span class="commenter big-paragraph">{{ commenter.first_name.capitalize() }} {{ commenter.last_name.capitalize() }}</span>
+						{% else %}
+						<span class="commenter big-paragraph">[User deleted]</span>
+						{% endif %}
+						<p>{{ comment.time_posted }} {{ comment.date_posted }}</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s12 comment">
+						<!--If comment is a reply-->
+						{% if comment.reply == True %}
+						{% set replying_to = users|selectattr("_id", "equalto", comment.reply_user )|first %}
+						{% if replying_to is defined %}
+						<p><span class="replying-to">@{{ replying_to.first_name }}{{ replying_to.last_name }}</span> {{ comment.comment }}</p>
+						{% else %}
+						<p><span class="replying-to">@[User deleted]:</span> {{ comment.comment }}</p>
+						{% endif %}
+						<!--If comment is not a reply-->
+						{% else %}
+						{% set commenter = users|selectattr("_id", "equalto", comment.commenter)|first %}
+						{% if commenter is defined %}
+						<p>{{ comment.comment }}</p>
+						{% else %}
+						<p>[Comment unavailable]</p>
+						{% endif %}
+						{% endif %}  
+					</div>
+				</div>
+				<div class="row comment-options">
+					{% if user != comment.commenter %}
+					<div class="secondary-content comment-option">
+						<a href="#reply_{{ comment._id}}" class="modal-trigger"><i class="fas fa-comment-dots fa-2x"></i></a>
+					</div>
+					{% endif %}
+					{% if user == comment.commenter %}
+					<div class="secondary-content comment-option">
+						<a href="#reply_{{ comment._id}}" class="modal-trigger delete-comment"><i class="fas fa-comment-dots fa-2x"></i></a>
+						<a href="#delete_{{ comment._id}}" class="modal-trigger"><i class="fas fa-trash-alt fa-2x"></i></a>
+					</div>
+					{% else %}
+					{% endif %}
+				</div>
+			</li>
+		</ul>
+	</div>
 
-        <!--Reply to comment-->
-        <div id="reply_{{ comment._id}}" class="modal">
-            <div class="modal-content">
-                <form method="POST" action="{{ url_for('groups.reply', group_id=group._id, comment_id=comment._id) }}" id="form-reply_{{ comment._id}}">
-                    <h1 class="center">Reply</h1>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="fas fa-comment-dots prefix"></i>
-                            <input id="reply" name="reply" type="text" required></textarea>
-                        </div>
-                        <div class="input-field col s12">
-                            <i class="fas fa-at prefix"></i>
-                            {% set name = users|selectattr("_id", "equalto", comment.commenter)|first %}
-                            <input disabled id="reply-to" name="reply-to" type="text" placeholder="{{ name.first_name }}{{ name.last_name }}" required></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="row">
-                            <div class="col s12 right">
-                                <button class="btn-large" type="submit"><i class="fas fa-plus-circle"></i> Add</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+	<!--Reply to comment modal-->
+	<div id="reply_{{ comment._id}}" class="modal">
+		<div class="modal-content">
+			<form method="POST" action="{{ url_for('groups.reply', group_id=group._id, comment_id=comment._id) }}" id="form-reply_{{ comment._id}}">
+				<h1 class="center">Reply</h1>
+				<div class="row">
+					<div class="input-field col s12">
+						<i class="fas fa-comment-dots prefix"></i>
+						<input id="reply" name="reply" type="text" required></textarea>
+					</div>
+					<div class="input-field col s12">
+						<i class="fas fa-at prefix"></i>
+						{% set name = users|selectattr("_id", "equalto", comment.commenter)|first %}
+						<input disabled id="reply-to" name="reply-to" type="text" placeholder="{{ name.first_name }}{{ name.last_name }}" required></textarea>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="row">
+						<div class="col s12 right">
+							<button class="btn-large" type="submit"><i class="fas fa-plus-circle"></i> Add</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 
-        <!--Delete comment modal-->
-        <div id="delete_{{ comment._id}}" class="modal">
-            <div class="modal-content">
-                <form method="POST" action="{{ url_for('groups.delete_comment', group_id=group._id, comment_id=comment._id) }}" id="form-delete_{{ comment._id}}">
-                    <div class="row">
-                        <h2 class="center">Delete comment?</h2>
-                    </div>
-                    <div class="row">
-                    <div class="modal-footer">
-                        <div class="row delete-comment-btn">
-                            <div class="col s12 center">
-                                <button class="btn-large red" type="submit"><i class="fas fa-trash-alt"></i> Be rid of it!</button>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    {% endfor %}
-    {% else %}
-        <div class="col s12 center-align">
-            <img src="/static/imgs/nothing-here-2.png" height="250" width="200">
-            <p class="big-paragraph">There's nothing here! (yet...)</p>
-        </div>
-    {% endif %}
-    <div class="row">
-        {% if user != admin %}
-            {% if group._id in members_of %}
-            <div class="col s10 offset-s1 add-comment-wrapper">
-                <a href="#add-comment" class="btn-large col s12 l4 offset-l4 modal-trigger"><i class="fas fa-plus left"></i> Add comment</a>
-            </div>
-            {% else %}
-            <div class="col s10 offset-s1 add-comment-wrapper">
-                <p class="little-header center">Join the group to comment!</p>
-                <hr class="underline">
-            </div>
-            {% endif %}
-        {% else %}
-        <div class="col s10 offset-s1 add-comment-wrapper">
-            <a href="#add-comment" class="btn-large col s12 l4 offset-l4 modal-trigger"><i class="fas fa-plus left"></i> Add comment (admin)</a>
-        </div>
-        {% endif %}
-    </div>
+	<!--Delete comment modal-->
+	<div id="delete_{{ comment._id}}" class="modal">
+		<div class="modal-content">
+			<form method="POST" action="{{ url_for('groups.delete_comment', group_id=group._id, comment_id=comment._id) }}" id="form-delete_{{ comment._id}}">
+				<div class="row">
+					<h2 class="center">Delete comment?</h2>
+				</div>
+				<div class="row">
+					<div class="modal-footer">
+						<div class="row delete-comment-btn">
+							<div class="col s12 center">
+								<button class="btn-large red" type="submit"><i class="fas fa-trash-alt"></i> Be rid of it!</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	{% endfor %}
+	{% else %}
+	<div class="col s12 center-align">
+		<img src="/static/imgs/nothing-here-2.png" height="250" width="200" aria-label="Pixie looking cross">
+		<p class="ittle-header">Where is everyone?</p>
+	</div>
+	{% endif %}
+	<div class="row">
+		{% if user != admin %}
+		{% if group._id in members_of %}
+		<div class="col s10 offset-s1 add-comment-wrapper">
+			<a href="#add-comment" class="btn-large col s12 l4 offset-l4 modal-trigger"><i class="fas fa-plus left"></i> Add comment</a>
+		</div>
+		{% else %}
+		<div class="col s10 offset-s1 add-comment-wrapper">
+			<p class="little-header center">Join the group to comment!</p>
+			<hr class="underline">
+		</div>
+		{% endif %}
+		{% else %}
+		<div class="col s10 offset-s1 add-comment-wrapper">
+			<a href="#add-comment" class="btn-large col s12 l4 offset-l4 modal-trigger"><i class="fas fa-plus left"></i> Add comment (admin)</a>
+		</div>
+		{% endif %}
+	</div>
 </div>
 
 <!--Sign-up/log-in modal-->
 <div id="prompt" class="modal">
-    <div class="modal-content">
-        <form method="POST" action="">
-            <div class="row">
-                <div class="col s12 center-align">
-                    <img src="/static/imgs/gandalf.png" class="responsive-img gandalf">
-                    <h1 class="center">The way is shut</h1>
-                </div>
-            </div>
-            <h3 class="center">Want to explore further?</h3>
-            <p class="center">To view, join or attend our events and group pages, you need to be a member with us and logged in.
-                Click below to join us, or log-in if you already have an account with us!
-            </p>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <div class="row center-align">
-            <div class="col s12 m12 l6 xl6">
-                <button class="modal-close btn col s12">Join the adventure</a>
-            </div>
-            <div class="col s12 m12 l6 xl6">
-                <a href="{{ url_for('auth.log_in') }}" class="modal-close btn col s12">Sign me in</a>
-            </div>
-        </div>
-    </div>
+	<div class="modal-content">
+		<form method="POST" action="">
+			<div class="row">
+				<div class="col s12 center-align">
+					<img src="/static/imgs/gandalf.png" class="responsive-img gandalf">
+					<h1 class="center">The way is shut</h1>
+				</div>
+			</div>
+			<h3 class="center">Want to explore further?</h3>
+			<p class="center">To view, join or attend our events and group pages, you need to be a member with us and logged in.
+				Click below to join us, or log-in if you already have an account with us!
+			</p>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<div class="row center-align">
+			<div class="col s12 m12 l6 xl6">
+				<button class="modal-close btn col s12">Join the adventure</a>
+			</div>
+			<div class="col s12 m12 l6 xl6">
+				<a href="{{ url_for('auth.log_in') }}" class="modal-close btn col s12">Sign me in</a>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!--Deletion confirmation-->
 <div id="delete-confirmation" class="modal">
-    <div class="modal-content">
-        <form method="POST" action="{{ url_for('groups.delete_group', group_id=group._id) }}">
-            <h1 class="center">Woah, there!</h1>
-            <p>Before you make any rash desicions, just know that deleting this group will:</p>
-                <ul>
-                    <li>Delete all comments from all chats</li>
-                    <li>Delete the group and all it's data</li>
-                    <li>Remove all members from the group</li>
-                    <li>Remove you as a owner</li>
-                </ul>
-            <hr class="long-underline">
-            <h6 class="center">Are you sure you want to continue?</h6>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <div class="row center-align">
-            <div class="col s12 m12 l6 xl6">
-                <button class="modal-close btn col s12">I've changed my mind!</a>
-            </div>
-            <div class="col s12 m12 l6 xl6">
-                <a href="{{ url_for('groups.delete_group', group_id=group._id) }}" class="modal-close btn red col s12">Delete my precious</a>
-            </div>
-        </div>
-    </div>
+	<div class="modal-content">
+		<form method="POST" action="{{ url_for('groups.delete_group', group_id=group._id) }}">
+			<h1 class="center">Woah, there!</h1>
+			<p>Before you make any rash desicions, just know that deleting this group will:</p>
+			<ul>
+				<li>Delete all comments from all chats</li>
+				<li>Delete the group and all it's data</li>
+				<li>Remove all members from the group</li>
+				<li>Remove you as a owner</li>
+			</ul>
+			<hr class="long-underline">
+			<h6 class="center">Are you sure you want to continue?</h6>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<div class="row center-align">
+			<div class="col s12 m12 l6 xl6">
+				<button class="modal-close btn col s12">I've changed my mind!</a>
+			</div>
+			<div class="col s12 m12 l6 xl6">
+				<a href="{{ url_for('groups.delete_group', group_id=group._id) }}" class="modal-close btn red col s12">Delete my precious</a>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!--Add comment modal-->
 <div id="add-comment" class="modal">
-    <div class="modal-content">
-        <form method="POST" action="{{ url_for('groups.add_comment', group_id=group._id) }}">
-            <h1 class="center">Add a comment</h1>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-comment-dots prefix"></i>
-                    <input id="comment" name="comment" type="text" required></textarea>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="row">
-                    <div class="col s12 right">
-                        <button class="btn-large modal-close" type="submit"><i class="fas fa-plus-circle"></i> Add</a>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
+	<div class="modal-content">
+		<form method="POST" action="{{ url_for('groups.add_comment', group_id=group._id) }}">
+			<h1 class="center">Add a comment</h1>
+			<div class="row">
+				<div class="input-field col s12">
+					<i class="fas fa-comment-dots prefix"></i>
+					<input id="comment" name="comment" type="text" required></textarea>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<div class="row">
+					<div class="col s12 right">
+						<button class="btn-large modal-close" type="submit"><i class="fas fa-plus-circle"></i> Add</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
 </div>
-
 {% endblock %}
