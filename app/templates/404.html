@@ -1,0 +1,12 @@
+{% exends "base.html" %}
+
+{% block content %}
+<div class="row error">
+    <div class="col s12 center align">
+        <img src="app/static/imgs/gandalf.png" alt="Gandalf">
+        <h1>You shall not pass!</h1>
+        <a class="btn-large" href="{{ url_for('users.homepage')}}">Go back</a>
+    </div>
+</div>
+
+{% endblock %}
