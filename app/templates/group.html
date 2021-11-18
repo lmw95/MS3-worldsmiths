@@ -39,13 +39,17 @@
 			<a href="{{ url_for('groups.edit_group', group_id=group._id) }}" class="btn-large col s4 offset-s1 m4 offset-m1 l12 xl12 offset-m1 edit-group" aria-label="Edit group">Edit</a>
 			<a href="#delete-confirmation" class="btn-large col s4 offset-s2 m4 offset-m2 l12 xl12 modal-trigger red group-settings modal-trigger" aria-label="Delete group">Delete</a>
 			{% elif user != admin %}
-			{% if group._id in members_of %}
-			<a href="{{ url_for('groups.leave_group', group_id=group._id) }}" class="btn-large col s4 offset-s1 offset-s1 m12 l12 xl12 offset-m1 leave-group" aria-label="Leave group">Leave</a>
-			<a href="" class="btn-large col s12 m12 l12 xl12 join-group message-admin" aria-label="Message admin">Message admin</a>
-			{% else %}
-			<a href="{{ url_for('groups.join_group', group_id=group._id) }}" class="btn-large col s5 offset-s1 m12 l12 xl12 join-group" aria-label="Join group">Join</a>
-			<a href="" class="btn-large col s5 offset-s1 m12 l12 xl12 join-group message-admin" aria-label="Message admin">Message admin</a>
-			{% endif %}
+				{% if group._id in members_of %}
+					{% if group.group_name == "Warm welcome - new members" %}
+					<a href="" class="btn-large col s12 m12 l12 xl12 join-group message-admin" aria-label="Message admin">Message admin</a>
+					{% else %}
+					<a href="{{ url_for('groups.leave_group', group_id=group._id) }}" class="btn-large col s4 offset-s1 offset-s1 m12 l12 xl12 offset-m1 leave-group" aria-label="Leave group">Leave</a>
+					<a href="" class="btn-large col s12 m12 l12 xl12 join-group message-admin" aria-label="Message admin">Message admin</a>
+					{% endif %}
+				{% else %}
+				<a href="{{ url_for('groups.join_group', group_id=group._id) }}" class="btn-large col s5 offset-s1 m12 l12 xl12 join-group" aria-label="Join group">Join</a>
+				<a href="" class="btn-large col s5 offset-s1 m12 l12 xl12 join-group message-admin" aria-label="Message admin">Message admin</a>
+				{% endif %}
 			{% else %}
 			<a href="#prompt" class="btn-large col s12 m12 l12 xl12 offset-m1 modal-trigger join-group" aria-label="Join group">Join</a>
 			{% endif %}
