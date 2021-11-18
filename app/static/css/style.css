@@ -141,11 +141,21 @@ div .hero {
 
 /* Pagination */
 .pagination nav {
-    background-color: var(--munsell-t) !important;
+    background-color: transparent !important;
 }
 
 nav ul li.active {
     background-color: transparent !important;
+}
+
+nav ul li.active a {
+    color: var(--munsell) !important;
+}
+
+.pagination nav ul {
+    display: flex;
+    justify-content: center;
+    color: var(--magenta);
 }
 
 /* Forms */
@@ -439,6 +449,11 @@ color: var(--black) !important;
 
 .project-card {
     background-color: var(--munsell);
+}
+
+.group-member-card {
+    display: flex;
+    justify-content: center;
 }
 
 .bio-card,
@@ -966,11 +981,6 @@ input[type=text]:not(.browser-default) {
     .member-name {
         padding: 18px !important;
         font-size: 1em;
-    }
-
-    .group-member-card {
-        display: flex;
-        justify-content: center;
     }
 
     .btn-floating.halfway-fab {
