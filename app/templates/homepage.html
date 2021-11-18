@@ -16,7 +16,9 @@
 	<div class="col s10 offset-s1 m10 offset-m1 l6 offset-l3 xl6 offset-xl3 center-align">
 		<p class="big-paragraph">
 			Writers, game designers, dungeon masters, daydreamers... the list goes on. To join
-			Worldsmiths, a love and passion of <span class="home-title">worldbuilding</span> is all that's needed.
+			Worldsmiths, a love and passion of <span class="home-title tooltipped" data-position="bottom"
+			data-tooltip="(The process of building a fictional world in which characters or players interact with and in)">
+				worldbuilding</span> is all that's needed.
 		</p>
 		{% if session.user %}
 		<a href="{{ url_for('users.get_profile') }}" target="_self" class="btn-large" aria-label="Profile">Your profile</a>
@@ -214,4 +216,33 @@
 		</div>
 	</div>
 </div>
+
+<!--What is worldbuilding? modal-->
+<div id="definition" class="modal">
+	<div class="modal-content">
+		<form method="POST" action="">
+			<div class="row">
+				<div class="col s12 center-align">
+					<img src="/static/imgs/gandalf.png" class="responsive-img gandalf" alt="Gandalf">
+					<h1 class="center">The way is shut</h1>
+				</div>
+			</div>
+			<h3 class="center">Want to explore further?</h3>
+			<p class="center">To view, join or attend our group pages or view and follow our members' profiles, you need to be a member with us and logged in.
+				Click below to join us, or log-in if you already have an account with us!
+			</p>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<div class="row center-align">
+			<div class="col s12 m12 l6 xl6">
+				<button class="modal-close btn col s12">Join the adventure</a>
+			</div>
+			<div class="col s12 m12 l6 xl6">
+				<a href="{{ url_for('users.log_in') }}" class="modal-close btn col s12" target="_self" aria-label="Sign in">Sign me in</a>
+			</div>
+		</div>
+	</div>
+</div>
+
 {% endblock %}
