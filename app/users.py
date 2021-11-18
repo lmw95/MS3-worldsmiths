@@ -19,6 +19,7 @@ users = Blueprint("users", __name__)
 
 PER_PAGE = 6
 
+
 def paginate(members):
     """
     Display relavent users on each page
@@ -41,6 +42,8 @@ def pagination_args(members):
     total = len(members)
 
     return Pagination(page=page, per_page=PER_PAGE, total=total)
+
+
 
 
 
@@ -288,9 +291,7 @@ def edit_profile(user_id):
             "user_location": request.form.get("country"),
             "nickname": request.form.get("nickname"),
             "user_interests": request.form.get("interests"),
-            "user_project_1": request.form.get("link-1"),
-            "user_project_2": request.form.get("link-2"),
-            "user_project_3": request.form.get("link-3"),
+            "user_project": request.form.get("project"),
             "user_biography": request.form.get("bio"),
             "profile_pic_url": request.form.get("profile-pic"),
             "user_banner_url": request.form.get("banner")

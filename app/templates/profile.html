@@ -189,15 +189,15 @@
 					{% if user %}
 						{% if member in following %}
 						<!--If user is follower-->
-						<a href="{{ url_for('users.member_profile', user_id=member._id) }}"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
-						<a class="btn-floating halfway-fab unfollow-btn"><i class="fas fa-times"></i></a>
+						<a href="{{ url_for('users.member_profile', user_id=member._id) }}" class="truncate"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
+						<a href="{{ url_for('users.unfollow', user_id=member._id) }}" class="btn-floating halfway-fab unfollow-btn"><i class="fas fa-times"></i></a>
 						<!--If user is not follower-->
 						{% else %}
-						<a href="{{ url_for('users.member_profile', user_id=member._id) }}"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
-						<a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
+						<a href="{{ url_for('users.member_profile', user_id=member._id) }}" class="truncate"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
+						<a href="{{ url_for('users.follow', user_id=member._id) }}" class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
 						{% endif %}
 					{% else %}
-					<a href="#prompt" class="modal-trigger"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
+					<a href="#prompt" class="modal-trigger" class="truncate"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
 					<a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
 					{% endif %}
 				</div>
