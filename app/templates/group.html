@@ -29,7 +29,7 @@
 			<div class="col s12">
 				<h1 class="user-name">{{ group.group_name }}</h1>
 				<p><i class="fas fa-user"></i><span class="info-label"> Admin:</span> {{ admin_fname.capitalize() }} {{ admin_lname.capitalize() }}</p>
-				<p><i class="fas fa-hand-sparkles"></i> Group created:</span> {{ group._id.generation_time.date().strftime("%d %B %Y") }}</p>
+				<p><i class="fas fa-magic"></i> Group created:</span> {{ group._id.generation_time.date().strftime("%d %B %Y") }}</p>
 				<p class="bottom-p"><i class="fas fa-map-marker-alt"></i><span class="info-label"> Location:</span> {{ group.group_location }}, UK</p>
 			</div>
 		</div>
@@ -195,7 +195,11 @@
 					<div class="input-field col s12">
 						<i class="fas fa-at prefix"></i>
 						{% set name = users|selectattr("_id", "equalto", comment.commenter)|first %}
-						<input disabled id="reply-to" name="reply-to" type="text" placeholder="{{ name.first_name }}{{ name.last_name }}" required></textarea>
+						{% if name is defined %}
+						<input disabled id="reply-to" name="reply-to" type="text" placeholder="{{ name.first_name }}{{ name.last_name }}" required></input>
+						{% else %}
+						<input disabled id="reply-to" name="reply-to" type="text" placeholder="[user deleted]" required></input>
+						{% endif %}
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -231,7 +235,7 @@
 	{% endfor %}
 	{% else %}
 	<div class="col s12 center-align">
-		<p class="little-header">Where is everyone?</p>
+		<p class="little-header">There's nothing here!</p>
 	</div>
 	{% endif %}
 	<div class="row">
