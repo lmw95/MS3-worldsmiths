@@ -150,7 +150,7 @@
 <div class="row">
 	{% if member_results|length > 0 %}
 	{% for member in member_results %}
-	<div class="col s12 m6 l4 xl4 member-card-wrapper">
+	<div class="col s6 m6 l4 xl4 member-card-wrapper">
 		<div class="card member-card">
 			<div class="card-image">
 				<img src="{{ member.profile_pic_url }}" alt="{{ member.first_name }}'s profile img">
@@ -162,7 +162,7 @@
 					</a>
 				</span>
 				{% else %}
-					{% if user %}
+					{% if session.user %}
 						{% if member in following %}
 						<span class="card-title member-name valign-wrapper">
 						<a href="{{ url_for('users.member_profile', user_id=member._id) }}" class="truncate" target="_self" aria-label= "{{ member.first_name }}'s' profile">
@@ -179,8 +179,8 @@
 						<a href="{{ url_for('users.follow', user_id=member._id) }}" class="btn-floating halfway-fab follow-btn" aria-label="Follow {{ member.first_name }}"><i class="fas fa-plus"></i></a>
 						{% endif %}
 					{% else %}
-					<a href="#prompt" class="modal-trigger"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
-					<a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
+					<a href="#prompt" class="truncate modal-trigger"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
+					<a href="#prompt" class="modal-trigger btn-floating halfway-fab follow-btn" aria-label="Follow {{ member.first_name }}"><i class="fas fa-plus"></i></a>
 					{% endif %}
 				{% endif %}
 			</div>
