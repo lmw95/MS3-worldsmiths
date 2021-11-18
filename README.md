@@ -1,4 +1,9 @@
 # MS3 - Worldsmiths
+
+![](documentation/screenshots/responsive-worldsmiths.png)
+
+[Live site here](https://worldsmiths.herokuapp.com/)
+
 Worldsmiths is an online event-planning platform and was created for educational purposes as the 3rd milestone project of the Code Institute's Full Stack Software Development Diploma.
 
 This website is fully responsive and interactive, and was developed using HTML, CSS, JavaScript, Python, Flask and MongoDB, incorporating the principles of UX design and adhering to PEP8 compliance.
@@ -18,8 +23,6 @@ This website is fully responsive and interactive, and was developed using HTML, 
     * [Languages]()
     * [Database]()
     * [Libraries & frameworks]()
-* [Code organisation]()
-* [Validation]()
 * [Testing]()
 * [Deployment]()
 * [Credits]()
@@ -29,12 +32,12 @@ This website is fully responsive and interactive, and was developed using HTML, 
 
 ***Introduction***
 
+[Live site](https://worldsmiths.herokuapp.com/)
+
 *Worldsmiths* is an event-planning platform aimed at the [worldbuilding](https://en.wikipedia.org/wiki/Worldbuilding) community within in the UK. Worldbuilding is considered a niche hobby, and has a vibrant and diverse community spanning the globe. This site is aimed at those within the UK community who wish to network in the UK for a variety of reasons, including:
 * Discuss, develop and learn about worldbuilding skills & practices through specialise groups
 * Create a profile in order to share their projects with others on the website
 * Socialise with other members of the community around the country
-
-Inspiration for my project comes from sites like [WorldAnvil](https://www.worldanvil.com/).
 
 ***Site owner goals***
 * Provide worldbuilders in the UK an engaging and easy-to-use platform to create and join events, share their profiles and network
@@ -137,7 +140,7 @@ Inspiration for my project comes from sites like [WorldAnvil](https://www.worlda
 
 ***Database structure***
 
-![](documentation/screenshots/database.png)
+![](documentation/screenshots/database_structure.png)
 
 JSON Schema:
 * [Comments schema](documentation/structure/comments.json)
@@ -154,8 +157,6 @@ Non-logged in users can see:
 * [Log-in page](documentation/wireframes/log-in.png)
 * [All groups and members - search results](documentation/wireframes/all-groups-events.png)
 * [Sign in/sign up prompt](documentation/wireframes/sign-in-prompt.png)
-* [Privacy & accessibility](documentation/wireframes/privacy-and-accessibility.png)
-* [FAQs](documentation/wireframes/faqs.png)
 * [Contact us](documentation/wireframes/contact-us.png)
 
 Logged-in users can see:
@@ -225,6 +226,7 @@ Due to time constraints, a handful of features had to be dropped. The features i
 
 ## **Libraries & frameworks**
 * Flask
+* MaterializeCSS
 * Jinja
 * PyMongo
 * jQuery
@@ -249,12 +251,20 @@ Due to time constraints, a handful of features had to be dropped. The features i
 
 ## **Other tools**
 * Font Awesome
+* Flaticon
 * Google Fonts
 * Coolors
+* Diagram.io
+* dbdiagram.io
+* Spark Adobe
 
-# Validation
+ # Validation
+
+ See [validation](VALIDATION.md)
 
 # Testing
+
+See [testing](TESTING.md)
 
 # Deployment
 This website was developed on Gitpod using the Code Institute student template with changes frequently committed to git then pushed onto GitHub from the Gitpod terminal.
@@ -389,7 +399,31 @@ You can find all the steps to follow according to your chosen method in this [Gi
 * [Using classes and methods](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+CPP_06_20+2020_T1/courseware/272f493b4d57445fbd634e7ceca3a98c/c75ed529d8f14d5aa5f359281c76c834/)
 * [How to use Flask pagination](https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9)
 * [@staticmethod vs @clasmethod - which to use?](https://stackabuse.com/pythons-classmethod-and-staticmethod-explained/)
+* [Error handling](https://flask.palletsprojects.com/en/2.0.x/errorhandling/)
 
+***Media***
+* The banner images:
+    * [1st image](https://www.artstation.com/artwork/XBNe0R)
+    * [2nd image](https://twitter.com/ardbears/status/1393375498911297539)
+    * [3rd image](https://www.walldevil.co/city-concept-art-fantasy-art-fantasy-city-fantasy-architecture-cityscape-35982/)
+    * [4th image](https://dribbble.com/shots/9520744-D-D/attachments/1546974?mode=media)
+    * [5th image](https://imgur.com/gallery/06k3l0f)
+    * [6th image](https://oraculumcorp.files.wordpress.com/2011/11/alien-city-science-fiction-3999006-1280-700.jpg)
+* 'Recommended by' logos:
+    * [Artifexian](https://twitter.com/Artifexian/photo)
+    * [Hello Future Me](https://www.youtube.com/channel/UCFQMO-YL87u-6Rt8hIVsRjA)
+    * [Mythic Scribs](https://mythicscribes.com/)
+    * [Shadiversity](https://twitter.com/shadmbrooks/photo)
+    * [WorldAnvil](https://twitter.com/WorldAnvil/photo)
+    * [Worldbuilding Magazine](https://twitter.com/WB_Mag/photo)
+* [Website logo](https://www.flaticon.com/premium-icon/book_3271979?term=globe%20book&page=1&position=9&page=1&position=9&related_id=3271979&origin=search)
+* ['Popular groups' background](https://writingandcoe.co.uk/inspiration-hanyijie-sky-ship/)
 
+All other images (profile images and banner images) will be at the user's disrection and will be linked to the website through a URL
+
+***Thank you***
+* I had assistance with this project from my mentor Narender, Slack, StackOverflow, our dear friend Google and many online resources and documents - thank you!
+* Shout out to [World Anvil](https://www.worldanvil.com/) provided me with inspiration for this website
+* A massive thank you to my boyfriend Connor for being there with me through my frustrations and my wins
 
 
