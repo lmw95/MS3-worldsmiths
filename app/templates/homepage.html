@@ -21,7 +21,7 @@
 		{% if session.user %}
 		<a href="{{ url_for('users.get_profile') }}" target="_self" class="btn-large" aria-label="Profile">Your profile</a>
 		{% else %}
-		<a href="{{ url_for('auth.sign_up') }}" target="_self" class="btn-large" aria-label="Sign up">Join the quest!</a>
+		<a href="{{ url_for('users.sign_up') }}" target="_self" class="btn-large" aria-label="Sign up">Join the quest!</a>
 		{% endif %}
 	</div>
 </div>
@@ -206,7 +206,7 @@
 				<button class="modal-close btn col s12">Join the adventure</a>
 			</div>
 			<div class="col s12 m12 l6 xl6">
-				<a href="{{ url_for('auth.log_in') }}" class="modal-close btn col s12" target="_self" aria-label="Sign in">Sign me in</a>
+				<a href="{{ url_for('users.log_in') }}" class="modal-close btn col s12" target="_self" aria-label="Sign in">Sign me in</a>
 			</div>
 		</div>
 	</div>

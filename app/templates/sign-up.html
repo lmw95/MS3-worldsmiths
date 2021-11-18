@@ -26,7 +26,7 @@
 	</div>
 	{% endif %}
 	{% endwith %}
-	<form method="POST" action="{{ url_for('auth.sign_up') }}" class="col s11 offset-s1 m11 offset-m1 l7 offset-l3 xl7 offset-xl3">
+	<form method="POST" action="{{ url_for('users.sign_up') }}" class="col s11 offset-s1 m11 offset-m1 l7 offset-l3 xl7 offset-xl3">
 		<div class="row">
 			<div class="input-field col s11 m5 l5 x5">
 				<i class="fas fa-user prefix"></i>
@@ -61,7 +61,7 @@
 		</div>
 		<div class="row">
 			<div class="col s11 center-align">
-				<p>Already part of the crew? <a href="{{ url_for('auth.log_in') }}" target="_self">Come on in.</a></p>
+				<p>Already part of the crew? <a href="{{ url_for('users.log_in') }}" target="_self">Come on in.</a></p>
 			</div>
 		</div>
 	</form>

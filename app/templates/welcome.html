@@ -123,7 +123,7 @@
                             <p class="welcome-members valign-wrapper"><i class="fas fa-user-circle left fa-2x"></i> {{ comp_group.members|length }} members</p>
                         </div>
                         <div class="col s12 l5">
-                            <a href="{{ url_for('auth.comp_group', first_name=first_name) }}" class="btn comp-group col s10 offset-s1 modal-close"><i class="fas fa-plus left"></i> Join</a>
+                            <a href="{{ url_for('users.comp_group', first_name=first_name) }}" class="btn comp-group col s10 offset-s1 modal-close"><i class="fas fa-plus left"></i> Join</a>
                         </div>
                     </div>
                 </div>

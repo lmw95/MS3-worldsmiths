@@ -38,7 +38,7 @@
                             <li><a href="{{ url_for('main.browse_all') }}" target="_self" aria-label="Browse"><i class="fas fa-search"></i></a></li>
                             <li><a href="{{ url_for('users.get_profile') }}" target="_self" aria-label="Profile"><i class="fas fa-user"></i></i></a></li>
                             <li><a href="{{ url_for('main.contact') }}" target="_self" aria-label="Contact us"><i class="fas fa-headset"></i></a></li>
-                            <li><a href="{{ url_for('auth.log_out') }}" target="_self" aria-label="Sign out"><i class="fas fa-sign-out-alt"></i></a></li>
+                            <li><a href="{{ url_for('users.log_out') }}" target="_self" aria-label="Sign out"><i class="fas fa-sign-out-alt"></i></a></li>
                         </ul>
                         <!--User logged in (mobile)-->
                         <ul class="sidenav" id="mobile-nav">
@@ -46,22 +46,22 @@
                             <li><a href="{{ url_for('main.browse_all') }}" target="_self" aria-label="Browse"><i class="fas fa-search"></i>Browse</a></li>
                             <li><a href="{{ url_for('users.get_profile') }}" target="_self" aria-label="Profile"><i class="fas fa-user"></i>My profile</a></li>
                             <li><a href="{{ url_for('main.contact') }}" target="_self" aria-label="Contact us"><i class="fas fa-headset"></i>Contact us</a></li>
-                            <li><a href="{{ url_for('auth.log_out') }}" target="_self" aria-label="Sign out"><i class="fas fa-sign-out-alt"></i>Sign out</a></li>
+                            <li><a href="{{ url_for('users.log_out') }}" target="_self" aria-label="Sign out"><i class="fas fa-sign-out-alt"></i>Sign out</a></li>
                         </ul>
                         {% else %}
                         <!--User not logged in/signed up-->
                         <ul class="right hide-on-med-and-down">
                             <li><a href="{{ url_for('main.homepage') }}" target="_self" aria-label="Homepage"><i class="fas fa-home"></i></a></li>
-                            <li><a href="{{ url_for('auth.log_in') }}" target="_self" aria-label="Sign in"><i class="fas fa-sign-in-alt"></i></a></li>
-                            <li><a href="{{ url_for('auth.sign_up') }}" target="_self" aria-label="Sign up"><i class="fas fa-user-plus"></i></a></li>
+                            <li><a href="{{ url_for('users.log_in') }}" target="_self" aria-label="Sign in"><i class="fas fa-sign-in-alt"></i></a></li>
+                            <li><a href="{{ url_for('users.sign_up') }}" target="_self" aria-label="Sign up"><i class="fas fa-user-plus"></i></a></li>
                             <li><a href="{{ url_for('main.contact') }}" target="_self" aria-label="Contact us"><i class="fas fa-headset"></i></a></li>
                             <li><a href="{{ url_for('main.faqs') }}" target="_self" aria-label="FAQs"><i class="fas fa-question-circle"></i></a></li>
                         </ul>
                         <!--Mobile navigation-->
                         <ul class="sidenav" id="mobile-nav">
                             <li><a href="{{ url_for('main.homepage') }}" target="_self" aria-label="Homepage"><i class="fas fa-home"></i>Home</a></li>
-                            <li><a href="{{ url_for('auth.log_in') }}" target="_self" aria-label="Sign in"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
-                            <li><a href="{{ url_for('auth.sign_up') }}" target="_self" aria-label="Sign up"><i class="fas fa-user-plus"></i>Sign up</a></li>
+                            <li><a href="{{ url_for('users.log_in') }}" target="_self" aria-label="Sign in"><i class="fas fa-sign-in-alt"></i>Sign in</a></li>
+                            <li><a href="{{ url_for('users.sign_up') }}" target="_self" aria-label="Sign up"><i class="fas fa-user-plus"></i>Sign up</a></li>
                             <li><a href="{{ url_for('main.contact') }}" target="_self" aria-label="Contact us"><i class="fas fa-headset"></i>Get in touch</a></li>
                             <li><a href="{{ url_for('main.faqs') }}" target="_self" aria-label="FAQs"><i class="fas fa-question-circle"></i>Our statements</a></li>
                         </ul>
@@ -96,15 +96,13 @@
                    <!--Footer links (user logged in)-->
                     {% if session.user %}
                     <li><a href="{{ url_for('users.get_profile') }}" target="_self" aria-label="Profile">My profile</a></li>
-                    <li><a href="{{ url_for('auth.welcome', first_name=session['user'])}}" target="_self" aria-label="Welcome">Welcome page</a></li>
-                    <li><a href="{{ url_for('main.statements') }}" target="_self" aria-label="Statements">Our statements</a></li>
+                    <li><a href="{{ url_for('users.welcome', first_name=session['user'])}}" target="_self" aria-label="Welcome">Welcome page</a></li>
                     <li><a href="{{ url_for('main.faqs') }}" target="_self" aria-label="FAQs">FAQs</a></li>
                     <li><a href="{{ url_for('main.contact') }}" target="_self" aria-label="Contact us">Contact us</a></li>
                     <!--Footer links (user not logged in)-->
                     {% else %}
-                    <li><a href="{{ url_for('auth.log_in') }}" target="_self" aria-label="Sign in">Sign in</a></li>
-                    <li><a href="{{ url_for('auth.sign_up') }}" target="_self" aria-label="Sign up">Sign up</a></li>
-                    <li><a href="{{ url_for('main.statements') }}" target="_self" aria-label="Our statements">Our statements</a></li>
+                    <li><a href="{{ url_for('users.log_in') }}" target="_self" aria-label="Sign in">Sign in</a></li>
+                    <li><a href="{{ url_for('users.sign_up') }}" target="_self" aria-label="Sign up">Sign up</a></li>
                     <li><a href="{{ url_for('main.faqs') }}" target="_self" aria-label="FAQs">FAQs</a></li>
                     <li><a href="{{ url_for('main.contact') }}" target="_self" aria-label="Contact us">Contact us</a></li>
                     {% endif %}
