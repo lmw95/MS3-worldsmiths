@@ -13,6 +13,7 @@ from app import mongo
 groups = Blueprint("groups", __name__)
 
 
+# Pagination (groups)
 PER_PAGE = 8
 
 
@@ -77,6 +78,7 @@ def create_group():
 def group_page(group_id):
     """
     Gets group id
+    Paginates members if more than 8 per page
     Renders group page with group info, members and comments
     """
 
@@ -281,7 +283,7 @@ def reply(group_id, comment_id):
                                 reply_user=ObjectId(commenter))
 
         try:
-            new_reply.add_to_db()
+            new_reply.add_comment_to_db()
             flash("Reply added!")
             return redirect(url_for('groups.group_page', group_id=group_id))
         except Exception as e:

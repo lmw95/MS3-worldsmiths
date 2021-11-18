@@ -215,6 +215,10 @@ color: var(--black) !important;
     margin-bottom: 0;
 }
 
+input::placeholder {
+    opacity: 0.4;
+}
+
 /** Cards **/
 .home-card {
     background-color: var(--black);

@@ -21,11 +21,6 @@ users = Blueprint("users", __name__)
 PER_PAGE = 6
 
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-
 def paginate(members):
     """
     Display relavent users on each page
@@ -60,6 +55,7 @@ def get_profile():
     Retrieves user's groups, both member of and owned
     Retrieves user's following and followers
     Get's user's id to generate 'user since' value
+    Paginates followers
     Renders user's profile
     """
     user = User.check_user_exists(session["user"].lower())
