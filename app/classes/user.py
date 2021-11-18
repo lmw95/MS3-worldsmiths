@@ -23,7 +23,7 @@ class User():
         self.user_location = user_location if isinstance(user_location, str) else str("")
         self.user_interests = user_interests if isinstance(user_interests, str) else str("")
         self.user_biography = user_biography if isinstance(user_biography, str) else str("")
-        self.user_projects = user_projects if isinstance(user_projects, list) else []
+        self.user_project = user_project if isinstance(user_projects, str) else str("")
         self.groups_member_of = groups_member_of if isinstance(groups_member_of, list) else []
         self.groups_created = groups_created if isinstance(groups_created, list) else []
         self.followers = followers if isinstance(followers, list) else []
