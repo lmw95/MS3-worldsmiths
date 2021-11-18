@@ -69,24 +69,6 @@ def search():
                                 following=following, search=True)
 
 
-# Statements
-@main.route("/statements")
-def statements():
-    """
-    Renders 'statements.html'
-    """
-    return render_template("statements.html", page_title="Our statements")
-
-
-# FAQs
-@main.route("/faqs")
-def faqs():
-    """
-    Renders 'faqs.html'
-    """
-    return render_template("faqs.html", page_title="FAQs")
-
-
 # Contact us
 @main.route("/contact", methods=["GET", "POST"])
 def contact():

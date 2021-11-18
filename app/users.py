@@ -3,6 +3,7 @@ from flask import (Flask, render_template, request,
                    flash, url_for, redirect, session, Blueprint)
 from flask_mail import Mail, Message
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 import re
 from bson.objectid import ObjectId
 from flask_paginate import Pagination, get_page_args
@@ -18,6 +19,11 @@ users = Blueprint("users", __name__)
 
 
 PER_PAGE = 6
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 def paginate(members):
@@ -286,6 +292,7 @@ def edit_profile(user_id):
     user = User.get_user_by_id(user_id)
 
     if request.method == "POST":
+
         updated_info = {
             "user_city": request.form.get("city"),
             "user_location": request.form.get("country"),

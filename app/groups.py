@@ -15,6 +15,7 @@ groups = Blueprint("groups", __name__)
 
 PER_PAGE = 8
 
+
 def paginate(members):
     """
     Display relavent users on each page
@@ -37,7 +38,6 @@ def pagination_args(members):
     total = len(members)
 
     return Pagination(page=page, per_page=PER_PAGE, total=total)
-
 
 
 # Create group
@@ -249,7 +249,7 @@ def delete_comment(group_id, comment_id):
         flash("Comment deleted")
 
     return redirect(url_for('groups.group_page', group_id=group_id))
-    
+   
 
 # Reply to a comment
 @groups.route("/reply/<group_id>/<comment_id>", methods=["GET", "POST"])

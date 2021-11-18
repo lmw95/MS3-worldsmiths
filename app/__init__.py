@@ -5,6 +5,8 @@ from app.settings import Settings
 
 
 mongo = PyMongo()
+
+
 mail = Mail()
 
 
