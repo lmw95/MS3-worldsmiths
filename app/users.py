@@ -50,9 +50,6 @@ def pagination_args(members):
     return Pagination(page=page, per_page=PER_PAGE, total=total)
 
 
-
-
-
 # Profile
 @users.route("/get_profile", methods=["GET", "POST"])
 def get_profile():
@@ -413,7 +410,6 @@ def log_in():
     return render_template("log-in.html", page_title="Log in")
 
 
-
 @users.route("/welcome/<first_name>", methods=["GET", "POST"])
 def welcome(first_name):
     """
@@ -433,7 +429,6 @@ def welcome(first_name):
         return render_template(
             "welcome.html", page_title="Welcome back", first_name=first_name,
                             comp_group=comp_group, new_user=new_user, users=users)
-
 
 
 @users.route("/comp_group/", methods=["GET", "POST"])
@@ -459,7 +454,6 @@ def comp_group():
                             comp_group=comp_group, new_user=new_user))
 
 
-
 @users.route("/reset_password", methods=["GET", "POST"])
 def reset_password():
     """
@@ -469,7 +463,6 @@ def reset_password():
     """
     flash("Password reset link sent! Please check your inbox (and junk!)")
     return render_template("log-in.html", page_title="Log in")
-
 
 
 @users.route("/log_out")
@@ -482,3 +475,4 @@ def log_out():
     session.pop("user")
     flash("You have been logged out. Come back soon!")
     return redirect(url_for("users.log_in"))
+    

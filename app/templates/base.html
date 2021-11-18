@@ -95,13 +95,11 @@
                     {% if session.user %}
                     <li><a href="{{ url_for('users.get_profile') }}" target="_self" aria-label="Profile">My profile</a></li>
                     <li><a href="{{ url_for('users.welcome', first_name=session['user'])}}" target="_self" aria-label="Welcome">Welcome page</a></li>
-                    <li><a href="{{ url_for('main.faqs') }}" target="_self" aria-label="FAQs">FAQs</a></li>
                     <li><a href="{{ url_for('main.contact') }}" target="_self" aria-label="Contact us">Contact us</a></li>
                     <!--Footer links (user not logged in)-->
                     {% else %}
                     <li><a href="{{ url_for('users.log_in') }}" target="_self" aria-label="Sign in">Sign in</a></li>
                     <li><a href="{{ url_for('users.sign_up') }}" target="_self" aria-label="Sign up">Sign up</a></li>
-                    <li><a href="{{ url_for('main.faqs') }}" target="_self" aria-label="FAQs">FAQs</a></li>
                     <li><a href="{{ url_for('main.contact') }}" target="_self" aria-label="Contact us">Contact us</a></li>
                     {% endif %}
                </ul>

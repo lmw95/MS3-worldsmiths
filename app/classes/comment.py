@@ -1,12 +1,13 @@
 from app import mongo
 from bson.objectid import ObjectId
 
+
 class Comment():
     """
     Creates instance of a comment
     """
     def __init__(self, comment, commenter,
-                time_posted, date_posted, 
+                time_posted, date_posted,
                 group_id, reply, reply_to,
                 reply_user, _id=None):
 

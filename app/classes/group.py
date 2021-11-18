@@ -96,4 +96,3 @@ class Group():
     @staticmethod
     def delete_group(group_id):
         mongo.db.groups.delete_one({"_id": ObjectId(group_id)})
-

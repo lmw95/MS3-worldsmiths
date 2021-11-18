@@ -227,6 +227,9 @@ Due to time constraints, a handful of features had to be dropped. The features i
 * Flask
 * Jinja
 * PyMongo
+* jQuery
+* Flickity
+* SendGrid
 
 ## **Development & deployment tools**
 * Heroku
@@ -244,13 +247,10 @@ Due to time constraints, a handful of features had to be dropped. The features i
 * PEP8 Online
 * Lighthouse
 
-
 ## **Other tools**
 * Font Awesome
 * Google Fonts
 * Coolors
-* 
-
 
 # Validation
 
@@ -376,9 +376,10 @@ You can find all the steps to follow according to your chosen method in this [Gi
 
 
 # Credits
-***Code technicalities***
+***Code***
 * Most code in this project is based on Code Institute's lecture material: [Python Essentials, Essential's Project and Backend Development](https://learn.codeinstitute.net/ci_program/diplomainsoftwaredevelopment)
 * [How to use Flask Application Factory](https://www.youtube.com/watch?v=6c_utRUzHG4)
+* [Using Flask file uploads](https://flask.palletsprojects.com/en/2.0.x/patterns/fileuploads/)
 * [How to create and import Blueprints](https://www.youtube.com/watch?v=wC3qkE5vD4M)
 * [Test if variable is defined](https://stackoverflow.com/a/3842745)
 * [Toggle password visibility](https://www.w3schools.com/howto/howto_js_toggle_password.asp)
@@ -387,6 +388,8 @@ You can find all the steps to follow according to your chosen method in this [Gi
 * [Writing classes and methods](https://www.pythonpool.com/python-class-vs-module/)
 * [Using classes and methods](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+CPP_06_20+2020_T1/courseware/272f493b4d57445fbd634e7ceca3a98c/c75ed529d8f14d5aa5f359281c76c834/)
 * [How to use Flask pagination](https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9)
+* [@staticmethod vs @clasmethod - which to use?](https://stackabuse.com/pythons-classmethod-and-staticmethod-explained/)
+
 
 
 
