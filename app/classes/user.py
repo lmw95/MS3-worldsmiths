@@ -7,16 +7,9 @@ class User():
     """
     Creates an instance of User
     """
-    def __init__(self, first_name, last_name, email,
-                password, user_member_since, nickname=None, 
-                profile_pic_url=None, user_banner_url=None, user_city=None, 
-                user_location=None, user_interests=None, user_biography=None,
-                user_project_1=None, user_project_2=None, user_project_3=None,
-                groups_member_of=None, groups_created=None, following=None,
-                followers=None, _id=None):
-        """
-        Initialise User
-        """
+
+    def __init__(self, args, **kwargs):
+
         self._id = _id
         self.first_name = first_name
         self.last_name = last_name
@@ -30,9 +23,7 @@ class User():
         self.user_location = user_location if isinstance(user_location, str) else str("")
         self.user_interests = user_interests if isinstance(user_interests, str) else str("")
         self.user_biography = user_biography if isinstance(user_biography, str) else str("")
-        self.user_project_1 = user_project_1 if isinstance(user_project_1, str) else str("")
-        self.user_project_2 = user_project_2 if isinstance(user_project_2, str) else str("")
-        self.user_project_3 = user_project_3 if isinstance(user_project_3, str) else str("")
+        self.user_projects = user_projects if isinstance(user_projects, list) else []
         self.groups_member_of = groups_member_of if isinstance(groups_member_of, list) else []
         self.groups_created = groups_created if isinstance(groups_created, list) else []
         self.followers = followers if isinstance(followers, list) else []
@@ -54,9 +45,7 @@ class User():
             "user_location": self.user_location.upper(),
             "user_interests": self.user_interests,
             "user_biography": self.user_biography,
-            "user_project_1": self.user_project_1,
-            "user_project_2": self.user_project_2,
-            "user_project_3": self.user_project_3,
+            "user_projects": self.user_projects,
             "groups_member_of": self.groups_member_of,
             "groups_created": self.groups_created,
             "followers": self.followers,

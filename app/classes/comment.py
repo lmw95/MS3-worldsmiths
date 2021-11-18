@@ -5,10 +5,7 @@ class Comment():
     """
     Creates instance of a comment
     """
-    def __init__(self, comment, commenter,
-                time_posted, date_posted, 
-                group_id, reply, reply_to,
-                reply_user, _id=None):
+    def __init__(self, args, **kwargs):
 
         self._id = _id
         self.comment = comment
@@ -38,7 +35,7 @@ class Comment():
 
 
     # Add comment to db
-    def add_to_db(self):
+    def add_comment_to_db(self):
         comment_id = mongo.db.comments.insert_one(self.comment_info())
         return comment_id
 
