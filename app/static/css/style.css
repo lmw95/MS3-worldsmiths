@@ -172,6 +172,8 @@ form label {
     font-family: var(--yanone-kaffeesatz);
     text-transform: uppercase;
     font-weight: 700;
+    font-size: 1.3em !important;
+    color: var(--cadet) !important;
 }
 
 form input,
@@ -200,15 +202,7 @@ form textarea:focus {
 }
 
 label {
-color: var(--black) !important;
-}
-
-.edit-page h3,
-.group-section h3,
-.profile-section h3 {
-    background-color: var(--munsell-t);
-    padding: 30px 15px;
-    margin-bottom: 30px;
+    color: var(--black) !important;
 }
 
 .modal-content form {
@@ -800,6 +794,15 @@ h3 {
 .group-name {
     margin-top: 0;
     margin-bottom: 10px;
+}
+
+
+.edit-page h3,
+.group-section h3,
+.profile-section h3 {
+    background-color: var(--munsell-t);
+    padding: 30px 15px;
+    margin-bottom: 30px;
 }
 
 /** Modals **/
