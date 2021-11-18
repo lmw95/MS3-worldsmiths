@@ -56,7 +56,7 @@
 			</div>
 			<div class="card-content">
 				{% if user.user_biography == "" %}
-				<p><em>This story has not yet begun...</em></p>
+				<p class="center"><em>This story has not yet begun...</em></p>
 				{% else %}
 				<p>{{ user.user_biography }}</p>
 				{% endif %}
@@ -67,27 +67,15 @@
 		<div class="card project-card col s12">
 			<div class="row project-card-title">
 				<div class="col s12">
-					<h2><i class="fas fa-tools"></i> Projects</h2>
+					<h2><i class="fas fa-tools"></i> My current projects</h2>
 				</div>
 			</div>
 			<div class="card-content">
-				<div class="row project-wrapper">
-					<div class="col s12 m4 l4 xl4 center-align">
-						<a href="{{ user.user_project_1 }}">
-							<p class="big-paragraph">PROJECT 1</p>
-						</a>
-					</div>
-					<div class="col s12 m4 l4 xl4 center-align">
-						<a href="{{ user.user_project_2 }}">
-							<p class="big-paragraph">PROJECT 2</p>
-						</a>
-					</div>
-					<div class="col s12 m4 l4 xl4 center-align">
-						<a href="{{ user.user_project_3 }}">
-							<p class="big-paragraph">PROJECT 3</p>
-						</a>
-					</div>
-				</div>
+				{% if user.user_project == "" %}
+				<p class="center"><em>No works of art yet...</em></p>
+				{% else %}
+				<p>{{ user.user_project }}</p>
+				{% endif %}
 			</div>
 		</div>
 	</div>
@@ -194,7 +182,7 @@
 	<div class="col s12">
 		{% if following|length > 0 %}
 		{% for member in following %}
-		<div class="col s12 m4 l3 xl2 group-member-card">
+		<div class="col s6 m4 l3 xl2 group-member-card">
 			<div class="card member-card">
 				<div class="card-image">
 					<img src="{{ member.profile_pic_url }}">
@@ -218,7 +206,7 @@
 		{% endfor %}
 		{% else %}
 		<div class="col s12 center-align">
-			<p class="little-header">So lonely down here...</p>
+			<p class="little-header">Nothing here yet!</p>
 		</div>
 		{% endif %}
 	</div>
