@@ -386,6 +386,7 @@ You can find all the steps to follow according to your chosen method in this [Gi
 * [Force modal to stay open](https://stackoverflow.com/a/54497207)
 * [Writing classes and methods](https://www.pythonpool.com/python-class-vs-module/)
 * [Using classes and methods](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+CPP_06_20+2020_T1/courseware/272f493b4d57445fbd634e7ceca3a98c/c75ed529d8f14d5aa5f359281c76c834/)
+* [How to use Flask pagination](https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9)
 
 
 
