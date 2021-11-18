@@ -295,7 +295,7 @@ def delete_account(user_id):
     session.pop("user")
     User.delete_user(user_id)
     flash("We're sorry to see you go! Please do come back and join the adventure again soon.")
-    return redirect(url_for("auth.sign_up"))
+    return redirect(url_for("users.sign_up"))
 
 
 @users.route("/sign_up", methods=["GET", "POST"])
@@ -428,7 +428,7 @@ def reset_password():
 
 
 
-@auth.route("/log_out")
+@users.route("/log_out")
 def log_out():
     """
     Removes user from session cookies
