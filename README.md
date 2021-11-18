@@ -34,6 +34,8 @@ This website is fully responsive and interactive, and was developed using HTML, 
 * Create a profile in order to share their projects with others on the website
 * Socialise with other members of the community around the country
 
+Inspiration for my project comes from sites like [WorldAnvil](https://www.worldanvil.com/).
+
 ***Site owner goals***
 * Provide worldbuilders in the UK an engaging and easy-to-use platform to create and join events, share their profiles and network
 * Put new language skills (Python, MongoDB and Flask) into practice
@@ -100,14 +102,13 @@ This website is fully responsive and interactive, and was developed using HTML, 
 
 ***Website content requirements***
 * Must be clear and well laid out for easy navigation
-* Information on how to use the website
 * Interface must be attractive but minimal 
 * Icons to aid visualisation and UI
 * Clear headings and information fields
 
 ***Limitations***
 * The site owner is in the process of learning Python, Flask and MongoDB which may limit the features available on the website 
-* There is a time limit which may place constraints on certain elements 
+* There is a time limit which may place constraints on certain elements and some may need to be omitted from the final  
 
 ## **Structure**
 
@@ -181,6 +182,7 @@ Logged-in users can see:
 * 'Inactive' group modal
 * Reset password modal
 * Deletion of group and profile modal
+* Join 'New Members' group
 
 ## **Design**
 The overall design of the website will be modern yet keeping in theme of worldbuilding genres and cartography.
@@ -203,7 +205,13 @@ Icons from [Font Awesome](https://fontawesome.com/) and [Flaticon](https://www.f
 
 # Features
 ## **Existing features**
+Due to time constraints, a handful of features had to be dropped. The features implemented in the final project are:
+
+
 ## **Features for future implementation**
+* Filtering for search results (e.g - date, alphabetically, etc)
+* Ability to upload image files using Flask Upload rather than using URL
+* Pagination for certain elements
 
 # Technologies
 ## **Languages**
@@ -217,11 +225,32 @@ Icons from [Font Awesome](https://fontawesome.com/) and [Flaticon](https://www.f
 
 ## **Libraries & frameworks**
 * Flask
-* Heroku
 * Jinja
 * PyMongo
 
-# Code organisation
+## **Development & deployment tools**
+* Heroku
+* Git version control
+* Gitpod
+* Github
+* Balsamiq
+* Google DevTools
+* Am I Responsive
+
+## **Validation**
+* W3C Markup Validation
+* W3C CSS Validation
+* JSLint
+* PEP8 Online
+* Lighthouse
+
+
+## **Other tools**
+* Font Awesome
+* Google Fonts
+* Coolors
+* 
+
 
 # Validation
 
@@ -301,6 +330,7 @@ You can find all the steps to follow according to your chosen method in this [Gi
 * Add the following to your env.py:
 ```
     import os   
+
     os.environ.setdefault("IP", "0.0.0.0")    
     os.environ.setdefault("PORT", "5000")   
     os.environ.setdefault("SECRET_KEY", "your_secret_key")   
@@ -342,5 +372,20 @@ You can find all the steps to follow according to your chosen method in this [Gi
 * Go to settings, then click on reveal config vars
 * Enter your key value pairs as per your env.py file (without the inverted commas):
 
-    ![Heroku config variables](documentation/screenshots/heroku-config.png)
+    ![Heroku config variables](documentation/screenshots/heroku-config-variables.png)
+
+
+# Credits
+***Code technicalities***
+* Most code in this project is based on Code Institute's lecture material: [Python Essentials, Essential's Project and Backend Development](https://learn.codeinstitute.net/ci_program/diplomainsoftwaredevelopment)
+* [How to use Flask Application Factory](https://www.youtube.com/watch?v=6c_utRUzHG4)
+* [How to create and import Blueprints](https://www.youtube.com/watch?v=wC3qkE5vD4M)
+* [Test if variable is defined](https://stackoverflow.com/a/3842745)
+* [Toggle password visibility](https://www.w3schools.com/howto/howto_js_toggle_password.asp)
+* [Get inserted_id from recent addition in MongoDB](https://stackoverflow.com/a/8793179)
+* [Force modal to stay open](https://stackoverflow.com/a/54497207)
+* [Writing classes and methods](https://www.pythonpool.com/python-class-vs-module/)
+* [Using classes and methods](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+CPP_06_20+2020_T1/courseware/272f493b4d57445fbd634e7ceca3a98c/c75ed529d8f14d5aa5f359281c76c834/)
+
+
 

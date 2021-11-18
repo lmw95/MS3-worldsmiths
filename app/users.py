@@ -5,6 +5,7 @@ from flask_mail import Mail, Message
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
 from bson.objectid import ObjectId
+from flask_paginate import Pagination, get_page_args
 from datetime import datetime
 from app.classes.user import User
 from app.classes.group import Group
@@ -14,6 +15,34 @@ from app import mongo
 
 # User blueprint
 users = Blueprint("users", __name__)
+
+
+PER_PAGE = 5
+
+def paginate(members):
+    """
+    Display relavent users on each page
+    """
+    page, _, offset = get_page_args(
+        page_parameter="page", per_page_parameter="per_page"
+    )
+    offset = page * PER_PAGE - PER_PAGE
+
+    return members[offset: offset + PER_PAGE]
+
+
+
+def pagination_args(members):
+    """
+    Get and display the total number of pages
+    """
+    page, _, _ = get_page_args(
+        page_parameter="page", per_page_parameter="per_page")
+
+    total = len(members)
+
+    return Pagination(page=page, per_page=PER_PAGE, total=total)
+
 
 
 # Profile
@@ -37,11 +66,14 @@ def get_profile():
     following = list(User.find_users_in_array(user["following"]))
     followers = list(User.find_users_in_array(user["followers"]))
 
+    paginated_members = paginate(following)
+    pagination = pagination_args(following)
+
     if user:
         return render_template("profile.html", page_title="My profile", user=user,
                                 user_id=user_id, groups_created=groups_created,
-                                groups_member=groups_member, following=following,
-                                followers=followers)
+                                groups_member=groups_member, following=paginated_members,
+                                followers=followers, pagination=pagination)
 
 
 # Get other member profiles

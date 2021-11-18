@@ -7,6 +7,7 @@ from flask_mail import Message
 # Import datetime
 from datetime import datetime
 # Classes
+from flask_paginate import Pagination, get_page_args
 from app.classes.user import User
 from app.classes.group import Group
 # Import MongoDB

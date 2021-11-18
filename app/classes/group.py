@@ -7,7 +7,10 @@ class Group():
     """
     Create an instance of Group
     """
-    def __init__(self, args, **kwargs):
+    def __init__(self, group_name, group_cover_img_url,
+                group_admin, group_location,
+                group_description, comments=None,
+                members=None, _id=None):
 
         self._id = _id
         self.group_name = group_name
