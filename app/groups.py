@@ -2,6 +2,7 @@ from flask import (Flask, render_template, request,
                    flash, url_for, redirect, session, Blueprint)
 from datetime import datetime
 from bson.objectid import ObjectId
+from flask_paginate import Pagination, get_page_args
 from app.classes.user import User
 from app.classes.group import Group
 from app.classes.comment import Comment
@@ -10,6 +11,33 @@ from app import mongo
 
 # Groups blueprint
 groups = Blueprint("groups", __name__)
+
+
+PER_PAGE = 8
+
+def paginate(members):
+    """
+    Display relavent users on each page
+    """
+    page, _, offset = get_page_args(
+        page_parameter="page", per_page_parameter="per_page"
+    )
+    offset = page * PER_PAGE - PER_PAGE
+
+    return members[offset: offset + PER_PAGE]
+
+
+def pagination_args(members):
+    """
+    Get and display the total number of pages
+    """
+    page, _, _ = get_page_args(
+        page_parameter="page", per_page_parameter="per_page")
+
+    total = len(members)
+
+    return Pagination(page=page, per_page=PER_PAGE, total=total)
+
 
 
 # Create group
@@ -65,6 +93,9 @@ def group_page(group_id):
         members_of = User.get_user_by_id(user)["groups_member_of"]
         members = list(User.find_users_in_array(group["members"]))
 
+        paginated_members = paginate(members)
+        pagination = pagination_args(members)
+
         following = list(User.find_users_in_array(user_following["following"]))
 
         comments = list(Comment.get_all_comments(group_id))
@@ -76,8 +107,9 @@ def group_page(group_id):
         return render_template("group.html",
                                 group=group, admin=admin, user=user,
                                 admin_fname=admin_fname, admin_lname=admin_lname,
-                                members_of=members_of, members=members, comments=comments,
-                                users=users, following=following, check_user=check_user)
+                                members_of=members_of, members=paginated_members,
+                                comments=comments, users=users, following=following, 
+                                check_user=check_user, pagination=pagination)
 
 
 # Edit group
