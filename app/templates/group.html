@@ -29,7 +29,7 @@
 			<div class="col s12">
 				<h1 class="user-name">{{ group.group_name }}</h1>
 				<p><i class="fas fa-user"></i><span class="info-label"> Admin:</span> {{ admin_fname.capitalize() }} {{ admin_lname.capitalize() }}</p>
-				<p><i class="fas fa-user"></i><span class="info-label"> Group created:</span> {{ group._id.generation_time.date().strftime("%d %B %Y") }}</p>
+				<p><i class="fas fa-hand-sparkles"></i> Group created:</span> {{ group._id.generation_time.date().strftime("%d %B %Y") }}</p>
 				<p class="bottom-p"><i class="fas fa-map-marker-alt"></i><span class="info-label"> Location:</span> {{ group.group_location }}, UK</p>
 			</div>
 		</div>
@@ -59,7 +59,7 @@
 		<h3>Description <i class="fas fa-question-circle right"></i></h3>
 	</div>
 	<div class="col s10 offset-s1">
-		<p>{{ group.group_description }}</p>
+		<p class="big-paragraph">{{ group.group_description }}</p>
 	</div>
 </div>
 
@@ -103,7 +103,6 @@
 		</div>
 	</div>
 	<div class="col s12 center-align">
-		<img src="/static/imgs/nothing-here.png" height="250" width="200" alt="Pixie looking cross">
 		<p class="little-header">There's nothing here!</p>
 	</div>
 	{% endif %}
@@ -232,8 +231,7 @@
 	{% endfor %}
 	{% else %}
 	<div class="col s12 center-align">
-		<img src="/static/imgs/nothing-here-2.png" height="250" width="200" aria-label="Pixie looking cross">
-		<p class="ittle-header">Where is everyone?</p>
+		<p class="little-header">Where is everyone?</p>
 	</div>
 	{% endif %}
 	<div class="row">

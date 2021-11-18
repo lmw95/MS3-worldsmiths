@@ -30,7 +30,7 @@
 					<h1 class="user-name truncate">{{ user.first_name }} {{ user.last_name }}</h1>
 					<p><i class="fas fa-comment-dots"></i><span class="info-label">Nickname:</span> {{ user.nickname }}</p>
 					<p><i class="fas fa-user"></i><span class="info-label">Member since:</span> {{ user_id.generation_time.date().strftime("%d %B %Y") }}</p>
-					<p><i class="fas fa-map-marker-alt"></i><span class="info-label">Location:</span> {{ user.user_city }} {{ user.user_location.upper() }}</p>
+					<p><i class="fas fa-map-marker-alt"></i><span class="info-label">Location:</span> {{ user.user_city }}, {{ user.user_location.upper() }}</p>
 					<p><i class="fas fa-heart"></i><span class="info-label">Interests:</span> {{ user.user_interests }}</p>
 					<p><i class="far fa-handshake"></i><span class="info-label">Followers:</span> {{ followers|length }}</p>
 				</div>
@@ -72,6 +72,8 @@
 			</div>
 			<div class="card-content">
 				{% if user.user_project == "" %}
+				<p class="center"><em>No works of art yet...</em></p>
+				{% elif user.user_project == None %}
 				<p class="center"><em>No works of art yet...</em></p>
 				{% else %}
 				<p>{{ user.user_project }}</p>
