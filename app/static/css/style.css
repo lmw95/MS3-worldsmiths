@@ -5,6 +5,7 @@
 /** Global style variables **/
 :root {
     --black: #1E1D1C;
+    --black-t: rgb(30, 29, 28, 0.8);
     --almond: #F3F3F4;
     --magenta: #A44E7B;
     --cadet: #1F253F;
@@ -123,13 +124,13 @@ div .hero {
 .profile-flash {
     margin-bottom: 0;
     padding-top: 10px;
-    background-color: var(--munsell-t);
+    background-color: var(--black);
 }
 
 .welcome-flash {
     margin-bottom: 0;
     padding-top: 10px;
-    background-color: var(--almond);
+    background-color: var(--almond)
 }
 
 .profile-flash i,
@@ -285,7 +286,7 @@ color: var(--black) !important;
     margin-top: 10px;
 }
 
-/** Browse events, groups & members **/
+/** Browse groups & members **/
 .events-card,
 .event-card,
 .group-card {
@@ -398,7 +399,7 @@ color: var(--black) !important;
     max-width: 500px;
 }
 
-/** Profile **/
+/** Profile/group **/
 .p-banner {
     height: 400px;
     background-color: var(--almond);
@@ -406,7 +407,8 @@ color: var(--black) !important;
 }
 
 .details {
-    background-color: var(--munsell-t);
+    background-color: var(--black);
+    color: var(--almond);
 }
 
 .p-info,
@@ -516,6 +518,10 @@ color: var(--black) !important;
     margin-bottom: 40px;
 }
 
+.group-banner {
+    margin-bottom: 0;
+}
+
 /** Welcome page **/
 .socials-wrapper {
     background-color: var(--black);
@@ -571,37 +577,7 @@ color: var(--black) !important;
     color: var(--black) !important;
 }
 
-/** FAQs **/
-.faqs i {
-    color: var(--munsell);
-    margin-right: 10px;
-}
-
-.faqs li {
-    font-family: var(--josefin-sans);
-}
-
 .faqs li i {
-    color: var(--munsell);
-}
-
-/** Statements.html **/
-.statements {
-    height: 500px;
-    overflow-y: scroll;
-}
-
-.accessibility li,
-.privacy li {
-    font-family: var(--josefin-sans);
-}
-
-.accessibility li i,
-.privacy li i {
-    color: var(--munsell);
-}
-
-.accessibility a {
     color: var(--munsell);
 }
 
