@@ -286,6 +286,10 @@ color: var(--black) !important;
     margin-top: 10px;
 }
 
+.flickity-button {
+    display: none;
+}
+
 /** Browse groups & members **/
 .events-card,
 .event-card,
