@@ -109,7 +109,7 @@
 <!--Popular groups-->
 <div class="row events-wrapper">
 	<div class="col s12 carousel-wrapper">
-		<div class="carousel" data-flickity='{ "draggable": false }'>
+		<div class="carousel" data-flickity='{ "draggable": true, prevNextButtons: false, pageDots: false }'>
 			{% for group in groups|sort(attribute='members') %}
 			{% if group.members|length > 10 %}
 			{% set admin = users|selectattr("_id", "equalto", group.group_admin )|first %}
