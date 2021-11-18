@@ -189,7 +189,7 @@ def add_comment(group_id):
                             reply_user=None)
 
         try:
-            new_comment.add_to_db()
+            new_comment.add_comment_to_db()
             flash("Comment added!")
             return redirect(url_for('groups.group_page', group_id=group_id))
         except Exception as e:
