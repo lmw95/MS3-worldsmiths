@@ -126,9 +126,25 @@ div .hero {
     background-color: var(--munsell-t);
 }
 
-.profile-flash i {
+.welcome-flash {
+    margin-bottom: 0;
+    padding-top: 10px;
+    background-color: var(--almond);
+}
+
+.profile-flash i,
+.welcome-flash i {
     margin-left: 10px;
     cursor: pointer;
+}
+
+/* Pagination */
+.pagination nav {
+    background-color: var(--munsell-t) !important;
+}
+
+nav ul li.active {
+    background-color: transparent !important;
 }
 
 /* Forms */

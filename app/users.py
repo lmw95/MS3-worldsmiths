@@ -17,7 +17,7 @@ from app import mongo
 users = Blueprint("users", __name__)
 
 
-PER_PAGE = 5
+PER_PAGE = 6
 
 def paginate(members):
     """
@@ -29,7 +29,6 @@ def paginate(members):
     offset = page * PER_PAGE - PER_PAGE
 
     return members[offset: offset + PER_PAGE]
-
 
 
 def pagination_args(members):
@@ -99,12 +98,17 @@ def member_profile(user_id):
     following = list(User.find_users_in_array(user["following"]))
     followers = list(User.find_users_in_array(user["followers"]))
 
+    paginated_members = paginate(following)
+    pagination = pagination_args(following)
+
     return render_template("member.html",
                             user_id=user_id, user=user,
                             groups_member=groups_member,
                             groups_created=groups_created,
-                            following=following, followers=followers,
-                            session_id=session_id, session_following=session_following)
+                            following=paginated_members,
+                            followers=followers, session_id=session_id, 
+                            session_following=session_following,
+                            pagination=pagination)
 
 
 # Follow other members
