@@ -244,7 +244,7 @@ Due to time constraints, a handful of features had to be dropped. The features i
 * [SendGrid](https://sendgrid.com/)
 
 ## **Development & deployment tools**
-* [Heroku](https://dashboard.heroku.com/)]
+* [Heroku](https://dashboard.heroku.com/)
 * [Git version control](https://git-scm.com/)
 * [Gitpod](https://www.gitpod.io/)
 * [Github](https://github.com/)
