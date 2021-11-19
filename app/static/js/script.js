@@ -1,6 +1,6 @@
  $(document).ready(function () {
 
-  // Activate MaterializeCSS sidenav
+  // MaterializeCSS sidenav
   $('.sidenav').sidenav();
 
   // MaterializeCSS character counter
@@ -9,7 +9,7 @@
   // MaterializeCSS collapsable accordians
   $('.collapsible').collapsible({
     accordion : false
-  })
+  });
 
   // MaterializeCSS modal
   $('.modal').modal({
@@ -21,7 +21,7 @@
     location.reload();
   });
 
-//https://www.w3schools.com/howto/howto_js_toggle_password.asp
+// Toggle password visibility - see Credits
 $(".toggle-password").click(function () {
   id = $(this).attr("data-target");
   if ($(`#${id}`).attr("type") === "password") {
@@ -33,10 +33,10 @@ $(".toggle-password").click(function () {
   }
 });
 
-// Materialize tooltips
+// MaterializeCSS tooltips
 $('.tooltipped').tooltip();
 
-// Force modal open
+// Force modal open - see Credits
 const elem = document.getElementById('new-member');
 const instance = M.Modal.init(elem, {dismissible: false});
 instance.open();
