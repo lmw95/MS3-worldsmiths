@@ -297,6 +297,7 @@ Input | type | Text appears in input | pass
  "Banner image" | type | Text appears in input | pass
  "Save" | click | Saves info, flash message | pass
 
+--- 
 
  # User stories 
 
@@ -388,3 +389,44 @@ Input | type | Text appears in input | pass
 
 ![](documentation/screenshots/leave.png)
 
+
+# Responsiveness
+This project was tested on a variety of devices:
+* iPhone 11
+* Samsung tablet
+* iPhone 7
+* Google Pixel 4
+
+***Responsive view***
+
+![](documentation/screenshots/desktop.png)
+
+![](documentation/screenshots/responsive-view.png)
+
+This project was also tested on the following providers and responded well: 
+* Google Chrome
+* Microsoft Edge
+* Safari
+* Opera
+* Firefox
+
+# Major bugs & solutions
+**[1]**
+* **Issue:** "Edit" modal wouldn't respond (404 errors)
+* **Solution:** Rendering edit pages on different pages instead rather than modals
+
+**[2]**
+* **Issue:** The view function for 'reset_password' did not return a valid response. The function either returned None or ended without a return statement.
+* **Solution:** Simply added return statement, simply rendered the sign-in page again
+
+**[3]**
+* **Issue:** werkzeug.builderrors after refactoring
+* **Solution:** Route paths needed to be included with dot notation in url_for paths in base.html
+
+**[4]**
+* **Issue:** 'Collection' object is not callable. If you meant to call the 'remove_one' method on a 'Collection' object it is failing because no such method exists whilst trying to remove user from group members
+* **Solution:** remove_one does not exist as a function, I meant update_one
+
+**[5]**
+* **Issue:** Contact form not working - returning Connection Error errno 1111
+* **Solution:** Use SendGrid as per mentor's suggestions

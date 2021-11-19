@@ -124,7 +124,7 @@
 </div>
 <div class="row">
 	{% if comments|length > 0 %}
-	{% for comment in comments %}
+	{% for comment in comments|sort(attribute='date_posted') %}
 	<div class="col s10 offset-s1 l0 offset-l1">
 		<ul class="collection">
 			<li class="collection-item avatar">
