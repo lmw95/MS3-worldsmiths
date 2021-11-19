@@ -236,6 +236,9 @@ Due to time constraints, a handful of features had to be dropped. The features i
 
 ## **Libraries & frameworks**
 * [Flask](https://flask.palletsprojects.com/en/2.0.x/)
+* [Flask Mail](https://pythonhosted.org/Flask-Mail/)
+* [Flask Paginate](https://pythonhosted.org/Flask-paginate/)
+* [Werkzeug](https://werkzeug.palletsprojects.com/en/2.0.x/)
 * [MaterializeCSS](https://materializecss.com/)
 * [Jinja](https://jinja.palletsprojects.com/en/3.0.x/)
 * [PyMongo](https://pypi.org/project/pymongo/)
