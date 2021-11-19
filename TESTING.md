@@ -341,3 +341,50 @@ Input | type | Text appears in input | pass
 * **Result:** PASS
 
 ![](documentation/screenshots/delete-profile.png)
+
+* I want to be able to leave a comment on the group page so I can connect with participants & organisers 
+* I want members to be able to leave comments and chat freely in the group so that any questions they have can be answered
+* I want to be able to leave comments or questions in the group so that I can have all the information I need 
+
+![](documentation/screenshots/add-comment.png)
+![](documentation/screenshots/add-comment-result.png)
+
+* I want to be able to join a group to network with other members
+* I want to be able to see the number of members on the profile
+* I want to be able to join a group so that I can connect with other members
+* **Result:** PASS
+
+![](documentation/screenshots/members.png)
+
+* I want to be able to view other people's profiles so that I can connect with them and view their projects
+* **Result:** PASS
+
+![](documentation/screenshots/other-members.png)
+
+* I want to be able to share my social media or project information on my profile so that other members can see my work
+* **Result:** PASS
+
+![](documentation/screenshots/projects.png)
+
+* I want to be able to create a group so that I can network with other members
+* **Result:** PASS
+
+![](documentation/screenshots/create-group.png)
+
+* I want to view the groups that I have created so that I can edit the details or delete it if necessary
+* I want to be able to see the number of members on the profile
+* I want to be able to view the groups that I am part of
+* **Result:** PASS
+
+![](documentation/screenshots/groups.png)
+
+* I want to provide all the relevant group details that will be of use to attendees (admin, location, description etc)
+* **Result:** PASS
+
+![](documentation/screenshots/group-details.png)
+
+* I want to be able to leave the group if I change my mind
+* **Result:** PASS
+
+![](documentation/screenshots/leave.png)
+

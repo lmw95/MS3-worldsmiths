@@ -64,7 +64,6 @@ This website is fully responsive and interactive, and was developed using HTML, 
 * I want to be able to create and edit my profile so that I can update my personal information 
 * I want to be able to delete my profile
 * I want to be able to leave a comment on the group page so I can connect with participants & organisers 
-* I want to be able to connect with other users through their emails (if provided)
 * I want to be able to join a group to network with other members
 * I want to be able to view other people's profiles so that I can connect with them and view their projects
 * I want to be able to share my social media or project information on my profile so that other members can see my work
