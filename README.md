@@ -10,24 +10,24 @@ This website is fully responsive and interactive, and was developed using HTML, 
 
 # Table of Contents
 * [UX](https://github.com/lmw95/MS3-worldsmiths#ux)
-    * [Strategy]()
-    * [User stories]()
-    * [Scope]()
-    * [Structure]()
-    * [Skeleton]()
-    * [Design]()
-* [Features]()
-    * [Existing features]()
-    * [Features for future implementation]()
-* [Technologies]()
-    * [Languages]()
-    * [Database]()
-    * [Libraries & frameworks]()
-* [Accessibility]()
-* [Validation]()
-* [Testing]()
-* [Deployment]()
-* [Credits]()
+    * [Strategy](https://github.com/lmw95/MS3-worldsmiths#strategy)
+    * [User stories](https://github.com/lmw95/MS3-worldsmiths#user-stories)
+    * [Scope](https://github.com/lmw95/MS3-worldsmiths#scope)
+    * [Structure](https://github.com/lmw95/MS3-worldsmiths#structure)
+    * [Skeleton](https://github.com/lmw95/MS3-worldsmiths#skeleton)
+    * [Design](https://github.com/lmw95/MS3-worldsmiths#design)
+* [Features](https://github.com/lmw95/MS3-worldsmiths#features)
+    * [Existing features](https://github.com/lmw95/MS3-worldsmiths#existing-features)
+    * [Features for future implementation](https://github.com/lmw95/MS3-worldsmiths#features-for-future-implementation)
+* [Technologies](https://github.com/lmw95/MS3-worldsmiths#technologies)
+    * [Languages](https://github.com/lmw95/MS3-worldsmiths#languages)
+    * [Database](https://github.com/lmw95/MS3-worldsmiths#database)
+    * [Libraries & frameworks](https://github.com/lmw95/MS3-worldsmiths#libraries--frameworks)
+* [Accessibility](https://github.com/lmw95/MS3-worldsmiths#accessibility)
+* [Validation](https://github.com/lmw95/MS3-worldsmiths#validation-1)
+* [Testing](https://github.com/lmw95/MS3-worldsmiths#testing)
+* [Deployment](https://github.com/lmw95/MS3-worldsmiths#deployment)
+* [Credits](https://github.com/lmw95/MS3-worldsmiths#credits)
 
 # UX
 ## **Strategy**
@@ -206,12 +206,24 @@ Icons from [Font Awesome](https://fontawesome.com/) and [Flaticon](https://www.f
 # Features
 ## **Existing features**
 Due to time constraints, a handful of features had to be dropped. The features implemented in the final project are:
-
+* Responsive & collapsable navbar
+* Search functionality for members and groups
+* Group creation, joining and leaving
+* Member viewing, following and unfollowing
+* Ability to leave comments in a group
+* Update profile information 
+* Update group information
+* Pagination for group members and followers 
+* Defensive programming upon deletion of groups, comments and accounts
 
 ## **Features for future implementation**
 * Filtering for search results (e.g - date, alphabetically, etc)
 * Ability to upload image files using Flask Upload rather than using URL
-* Pagination for certain elements
+* Ability to like comments
+* A larger and more engaging section for member information
+* Improved aesthetics (a sleeker look would be a possible improvement)
+* More user interactivity (animations, hover effects, etc.)
+
 
 # Technologies
 ## **Languages**
