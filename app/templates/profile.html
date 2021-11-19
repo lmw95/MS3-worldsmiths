@@ -107,7 +107,7 @@
 						<div class="col s12 m6 l6 xl6">
 							<div class="card groups-card">
 								<div class="card-image">
-									<img src="{{ group.group_cover_img_url }}">
+									<img src="{{ group.group_cover_img_url }}" alt="{{ group.group_name }}'s cover img">
 									<div class="row">
 										<div class="col s7">
 											<a href="{{ url_for('groups.group_page', group_id=group._id) }}">
@@ -147,7 +147,7 @@
 						<div class="col s12 m6 l6 xl6">
 							<div class="card groups-card">
 								<div class="card-image">
-									<img src="{{ group.group_cover_img_url }}">
+									<img src="{{ group.group_cover_img_url }}" alt="{{ group.group_name }}'s cover img">
 									<div class="row">
 										<div class="col s7">
 											<a href="{{ url_for('groups.group_page', group_id=group._id) }}">
@@ -185,7 +185,7 @@
 		<div class="col s6 m4 l3 xl2 group-member-card">
 			<div class="card member-card">
 				<div class="card-image">
-					<img src="{{ member.profile_pic_url }}">
+					<img src="{{ member.profile_pic_url }}" alt="{{ member.first_name }}'s profile img">
 					{% if user %}
 						{% if member in following %}
 						<!--If user is follower-->
@@ -197,7 +197,7 @@
 						<a href="{{ url_for('users.follow', user_id=member._id) }}" class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
 						{% endif %}
 					{% else %}
-					<a href="#prompt" class="modal-trigger" class="truncate"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
+					<a href="#prompt" class="modal-trigger truncate"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
 					<a class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
 					{% endif %}
 				</div>

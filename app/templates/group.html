@@ -29,7 +29,7 @@
 			<div class="col s12">
 				<h1 class="user-name">{{ group.group_name }}</h1>
 				<p><i class="fas fa-user"></i><span class="info-label"> Admin:</span> {{ admin_fname.capitalize() }} {{ admin_lname.capitalize() }}</p>
-				<p><i class="fas fa-magic"></i> Group created:</span> {{ group._id.generation_time.date().strftime("%d %B %Y") }}</p>
+				<p><i class="fas fa-magic"></i><span> Group created:</span> {{ group._id.generation_time.date().strftime("%d %B %Y") }}</p>
 				<p class="bottom-p"><i class="fas fa-map-marker-alt"></i><span class="info-label"> Location:</span> {{ group.group_location }}, UK</p>
 			</div>
 		</div>
@@ -119,9 +119,10 @@
 
 <!--Comments-->
 <div class="row group-section">
-<div class="row">
-	<div class="col s10 offset-s1">
-		<h3>Guild chat <i class="fas fa-comments right"></i></h3>
+	<div class="row">
+		<div class="col s10 offset-s1">
+			<h3>Guild chat <i class="fas fa-comments right"></i></h3>
+		</div>
 	</div>
 </div>
 <div class="row">
@@ -194,15 +195,15 @@
 				<div class="row">
 					<div class="input-field col s12">
 						<i class="fas fa-comment-dots prefix"></i>
-						<input id="reply" name="reply" type="text" required></textarea>
+						<input id="reply" name="reply" type="text" required>
 					</div>
 					<div class="input-field col s12">
 						<i class="fas fa-at prefix"></i>
 						{% set name = users|selectattr("_id", "equalto", comment.commenter)|first %}
 						{% if name is defined %}
-						<input disabled id="reply-to" name="reply-to" type="text" placeholder="{{ name.first_name }}{{ name.last_name }}" required></input>
+						<input disabled id="reply-to" name="reply-to" type="text" placeholder="{{ name.first_name }}{{ name.last_name }}" required>
 						{% else %}
-						<input disabled id="reply-to" name="reply-to" type="text" placeholder="[user deleted]" required></input>
+						<input disabled id="reply-to" name="reply-to" type="text" placeholder="[user deleted]" required>
 						{% endif %}
 					</div>
 				</div>
@@ -265,23 +266,21 @@
 <!--Sign-up/log-in modal-->
 <div id="prompt" class="modal">
 	<div class="modal-content">
-		<form method="POST" action="">
-			<div class="row">
-				<div class="col s12 center-align">
-					<img src="/static/imgs/gandalf.png" class="responsive-img gandalf">
-					<h1 class="center">The way is shut</h1>
-				</div>
+		<div class="row">
+			<div class="col s12 center-align">
+				<img src="/static/imgs/gandalf.png" class="responsive-img gandalf" alt="Gandalf">
+				<h1 class="center">The way is shut</h1>
 			</div>
-			<h3 class="center">Want to explore further?</h3>
-			<p class="center">To view, join or attend our events and group pages, you need to be a member with us and logged in.
-				Click below to join us, or log-in if you already have an account with us!
-			</p>
-		</form>
+		</div>
+		<h3 class="center">Want to explore further?</h3>
+		<p class="center">To view, join or attend our events and group pages, you need to be a member with us and logged in.
+			Click below to join us, or log-in if you already have an account with us!
+		</p>
 	</div>
 	<div class="modal-footer">
 		<div class="row center-align">
 			<div class="col s12 m12 l6 xl6">
-				<button class="modal-close btn col s12">Join the adventure</a>
+				<button class="modal-close btn col s12">Join the adventure</button>
 			</div>
 			<div class="col s12 m12 l6 xl6">
 				<a href="{{ url_for('users.log_in') }}" class="modal-close btn col s12">Sign me in</a>
@@ -309,7 +308,7 @@
 	<div class="modal-footer">
 		<div class="row center-align">
 			<div class="col s12 m12 l6 xl6">
-				<button class="modal-close btn col s12">I've changed my mind!</a>
+				<button class="modal-close btn col s12">I've changed my mind!</button>
 			</div>
 			<div class="col s12 m12 l6 xl6">
 				<a href="{{ url_for('groups.delete_group', group_id=group._id) }}" class="modal-close btn red col s12">Delete my precious</a>
@@ -326,13 +325,13 @@
 			<div class="row">
 				<div class="input-field col s12">
 					<i class="fas fa-comment-dots prefix"></i>
-					<input id="comment" name="comment" type="text" required></textarea>
+					<input id="comment" name="comment" type="text" required>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<div class="row">
 					<div class="col s12 right">
-						<button class="btn-large modal-close" type="submit"><i class="fas fa-plus-circle"></i> Add</a>
+						<button class="btn-large modal-close" type="submit"><i class="fas fa-plus-circle"></i> Add</button>
 					</div>
 				</div>
 			</div>

@@ -81,23 +81,13 @@
 				</div>
 			</div>
 			<div class="card-content">
-				<div class="row project-wrapper">
-					<div class="col s12 m4 l4 xl4 center-align">
-						<a href="{{ user.user_project_1 }}" target="_blank" aria-label="Project 1">
-							<p class="big-paragraph">PROJECT 1</p>
-						</a>
-					</div>
-					<div class="col s12 m4 l4 xl4 center-align" target="_blank" aria-label="Project 2">
-						<a href="{{ user.user_project_2 }}">
-							<p class="big-paragraph">PROJECT 2</p>
-						</a>
-					</div>
-					<div class="col s12 m4 l4 xl4 center-align" target="_blank" aria-label="Project 3">
-						<a href="{{ user.user_project_3 }}">
-							<p class="big-paragraph">PROJECT 3</p>
-						</a>
-					</div>
-				</div>
+				{% if user.user_project == "" %}
+				<p class="center"><em>No works of art yet...</em></p>
+				{% elif user.user_project == None %}
+				<p class="center"><em>No works of art yet...</em></p>
+				{% else %}
+				<p>{{ user.user_project }}</p>
+				{% endif %}
 			</div>
 		</div>
 	</div>
@@ -213,7 +203,7 @@
 		<div class="col s6 m4 l3 xl2 group-member-card">
 			<div class="card member-card">
 				<div class="card-image">
-					<img src="{{ member.profile_pic_url }}">
+					<img src="{{ member.profile_pic_url }}" alt="{{ member.first_name }}'s profile img">
 					{% if user %}
 					<a href="{{ url_for('users.member_profile', user_id=member._id) }}" target="_self" aria-label="Memeber profile"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
 					<a href="{{ url_for('users.follow', user_id=member._id) }}" class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
