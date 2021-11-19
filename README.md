@@ -226,47 +226,47 @@ Due to time constraints, a handful of features had to be dropped. The features i
 
 # Technologies
 ## **Languages**
-* HTML
-* CSS
-* Python
-* JavaScript
+* [HTML](https://en.wikipedia.org/wiki/HTML)
+* [CSS](https://en.wikipedia.org/wiki/CSS)
+* [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
+* [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
 
 ## **Database**
-* MongoDB
+* [MongoDB](https://www.mongodb.com/)
 
 ## **Libraries & frameworks**
-* Flask
-* MaterializeCSS
-* Jinja
-* PyMongo
-* jQuery
-* Flickity
-* SendGrid
+* [Flask](https://flask.palletsprojects.com/en/2.0.x/)
+* [MaterializeCSS](https://materializecss.com/)
+* [Jinja](https://jinja.palletsprojects.com/en/3.0.x/)
+* [PyMongo](https://pypi.org/project/pymongo/)
+* [jQuery](https://jquery.com/)
+* [Flickity](https://flickity.metafizzy.co/)
+* [SendGrid](https://sendgrid.com/)
 
 ## **Development & deployment tools**
-* Heroku
-* Git version control
-* Gitpod
-* Github
-* Balsamiq
-* Google DevTools
-* Am I Responsive?
+* [Heroku](https://dashboard.heroku.com/)]
+* [Git version control](https://git-scm.com/)
+* [Gitpod](https://www.gitpod.io/)
+* [Github](https://github.com/)
+* [Balsamiq](https://balsamiq.com/)
+* [Google DevTools](https://developer.chrome.com/docs/devtools/)
+* [Am I Responsive?](http://ami.responsivedesign.is/)
 
 ## **Validation**
-* W3C Markup Validation
-* W3C CSS Validation
-* JSLint
-* PEP8 Online Check
-* Lighthouse
+* [W3C Markup Validation](https://validator.w3.org/)
+* [W3C CSS Validation](https://jigsaw.w3.org/css-validator/)
+* [JSLint](https://jshint.com/)
+* [PEP8 Online Check](http://pep8online.com/)
+* [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 
 ## **Other tools**
-* Font Awesome
-* Flaticon
-* Google Fonts
-* Coolors
-* Diagram.io
-* dbdiagram.io
-* Spark Adobe
+* [FontAwesome](https://fontawesome.com/)
+* [Flaticon](https://www.flaticon.com/)
+* [Google Fonts](https://fonts.google.com/)
+* [Coolors]9https://coolors.co/
+* [Diagram.io](https://app.diagrams.net/)
+* [dbdiagram.io](https://dbdiagram.io/home)
+* [Spark Adobe](https://spark.adobe.com/sp/)
 
 # Accessibility
 
