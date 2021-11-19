@@ -9,7 +9,7 @@ Worldsmiths is an online event-planning platform and was created for educational
 This website is fully responsive and interactive, and was developed using HTML, CSS, JavaScript, Python, Flask and MongoDB, incorporating the principles of UX design and adhering to PEP8 compliance.
 
 # Table of Contents
-* [UX]()
+* [UX](https://github.com/lmw95/MS3-worldsmiths#ux)
     * [Strategy]()
     * [User stories]()
     * [Scope]()
@@ -36,13 +36,13 @@ This website is fully responsive and interactive, and was developed using HTML, 
 
 [Live site](https://worldsmiths.herokuapp.com/)
 
-*Worldsmiths* is an event-planning platform aimed at the [worldbuilding](https://en.wikipedia.org/wiki/Worldbuilding) community within in the UK. Worldbuilding is considered a niche hobby, and has a vibrant and diverse community spanning the globe. This site is aimed at those within the UK community who wish to network in the UK for a variety of reasons, including:
+*Worldsmiths* is an group-based platform aimed at the [worldbuilding](https://en.wikipedia.org/wiki/Worldbuilding) community within in the UK. Worldbuilding is considered a niche hobby, and has a vibrant and diverse community spanning the globe. This site is aimed at those within the UK community who wish to network in the UK for a variety of reasons, including:
 * Discuss, develop and learn about worldbuilding skills & practices through specialise groups
 * Create a profile in order to share their projects with others on the website
 * Socialise with other members of the community around the country
 
 ***Site owner goals***
-* Provide worldbuilders in the UK an engaging and easy-to-use platform to create and join events, share their profiles and network
+* Provide worldbuilders in the UK an engaging and easy-to-use platform to create and join groups, share their profiles and network
 * Put new language skills (Python, MongoDB and Flask) into practice
 * Create and minumum viable product capable of being developed further in the future 
 
@@ -425,7 +425,7 @@ You can find all the steps to follow according to your chosen method in this [Gi
 * [Writing classes and methods](https://www.pythonpool.com/python-class-vs-module/)
 * [Using classes and methods](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+CPP_06_20+2020_T1/courseware/272f493b4d57445fbd634e7ceca3a98c/c75ed529d8f14d5aa5f359281c76c834/)
 * [How to use Flask pagination](https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9)
-* [@staticmethod vs @clasmethod - which to use?](https://stackabuse.com/pythons-classmethod-and-staticmethod-explained/)
+* [@staticmethod vs @classmethod - which to use?](https://stackabuse.com/pythons-classmethod-and-staticmethod-explained/)
 * [Error handling](https://flask.palletsprojects.com/en/2.0.x/errorhandling/)
 
 ***Media***
