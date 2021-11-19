@@ -263,7 +263,7 @@ Due to time constraints, a handful of features had to be dropped. The features i
 * [FontAwesome](https://fontawesome.com/)
 * [Flaticon](https://www.flaticon.com/)
 * [Google Fonts](https://fonts.google.com/)
-* [Coolors](https://coolors.co/
+* [Coolors](https://coolors.co/)
 * [Diagram.io](https://app.diagrams.net/)
 * [dbdiagram.io](https://dbdiagram.io/home)
 * [Spark Adobe](https://spark.adobe.com/sp/)
