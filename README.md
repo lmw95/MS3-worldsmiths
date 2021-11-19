@@ -224,7 +224,6 @@ Due to time constraints, a handful of features had to be dropped. The features i
 * Improved aesthetics (a sleeker look would be a possible improvement)
 * More user interactivity (animations, hover effects, etc.)
 
-
 # Technologies
 ## **Languages**
 * HTML
