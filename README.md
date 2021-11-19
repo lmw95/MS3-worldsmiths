@@ -258,7 +258,36 @@ Due to time constraints, a handful of features had to be dropped. The features i
 * dbdiagram.io
 * Spark Adobe
 
- # Validation
+# Accessibility
+
+## **Lighthouse reports**
+
+***Accessibility***
+
+![](documentation/screenshots/accessibility.png)
+
+***Search engine optomisation***
+
+![](documentation/screenshots/seo.png)
+
+***Best practices***
+
+![](documentation/screenshots/best-practices.png)
+
+***Performance***
+
+![](documentation/screenshots/performance.png)
+
+* Performance report for both mobile and desktop returned a score of 73
+* The developer does not yet have the skill to amend this, but will be looking to in the future with more experience in performance testing
+* The testing was also conducted on a day with slow WiFi and download speed which may affect performance
+
+***Progressive App***
+
+* N/A
+
+
+# Validation
 
  See [validation](VALIDATION.md)
 
