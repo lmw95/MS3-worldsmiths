@@ -48,7 +48,7 @@
         </div>
         <div class="row center-align">
             <div class="col s12 m5 offset-m1 l4 offset-l2 xl4 offset-xl2">
-                <a href="{{ url_for('main.browse_all') }}" class="btn-large col s12 welcome-link">Browse events & groups</a>
+                <a href="{{ url_for('main.browse_all') }}" class="btn-large col s12 welcome-link">Browse groups & members</a>
             </div>
             <div class="col s12 m5 l4 xl4">
                 <a href="{{ url_for('main.contact') }}" target="_self" class="btn-large col s12 welcome-link">Contact us</a>
@@ -109,7 +109,7 @@
     <div class="col s10 offset-s1">
 		<div class="card horizontal group-card">
 			<div class="card-image browse-img">
-				<img src="{{ comp_group.group_cover_img_url }}" alt="{{ comp_group.group_name }}'s cover img">
+				<img src="{{ comp_group.group_cover_img_url }}" alt="Group's cover img">
 			</div>
 			<div class="card-stacked">
 				<div class="card-content">

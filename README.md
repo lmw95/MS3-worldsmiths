@@ -23,6 +23,8 @@ This website is fully responsive and interactive, and was developed using HTML, 
     * [Languages]()
     * [Database]()
     * [Libraries & frameworks]()
+* [Accessibility]()
+* [Validation]()
 * [Testing]()
 * [Deployment]()
 * [Credits]()
@@ -56,12 +58,10 @@ This website is fully responsive and interactive, and was developed using HTML, 
 * I want to browse the site to see if the website is something I want to join
 * I want to be able to see group descriptions
 * I want to be able to sign-up so that I can create my profile and start networking
-* I want to be able to know how to use the website so I can make the most of its features at a later date
 
 ***As a returning user (member):***
 * I want to be able to log-in so that I can make use of the website and its features
 * I want to be able to create and edit my profile so that I can update my personal information 
-* I want to be able to choose what information I display on my profile
 * I want to be able to delete my profile
 * I want to be able to leave a comment on the group page so I can connect with participants & organisers 
 * I want to be able to connect with other users through their emails (if provided)
@@ -183,14 +183,14 @@ Logged-in users can see:
 * 'Inactive' group modal
 * Reset password modal
 * Deletion of group and profile modal
-* Join 'New Members' group
+* Join 'New Members' group modal
 
 ## **Design**
 The overall design of the website will be modern yet keeping in theme of worldbuilding genres and cartography.
 
 ***Palette***
 
-The colour palette will be using colours that exist in the main header image, with no colour clashes to ensure accessibility:
+The colour palette has been chosen by [Coolors](https://coolors.co/) and will be using colours that exist in the main header image, with no colour clashes to ensure accessibility:
 
 ![](documentation/screenshots/palette.png) 
 
@@ -240,13 +240,13 @@ Due to time constraints, a handful of features had to be dropped. The features i
 * Github
 * Balsamiq
 * Google DevTools
-* Am I Responsive
+* Am I Responsive?
 
 ## **Validation**
 * W3C Markup Validation
 * W3C CSS Validation
 * JSLint
-* PEP8 Online
+* PEP8 Online Check
 * Lighthouse
 
 ## **Other tools**
@@ -285,7 +285,6 @@ Due to time constraints, a handful of features had to be dropped. The features i
 ***Progressive App***
 
 * N/A
-
 
 # Validation
 

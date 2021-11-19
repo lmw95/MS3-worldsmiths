@@ -1,11 +1,10 @@
-{% exends "base.html" %}
+{% extends "base.html" %}
 
 {% block content %}
 <div class="row error" style="padding-top: 40px;">
     <div class="col s12 center align">
-        <img src="app/static/imgs/gandalf.png" alt="Gandalf">
         <h1>500: Well... that was unexpected</h1>
-        <a class="btn-large" href="{{ url_for('users.homepage')}}">Go back</a>
+        <a class="btn-large" href="{{ url_for('main.homepage')}}">Go back</a>
     </div>
 </div>
 

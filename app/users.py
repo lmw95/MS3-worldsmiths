@@ -175,8 +175,8 @@ def settings(user_id):
 
 
 # Change email
-@users.route("/edit_email/<user_id>")
-def edit_email():
+@users.route("/edit_email/<user_id>", methods=["GET", "POST"])
+def edit_email(user_id):
     """
     Gets user id and current email in session
     Checks to see if new email and confirmation match
@@ -195,7 +195,7 @@ def edit_email():
             new_email = request.form.get("new-email")
 
             try:
-                User.add_to_db(user_id, updated_email)
+                User.edit_user(user_id, updated_email)
                 flash("Email updated successfully!")
                 session["user"] = new_email
                 return render_template("profile-settings.html",
@@ -232,7 +232,7 @@ def edit_password(user_id):
             new_password = request.form.get("new-password")
 
             try:
-                User.add_to_db(user_id, updated_password)
+                User.edit_user(user_id, updated_password)
                 flash("Password updated successfully!")
                 return render_template("profile-settings.html",
                                        page_title="Profile settings",
@@ -247,8 +247,8 @@ def edit_password(user_id):
 
 
 # Edit account
-@users.route("/edit_account", methods=["GET", "POST"])
-def edit_account():
+@users.route("/edit_account/<user_id>", methods=["GET", "POST"])
+def edit_account(user_id):
     """
     Gets user id
     Gets user details from DB to display in form
@@ -270,7 +270,7 @@ def edit_account():
         new_lname = request.form.get("new-lname")
 
         try:
-            Users.add_to_db(user_id, updated_names)
+            User.edit_user(user_id, updated_names)
             flash("Account details successfully updated!")
             return render_template("profile-settings.html",
                                    page_title="Profile settings", user=user,

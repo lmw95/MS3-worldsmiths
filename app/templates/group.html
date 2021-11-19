@@ -41,14 +41,11 @@
 			{% elif user != admin %}
 				{% if group._id in members_of %}
 					{% if group.group_name == "Warm welcome - new members" %}
-					<a href="" class="btn-large col s12 m12 l12 xl12 join-group message-admin" aria-label="Message admin">Message admin</a>
 					{% else %}
 					<a href="{{ url_for('groups.leave_group', group_id=group._id) }}" class="btn-large col s4 offset-s1 offset-s1 m12 l12 xl12 offset-m1 leave-group" aria-label="Leave group">Leave</a>
-					<a href="" class="btn-large col s12 m12 l12 xl12 join-group message-admin" aria-label="Message admin">Message admin</a>
 					{% endif %}
 				{% else %}
 				<a href="{{ url_for('groups.join_group', group_id=group._id) }}" class="btn-large col s5 offset-s1 m12 l12 xl12 join-group" aria-label="Join group">Join</a>
-				<a href="" class="btn-large col s5 offset-s1 m12 l12 xl12 join-group message-admin" aria-label="Message admin">Message admin</a>
 				{% endif %}
 			{% else %}
 			<a href="#prompt" class="btn-large col s12 m12 l12 xl12 offset-m1 modal-trigger join-group" aria-label="Join group">Join</a>
@@ -133,7 +130,7 @@
 			<li class="collection-item avatar">
 				{% set commenter = users|selectattr("_id", "equalto", comment.commenter )|first %}
 				{% if commenter is defined %}
-				<img src="{{ commenter.profile_pic_url }}" height="42" width="42" alt="{{ commenter.profile_pic_url }}" class="circle">
+				<img src="{{ commenter.profile_pic_url }}" height="42" width="42" alt="Profile pic" class="circle">
 				{% else %}
 				<img src="/static/imgs/profile-avatar.png" height="42" width="42" alt="Avatar default" class="circle">
 				{% endif %}

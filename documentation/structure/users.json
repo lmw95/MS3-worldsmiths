@@ -53,15 +53,7 @@
             "bsonType": "string",
             "description": "String and can be empty"
         },
-        "user_project_1": {
-            "bsonType": "string",
-            "description": "String and can be empty"
-        },
-        "user_project_2": {
-            "bsonType": "string",
-            "description": "String and can be empty"
-        },
-        "user_project_3": {
+        "user_project": {
             "bsonType": "string",
             "description": "String and can be empty"
         },

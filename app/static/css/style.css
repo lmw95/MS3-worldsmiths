@@ -85,7 +85,7 @@ nav ul a {
 
 nav ul a:hover {
     background-color: transparent;
-    transform: scale(1.3);
+    transform: scale(1.1);
 }
 
 .sidenav {
@@ -173,7 +173,6 @@ form label {
     text-transform: uppercase;
     font-weight: 700;
     font-size: 1.3em !important;
-    color: var(--cadet) !important;
 }
 
 form input,
@@ -891,6 +890,10 @@ input[type=text]:not(.browser-default) {
     margin-bottom: 40px;
 }
 
+.flickity-viewport {
+    height: 650px !important;
+}
+
 .carousel {
     height: auto;
 }
@@ -1047,10 +1050,20 @@ input[type=text]:not(.browser-default) {
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 520px) {
     .carousel-cell {
         width: 100%;
     }
+}
+
+@media only screen and (min-width: 520px) and (max-width: 768px) {
+    .carousel-cell {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
 
     .event-btn {
         font-size: 0.9em;

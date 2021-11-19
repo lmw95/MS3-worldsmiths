@@ -22,7 +22,7 @@
 <div class="p-info">
 	<div class="row valign-wrapper details">
 		<div class="col s12 m12 l2 xl2 profile-pic-wrapper">
-			<img src="{{ user.profile_pic_url }}" class="responsive-img circle col s6 offset-s3 m4 offset-m4 l12 xl12 profile-pic" alt="{{ user.nickname.capitalize() }}'s profile picture">
+			<img src="{{ user.profile_pic_url }}" class="responsive-img circle col s6 offset-s3 m4 offset-m4 l12 xl12 profile-pic" alt="User's profile picture">
 		</div>
 		<div class="col s12 m12 l7 xl7">
 			<div class="row valign-wrapper">
@@ -44,12 +44,11 @@
 				<hr class="underline">
 			</div>
 			{% else %}
-			{% if user_id in session_following %}
-			<a href="{{ url_for('users.unfollow', user_id=user_id) }}" class="btn-large col s12 m3 offset-m1 l12 xl12 edit" aria-label="Unfollow">Unfollow</a>
-			{% else %}
-			<a href="{{ url_for('users.follow', user_id=user_id) }}" class="btn-large col s12 m3 offset-m1 l12 xl12 edit" aria-label="Follow">Follow</a>
-			{% endif %}
-			<a href="" class="btn-large col s12 m3 l12 xl12 modal-trigger settings" aria-label="Message member">Message</a>
+				{% if user_id in session_following %}
+				<a href="{{ url_for('users.unfollow', user_id=user_id) }}" class="btn-large col s12 m12 l12 xl12 edit" aria-label="Unfollow">Unfollow</a>
+				{% else %}
+				<a href="{{ url_for('users.follow', user_id=user_id) }}" class="btn-large col s12 m12 l12 xl12 edit" aria-label="Follow">Follow</a>
+				{% endif %}
 			{% endif %}
 		</div>
 	</div>
@@ -120,7 +119,7 @@
 						<div class="col s12 m12 l6 xl6">
 							<div class="card groups-card">
 								<div class="card-image">
-									<img src="{{ group.group_cover_img_url }}" alt="{{ group.group_name }}'s cover img">
+									<img src="{{ group.group_cover_img_url }}" alt="Group cover img">
 									<div class="row">
 										<div class="col s7">
 											<a href="{{ url_for('groups.group_page', group_id=group._id) }}" target="_self" aria-label="{{ group.group_name }}'s page">
@@ -137,7 +136,6 @@
 						{% endfor %}
 						{% else %} 
 						<div class="col s12 center-align">
-							<img src="/static/imgs/nothing-here-2.png" height="250" width="200" alt="Pixie looking cross">
 							<p class="big-paragraph">There's nothing here!</p>
 						</div>
 						{% endif %}  
@@ -162,7 +160,7 @@
 						<div class="col s12 m6 l6 xl6">
 							<div class="card groups-card">
 								<div class="card-image">
-									<img src="{{ group.group_cover_img_url }}" alt="{{ group.group_name }}'s cover img">
+									<img src="{{ group.group_cover_img_url }}" alt="Group's cover img">
 									<div class="row">
 										<div class="col s7">
 											<a href="{{ url_for('groups.group_page', group_id=group._id) }}" target="_self" aria-label="{{ group.group_name }}'s page">
@@ -179,7 +177,6 @@
 						{% endfor %}
 						{% else %}
 						<div class="col s12 center-align">
-							<img src="/static/imgs/nothing-here-2.png" height="250" width="200" alt="Pixie looking cross">
 							<p class="big-paragraph nothing-here-p">Absolutely nothing</p>
 						</div>
 						{% endif %}
@@ -203,7 +200,7 @@
 		<div class="col s6 m4 l3 xl2 group-member-card">
 			<div class="card member-card">
 				<div class="card-image">
-					<img src="{{ member.profile_pic_url }}" alt="{{ member.first_name }}'s profile img">
+					<img src="{{ member.profile_pic_url }}" alt="Member's profile img">
 					{% if user %}
 					<a href="{{ url_for('users.member_profile', user_id=member._id) }}" target="_self" aria-label="Memeber profile"><span class="card-title member-name valign-wrapper">{{ member.first_name.capitalize() }} {{ member.last_name.capitalize() }}</span></a>
 					<a href="{{ url_for('users.follow', user_id=member._id) }}" class="btn-floating halfway-fab follow-btn"><i class="fas fa-plus"></i></a>
