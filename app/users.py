@@ -71,10 +71,12 @@ def get_profile():
     pagination = pagination_args(following)
 
     if user:
-        return render_template("profile.html", page_title="My profile", user=user,
-                                user_id=user_id, groups_created=groups_created,
-                                groups_member=groups_member, following=paginated_members,
-                                followers=followers, pagination=pagination)
+        return render_template("profile.html", page_title="My profile",
+                               user=user, user_id=user_id,
+                               groups_created=groups_created,
+                               groups_member=groups_member,
+                               following=paginated_members,
+                               followers=followers, pagination=pagination)
 
 
 # Get other member profiles
@@ -104,13 +106,13 @@ def member_profile(user_id):
     pagination = pagination_args(following)
 
     return render_template("member.html",
-                            user_id=user_id, user=user,
-                            groups_member=groups_member,
-                            groups_created=groups_created,
-                            following=paginated_members,
-                            followers=followers, session_id=session_id, 
-                            session_following=session_following,
-                            pagination=pagination)
+                           user_id=user_id, user=user,
+                           groups_member=groups_member,
+                           groups_created=groups_created,
+                           following=paginated_members,
+                           followers=followers, session_id=session_id,
+                           session_following=session_following,
+                           pagination=pagination)
 
 
 # Follow other members
@@ -167,7 +169,9 @@ def settings(user_id):
     user = User.get_user_by_id(user_id)
     email = User.get_user_by_id(user_id)["email"]
 
-    return render_template("profile-settings.html", page_title="Profile settings", user=user, email=email)
+    return render_template("profile-settings.html", 
+                           page_title="Profile settings",
+                           user=user, email=email)
 
 
 # Change email
@@ -194,15 +198,17 @@ def edit_email():
                 User.add_to_db(user_id, updated_email)
                 flash("Email updated successfully!")
                 session["user"] = new_email
-                return render_template("profile-settings.html", page_title="Profile settings",
-                                user=user, email=new_email)
+                return render_template("profile-settings.html",
+                                       page_title="Profile settings",
+                                       user=user, email=new_email)
             except Exception as e:
                 print(e)
 
     else:
         flash("Emails do not match! Try entering them again.")
-        return render_template("profile-settings.html", page_title="Profile settings",
-                                user=user, email=email)            
+        return render_template("profile-settings.html",
+                               page_title="Profile settings",
+                               user=user, email=email)
 
 
 # Change password
@@ -217,22 +223,27 @@ def edit_password(user_id):
     """
     user = User.get_user_by_id(user_id)
 
-    if request.form.get("new-password") == request.form.get("confirm-password"):
+    if request.form.get("new-password") == request.form.get(
+                        "confirm-password"):
         if request.method == "POST":
 
-            updated_password = {"password": generate_password_hash(request.form.get("new-password"))}
+            updated_password = {"password": generate_password_hash(
+                                request.form.get("new-password"))}
             new_password = request.form.get("new-password")
 
             try:
                 User.add_to_db(user_id, updated_password)
                 flash("Password updated successfully!")
-                return render_template("profile-settings.html", page_title="Profile settings", user=user)
+                return render_template("profile-settings.html",
+                                       page_title="Profile settings",
+                                       user=user)
             except Exception as e:
                 print(e)
 
     else:
         flash("Passwords do not match! Please try entering them again.")
-        return render_template("profile-settings.html", page_title="Profile settings", user=user)
+        return render_template("profile-settings.html",
+                               page_title="Profile settings", user=user)
 
 
 # Edit account
@@ -250,7 +261,7 @@ def edit_account():
     last_name = User.get_user_by_id(user_id)["last_name"]
 
     if request.method == "POST":
-        updated_names = { 
+        updated_names = {
             "first_name": request.form.get("new-fname"),
             "last_name": request.form.get("new-lname")
         }
@@ -261,15 +272,17 @@ def edit_account():
         try:
             Users.add_to_db(user_id, updated_names)
             flash("Account details successfully updated!")
-            return render_template("profile-settings.html", page_title="Profile settings", user=user,
-                                    first_name=new_fname,
-                                    last_name=new_lname)
+            return render_template("profile-settings.html",
+                                   page_title="Profile settings", user=user,
+                                   first_name=new_fname,
+                                   last_name=new_lname)
         except Exception as e:
             print(e)
 
     else:
         flash("Sorry, account could not be updated right now.")
-        return render_template("profile-settings.html", page_title="Profile settings", user=user)
+        return render_template("profile-settings.html",
+                               page_title="Profile settings", user=user)
 
 
 # Edit profile
@@ -300,11 +313,14 @@ def edit_profile(user_id):
         try:
             User.edit_user(user_id, updated_info)
             flash("Profile updated!")
-            return redirect(url_for("users.get_profile", page_title="My profile", user=user))
+            return redirect(url_for("users.get_profile",
+                                    page_title="My profile",
+                                    user=user))
         except Exception as e:
             print(e)
 
-    return render_template("edit-profile.html", page_title="Edit profile", user=user) 
+    return render_template("edit-profile.html",
+                           page_title="Edit profile", user=user)
 
 
 # Delete account
@@ -331,7 +347,8 @@ def delete_account(user_id):
     session.pop("email", None)
     session.pop("user")
     User.delete_user(user_id)
-    flash("We're sorry to see you go! Please do come back and join the adventure again soon.")
+    flash("We're sorry to see you go! Please do come back and"
+          " join the adventure again soon.")
     return redirect(url_for("users.sign_up"))
 
 
@@ -356,22 +373,24 @@ def sign_up():
         reg_date = datetime.now().strftime("%d %b %Y")
 
         new = User(first_name=request.form.get("fname").lower(),
-                    last_name=request.form.get("lname").lower(),
-                    email=request.form.get("email").lower(),
-                    password=request.form.get("password"),
-                    user_member_since=reg_date)
+                   last_name=request.form.get("lname").lower(),
+                   email=request.form.get("email").lower(),
+                   password=request.form.get("password"),
+                   user_member_since=reg_date)
 
         if existing_user:
-            flash("This email is already linked to an account. Please try a different one or log-in.")
+            flash("This email is already linked to an account. Please try a"
+                  " different one or log-in.")
             return redirect(url_for("users.sign_up"))
         else:
             try:
                 new.add_to_db()
-                flash("Registration successful, welcome aboard! You can now log in.")
+                flash("Registration successful, welcome aboard! You can now"
+                      " log in.")
                 return redirect(url_for("users.log_in"))
             except Exception as e:
                 print(e)
-    
+
     return render_template("sign-up.html", page_title="Sign up")
 
 
@@ -392,9 +411,11 @@ def log_in():
         )
 
         if existing_user:
-            if check_password_hash(existing_user["password"], request.form.get("password")):
+            if check_password_hash(existing_user["password"], request.form.get(
+                                  "password")):
                 session["user"] = request.form.get("email").lower()
-                return redirect(url_for("users.welcome", first_name=session["user"]))
+                return redirect(url_for("users.welcome", first_name=session[
+                               "user"]))
             else:
                 flash("Email and/or password incorrect, please try again")
                 return redirect(url_for("users.log_in"))
@@ -424,7 +445,7 @@ def welcome(first_name):
     if session["user"]:
         return render_template(
             "welcome.html", page_title="Welcome back", first_name=first_name,
-                            comp_group=comp_group, new_user=new_user, users=users)
+            comp_group=comp_group, new_user=new_user, users=users)
 
 
 @users.route("/comp_group/", methods=["GET", "POST"])
@@ -444,7 +465,8 @@ def comp_group():
 
     Group.add_to_list(comp_group_id, "members", new_user)
     User.add_to_list(new_user, "groups_member_of", comp_group_id)
-    flash("Thanks for joining New Members! You are now free to start exploring.")
+    flash("Thanks for joining New Members!"
+          " You are now free to start exploring.")
 
     return redirect(url_for('users.welcome', first_name=first_name,
                             comp_group=comp_group, new_user=new_user))
@@ -471,4 +493,3 @@ def log_out():
     session.pop("user")
     flash("You have been logged out. Come back soon!")
     return redirect(url_for("users.log_in"))
-    

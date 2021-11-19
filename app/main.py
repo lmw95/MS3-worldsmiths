@@ -2,15 +2,11 @@ import os
 from . import mail
 from flask import (Flask, render_template, request,
                    flash, url_for, redirect, session, Blueprint)
-# Flask Mail
 from flask_mail import Message
-# Import datetime
 from datetime import datetime
-# Classes
 from flask_paginate import Pagination, get_page_args
 from app.classes.user import User
 from app.classes.group import Group
-# Import MongoDB
 from app import mongo
 
 
@@ -30,7 +26,7 @@ def homepage():
     users = list(User.get_all_users())
 
     return render_template("homepage.html", page_title="Home", groups=groups,
-                            users=users)
+                           users=users)
 
 
 # Search through all events and memembers
@@ -61,12 +57,12 @@ def search():
     group_results = list(Group.find_groups_by_query(user_query))
     member_results = list(User.find_users_by_query(user_query))
 
-    return render_template("all-groups-members.html", 
-                                page_title="Search", user=user,
-                                user_query=user_query, group_results=group_results,
-                                member_results=member_results,
-                                groups=groups, members=members,
-                                following=following, search=True)
+    return render_template("all-groups-members.html",
+                           page_title="Search", user=user,
+                           user_query=user_query, group_results=group_results,
+                           member_results=member_results,
+                           groups=groups, members=members,
+                           following=following, search=True)
 
 
 # Contact us
@@ -125,7 +121,7 @@ def browse_all():
     user_following = User.check_user_exists(session["user"].lower())
     following = list(User.find_users_in_array(user_following["following"]))
 
-    return render_template("all-groups-members.html", 
-                            page_title="Browse all groups and members",
-                            following=following,
-                            groups=groups, members=members)
+    return render_template("all-groups-members.html",
+                           page_title="Browse all groups and members",
+                           following=following,
+                           groups=groups, members=members)

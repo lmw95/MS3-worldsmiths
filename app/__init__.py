@@ -30,4 +30,4 @@ def run_app(default_config=Settings):
     app.register_blueprint(groups)
     app.register_blueprint(main)
 
-    return app 
+    return app

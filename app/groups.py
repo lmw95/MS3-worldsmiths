@@ -63,14 +63,15 @@ def create_group():
 
         try:
             new_created = new.add_to_db()
-            User.add_to_list(user["_id"], "groups_created", new_created.inserted_id)
+            User.add_to_list(user["_id"], "groups_created",
+                             new_created.inserted_id)
             flash("Group created! See Groups section on your profile.")
             return redirect(url_for('users.get_profile'))
         except Exception as e:
             print(e)
-    
+
     return render_template("create-group.html",
-                            user=user)
+                           user=user)
 
 
 # Group page
@@ -107,11 +108,15 @@ def group_page(group_id):
         admin_lname = User.get_user_by_id(admin)["last_name"]
 
         return render_template("group.html",
-                                group=group, admin=admin, user=user,
-                                admin_fname=admin_fname, admin_lname=admin_lname,
-                                members_of=members_of, members=paginated_members,
-                                comments=comments, users=users, following=following, 
-                                check_user=check_user, pagination=pagination)
+                               group=group, admin=admin, user=user,
+                               admin_fname=admin_fname,
+                               admin_lname=admin_lname,
+                               members_of=members_of,
+                               members=paginated_members,
+                               comments=comments, users=users,
+                               following=following,
+                               check_user=check_user,
+                               pagination=pagination)
 
 
 # Edit group
@@ -143,7 +148,7 @@ def edit_group(group_id):
             print(e)
 
     return render_template("edit-group.html",
-                            group_id=group_id, group=group)
+                           group_id=group_id, group=group)
 
 
 # Join group
@@ -214,13 +219,13 @@ def add_comment(group_id):
         date = datetime.now().strftime("%d %b %Y")
 
         new_comment = Comment(comment=request.form.get("comment"),
-                            commenter=user["_id"],
-                            group_id=ObjectId(group_id),
-                            time_posted=time,
-                            date_posted=date, 
-                            reply=False,
-                            reply_to=None,
-                            reply_user=None)
+                              commenter=user["_id"],
+                              group_id=ObjectId(group_id),
+                              time_posted=time,
+                              date_posted=date,
+                              reply=False,
+                              reply_to=None,
+                              reply_user=None)
 
         try:
             new_comment.add_comment_to_db()
@@ -233,7 +238,8 @@ def add_comment(group_id):
 
 
 # Delete comment
-@groups.route("/delete_comment/<group_id>/<comment_id>", methods=["GET", "POST"])
+@groups.route("/delete_comment/<group_id>/<comment_id>", methods=[
+              "GET", "POST"])
 def delete_comment(group_id, comment_id):
     """
     Gets group id
@@ -242,7 +248,7 @@ def delete_comment(group_id, comment_id):
     Renders comment on group page
     """
     if request.method == "POST":
-        
+
         group = Group.get_group(group_id)["_id"]
 
         comment = Comment.get_comment(comment_id)
@@ -251,7 +257,7 @@ def delete_comment(group_id, comment_id):
         flash("Comment deleted")
 
     return redirect(url_for('groups.group_page', group_id=group_id))
-   
+
 
 # Reply to a comment
 @groups.route("/reply/<group_id>/<comment_id>", methods=["GET", "POST"])
@@ -274,13 +280,13 @@ def reply(group_id, comment_id):
         date = datetime.now().strftime("%d %b %Y")
 
         new_reply = Comment(comment=request.form.get("reply"),
-                                commenter=user["_id"],
-                                group_id=ObjectId(group_id),
-                                time_posted=time,
-                                date_posted=date,
-                                reply=True,
-                                reply_to=ObjectId(comment_id),
-                                reply_user=ObjectId(commenter))
+                            commenter=user["_id"],
+                            group_id=ObjectId(group_id),
+                            time_posted=time,
+                            date_posted=date,
+                            reply=True,
+                            reply_to=ObjectId(comment_id),
+                            reply_user=ObjectId(commenter))
 
         try:
             new_reply.add_comment_to_db()
