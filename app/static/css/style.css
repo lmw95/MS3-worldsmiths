@@ -778,7 +778,7 @@ h3 {
 
 .big-paragraph {
     font-size: var(--big-paragraph);
-    font-size: 400;
+    font-weight: 400;
     font-family: var(--yanone-kaffeesatz);
 }
 
@@ -1136,5 +1136,3 @@ input[type=text]:not(.browser-default) {
         padding-left: 24px;
     }
 }
-
-
